@@ -1,0 +1,36 @@
+= form_for [:admin, @user] do |f|
+  .label= f.label :email
+  .input= f.text_field :email
+
+  .label= f.label :first_name
+  .input= f.text_field :first_name
+
+  .label= f.label :last_name
+  .input= f.text_field :last_name
+
+  .label= f.label :phone
+  .input= f.text_field :phone
+
+  .label= f.label :mobile
+  .input= f.text_field :mobile
+
+  .label= f.label :address
+  .input= f.text_field :houseno
+
+  .label= f.label :houseno
+  .input= f.text_field :houseno
+
+  .label= f.label :zipcode
+  .input= f.text_field :zipcode, :maxlength => 5
+
+  .label= f.label :city
+  .input= f.text_field :city
+
+  .label= f.label :member_active
+  .input= f.check_box :member_active
+
+  .label= f.label :role
+  .input= f.select :role, %w[member management]
+
+
+  .button= f.submit

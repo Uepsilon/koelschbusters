@@ -1,0 +1,25 @@
+#users
+  %table
+    %thead
+      %th
+        %td ID
+        %td Name
+        %td Email
+        %td Adresse
+        %td Telefon
+        %td Mobil
+        %td{:colspan => 2} Optionen
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.id
+          %td= user.name
+          %td= user.email
+          %td= "#{user.address} #{user.houseno}, #{user.zipcode} #{user.city}"
+          %td= user.phone
+          %td= user.mobile
+          %td= link_to "Bearbeiten", [:edit, :admin, user]
+          %td= link_to "Löschen", [:admin, user], :confirm => "Sicher?", :method => :delete
+
+
+  = link_to "Neues Mitglied", :new_admin_user

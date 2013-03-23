@@ -36,8 +36,19 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string  :first_name,    :null => false, :default => ""
       t.string  :last_name,     :null => false, :default => ""
 
+      t.string  :address
+      t.string  :houseno
 
-      t.string  :role,          :null => false, :default => 'guest'
+      t.string  :zipcode
+      t.string  :city
+
+      t.string  :phone
+      t.string  :mobile
+
+      t.boolean :member_active,  :default => false
+
+
+      t.string  :role,          :null => false, :default => 'member'
 
       t.timestamps
     end

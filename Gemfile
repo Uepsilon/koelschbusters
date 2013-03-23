@@ -27,6 +27,7 @@ gem 'jquery-rails'
 gem 'haml-rails'
 gem 'html5-rails'
 gem 'paperclip'
+gem 'hirb'
 
 group :development, :test do
   gem 'rspec-rails'
