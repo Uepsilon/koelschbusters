@@ -15,6 +15,7 @@ class Admin::UsersController < Admin::ApplicationController
     @user = User.new params[:user]
 
     if @user.save
+      flash[:notice] = "Mitglied wurde erstellt."
       redirect_to :admin_users
     else
       render :new
@@ -26,7 +27,12 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def update
-
+    if @user.update_attributes! params[:user]
+      flash[:notice] = "Mitglied wurde bearbeitet."
+      redirect_to :admin_users
+    else
+      render :edit
+    end
   end
 
   def destroy

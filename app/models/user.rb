@@ -12,26 +12,19 @@ class User < ActiveRecord::Base
                   :first_name, :last_name, :role, :phone, :mobile,
                   :member_active, :address, :houseno, :zipcode, :city
 
-  before_validation :random_password
+  before_validation :random_password, :on => :create
 
-  validate :email,        :presence => true,  :uniqueness => true
-  validate :password,     :confirmation => true
-  validate :password_confirmation,   :presence => true
+  validates :email,                  :presence => true,  :uniqueness => true, :on => :create
+  validates :password,               :confirmation => true
+  validates :password_confirmation,  :presence => true, :on => :create
+  validates :first_name,             :presence => true
+  validates :last_name,              :presence => true
+  validates :phone,                  :numericality => {:only_integer => true}, :allow_nil => true, :allow_blank => true
+  validates :mobile,                 :numericality => {:only_integer => true}, :allow_nil => true, :allow_blank => true
 
-  validate :first_name,   :presence => true
-  validate :last_name,    :presence => true
+  validates :zipcode,                :length =>  {:is => 5}, :numericality => {:only_integer => true}, :allow_nil => true, :allow_blank => true
 
-  validate :phone,        :numericality => true
-  validate :mobile,       :numericality => true
-
-  validate :address
-  validate :houseno
-
-  validate :zipcode,      :length =>  { :is => 5}
-  validate :city
-
-  validate :member_active,:presence => true
-  validate :role,         :presence => true, :inclusion => { :in => ROLES }
+  validates :role,                    :inclusion => {:in => ROLES}
 
   def name
     "#{first_name} #{last_name}"
