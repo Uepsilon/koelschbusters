@@ -29,6 +29,9 @@ gem 'html5-rails'
 gem 'paperclip'
 gem 'hirb'
 
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
