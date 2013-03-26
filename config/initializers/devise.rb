@@ -1,4 +1,6 @@
 require "omniauth-google-oauth2"
+require "omniauth-twitter"
+require "omniauth-facebook"
 
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
@@ -241,6 +243,9 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = "/my_engine/users/auth"
 
 
-  # OATH2 for google
+  # OAUTH2 for google
   config.omniauth :google_oauth2, OAUTH_CONFIG['google']['app-id'], OAUTH_CONFIG['google']['app-secret'], { access_type: "offline", approval_prompt: "" }
+
+  # OAUTH2 for twitter
+  config.omniauth :twitter, OAUTH_CONFIG['twitter']['app-id'], OAUTH_CONFIG['twitter']['app-secret']
 end

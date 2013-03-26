@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable,
-         :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
+         :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2, :twitter, :facebook]
 
   attr_accessible :email, :password, :password_confirmation, :remember_me,
                   :first_name, :last_name, :role, :phone, :mobile,
@@ -39,11 +39,12 @@ class User < ActiveRecord::Base
       ROLES.index(base_role.to_s) <= ROLES.index(role)
   end
 
-  def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
-    data = access_token.info
-    user = User.where(:email => data["email"]).first
+  def self.find_for_google_oauth2(auth, signed_in_resource=nil)
+    user = User.where(:email => auth.info.email).first
+  end
 
-    user
+  def self.find_for_twitter_auth(auth, signed_in_resource=nil)
+    user = User.where("email = :email OR twitter_uid = :uid", {:email => auth.info.email, :uid => auth.uid}).first
   end
 
   protected
