@@ -48,7 +48,9 @@ class Admin::UsersController < Admin::ApplicationController
   protected
 
   def check_not_self
-    flash[:notice] = "Du sollst nicht an dir selber rumspielen!"
-    redirect_to :admin_users unless @user.id != current_user.id
+    unless @user.id != current_user.id
+      flash[:notice] = "Du sollst nicht an dir selber rumspielen!"
+      redirect_to :admin_users
+    end
   end
 end
