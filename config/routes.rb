@@ -3,6 +3,8 @@ Koelschbusters::Application.routes.draw do
 
   root :to => "pages#index"
 
+  resource :user, :only => [:show, :edit, :update], :path => :profile
+
   namespace :admin do
     root :to => "pages#index"
 

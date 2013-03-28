@@ -1,0 +1,17 @@
+#profile
+  %h1 Dein Profil
+
+  %table
+    %tbody
+      %tr
+        %th Email
+        %td= current_user.email
+      %tr
+        %th Name
+        %td= current_user.name
+
+      %tr
+        %th Rolle
+        %td= current_user.role
+
+  = link_to "Profil ändern", :edit_user
