@@ -1,9 +1,12 @@
 Koelschbusters::Application.routes.draw do
-  devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
+  devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'} do
+    get :edit_password,   :to => "users#edit_password",   :path => "profil/password"
+    put :update_password, :to  => "users#update_password", :path => "profil/password"
+  end
 
   root :to => "pages#index"
 
-  resource :user, :only => [:show, :edit, :update], :path => :profile
+  resource :user, :only => [:show, :edit, :update], :path => :profil
 
   namespace :admin do
     root :to => "pages#index"
