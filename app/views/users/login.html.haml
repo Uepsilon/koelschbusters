@@ -1,5 +1,5 @@
 #profile
-  = form_for @user, :url => :update_password do |f|
+  = form_for @user, :url => :update_login do |f|
     - unless @user.errors.nil?
       #errors
         = @user.errors.full_messages.to_sentence

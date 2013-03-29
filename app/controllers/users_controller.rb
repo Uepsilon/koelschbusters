@@ -20,17 +20,17 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit_password
-    render :password
+  def edit_login
+    render :login
   end
 
-  def update_password
+  def update_login
     @user = User.find(current_user.id)
     if @user.update_with_password(params[:user])
       sign_in @user, :bypass => true
       redirect_to :user
     else
-      render :password
+      render :login
     end
   end
 
