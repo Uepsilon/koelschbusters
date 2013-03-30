@@ -1,6 +1,5 @@
 class Admin::UsersController < Admin::ApplicationController
   load_and_authorize_resource
-
   before_filter :check_not_self, :only => [:edit, :update, :destroy]
 
   def index

@@ -1,0 +1,31 @@
+#profile
+  = form_for @user do |f|
+    - unless @user.errors.nil?
+      #errors
+        = @user.errors.full_messages.to_sentence
+
+    .label= f.label :first_name
+    .field= f.text_field :first_name
+
+    .label= f.label :last_name
+    .field= f.text_field :last_name
+
+    .label= f.label :address
+    .field= f.text_field :address
+
+    .label= f.label :houseno
+    .field= f.text_field :houseno
+
+    .label= f.label :zipcode
+    .field= f.text_field :zipcode, :maxlength => 5
+
+    .label= f.label :city
+    .field= f.text_field :city
+
+    .label= f.label :phone
+    .field= f.text_field :phone
+
+    .label= f.label :mobile
+    .field= f.text_field :mobile
+
+    .button= f.submit
