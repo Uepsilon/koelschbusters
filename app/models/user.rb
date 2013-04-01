@@ -8,10 +8,17 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :rememberable,
          :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2, :twitter, :facebook]
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me,
-                  :first_name, :last_name, :role, :phone, :mobile,
-                  :member_active, :address, :houseno, :zipcode, :city,
-                  :email_confirmation, :current_password
+  attr_accessible :email, :email_confirmation,
+                  :password, :password_confirmation, :current_password,
+                  :remember_me,
+                  :first_name, :last_name,
+                  :role,
+                  :phone, :mobile,
+                  :member_active,
+                  :address, :houseno, :zipcode, :city,
+                  :google_uid, :google_name,
+                  :twitter_uid, :twitter_name,
+                  :facebook_uid, :facebook_name
 
   attr_accessor   :email_confirmation
 
@@ -50,12 +57,22 @@ class User < ActiveRecord::Base
 
     # check if user already logged in
     unless signed_in_resource.nil?
-      # set google uid and name to current user if not already set
-      if signed_in_resource.send("#{provider}_uid").nil?
-        signed_in_resource.send("#{provider}_uid=", auth.uid)
-        signed_in_resource.send("#{provider}_name=", auth.info.name)
+      user = User.find signed_in_resource.id
 
-        return signed_in_resource
+      # set google uid and name to current user if not already set
+      if user.send("#{provider}_uid").nil?
+        user.send("#{provider}_uid=", auth.uid)
+        case provider
+        when :twitter
+          user.send("#{provider}_name=", auth.info.nickname)
+        else
+          user.send("#{provider}_name=", auth.info.name)
+        end
+
+        # update user
+        user.save!
+
+        return user
       else
         return nil
       end
@@ -73,6 +90,15 @@ class User < ActiveRecord::Base
     end
 
     user
+  end
+
+  def remove_oauth(provider)
+    unless self.send("#{provider}_uid").nil?
+      self.send("#{provider}_uid=", nil)
+      self.send("#{provider}_name=", nil)
+    end
+
+    return self.save if self.changed?
   end
 
   protected

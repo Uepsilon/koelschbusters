@@ -14,5 +14,32 @@
         %th Rolle
         %td= current_user.role
 
-  = link_to "Profil ändern",    :edit_user
-  = link_to "Login ändern",  :edit_login
+  .options
+    = link_to "Profil ändern", :edit_user
+    = link_to "Login ändern",  :edit_login
+
+  .oauth
+    .twitter
+      - unless current_user.twitter_uid.nil?
+        Twitter:
+        = link_to current_user.twitter_name, "http://www.twitter.com/#{current_user.twitter_name}"
+        = link_to "Entfernen", delete_oauth_path(:twitter), :method => :delete
+      - else
+        = link_to "Mit Twitter verknüpfen", user_omniauth_authorize_path(:twitter)
+
+    .google
+      - unless current_user.google_uid.nil?
+        Verknüpfung mit Google:
+        = link_to "#{current_user.google_name}", "http://plus.google.com/#{current_user.google_uid}"
+        = link_to "Entfernen", delete_oauth_path(:google), :method => :delete
+      - else
+        = link_to "Mit Google verknüpfen", user_omniauth_authorize_path(:google_oauth2)
+
+
+    .facebook
+      - unless current_user.facebook_uid.nil?
+        Facebook:
+        = link_to current_user.facebook_name, "http://www.facebook.com/#{current_user.facebook_name}"
+        = link_to "Entfernen", delete_oauth_path(:facebook), :method => :delete
+      - else
+        = link_to "Mit Facebook verknüpfen", user_omniauth_authorize_path(:facebook)

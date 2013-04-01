@@ -17,6 +17,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def process_auth_result(provider)
     @user = User.find_or_update_by_oauth(request.env["omniauth.auth"], provider, current_user)
 
+    Rails.logger.debug request.env['omniauth.auth'].inspect
+
     provider_name = provider.to_s.capitalize
 
     if user_signed_in?
@@ -26,7 +28,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         flash[:alert] = "Dein #{provider_name}-Account konnte nicht verbunden werden. Solltest du schon einen #{provider_name}-Account verbunden haben, entferne diesen bitte zuerst"
       end
 
-      redirect_to :profile
+      redirect_to :user
     else
       unless @user.nil?
         flash[:notice] = "Du wurdest erfolgreich über #{provider_name} eingeloggt."

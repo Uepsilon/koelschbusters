@@ -25,13 +25,22 @@ class UsersController < ApplicationController
   end
 
   def update_login
-    @user = User.find(current_user.id)
     if @user.update_with_password(params[:user])
       sign_in @user, :bypass => true
       redirect_to :user
     else
       render :login
     end
+  end
+
+  def remove_oauth
+    if @user.remove_oauth(params[:provider])
+      flash[:notice] = "Die Verknüpfung mit #{params[:provider].capitalize} wurde entfernt."
+    else
+      flash[:alert] = "Die Verknüpfung mit #{params[:provider].capitalize} konnte nicht entfernt werden."
+    end
+
+    redirect_to :user
   end
 
   protected
