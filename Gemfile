@@ -28,6 +28,8 @@ gem 'haml-rails'
 gem 'html5-rails'
 gem 'paperclip'
 gem 'hirb'
+gem "twitter-bootstrap-rails"
+gem "therubyracer"
 
 group :development, :test do
   gem 'rspec-rails'

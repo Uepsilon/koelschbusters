@@ -16,12 +16,14 @@ class UsersController < ApplicationController
       flash[:notice] = "Dein Profil wurde geändert."
       redirect_to :user
     else
+      flash[:alert] = @user.errors
+
       render :edit
     end
   end
 
   def edit_login
-    render :login
+    render :edit_login
   end
 
   def update_login
@@ -30,7 +32,8 @@ class UsersController < ApplicationController
       sign_in @user, :bypass => true
       redirect_to :user
     else
-      render :login
+      flash[:alert] = @user.errors
+      render :edit_login
     end
   end
 

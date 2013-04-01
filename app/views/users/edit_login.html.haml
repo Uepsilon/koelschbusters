@@ -1,9 +1,5 @@
 #profile
   = form_for @user, :url => :update_login do |f|
-    - unless @user.errors.nil?
-      #errors
-        = @user.errors.full_messages.to_sentence
-
     .label= f.label :current_password
     .field= f.password_field :current_password
 
