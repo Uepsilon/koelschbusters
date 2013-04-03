@@ -248,4 +248,7 @@ Devise.setup do |config|
 
   # OAUTH2 for twitter
   config.omniauth :twitter, OAUTH_CONFIG['twitter']['app-id'], OAUTH_CONFIG['twitter']['app-secret']
+
+  # OAUTH2 for facebook
+  config.omniauth :facebook, OAUTH_CONFIG['facebook']['app-id'], OAUTH_CONFIG['facebook']['app-secret']
 end
