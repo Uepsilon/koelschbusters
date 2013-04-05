@@ -14,4 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require h5bp
+//= require ckeditor/init
+//= require_tree .
+
 

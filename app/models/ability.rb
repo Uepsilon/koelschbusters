@@ -4,10 +4,19 @@ class Ability
   def initialize(user)
     # access-ability to the admin-center
     unless user.nil?
-        can :access, :admin if user.role? :management
 
-        # management + admin can manage all users
-        can :manage, User   if user.role? :management
+        if user.role? :management
+            # Access Admin
+            can :access, :admin
+
+            # CKEDITOR
+            can :access, :ckeditor   # needed to access Ckeditor filebrowser
+            can [:read, :create, :destroy], Ckeditor::Picture
+            can [:read, :create, :destroy], Ckeditor::AttachmentFile
+
+            # management + admin can manage all users
+            can :manage, User
+        end
 
         # all other can edit themselves
         can :edit, User do |u|

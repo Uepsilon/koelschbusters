@@ -14,12 +14,9 @@
     = f.text_field :slug
   .field
     = f.label :body
-    = f.text_area :body
+    = f.text_area :body, :class => :ckeditor
   .field
     = f.label :teaser
-    = f.text_area :teaser
-  .field
-    = f.label :author_id
-    = f.number_field :author_id
+    = f.text_area :teaser, :class => :ckeditor
   .actions
     = f.submit 'Save'

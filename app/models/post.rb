@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
   belongs_to :user
 
-  attr_accessible :author_id, :body, :slug, :teaser, :title
+  attr_accessible :user, :body, :slug, :teaser, :title
 
   validates :title,   :presence => true
   validates :slug,    :presence => true, :uniqueness => true

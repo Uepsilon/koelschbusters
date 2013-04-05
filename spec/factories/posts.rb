@@ -6,6 +6,6 @@ FactoryGirl.define do
     slug "MyString"
     body "MyText"
     teaser "MyText"
-    author_id 1
+    user_id 1
   end
 end

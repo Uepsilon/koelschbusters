@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :slug
       t.text :body
       t.text :teaser
-      t.integer :author_id
+      t.references :user
 
       t.timestamps
     end

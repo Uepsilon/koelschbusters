@@ -1,6 +1,7 @@
 Koelschbusters::Application.routes.draw do
-  resources :posts
+  mount Ckeditor::Engine => '/ckeditor'
 
+  resources :posts
 
   devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'} do
     get :edit_login,   :to => "users#edit_login",    :path => "profil/login"

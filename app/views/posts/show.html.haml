@@ -8,13 +8,13 @@
   = @post.slug
 %p
   %b Body:
-  = @post.body
+  = @post.body.html_safe
 %p
   %b Teaser:
-  = @post.teaser
+  = @post.teaser.html_safe
 %p
   %b Author:
-  = @post.author_id
+  = @post.user_id
 
 = link_to 'Edit', edit_post_path(@post)
 \|

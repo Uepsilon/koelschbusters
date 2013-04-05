@@ -7,7 +7,7 @@ describe "posts/new" do
       :slug => "MyString",
       :body => "MyText",
       :teaser => "MyText",
-      :author_id => 1
+      :user_id => 1
     ).as_new_record)
   end
 
@@ -20,7 +20,7 @@ describe "posts/new" do
       assert_select "input#post_slug[name=?]", "post[slug]"
       assert_select "textarea#post_body[name=?]", "post[body]"
       assert_select "textarea#post_teaser[name=?]", "post[teaser]"
-      assert_select "input#post_author_id[name=?]", "post[author_id]"
+      assert_select "input#post_user_id[name=?]", "post[user_id]"
     end
   end
 end

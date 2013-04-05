@@ -8,14 +8,14 @@ describe "posts/index" do
         :slug => "Slug",
         :body => "MyText",
         :teaser => "MyText",
-        :author_id => 1
+        :user_id => 1
       ),
       stub_model(Post,
         :title => "Title",
         :slug => "Slug",
         :body => "MyText",
         :teaser => "MyText",
-        :author_id => 1
+        :user_id => 1
       )
     ])
   end

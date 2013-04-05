@@ -26,6 +26,7 @@ end
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'html5-rails'
+gem "ckeditor"
 gem 'paperclip'
 gem 'hirb'
 gem 'twitter-bootstrap-rails'

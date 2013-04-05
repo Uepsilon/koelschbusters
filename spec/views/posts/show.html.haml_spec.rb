@@ -7,7 +7,7 @@ describe "posts/show" do
       :slug => "Slug",
       :body => "MyText",
       :teaser => "MyText",
-      :author_id => 1
+      :user_id => 1
     ))
   end
 
