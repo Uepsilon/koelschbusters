@@ -1,5 +1,10 @@
 Koelschbusters::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
+  match 'ckeditor/pictures/:id/:style' => "ckeditor/pictures#show", :via => :get
+  Ckeditor::Engine.routes.prepend do
+    resources :pictures, :only => [:index, :destroy, :create]
+  end
+
 
   resources :posts
 

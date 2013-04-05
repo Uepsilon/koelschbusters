@@ -1,5 +1,5 @@
 CKEDITOR.config.language = 'de'
-CKEDITOR.config.uiColor  = '#9CCCFF'
+CKEDITOR.config.uiColor  = '#EEEEEE'
 CKEDITOR.config.toolbar_Light = [
       ['Font', 'FontSize', 'TextColor'],
       [ 'Bold', 'Italic', 'Underline'],

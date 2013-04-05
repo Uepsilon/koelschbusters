@@ -29,6 +29,10 @@
           .container.nav-collapse
             %ul.nav
               %li= link_to "Benutzerverwaltung", :admin_users if can? :manage, User
+              - if user_signed_in?
+                %li= link_to "Logout", :destroy_user_session, :method => :delete
+              - else
+                %li= link_to "Login", :new_user_session
 
     .container-fluid
 
