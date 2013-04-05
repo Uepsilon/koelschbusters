@@ -10,7 +10,9 @@ Koelschbusters::Application.routes.draw do
     put :update_login, :to  => "users#update_login", :path => "profil/login"
   end
 
-  root :to => "pages#index"
+  root :to => "news#index"
+
+  resources :news, :only => [:index, :show]
 
   resource :user, :only => [:show, :edit, :update], :path => :profil
 

@@ -6,8 +6,7 @@
     %th Slug
     %th Body
     %th Teaser
-    %th User
-    %th
+    / %th User
     %th
     %th
 
@@ -15,12 +14,11 @@
     %tr
       %td= news.title
       %td= news.slug
-      %td= news.body
-      %td= news.teaser
-      %td= news.user.name
-      %td= link_to 'Show', news
-      %td= link_to 'Edit', edit_news_path(news)
-      %td= link_to 'Destroy', news, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= news.body.html_safe
+      %td= news.teaser.html_safe
+      / %td= news.user.name
+      %td= link_to 'Edit', edit_admin_news_path(news)
+      %td= link_to 'Destroy', news_path, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
