@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # possible roles
   ROLES   = %w[member management admin]
 
-  has_many :posts
+  has_many :news
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

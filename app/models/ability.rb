@@ -4,7 +4,6 @@ class Ability
   def initialize(user)
     # access-ability to the admin-center
     unless user.nil?
-
         if user.role? :management
             # Access Admin
             can :access, :admin
@@ -16,6 +15,9 @@ class Ability
 
             # management + admin can manage all users
             can :manage, User
+
+            # Creating News
+            can :manage, News
         end
 
         # all other can edit themselves

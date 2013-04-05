@@ -1,8 +1,7 @@
 # - encoding: utf-8 -
-
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :load_user
+  load_and_authorize_resource
 
 
   def show
