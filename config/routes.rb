@@ -5,9 +5,6 @@ Koelschbusters::Application.routes.draw do
     resources :pictures, :only => [:index, :destroy, :create]
   end
 
-
-  resources :posts
-
   devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'} do
     get :edit_login,   :to => "users#edit_login",    :path => "profil/login"
     put :update_login, :to  => "users#update_login", :path => "profil/login"
@@ -20,6 +17,7 @@ Koelschbusters::Application.routes.draw do
   namespace :admin do
     root :to => "pages#index"
 
+    resources :news,  :except => :show
     resources :users, :except => :show
   end
 
@@ -41,7 +39,7 @@ Koelschbusters::Application.routes.draw do
   #   resources :products do
   #     member do
   #       get 'short'
-  #       post 'toggle'
+  #       news 'toggle'
   #     end
   #
   #     collection do

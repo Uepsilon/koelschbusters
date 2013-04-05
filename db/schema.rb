@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20130405002523) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
-  create_table "posts", :force => true do |t|
+  create_table "news", :force => true do |t|
     t.string   "title"
     t.string   "slug"
     t.text     "body"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20130405002523) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "posts", ["slug"], :name => "index_posts_on_slug", :unique => true
+  add_index "news", ["slug"], :name => "index_news_on_slug", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",       :null => false
@@ -64,18 +64,9 @@ ActiveRecord::Schema.define(:version => 20130405002523) do
     t.string   "role",                   :default => "member", :null => false
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
-    t.string   "twitter_uid"
-    t.string   "twitter_name"
-    t.string   "facebook_uid"
-    t.string   "facebook_name"
-    t.string   "google_uid"
-    t.string   "google_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["facebook_uid"], :name => "index_users_on_facebook_uid", :unique => true
-  add_index "users", ["google_uid"], :name => "index_users_on_google_uid", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-  add_index "users", ["twitter_uid"], :name => "index_users_on_twitter_uid", :unique => true
 
 end
