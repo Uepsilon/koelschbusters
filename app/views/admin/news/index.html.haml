@@ -17,6 +17,11 @@
       / %td= news.user.name
       %td= link_to 'Edit', edit_admin_news_path(news)
       %td= link_to 'Destroy', [:admin, news], :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td
+        - if news.published_at.nil?
+          = link_to 'Veröffentlichen', [:publish, :admin, news], :method => :put
+        - else
+          = link_to 'Veröffentlichung zurückziehen', [:unpublish, :admin, news], :method => :put, :data => { :confirm => 'Are you sure?' }
 
 %br
 

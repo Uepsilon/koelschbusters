@@ -46,6 +46,25 @@ class Admin::NewsController < Admin::ApplicationController
   # DELETE /news/1.json
   def destroy
     @news.destroy
+    redirect_to :admin_news_index
+  end
+
+  def publish
+    if @news.update_attributes({:published_at => DateTime.now})
+      flash[:notice] = "News wurde veröffentlicht."
+    else
+      flash[:alert] = "News konnte nicht veröffentlicht werden."
+    end
+
+    redirect_to :admin_news_index
+  end
+
+  def unpublish
+    if @news.update_attributes({:published_at => nil})
+      flash[:notice] = "Veröffentlichung der News wurde zurück gezogen."
+    else
+      flash[:alert] = "Veröffentlichung der News konnte nicht zurück gezogen werden."
+    end
 
     redirect_to :admin_news_index
   end

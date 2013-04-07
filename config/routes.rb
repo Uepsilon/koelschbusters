@@ -19,7 +19,12 @@ Koelschbusters::Application.routes.draw do
   namespace :admin do
     root :to => "pages#index"
 
-    resources :news,  :except => :show
+    resources :news,  :except => :show do
+      member do
+        put 'publish'
+        put 'unpublish'
+      end
+    end
     resources :users, :except => :show
   end
 

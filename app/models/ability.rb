@@ -2,28 +2,37 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # access-ability to the admin-center
-    unless user.nil?
-        if user.role? :management
-            # Access Admin
-            can :access, :admin
+    user ||= User.new
 
-            # CKEDITOR
-            can :access, :ckeditor   # needed to access Ckeditor filebrowser
-            can [:read, :create, :destroy], Ckeditor::Picture
-            can [:read, :create, :destroy], Ckeditor::AttachmentFile
+    if user.role? :management
+        # Access Admin
+        can :access, :admin
 
-            # management + admin can manage all users
-            can :manage, User
+        # CKEDITOR
+        can :access, :ckeditor   # needed to access Ckeditor filebrowser
+        can [:read, :create, :destroy], Ckeditor::Picture
+        can [:read, :create, :destroy], Ckeditor::AttachmentFile
 
-            # Creating News
-            can :manage, News
+        # management + admin can manage all users
+        can :manage, User
+
+        # Creating News
+        can :manage, News
+    end
+
+    # all other can edit themselves
+    can :edit, User do |u|
+        u.id == user.id
+    end
+
+    # Allow Members + Guests
+    unless user.role? :management
+        can :read, News, News.published do |news|
+          news.published_at <= DateTime.now
         end
 
-        # all other can edit themselves
-        can :edit, User do |u|
-            u.id == user.id
-        end
+        can :read, Ckeditor::Picture
+        can :read, Ckeditor::AttachmentFile
     end
 
     # Define abilities for the passed in user here. For example:

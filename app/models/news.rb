@@ -1,7 +1,9 @@
 class News < ActiveRecord::Base
   belongs_to :user
 
-  attr_accessible :user, :body, :teaser, :title
+  attr_accessible :user, :body, :teaser, :title, :published_at
+
+  scope :published, where('published_at IS NOT NULL')
 
   before_validation :find_teaser
 
