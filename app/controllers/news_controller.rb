@@ -11,6 +11,11 @@ class NewsController < ApplicationController
   protected
 
   def load_resource
-    @news = News.find_by_slug! params[:id]
+    @news = News.find_by_slug params[:id]
+
+    if @news.nil?
+      flash[:alert] = "Die von Ihnen gesuchte News konnte leider nicht gefunden werden"
+      redirect_to :news_index
+    end
   end
 end

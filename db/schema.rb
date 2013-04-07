@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405002523) do
+ActiveRecord::Schema.define(:version => 20130407210717) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -31,15 +31,12 @@ ActiveRecord::Schema.define(:version => 20130405002523) do
 
   create_table "news", :force => true do |t|
     t.string   "title"
-    t.string   "slug"
     t.text     "body"
     t.text     "teaser"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  add_index "news", ["slug"], :name => "index_news_on_slug", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",       :null => false

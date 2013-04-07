@@ -24,6 +24,7 @@ class Admin::NewsController < Admin::ApplicationController
   # POST /news
   # POST /news.json
   def create
+    @news.user = current_user
     if @news.save
       redirect_to :admin_news_index
     else
