@@ -31,6 +31,8 @@ gem 'paperclip'
 gem 'hirb'
 gem 'twitter-bootstrap-rails'
 gem 'therubyracer'
+gem 'html_truncator'
+
 
 group :development, :test do
   gem 'rspec-rails'

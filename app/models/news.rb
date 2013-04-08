@@ -1,3 +1,5 @@
+require "html_truncator"
+
 class News < ActiveRecord::Base
   belongs_to :user
 
@@ -18,7 +20,8 @@ class News < ActiveRecord::Base
   protected
 
   def find_teaser
-    self.teaser = self.body if teaser.nil?
+    # Let's take the first 25 Words
+    self.teaser = HTML_Truncator.truncate(self.body, 100)
   end
 
   def slugify

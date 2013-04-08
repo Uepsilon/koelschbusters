@@ -1,6 +1,6 @@
 CKEDITOR.config.language = 'de'
 CKEDITOR.config.uiColor  = '#EEEEEE'
-CKEDITOR.config.toolbar_Light = [
+CKEDITOR.config.toolbar_Admin = [
       ['Font', 'FontSize', 'TextColor'],
       [ 'Bold', 'Italic', 'Underline'],
       ['Undo','Redo'],
@@ -9,6 +9,7 @@ CKEDITOR.config.toolbar_Light = [
       ['NumberedList', 'BulletedList', 'Outdent', 'Indent', 'Blockquote', 'Table'],
       ['Link', 'Unlink'],
       ['Image', 'Filebrowser'],
-      [ 'Maximize', 'ShowBlocks']
+      [ 'Maximize', 'ShowBlocks', 'Source']
   ]
-CKEDITOR.config.toolbar = 'Light'
+CKEDITOR.config.toolbar = 'Admin'
+CKEDITOR.config.height = '500'
