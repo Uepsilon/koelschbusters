@@ -2,9 +2,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user ||= User.new
-
-    if user.role? :management
+    unless user.nil?
+      if user.role? :management
         # Access Admin
         can :access, :admin
 
@@ -18,22 +17,29 @@ class Ability
 
         # Creating News
         can :manage, News
-    end
+      end
 
-    # all other can edit themselves
-    can :edit, User do |u|
-        u.id == user.id
-    end
+        # all other can edit themselves
+      can :edit, User do |u|
+          u.id == user.id
+      end
 
-    # Allow Members + Guests
-    unless user.role? :management
+      # Allow News for Members
+      unless user.role? :management
         can :read, News, News.published do |news|
-          news.published_at <= DateTime.now
+          (news.published_at <= DateTime.now)
         end
+      end
 
-        can :read, Ckeditor::Picture
-        can :read, Ckeditor::AttachmentFile
+    else
+      # News for Guests
+      can :read, News, News.ffa.published do |news|
+        (news.published_at <= DateTime.now) and (news.internal == false)
+      end
     end
+
+    can :read, Ckeditor::Picture
+    can :read, Ckeditor::AttachmentFile
 
     # Define abilities for the passed in user here. For example:
     #

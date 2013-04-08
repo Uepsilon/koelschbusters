@@ -35,6 +35,7 @@ gem 'html_truncator'
 
 
 group :development, :test do
+  gem 'quiet_assets'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'guard-rspec'

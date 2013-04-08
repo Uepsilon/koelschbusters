@@ -5,7 +5,8 @@ class News < ActiveRecord::Base
 
   attr_accessible :user, :body, :teaser, :title, :published_at
 
-  scope :published, where('published_at IS NOT NULL')
+  scope :published,   where('published_at IS NOT NULL')
+  scope :ffa,         where(:internal => false)
 
   before_validation :find_teaser
 
