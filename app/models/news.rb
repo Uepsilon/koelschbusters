@@ -3,7 +3,7 @@ require "html_truncator"
 class News < ActiveRecord::Base
   belongs_to :user
 
-  attr_accessible :user, :body, :teaser, :title, :published_at
+  attr_accessible :user, :body, :teaser, :title, :published_at, :internal
 
   scope :published,   where('published_at IS NOT NULL')
   scope :ffa,         where(:internal => false)
