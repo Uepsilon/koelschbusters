@@ -19,12 +19,15 @@ class User < ActiveRecord::Base
 
   before_validation :random_password, :on => :create
   before_validation :email_downcase
+  after_create      :wipe_virtual_password
 
   validates :email,         :presence => true,      :uniqueness => true
-  validates :email,         :confirmation => true,  :if => :email_confirmation?
+  validates :email,         :confirmation => true , :if => :email_confirmation?
+  validates :email_confirmation, :presence => true, :on => :update, :if => :email_confirmation?
 
-  validates :password,      :presence => true,      :on => :create
-  validates :password,      :confirmation => true,  :on => :update, :if => :change_password?
+  validates :password,      :presence => true,     :on => :create
+  validates :password,      :confirmation => true, :on => :update, :if => :password_changed?
+  validates :password_confirmation, :presence => true,  :on => :update, :if => :password_changed?
 
   validates :first_name,    :presence => true
   validates :last_name,     :presence => true
@@ -54,16 +57,21 @@ class User < ActiveRecord::Base
     self.password = 'Test1234' if self.password.blank?
   end
 
-  def change_password?
-    not self.password.blank?
+  def password_changed?
+    not self.password.nil?
   end
 
   def email_confirmation?
-    not email_confirmation.blank? or self.email_changed?
+    self.email_changed?
   end
 
   def email_downcase
     self.email               = self.email.downcase
     self.email_confirmation  = self.email_confirmation.downcase unless email_confirmation.nil?
+  end
+
+  def wipe_virtual_password
+    #  must wipe password after create so password change is detectable
+    self.password = nil
   end
 end

@@ -5,7 +5,8 @@ Koelschbusters::Application.routes.draw do
     resources :pictures, :only => [:index, :destroy, :create]
   end
 
-  devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'} do
+  devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
+  devise_scope :users do
     get :edit_login,   :to => "users#edit_login",    :path => "profil/login"
     put :update_login, :to  => "users#update_login", :path => "profil/login"
   end

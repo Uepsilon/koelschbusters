@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe NewssController do
+describe NewsController do
   describe "routing" do
 
     it "routes to #index" do
