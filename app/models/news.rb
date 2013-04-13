@@ -5,7 +5,7 @@ class News < ActiveRecord::Base
 
   attr_accessible :user, :body, :teaser, :title, :published_at, :internal
 
-  scope :published,   where('published_at IS NOT NULL')
+  scope :published,   where('published_at IS NOT NULL AND published_at <= ?', DateTime.now)
   scope :ffa,         where(:internal => false)
 
   before_validation :find_teaser
@@ -21,13 +21,14 @@ class News < ActiveRecord::Base
   protected
 
   def find_teaser
-    # Let's take the first 25 Words
+    # Let's take the first 100 Words
     self.teaser = HTML_Truncator.truncate(self.body, 100)
   end
 
   def slugify
     slug = self.title
     slug.gsub!(/%/, ' prozent')
+    slug.gsub!(/€/, ' euro')
     slug.parameterize
   end
 end
