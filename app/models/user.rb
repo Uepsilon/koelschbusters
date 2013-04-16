@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   end
 
   def role?(base_role)
-      ROLES.index(base_role.to_s) <= ROLES.index(role)
+      (ROLES.index(base_role.to_s) <= ROLES.index(role)) and active?
   end
 
   protected

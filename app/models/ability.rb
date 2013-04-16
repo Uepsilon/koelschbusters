@@ -2,39 +2,42 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    unless user.nil?
-      if user.role? :management
-        # Access Admin
-        can :access, :admin
+    user ||= User.new
 
-        # CKEDITOR
-        can :access, :ckeditor   # needed to access Ckeditor filebrowser
-        can [:read, :create, :destroy], Ckeditor::Picture
-        can [:read, :create, :destroy], Ckeditor::AttachmentFile
+    if user.role? :management
+      # Access Admin
+      can :access, :admin
 
-        # management + admin can manage all users
-        can :manage, User
+      # CKEDITOR
+      can :access, :ckeditor   # needed to access Ckeditor filebrowser
+      can [:read, :create, :destroy], Ckeditor::Picture
+      can [:read, :create, :destroy], Ckeditor::AttachmentFile
 
-        # Creating News
-        can :manage, News
-      end
+      # management + admin can manage all users
+      can :manage, User
 
-        # all other can edit themselves
-      can :edit, User do |u|
-          u.id == user.id
-      end
+      # Creating News
+      can :manage, News
+    end
 
+    # all other can edit themselves
+    can :edit, User do |u|
+        u.id == user.id
+    end
+
+    if user.role? :member and not user.role? :management
       # Allow News for Members
-      unless user.role? :management
-        can :read, News, News.published do |news|
-          (news.published_at <= DateTime.now)
-        end
+      can :read, News, News.published do |news|
+        not news.published_at.nil? and news.published_at <= DateTime.now
       end
+    end
 
-    else
+    unless user.role? :member
       # News for Guests
       can :read, News, News.ffa.published do |news|
-        (news.published_at <= DateTime.now) and (news.internal == false)
+        not news.published_at.nil? and \
+        news.published_at <= DateTime.now and \
+        not news.internal?
       end
     end
 
