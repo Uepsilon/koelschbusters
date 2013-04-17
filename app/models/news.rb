@@ -18,6 +18,10 @@ class News < ActiveRecord::Base
     [id, self.slugify].join('-')
   end
 
+  def published?
+    not self.published_at.nil? and self.published_at <= DateTime.now
+  end
+
   protected
 
   def find_teaser

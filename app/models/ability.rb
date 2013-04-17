@@ -34,10 +34,8 @@ class Ability
 
     unless user.role? :member
       # News for Guests
-      can :read, News, News.ffa.published do |news|
-        not news.published_at.nil? and \
-        news.published_at <= DateTime.now and \
-        not news.internal?
+      can :read, News, News.published.ffa do |news|
+        not news.published_at.nil? and news.published_at <= DateTime.now and not news.internal?
       end
     end
 

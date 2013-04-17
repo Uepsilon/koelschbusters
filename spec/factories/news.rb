@@ -15,7 +15,7 @@ FactoryGirl.define do
       published_at    nil
     end
 
-    trait :published_in_future do
+    trait :upcoming do
       published_at    DateTime.now + 1.day
     end
   end

@@ -11,11 +11,21 @@ describe News do
     end
   end
 
+  describe "#published?" do
+    let(:news)              {create(:news)}
+    let(:unpublished_news)  {create(:news, :unpublished)}
+    let(:upcoming_news)     {create(:news, :upcoming)}
+
+    it { news.published?.should be_true }
+    it { unpublished_news.published?.should be_false }
+    it { upcoming_news.published?.should be_false }
+  end
+
   describe 'scopes' do
     let(:news)              {create(:news)}
     let(:private_news)      {create(:news, :members_only)}
     let(:unpublished_news)  {create(:news, :unpublished)}
-    let(:future_news)       {create(:news, :published_in_future)}
+    let(:upcoming_news)     {create(:news, :upcoming)}
 
     context "when internal-flag is used" do
       subject {News.ffa.all}
@@ -29,7 +39,7 @@ describe News do
 
       it {should include(news)}
       it {should_not include(unpublished_news)}
-      it {should_not include(future_news)}
+      it {should_not include(upcoming_news)}
     end
   end
 end

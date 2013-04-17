@@ -75,7 +75,7 @@ describe User do
     let(:news)              { create(:news) }
     let(:private_news)      { create(:news, :members_only) }
     let(:unpublished_news)  { create(:news, :unpublished) }
-    let(:future_news)       { create(:news, :published_in_future) }
+    let(:upcoming_news)     { create(:news, :upcoming) }
 
     context "when is an admin" do
       let(:user){ create(:user, :admin) }
@@ -115,7 +115,7 @@ describe User do
       it{ should be_able_to(:read, private_news)}
 
       it{ should_not be_able_to(:read, unpublished_news)}
-      it{ should_not be_able_to(:read, future_news)}
+      it{ should_not be_able_to(:read, upcoming_news)}
     end
 
     context "when is a guest" do
@@ -128,7 +128,7 @@ describe User do
 
       it{ should_not be_able_to(:read, private_news)}
       it{ should_not be_able_to(:read, unpublished_news)}
-      it{ should_not be_able_to(:read, future_news)}
+      it{ should_not be_able_to(:read, upcoming_news)}
     end
   end
 end

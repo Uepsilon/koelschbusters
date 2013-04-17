@@ -1,7 +1,7 @@
 # - encoding: utf-8 -
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  load_and_authorize_resource
+  before_filter :load_and_authorize_resource
 
 
   def show
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   protected
 
-  def load_user
+  def load_and_authorize_resource
     @user = User.find current_user.id
     authorize! :edit, @user
   end
