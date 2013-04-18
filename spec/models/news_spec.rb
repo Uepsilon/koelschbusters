@@ -1,10 +1,14 @@
 require 'spec_helper'
 
 describe News do
-  before(:each) {News.destroy_all}
+  before(:each) { News.destroy_all }
 
   describe "#to_param" do
-    subject {create(:news)}
+    # reload to reset sequence => make sure title-1 matches
+    # (otherwise depends on order of tests)
+    before { FactoryGirl.reload }
+
+    subject { create(:news) }
 
     it 'returns a slug' do
       subject.to_param.should eq("#{subject.id}-random-news-title-1")
@@ -12,9 +16,9 @@ describe News do
   end
 
   describe "#published?" do
-    let(:news)              {create(:news)}
-    let(:unpublished_news)  {create(:news, :unpublished)}
-    let(:upcoming_news)     {create(:news, :upcoming)}
+    let(:news)              { create(:news) }
+    let(:unpublished_news)  { create(:news, :unpublished) }
+    let(:upcoming_news)     { create(:news, :upcoming) }
 
     it { news.published?.should be_true }
     it { unpublished_news.published?.should be_false }
@@ -22,10 +26,10 @@ describe News do
   end
 
   describe 'scopes' do
-    let(:news)              {create(:news)}
-    let(:private_news)      {create(:news, :members_only)}
-    let(:unpublished_news)  {create(:news, :unpublished)}
-    let(:upcoming_news)     {create(:news, :upcoming)}
+    let(:news)              { create(:news) }
+    let(:private_news)      { create(:news, :members_only) }
+    let(:unpublished_news)  { create(:news, :unpublished) }
+    let(:upcoming_news)     { create(:news, :upcoming) }
 
     context "when internal-flag is used" do
       subject {News.ffa.all}

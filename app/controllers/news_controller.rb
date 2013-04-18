@@ -1,4 +1,5 @@
 class NewsController < ApplicationController
+  # before_filter :find_published, :only => :show
   load_and_authorize_resource
 
   def index
@@ -6,6 +7,11 @@ class NewsController < ApplicationController
   end
 
   def show
-     raise ActiveRecord::RecordNotFound unless @news.published?
+  end
+
+  protected
+
+  def find_published
+    @news = News.published.find params[:id]
   end
 end

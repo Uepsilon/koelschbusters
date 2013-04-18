@@ -5,7 +5,7 @@ FactoryGirl.define do
     sequence(:title)  {|n| "Random News Title #{n}" }
     body              { Forgery::LoremIpsum.paragraphs(5) }
     internal          false
-    published_at      DateTime.now
+    published_at      DateTime.now - 1.day
 
     trait :members_only do
       internal        true
