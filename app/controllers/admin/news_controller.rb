@@ -38,7 +38,7 @@ class Admin::NewsController < Admin::ApplicationController
     if @news.update_attributes params[:news]
       redirect_to :admin_news_index
     else
-      render :new
+      render :edit
     end
   end
 
@@ -50,8 +50,12 @@ class Admin::NewsController < Admin::ApplicationController
   end
 
   def publish
-    if @news.update_attributes({:published_at => DateTime.now})
-      flash[:notice] = "News wurde veröffentlicht."
+    if @news.update_attributes(published_at: DateTime.now)
+      if @news.published_at <= DateTime.now
+        flash[:notice] = "News wurde veröffentlicht."
+      else
+        flash[:notice] = "Veröffentlichungsdatum wurde vorgemerkt."
+      end
     else
       flash[:alert] = "News konnte nicht veröffentlicht werden."
     end
@@ -60,7 +64,7 @@ class Admin::NewsController < Admin::ApplicationController
   end
 
   def unpublish
-    if @news.update_attributes({:published_at => nil})
+    if @news.update_attributes(published_at: nil)
       flash[:notice] = "Veröffentlichung der News wurde zurück gezogen."
     else
       flash[:alert] = "Veröffentlichung der News konnte nicht zurück gezogen werden."
