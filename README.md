@@ -2,11 +2,17 @@
 
 Die neue Homepage der Kölschbusters ist OpenSource!
 
+### Bisherige Features
+
+* Adminbereich
+  * Userverwaltung
+  * Newsverwaltung
+* Newssystem
+
 ### Geplante Features
 
 * Frontpage mit redaktionierbaren Inhalten
 * Diverse Seiten mit redaktionierbaren Inhalten (Über uns, Sponsoren, etc.)
-* Userverwaltung
 * Mitgliederbereich mit Kommunikationsplattform
 * Bildergalerie
   * Upload
@@ -18,4 +24,4 @@ Die neue Homepage der Kölschbusters ist OpenSource!
   * Tagging
 * Kalender
   * Rollenbasierte Kalendereinträge
-* mehr
+* und noch mehr
