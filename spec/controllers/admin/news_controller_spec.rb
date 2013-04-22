@@ -6,7 +6,7 @@ describe Admin::NewsController do
   let!(:unpublished_news) { create(:news, :unpublished) }
   let!(:upcoming_news) { create(:news, :upcoming) }
 
-  context "when not logged in" do
+  context "when user not logged in" do
     describe "GET #index" do
       it_should_behave_like "has to be logged in" do
         before { get :index }
@@ -56,7 +56,7 @@ describe Admin::NewsController do
     end
   end
 
-  context "when not authorized is logged in" do
+  context "when not authorized user is logged in" do
     before(:each) { login_user }
 
     describe "GET #index" do

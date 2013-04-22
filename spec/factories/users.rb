@@ -5,7 +5,8 @@ FactoryGirl.define do
     last_name "Simpson"
     role "member"
 
-    email       "random@email.com"
+    sequence(:email) { |i| "random#{i}@email.com" }
+
     phone       "01234567890"
     mobile      "09876543210"
 
