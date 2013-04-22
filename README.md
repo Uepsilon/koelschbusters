@@ -25,3 +25,7 @@ Die neue Homepage der Kölschbusters ist OpenSource!
 * Kalender
   * Rollenbasierte Kalendereinträge
 * und noch mehr
+
+### Now supported by Travis :)
+
+[![Build Status](https://travis-ci.org/Uepsilon/koelschbusters.png?branch=master)](https://travis-ci.org/Uepsilon/koelschbusters)
