@@ -16,7 +16,7 @@ end
 shared_examples_for "an inaccessible news" do
   it "should not find record" do
     get :show, { :id => news.to_param }
-    response.response_code.should eq(403)
+    response.response_code.should eq(401)
   end
 
   it "should not be able to access news" do

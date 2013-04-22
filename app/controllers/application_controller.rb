@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def access_denied
-    render :file => "public/401", :format => :html, :status => :unauthorized, :layout => false    
+    render :file => "public/401", :format => :html, :status => :unauthorized, :layout => false
   end
 
 end

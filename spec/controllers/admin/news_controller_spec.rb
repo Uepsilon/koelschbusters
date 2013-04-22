@@ -7,50 +7,50 @@ describe Admin::NewsController do
   let!(:upcoming_news) { create(:news, :upcoming) }
 
   context "when not logged in" do
-    describe "GET #index" do 
-      it_should_behave_like "insufficient accessrights" do
+    describe "GET #index" do
+      it_should_behave_like "has to be logged in" do
         before { get :index }
       end
     end
-    
+
     describe "GET #new" do
-      it_should_behave_like "insufficient accessrights" do
+      it_should_behave_like "has to be logged in" do
         before { get :new }
       end
     end
-    
+
     describe "POST #create" do
-      it_should_behave_like "insufficient accessrights" do
+      it_should_behave_like "has to be logged in" do
         before { post :create, news: attributes_for(:news) }
       end
     end
-    
+
     describe "GET #edit" do
-      it_should_behave_like "insufficient accessrights" do
+      it_should_behave_like "has to be logged in" do
         before { get :edit, id: regular_news.to_param }
       end
     end
-    
+
     describe "PUT #update" do
-      it_should_behave_like "insufficient accessrights" do
+      it_should_behave_like "has to be logged in" do
         before { put :update, id: regular_news.to_param, news: regular_news }
       end
     end
-    
+
     describe "DELETE #destroy" do
-      it_should_behave_like "insufficient accessrights" do
+      it_should_behave_like "has to be logged in" do
         before { delete :destroy, id: regular_news.to_param }
       end
     end
-    
+
     describe "GET #publish" do
-      it_should_behave_like "insufficient accessrights" do
+      it_should_behave_like "has to be logged in" do
         before { put :update, id: regular_news.to_param, news: regular_news }
       end
     end
-    
+
     describe "GET #unpublish" do
-      it_should_behave_like "insufficient accessrights" do
+      it_should_behave_like "has to be logged in" do
         before { put :update, id: regular_news.to_param, news: regular_news }
       end
     end
@@ -59,50 +59,50 @@ describe Admin::NewsController do
   context "when not authorized is logged in" do
     before(:each) { login_user }
 
-    describe "GET #index" do 
-      it_should_behave_like "insufficient accessrights" do
+    describe "GET #index" do
+      it_should_behave_like "has insufficient rights" do
         before { get :index }
       end
     end
-    
+
     describe "GET #new" do
-      it_should_behave_like "insufficient accessrights" do
+      it_should_behave_like "has insufficient rights" do
         before { get :new }
       end
     end
-    
+
     describe "POST #create" do
-      it_should_behave_like "insufficient accessrights" do
+      it_should_behave_like "has insufficient rights" do
         before { post :create, news: attributes_for(:news) }
       end
     end
-    
+
     describe "GET #edit" do
-      it_should_behave_like "insufficient accessrights" do
+      it_should_behave_like "has insufficient rights" do
         before { get :edit, id: regular_news.to_param }
       end
     end
-    
+
     describe "PUT #update" do
-      it_should_behave_like "insufficient accessrights" do
+      it_should_behave_like "has insufficient rights" do
         before { put :update, id: regular_news.to_param, news: regular_news }
       end
     end
-    
+
     describe "DELETE #destroy" do
-      it_should_behave_like "insufficient accessrights" do
+      it_should_behave_like "has insufficient rights" do
         before { delete :destroy, id: regular_news.to_param }
       end
     end
-    
+
     describe "GET #publish" do
-      it_should_behave_like "insufficient accessrights" do
+      it_should_behave_like "has insufficient rights" do
         before { put :update, id: regular_news.to_param, news: regular_news }
       end
     end
-    
+
     describe "GET #unpublish" do
-      it_should_behave_like "insufficient accessrights" do
+      it_should_behave_like "has insufficient rights" do
         before { put :update, id: regular_news.to_param, news: regular_news }
       end
     end
@@ -229,7 +229,7 @@ describe Admin::NewsController do
     describe "PUT #publish" do
       it "sets published_at" do
         News.stub(:find).and_return(unpublished_news)
-        unpublished_news.should_receive(:update_attributes).and_call_original 
+        unpublished_news.should_receive(:update_attributes).and_call_original
         put :publish, id: unpublished_news.to_param
 
         regular_news.published_at.should_not be_nil
