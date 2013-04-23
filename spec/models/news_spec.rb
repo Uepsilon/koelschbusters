@@ -3,6 +3,24 @@ require 'spec_helper'
 describe News do
   before(:each) { News.destroy_all }
 
+  describe "Validation" do
+
+    it "should be invalid without a title" do
+      subject.should be_invalid
+      subject.errors.should include(:title)
+    end
+
+    it "should be invalid without a teaser" do
+      subject.should be_invalid
+      subject.errors.should include(:teaser)
+    end
+
+    it "should be invalid without a body" do
+      subject.should be_invalid
+      subject.errors.should include(:body)
+    end
+  end
+
   describe "#to_param" do
     # reload to reset sequence => make sure title-1 matches
     # (otherwise depends on order of tests)

@@ -2,7 +2,104 @@ require "cancan/matchers"
 require 'spec_helper'
 
 describe User do
-  describe "attributes" do
+  describe "Validation" do
+    it "has a valid factory" do
+      create(:user).should be_valid
+    end
+
+    it "is invalid without an email" do
+      # subject { create(:user, email: nil) }
+
+      subject.should be_invalid
+      subject.errors.should include(:email)
+    end
+
+    it "is invalid without first_name" do
+      # subject { create(:user, first_name: nil) }
+
+      subject.should be_invalid
+      subject.errors.should include(:first_name)
+    end
+
+    it "is invalid without last_name" do
+      # subject { create(:user, last_name: nil) }
+
+      subject.should be_invalid
+      subject.errors.should include(:last_name)
+    end
+
+    it "is invalid without an email_confirmation when email changes" do
+      user = create(:user)
+      user.update_attributes(email: "email@changed.com")
+
+      user.should be_invalid
+      user.errors.should include(:email_confirmation)
+    end
+
+    it "is invalid without a password_confirmation when password changes" do
+      user = create(:user)
+      user.update_attributes(password: "NewPassword123")
+
+      user.should be_invalid
+      user.errors.should include(:password_confirmation)
+    end
+
+    it "is invalid without a role" do
+      user = build(:user, role: nil)
+
+      user.should be_invalid
+      user.errors.should include(:role)
+    end
+
+    it "is invalid with a non numerical phone" do
+      user = build(:user, phone: "Abc")
+
+      user.should be_invalid
+      user.errors.should include(:phone)
+    end
+
+    it "is valid without a numerical phone" do
+      user = build(:user, phone: nil)
+
+      user.should be_valid
+    end
+
+    it "is invalid with a non numerical mobile" do
+      user = build(:user, mobile: "Abc")
+
+      user.should be_invalid
+      user.errors.should include(:mobile)
+    end
+
+    it "is valid without a mobile" do
+      user = build(:user, mobile: nil)
+
+      user.should be_valid
+    end
+
+    it "is invalid with a non numerical zip-code" do
+      user = build(:user, zipcode: "Abc")
+
+      user.should be_invalid
+      user.errors.should include(:zipcode)
+    end
+
+    it "is invalid with a too short zip-code" do
+      user = build(:user, zipcode: 1234)
+
+      user.should be_invalid
+      user.errors.should include(:zipcode)
+    end
+
+    it "is invalid with a too long zip-code" do
+      user = build(:user, zipcode: 123456)
+
+      user.should be_invalid
+      user.errors.should include(:zipcode)
+    end
+  end
+
+  describe "Attributes" do
     let(:user) { create(:user) }
 
     it "name returns combined name" do

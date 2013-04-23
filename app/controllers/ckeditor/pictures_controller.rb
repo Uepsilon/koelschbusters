@@ -28,8 +28,6 @@ class Ckeditor::PicturesController < Ckeditor::ApplicationController
   protected
 
     def find_asset
-      Rails.logger.debug params.inspect
-
       @picture = Ckeditor.picture_model.get!(params[:id])
     end
 
