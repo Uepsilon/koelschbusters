@@ -3,7 +3,6 @@ class Ckeditor::PicturesController < Ckeditor::ApplicationController
 
   def index
     @pictures = Ckeditor.picture_model.find_all(ckeditor_pictures_scope)
-
     respond_with(@pictures)
   end
 

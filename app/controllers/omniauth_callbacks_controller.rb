@@ -17,8 +17,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def process_auth_result(provider)
     @user = User.find_or_update_by_oauth(request.env["omniauth.auth"], provider, current_user)
 
-    Rails.logger.debug request.env['omniauth.auth'].inspect
-
     provider_name = provider.to_s.capitalize
 
     if user_signed_in?
