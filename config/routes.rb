@@ -8,7 +8,8 @@ Koelschbusters::Application.routes.draw do
 
   root :to => "news#index"
 
-  devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}, :controllers => { :omniauth_callbacks => "omniauth_callbacks" } do
+  devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  devise_scope :users do
     get :edit_login,   :to => "users#edit_login",    :path => "profil/login"
     put :update_login, :to  => "users#update_login", :path => "profil/login"
     match   "profil/:provider" => "users#remove_oauth",   :via => :delete,  :as => :delete_oauth
