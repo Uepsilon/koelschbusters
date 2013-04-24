@@ -1,18 +1,18 @@
 Koelschbusters::Application.routes.draw do
+
   mount Ckeditor::Engine => '/ckeditor'
   match 'ckeditor/pictures/:id/:style' => "ckeditor/pictures#show", :via => :get
   Ckeditor::Engine.routes.prepend do
     resources :pictures, :only => [:index, :destroy, :create]
   end
 
+  root :to => "news#index"
+
   devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}, :controllers => { :omniauth_callbacks => "omniauth_callbacks" } do
-  devise_scope :users do
     get :edit_login,   :to => "users#edit_login",    :path => "profil/login"
     put :update_login, :to  => "users#update_login", :path => "profil/login"
     match   "profil/:provider" => "users#remove_oauth",   :via => :delete,  :as => :delete_oauth
   end
-
-  root :to => "news#index"
 
   resources :news, :only => [:index, :show]
 
