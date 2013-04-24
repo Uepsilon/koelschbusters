@@ -16,3 +16,4 @@ rerun.txt
 pickle-email-*.html
 db/seed*
 shared/*
+config/oauth.yml

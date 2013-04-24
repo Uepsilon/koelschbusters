@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130408203618) do
+ActiveRecord::Schema.define(:version => 20130326194416) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -66,9 +66,18 @@ ActiveRecord::Schema.define(:version => 20130408203618) do
     t.string   "role",                   :default => "member", :null => false
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
+    t.string   "twitter_uid"
+    t.string   "twitter_name"
+    t.string   "facebook_uid"
+    t.string   "facebook_name"
+    t.string   "google_uid"
+    t.string   "google_name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["facebook_uid"], :name => "index_users_on_facebook_uid", :unique => true
+  add_index "users", ["google_uid"], :name => "index_users_on_google_uid", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["twitter_uid"], :name => "index_users_on_twitter_uid", :unique => true
 
 end
