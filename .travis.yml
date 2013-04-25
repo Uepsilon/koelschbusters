@@ -5,6 +5,7 @@ env:
   - DB=postgresql
 before_script:
   - mv config/travis.database.yml config/database.yml
+  - mv config/travis.oauth.yml config/oauth.yml
   - psql -c 'create database my_app_test' -U postgres
 script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate test
