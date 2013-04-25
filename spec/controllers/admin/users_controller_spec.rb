@@ -175,6 +175,16 @@ describe Admin::UsersController do
     end
 
     describe "DELETE #destroy" do
+      it "removes user" do
+        expect {
+          delete :destroy, id: user1.to_param
+        }.to change(User, :count).by(-1)
+      end
+
+      it "redirect to admin/users" do
+        delete :destroy, id: user1.to_param
+        subject.should redirect_to(:admin_users)
+      end
     end
   end
 

@@ -22,11 +22,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if user_signed_in?
       unless @user.nil?
         flash[:notice] = "Dein #{provider_name}-Account wurde erfolgreich mit deinem Kölschbusters-Account verbunden."
+
+        redirect_to :user
       else
         flash[:alert] = "Dein #{provider_name}-Account konnte nicht verbunden werden. Solltest du schon einen #{provider_name}-Account verbunden haben, entferne diesen bitte zuerst"
+
+        redirect_to :root
       end
 
-      redirect_to :user
     else
       unless @user.nil?
         flash[:notice] = "Du wurdest erfolgreich über #{provider_name} eingeloggt."
