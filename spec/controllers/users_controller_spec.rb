@@ -42,14 +42,14 @@ describe UsersController do
     describe "GET #show" do
       before(:each) { get :show }
 
-      it { response.response_code.should eq(200) }
+      it { response.status.should eq(200) }
       it { assigns(:user).should eq(user) }
     end
 
     describe "GET #edit" do
       before(:each) { get :edit }
 
-      it { response.response_code.should eq(200) }
+      it { response.status.should eq(200) }
       it { assigns(:user).should eq(user) }
     end
 
@@ -67,7 +67,7 @@ describe UsersController do
         before(:each) { User.any_instance.stub(:update_attributes).and_return(false) }
         before(:each) { put :update, user: { first_name: "Donald", last_name: "Duck" } }
 
-        it { response.response_code.should eq(200) }
+        it { response.status.should eq(200) }
         it { should render_template(:edit) }
         it { assigns(:user).should eq(user) }
         it { assigns(:user).first_name.should eq(user.first_name) }
@@ -78,7 +78,7 @@ describe UsersController do
     describe "GET #edit_login" do
       before(:each) { get :edit_login }
 
-      it { response.response_code.should eq(200) }
+      it { response.status.should eq(200) }
       it { assigns(:user).should eq(user) }
     end
 
@@ -95,7 +95,7 @@ describe UsersController do
         before(:each) { User.any_instance.stub(:update_with_password).and_return(false) }
         before(:each) { put :update_login, user: { current_password: "Test12345", email: "test@example.com", email_confirmation: "test@example.com" } }
 
-        it { response.response_code.should eq(200) }
+        it { response.status.should eq(200) }
         it { should render_template(:edit_login) }
         it { assigns(:user).should eq(user) }
         it { assigns(:user).email.should eq(user.email)}

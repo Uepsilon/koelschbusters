@@ -92,7 +92,7 @@ describe Admin::UsersController do
     describe "GET #index" do
       before(:each) { get :index }
 
-      it { response.response_code.should be(200) }
+      it { response.status.should be(200) }
       it { assigns(:users).should include(user1) }
       it { assigns(:users).should include(user2) }
     end
@@ -100,7 +100,7 @@ describe Admin::UsersController do
     describe "GET #new" do
       before(:each) { get :new }
 
-      it { response.response_code.should be(200) }
+      it { response.status.should be(200) }
       it { assigns(:user).should be_a_new(User) }
     end
 
@@ -125,7 +125,7 @@ describe Admin::UsersController do
         before(:each) { User.any_instance.stub(:save).and_return(false) }
         before(:each) { post :create, user: attributes_for(:user) }
 
-        it { response.response_code.should be(200) }
+        it { response.status.should be(200) }
         it { assigns(:user).should be_a_new(User) }
         it { should render_template(:new) }
       end
@@ -137,7 +137,7 @@ describe Admin::UsersController do
 
         before(:each) { get :edit, id: user.to_param }
 
-        it { response.response_code.should eq(200) }
+        it { response.status.should eq(200) }
         it { assigns(:user).should eq(user) }
       end
 
@@ -162,7 +162,7 @@ describe Admin::UsersController do
           before(:each) { User.any_instance.stub(:update_attributes).and_return(false) }
           before(:each) { put :update, id: user.to_param, user: { first_name: "Donald", last_name: "Duck" }}
 
-          it { response.response_code.should eq(200) }
+          it { response.status.should eq(200) }
           it { assigns(:user).should eq(user) }
           it { should render_template(:edit) }
         end

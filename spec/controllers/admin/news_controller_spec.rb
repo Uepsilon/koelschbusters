@@ -115,7 +115,7 @@ describe Admin::NewsController do
       before(:each) { get :index }
       subject { assigns(:news) }
 
-      it { response.response_code.should eq(200) }
+      it { response.status.should eq(200) }
       it { should include(regular_news) }
       it { should include(private_news) }
       it { should include(unpublished_news) }
@@ -125,7 +125,7 @@ describe Admin::NewsController do
     describe "GET #new" do
       before(:each) { get :new }
 
-      it { response.response_code.should eq(200) }
+      it { response.status.should eq(200) }
       it { assigns(:news).should be_a_new(News) }
     end
 
@@ -169,7 +169,7 @@ describe Admin::NewsController do
     describe "GET edit" do
       before(:each) { get :edit, id: regular_news.to_param}
 
-      it { response.response_code.should eq(200) }
+      it { response.status.should eq(200) }
       it { assigns(:news).should eq(regular_news) }
     end
 

@@ -35,3 +35,29 @@ Koelschbusters::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 end
+
+OmniAuth.config.test_mode = true
+
+OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
+  :provider => 'twitter',
+  :uid => '12345',
+  :info => {
+    :nickname => 'TestUser'
+  }
+});
+
+OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+  :provider => 'google_oauth2',
+  :uid => '12345',
+  :info => {
+    :name => "TestUser"
+  }
+});
+
+OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+  :provider => 'facebook',
+  :uid => '12345',
+  :info => {
+    :name => 'TestUser'
+  }
+});
