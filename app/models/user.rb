@@ -57,44 +57,15 @@ class User < ActiveRecord::Base
       (ROLES.index(base_role.to_s) <= ROLES.index(role)) and active?
   end
 
-  def self.find_or_update_by_oauth(auth, provider, signed_in_resource=nil)
-    user = nil
+  def self.find_by_oauth(auth, provider)
+    User.where("#{provider}_uid" => auth.uid).first
+  end
 
-    # check if user already logged in
-    unless signed_in_resource.nil?
-      user = User.find signed_in_resource.id
+  def add_oauth(auth, provider)
+    self.send("#{provider}_uid=", auth.uid)
+    self.send("#{provider}_name=", provider == :twiter ? auth.info.nickname : auth.info.name)
 
-      # set google uid and name to current user if not already set
-      if user.send("#{provider}_uid").nil?
-        user.send("#{provider}_uid=", auth.uid)
-        case provider
-        when :twitter
-          user.send("#{provider}_name=", auth.info.nickname)
-        else
-          user.send("#{provider}_name=", auth.info.name)
-        end
-
-        # update user
-        user.save!
-
-        return user
-      else
-        return nil
-      end
-    else
-      case provider
-      when :twitter
-        user = User.where(:twitter_uid => auth.uid).first
-      when :google
-        user = User.where(:google_uid => auth.uid).first
-      when :facebook
-        user = User.where(:facebook_uid => auth.uid).first
-      else
-        return nil
-      end
-    end
-
-    user
+    self.save
   end
 
   def remove_oauth(provider)
