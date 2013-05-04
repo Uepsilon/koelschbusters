@@ -48,6 +48,7 @@ group :development, :test do
   gem 'forgery'
   gem 'simplecov'
   gem 'capybara'
+  # gem 'ruby-debug'
 end
 
 # To use ActiveModel has_secure_password

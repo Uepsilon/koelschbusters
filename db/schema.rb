@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130408203618) do
+ActiveRecord::Schema.define(:version => 20130504191355) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -29,6 +29,12 @@ ActiveRecord::Schema.define(:version => 20130408203618) do
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], :name => "idx_ckeditor_assetable"
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], :name => "idx_ckeditor_assetable_type"
 
+  create_table "galleries", :force => true do |t|
+    t.string   "title",      :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "news", :force => true do |t|
     t.string   "title"
     t.text     "body"
@@ -42,6 +48,19 @@ ActiveRecord::Schema.define(:version => 20130408203618) do
 
   add_index "news", ["internal"], :name => "index_news_on_internal"
   add_index "news", ["published_at"], :name => "index_news_on_published_at"
+
+  create_table "pictures", :force => true do |t|
+    t.boolean  "internal"
+    t.integer  "gallery_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+  end
+
+  add_index "pictures", ["internal"], :name => "index_pictures_on_internal"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",       :null => false

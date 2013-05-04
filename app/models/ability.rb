@@ -18,6 +18,9 @@ class Ability
 
       # Creating News
       can :manage, News
+
+      can :manage, Picture
+      can :manage, Gallery
     end
 
     # all other can edit themselves
@@ -30,6 +33,8 @@ class Ability
       can :read, News, News.published do |news|
         not news.published_at.nil? and news.published_at <= DateTime.now
       end
+
+      can :read, Picture
     end
 
     unless user.role? :member
@@ -37,8 +42,13 @@ class Ability
       can :read, News, News.published.ffa do |news|
         not news.published_at.nil? and news.published_at <= DateTime.now and not news.internal?
       end
+
+      can :read, Picture do |picture|
+        not picture.internal?
+      end
     end
 
+    can :read, Gallery
     can :read, Ckeditor::Picture
     can :read, Ckeditor::AttachmentFile
 
