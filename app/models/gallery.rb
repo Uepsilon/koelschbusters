@@ -4,4 +4,6 @@ class Gallery < ActiveRecord::Base
   # scope :with_images_by_role -> |role| joins(:pictures).where('picture.internal = ?', false)
 
   attr_accessible :title
+
+  validates :title, presence: true
 end
