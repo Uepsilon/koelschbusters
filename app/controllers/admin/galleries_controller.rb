@@ -1,4 +1,4 @@
-class Admin::GalleriesController < ApplicationController
+class Admin::GalleriesController < Admin::ApplicationController
   load_and_authorize_resource
 
   def index

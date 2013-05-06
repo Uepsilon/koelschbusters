@@ -7,6 +7,6 @@ FactoryGirl.define do
     end
 
     internal false
-    # gallery
+    gallery
   end
 end
