@@ -1,0 +1,6 @@
+#gallery
+  = form_for [:admin, @gallery] do |f|
+    .label= f.label :title
+    .input= f.text_field :title
+
+    .button= f.submit

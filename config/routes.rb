@@ -30,9 +30,7 @@ Koelschbusters::Application.routes.draw do
     end
     resources :users, :except => :show
     resources :galleries, :except => :show do
-      member do
-        resources :pictures
-      end
+      resources :pictures
     end
   end
 
