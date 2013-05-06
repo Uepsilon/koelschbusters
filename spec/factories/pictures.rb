@@ -6,6 +6,7 @@ FactoryGirl.define do
       fixture_file_upload(Rails.root.join('spec', 'factories', 'pictures', "#{(i % 4)}.png"))
     end
 
+    internal false
     # gallery
   end
 end
