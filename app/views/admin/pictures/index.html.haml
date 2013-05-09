@@ -1,0 +1,18 @@
+#pictures
+  %h1= "Alle Bilder in der Gallery #{@gallery.title}"
+
+  %table
+    %thead
+      %tr
+        %th ID
+        %th Bild
+        %th{:colspan => 2} Optionen
+    %tbody
+    - @pictures.each do |picture|
+      %tr
+        %td= picture.id
+        %td= image_tag picture.picture.url(:thumb)
+        %td= link_to "Bearbeiten", [:edit, :admin, @gallery, picture]
+        %td= link_to "Löschen", [:admin, @gallery, picture], :method => :delete, :confirm => "Sind Sie sicher?"
+
+  = link_to "Neues Bild hochladen", [:new, :admin, @gallery, :picture]

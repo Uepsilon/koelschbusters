@@ -16,8 +16,13 @@ Koelschbusters::Application.routes.draw do
   end
 
   resources :news, :only => [:index, :show]
-
   resource :user, :only => [:show, :edit, :update], :path => :profil
+
+  resources :galleries, :only => [:index, :show]
+  resources :pictures, :only => [:index, :show] do
+
+  end
+
 
   namespace :admin do
     root :to => "pages#index"

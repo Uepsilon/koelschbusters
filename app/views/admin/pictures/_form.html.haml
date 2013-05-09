@@ -1,0 +1,8 @@
+= form_for [:admin, @gallery, @picture] do |f|
+  .label= f.label :picture
+  .input= f.file_field :picture, accept: "image/*"
+
+  .label= f.label :internal
+  .input= f.check_box :internal
+
+  .submit= f.submit
