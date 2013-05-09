@@ -5,7 +5,7 @@ describe Picture do
 
   describe "Validations" do
     it "has a valid factory" do
-      create(:picture).should be_valid
+      pic = create(:picture).should be_valid
     end
 
     it "should be invalid without a picture" do
