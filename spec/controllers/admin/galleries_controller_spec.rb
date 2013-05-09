@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Admin::GalleriesController do
+  # Cleanup mess after test
+  after(:each) { Gallery.destroy_all }
+  after(:each) { Picture.destroy_all }
+
   context "when authorized user is logged in" do
     before(:each) { login_manager }
 
@@ -72,14 +76,14 @@ describe Admin::GalleriesController do
     describe "PUT #update" do
       let(:gallery) { create :gallery }
 
-      it "updates the gallery" do
-        new_attributes = { title: 'New Title' }.stringify_keys
-        Gallery.any_instance.stub(:update_attributes).with(new_attributes)
-        put :update, id: gallery.to_param, gallery: { title: 'New Title' }
-
-      end
-
       context "with valid params" do
+
+        it "updates the gallery" do
+          new_attributes = { title: 'New Title' }.stringify_keys
+          Gallery.any_instance.should_receive(:update_attributes).with(new_attributes)
+          put :update, id: gallery.to_param, gallery: { title: 'New Title' }
+        end
+
         context "" do
           before(:each) { put :update, id: gallery.to_param, gallery: { title: 'New Title' }}
           subject { assigns(:gallery) }

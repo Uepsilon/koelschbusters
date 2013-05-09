@@ -9,6 +9,7 @@ class Admin::GalleriesController < Admin::ApplicationController
 
   def create
     if @gallery.save
+      flash[:notice] = "Gallerie wurde erstellt."
       redirect_to :admin_galleries
     else
       render :new
@@ -20,6 +21,7 @@ class Admin::GalleriesController < Admin::ApplicationController
 
   def update
     if @gallery.update_attributes params[:gallery]
+      flash[:notice] = "Gallerie wurde aktualisiert."
       redirect_to :admin_galleries
     else
       render :edit
@@ -28,6 +30,7 @@ class Admin::GalleriesController < Admin::ApplicationController
 
   def destroy
     @gallery.destroy
+    flash[:notice] = "Gallerie wurde gelöscht."
     redirect_to :admin_galleries
   end
 end

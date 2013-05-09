@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Gallery do
+  # Cleanup mess after test
+  after(:each) { Gallery.destroy_all }
+  after(:each) { Picture.destroy_all }
+
   describe "Validations" do
     it "should be invalid without a title" do
       gallery = Gallery.create title: nil
