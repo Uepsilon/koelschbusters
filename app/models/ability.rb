@@ -5,7 +5,8 @@ class Ability
     user ||= User.new
 
     if user.role? :management
-      # Access Admin
+      # MANAGEMENT / ADMIN GOES HERE
+
       can :access, :admin
 
       # CKEDITOR
@@ -21,24 +22,20 @@ class Ability
 
       can :manage, Picture
       can :manage, Gallery
-    end
+    elsif user.role? :member
+      # MEMBERS GO HERE
 
-    # all other can edit themselves
-    can :edit, User do |u|
-        u.id == user.id
-    end
-
-    if user.role? :member and not user.role? :management
-      # Allow News for Members
       can :read, News, News.published do |news|
         not news.published_at.nil? and news.published_at <= DateTime.now
       end
 
       can :read, Picture
-    end
+      can :read, Gallery do |gallery|
+        gallery.pictures.any?
+      end
+    elsif user.new_record?
+      # GUESTS GO HERE
 
-    unless user.role? :member
-      # News for Guests
       can :read, News, News.published.ffa do |news|
         not news.published_at.nil? and news.published_at <= DateTime.now and not news.internal?
       end
@@ -46,9 +43,18 @@ class Ability
       can :read, Picture do |picture|
         not picture.internal?
       end
+
+      # can :read, Gallery
+      can :read, Gallery do |gallery|
+        gallery.public_pictures.any?
+      end
     end
 
-    can :read, Gallery
+    # Users can edit themselves
+    can :edit, User do |u|
+        u.id == user.id
+    end
+
     can :read, Ckeditor::Picture
     can :read, Ckeditor::AttachmentFile
 

@@ -19,7 +19,7 @@ Koelschbusters::Application.routes.draw do
   resource :user, :only => [:show, :edit, :update], :path => :profil
 
   resources :galleries, :only => [:index, :show]
-  resources :pictures, :only => [:index, :show] do
+  resources :pictures, :only => :show do
 
   end
 

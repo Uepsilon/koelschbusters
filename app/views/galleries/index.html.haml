@@ -1,0 +1,13 @@
+#pictures
+  - unless @galleries.nil?
+    - @galleries.each do |gallery|
+      .gallery
+        .link
+          = link_to gallery.title, gallery
+        .pic-count
+          - if user_signed_in?
+            = gallery.pictures.count
+          - else
+            = gallery.public_pictures.count
+  - else
+    Es gibt leider keine für dich zugängliche Gallerie.

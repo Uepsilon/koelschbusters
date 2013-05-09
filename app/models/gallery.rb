@@ -6,11 +6,11 @@ class Gallery < ActiveRecord::Base
   validates :title, presence: true
 
   def self.with_pictures
-    joins(:pictures)
+    joins(:pictures).group('galleries.id')
   end
 
   def self.with_public_pictures
-    joins(:pictures).where('pictures.internal = ?', false)
+    joins(:pictures).where('pictures.internal = ?', false).group('galleries.id')
   end
 
   def public_pictures

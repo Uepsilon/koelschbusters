@@ -1,0 +1,6 @@
+#galleries
+  %h1= @gallery.title
+
+  .pictures
+    - @pictures.each do |picture|
+      = image_tag picture.picture.url(:thumb)
