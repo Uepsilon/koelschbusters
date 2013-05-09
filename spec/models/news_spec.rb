@@ -4,7 +4,6 @@ describe News do
   before(:each) { News.destroy_all }
 
   describe "Validation" do
-
     it "should be invalid without a title" do
       subject.should be_invalid
       subject.errors.should include(:title)

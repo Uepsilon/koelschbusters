@@ -42,13 +42,17 @@ gem 'omniauth-google-oauth2'
 group :development, :test do
   gem 'quiet_assets'
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
   gem 'guard-rspec'
   gem 'debugger'
   gem 'forgery'
-  gem 'simplecov'
-  gem 'capybara'
   # gem 'ruby-debug'
+end
+
+group :test do
+  gem "shoulda-matchers"
+  gem 'capybara'
+  gem 'simplecov'
+  gem 'factory_girl_rails'
 end
 
 # To use ActiveModel has_secure_password

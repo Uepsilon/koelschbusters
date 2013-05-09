@@ -7,15 +7,12 @@ describe Gallery do
 
   describe "Validations" do
     it "should be invalid without a title" do
-      gallery = Gallery.create title: nil
-
-      gallery.should_not be_valid
-      gallery.errors.should include :title
+      subject.should_not be_valid
+      subject.errors.should include :title
     end
 
     it "should be valid with a title" do
       gallery = Gallery.create title: "Some Title"
-
       gallery.should be_valid
     end
   end
