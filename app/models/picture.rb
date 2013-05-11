@@ -1,11 +1,16 @@
 class Picture < ActiveRecord::Base
+
+  Paperclip.interpolates :gallery_id do |attachment, style|
+    attachment.instance.gallery_id
+  end
+
   STYLES = %w[original thumb]
 
   belongs_to :gallery
 
   has_attached_file :picture,
                     :default_style => :original,
-                    :url  => "/pictures/:id_:style",
+                    :url  => "/galerie/:gallery_id/bild/:id/:style",
                     :path => ":rails_root/shared/pictures/:id/:style/:basename.:extension",
                     :styles => { thumb: '200>' }
 

@@ -1,38 +1,38 @@
 Koelschbusters::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
-  match 'ckeditor/pictures/:id/:style' => "ckeditor/pictures#show", :via => :get
+  match 'ckeditor/pictures/:id/:style' => "ckeditor/pictures#show", via: :get
   Ckeditor::Engine.routes.prepend do
-    resources :pictures, :only => [:index, :destroy, :create]
+    resources :pictures, only: [:index, :destroy, :create]
   end
 
-  root :to => "news#index"
+  root to: "news#index"
 
-  devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  devise_for :users, path: '', path_names: {sign_in: 'login', sign_out: 'logout'}, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   devise_scope :users do
-    get :edit_login,   :to => "users#edit_login",    :path => "profil/login"
-    put :update_login, :to  => "users#update_login", :path => "profil/login"
-    match   "profil/:provider" => "users#remove_oauth",   :via => :delete,  :as => :delete_oauth
+    get :edit_login,   to: "users#edit_login",    path: "profil/login"
+    put :update_login, to: "users#update_login", path: "profil/login"
+    match   "profil/:provider" => "users#remove_oauth",   via: :delete,  as: :delete_oauth
   end
 
-  resources :news, :only => [:index, :show]
-  resource :user, :only => [:show, :edit, :update], :path => :profil
+  resources :news, only: [:index, :show], path: "neuigkeiten"
+  resource :user, only: [:show, :edit, :update], path: "profil"
 
-  resources :galleries, :only => [:index, :show]
-  resources :pictures, :only => :show
+  resources :galleries, only: [:index, :show], path: "galerie"
+  match "galerie/:gallery_id/bild/:id/:style" => "pictures#show", via: :get, as: :picture, defaults: { style: :original }
 
   namespace :admin do
-    root :to => "pages#index"
+    root to: "pages#index"
 
-    resources :news,  :except => :show do
+    resources :news,  except: :show do
       member do
         put 'publish'
         put 'unpublish'
       end
     end
-    resources :users, :except => :show
-    resources :galleries, :except => :show do
-      resources :pictures, :except => :show
+    resources :users, except: :show
+    resources :galleries, except: :show do
+      resources :pictures, except: :show
     end
   end
 
@@ -44,7 +44,7 @@ Koelschbusters::Application.routes.draw do
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+  #   match 'products/:id/purchase' => 'catalog#purchase', as: :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
@@ -85,7 +85,7 @@ Koelschbusters::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  # root to: 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 
