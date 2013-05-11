@@ -19,7 +19,7 @@ Koelschbusters::Application.routes.draw do
   resource :user, only: [:show, :edit, :update], path: "profil"
 
   resources :galleries, only: [:index, :show], path: "galerie"
-  match "galerie/:gallery_id/bild/:id/:style" => "pictures#show", via: :get, as: :picture, defaults: { style: :original }
+  match "galerie/:gallery_id/bild/:id(/:style)" => "pictures#show", via: :get, as: :picture, defaults: { style: :original }
 
   namespace :admin do
     root to: "pages#index"
