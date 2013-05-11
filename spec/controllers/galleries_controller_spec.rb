@@ -1,14 +1,17 @@
 require 'spec_helper'
 
 describe GalleriesController do
+  after { Gallery.destroy_all }
+  after { Picture.destroy_all }
+
   let!(:gallery_with_pictures) { create :gallery_with_pictures }
   let!(:gallery_with_internal_pictures) { create :gallery_with_internal_pictures }
 
   context "when user is logged in" do
-    before(:each) { login_user }
+    before { login_user }
 
     describe "GET #index" do
-      before(:each) { get :index }
+      before { get :index }
       subject { assigns(:galleries) }
 
       it { response.status.should eq 200 }
@@ -17,7 +20,7 @@ describe GalleriesController do
     end
 
     describe "GET #show" do
-      before(:each) { get :show, id: gallery_with_pictures.to_param }
+      before { get :show, id: gallery_with_pictures.to_param }
       subject { assigns(:pictures) }
 
       it { response.status.should eq 200 }
@@ -27,7 +30,7 @@ describe GalleriesController do
 
   context "when user is not logged in" do
     describe "GET #index" do
-      before(:each) { get :index }
+      before { get :index }
       subject { assigns(:galleries) }
 
       it { response.status.should eq 200 }
@@ -37,7 +40,7 @@ describe GalleriesController do
   end
 
     describe "GET #show for an gallery with public pictures" do
-      before(:each) { get :show, id: gallery_with_pictures.to_param }
+      before { get :show, id: gallery_with_pictures.to_param }
       subject { assigns(:pictures) }
 
       it { response.status.should eq 200 }
@@ -56,7 +59,7 @@ describe GalleriesController do
     end
 
     describe "GET #show for an gallery with internal pictures" do
-      before(:each) { get :show, id: gallery_with_internal_pictures.to_param }
+      before { get :show, id: gallery_with_internal_pictures.to_param }
       subject { assigns(:pictures) }
 
       it { response.status.should eq 401 }
