@@ -8,7 +8,15 @@ FactoryGirl.define do
   factory :gallery_with_pictures, parent: :gallery do
     after(:create) do |gallery|
       FactoryGirl.create(:picture, gallery: gallery)
-      FactoryGirl.create(:picture, internal: true, gallery: gallery)
+      FactoryGirl.create(:picture, gallery: gallery, internal: false)
+    end
+  end
+
+  factory :gallery_with_internal_pictures, parent: :gallery do
+    after(:create) do |gallery|
+      2.times do
+        FactoryGirl.create(:picture, gallery: gallery, internal: true)
+      end
     end
   end
 end

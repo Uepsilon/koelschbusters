@@ -16,4 +16,8 @@ class Gallery < ActiveRecord::Base
   def public_pictures
     pictures.where(internal: false)
   end
+
+  def internal_pictures
+    pictures.where(internal: true)
+  end
 end

@@ -1,5 +1,65 @@
 require 'spec_helper'
 
 describe GalleriesController do
+  let!(:gallery_with_pictures) { create :gallery_with_pictures }
+  let!(:gallery_with_internal_pictures) { create :gallery_with_internal_pictures }
 
+  context "when user is logged in" do
+    before(:each) { login_user }
+
+    describe "GET #index" do
+      before(:each) { get :index }
+      subject { assigns(:galleries) }
+
+      it { response.status.should eq 200 }
+      it { subject.should include gallery_with_pictures }
+      it { subject.should include gallery_with_internal_pictures }
+    end
+
+    describe "GET #show" do
+      before(:each) { get :show, id: gallery_with_pictures.to_param }
+      subject { assigns(:pictures) }
+
+      it { response.status.should eq 200 }
+      it { subject.should eq gallery_with_pictures.pictures }
+    end
+  end
+
+  context "when user is not logged in" do
+    describe "GET #index" do
+      before(:each) { get :index }
+      subject { assigns(:galleries) }
+
+      it { response.status.should eq 200 }
+      it { subject.should include gallery_with_pictures }
+      it { subject.should_not include gallery_with_internal_pictures }
+    end
+  end
+
+    describe "GET #show for an gallery with public pictures" do
+      before(:each) { get :show, id: gallery_with_pictures.to_param }
+      subject { assigns(:pictures) }
+
+      it { response.status.should eq 200 }
+
+      it "should include public pictures" do
+        gallery_with_pictures.public_pictures do |picture|
+          subject.should include picture
+        end
+      end
+
+      it "should not include internal pictures" do
+        gallery_with_pictures.internal_pictures do |picture|
+          subject.should_not include picture
+        end
+      end
+    end
+
+    describe "GET #show for an gallery with internal pictures" do
+      before(:each) { get :show, id: gallery_with_internal_pictures.to_param }
+      subject { assigns(:pictures) }
+
+      it { response.status.should eq 401 }
+      it { subject.should be_nil }
+    end
 end
