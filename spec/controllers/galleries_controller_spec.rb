@@ -42,13 +42,13 @@ describe GalleriesController do
 
       it { response.status.should eq 200 }
 
-      it "should include public pictures" do
+      it "assigns public pictures" do
         gallery_with_pictures.public_pictures do |picture|
           subject.should include picture
         end
       end
 
-      it "should not include internal pictures" do
+      it "does not assigns internal pictures" do
         gallery_with_pictures.internal_pictures do |picture|
           subject.should_not include picture
         end
