@@ -1,17 +1,20 @@
 class Admin::UsersController < Admin::ApplicationController
   load_and_authorize_resource
   before_filter :check_not_self, :only => [:edit, :update, :destroy]
+  add_breadcrumb :index, [:admin, :users]
 
   def index
-
   end
 
   def new
+    add_breadcrumb :new, :new_admin_users
   end
 
   def create
+    add_breadcrumb :new, :new_admin_users
+
     if @user.save
-      flash[:notice] = "Mitglied wurde erstellt."
+      flash[:notice] = I18n.t('flash.users.created')
       redirect_to :admin_users
     else
       render :new
@@ -19,12 +22,14 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def edit
+    add_breadcrumb :edit, [:admin, @user]
 
   end
 
   def update
+    add_breadcrumb :edit, [:admin, @user]
     if @user.update_attributes params[:user]
-      flash[:notice] = "Mitglied wurde bearbeitet."
+      flash[:notice] = I18n.t('flash.users.updated')
       redirect_to :admin_users
     else
       render :edit
@@ -32,11 +37,8 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def destroy
-    if @user.delete
-      flash[:notice] = "Mitglied gelöscht."
-    else
-      flash[:alert] = "Mitglied konnte nicht gelöscht werden. Bitte mit dem Admin schimpfen."
-    end
+    @user.delete
+    flash[:notice] = I18n.t('flash.users.deleted')
 
     redirect_to :admin_users
   end
@@ -45,7 +47,7 @@ class Admin::UsersController < Admin::ApplicationController
 
   def check_not_self
     unless @user.id != current_user.id
-      flash[:notice] = "Du sollst nicht an dir selber rumspielen!"
+      flash[:warning] = I18n.t('flash.users.cannot_edit_yourself')
       redirect_to :admin_users
     end
   end

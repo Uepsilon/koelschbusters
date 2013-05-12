@@ -1,0 +1,28 @@
+form {
+  .field_with_errors {
+    display: inline-block;
+
+    label,
+    input {
+      color: $error-color;
+    }
+
+    input {
+      border: 1px solid $error-color;
+    }
+  }
+}
+
+table {
+  &.table-bordered {
+    td {
+      vertical-align: middle;
+    }
+  }
+
+  td {
+    &.centered {
+      text-align: center;
+    }
+  }
+}

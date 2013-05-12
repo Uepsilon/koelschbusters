@@ -1,0 +1,19 @@
+.navbar.navbar-fluid-top.navbar-static-top
+  .navbar-inner
+    .container-fluid
+      %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.brand(href="#") Koelschbusters
+      .container.nav-collapse
+        %ul.nav
+          %li= link_to t('links.root'), :root
+          %li= link_to t('links.pictures'), :galleries
+
+        %ul.nav.pull-right
+          - if user_signed_in?
+            %li= link_to t('links.profile'), current_user
+            %li= link_to t('links.logout'), :destroy_user_session, method: :delete
+          - else
+            %li= link_to t('links.login'), :new_user_session

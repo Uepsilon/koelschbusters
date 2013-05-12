@@ -18,7 +18,7 @@ Koelschbusters::Application.routes.draw do
   resources :news, only: [:index, :show], path: "neuigkeiten"
   resource :user, only: [:show, :edit, :update], path: "profil"
 
-  resources :galleries, only: [:index, :show], path: "galerie"
+  resources :galleries, only: [:index, :show], path: "gallerie"
   match "galerie/:gallery_id/bild/:id(/:style)" => "pictures#show", via: :get, as: :picture, defaults: { style: :original }
 
   namespace :admin do

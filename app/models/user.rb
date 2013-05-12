@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
                   :role,
                   :phone, :mobile,
                   :member_active,
-                  :address, :houseno, :zipcode, :city,
+                  :street, :houseno, :zipcode, :city,
                   :google_uid, :google_name,
                   :twitter_uid, :twitter_name,
                   :facebook_uid, :facebook_name
@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
 
   before_validation :random_password, :on => :create
   before_validation :email_downcase
+  before_validation :stringify_role
   after_create      :wipe_virtual_password
 
   validates :email,         :presence => true,      :uniqueness => true
@@ -77,6 +78,10 @@ class User < ActiveRecord::Base
     return self.save if self.changed?
   end
 
+  def address?
+    (street.present? and houseno.present?) and (city.present? or zipcode.present?)
+  end
+
   protected
 
   def random_password
@@ -100,5 +105,9 @@ class User < ActiveRecord::Base
   def wipe_virtual_password
     #  must wipe password after create so password change is detectable
     self.password = nil
+  end
+
+  def stringify_role
+    role = role.to_s
   end
 end

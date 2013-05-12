@@ -15,7 +15,7 @@ describe "Oauth Feature" do
 
         click_link "Sign in with Twitter"
 
-        page.should have_content('Logout')
+        page.should have_content('Abmelden')
         page.should have_content('erfolgreich')
         page.should have_content('Twitter')
        end
@@ -27,7 +27,7 @@ describe "Oauth Feature" do
 
         click_link "Sign in with Twitter"
 
-        page.should have_content('Login')
+        page.should have_content('Anmelden')
         page.should have_content('nicht eingeloggt')
        end
      end
@@ -40,7 +40,7 @@ describe "Oauth Feature" do
 
         click_link "Sign in with Facebook"
 
-        page.should have_content('Logout')
+        page.should have_content('Abmelden')
         page.should have_content('eingeloggt')
         page.should have_content('Facebook')
        end
@@ -52,7 +52,7 @@ describe "Oauth Feature" do
 
         click_link "Sign in with Facebook"
 
-        page.should have_content('Login')
+        page.should have_content('Anmelden')
         page.should have_content('nicht eingeloggt')
        end
     end
@@ -65,7 +65,7 @@ describe "Oauth Feature" do
 
         click_link "Sign in with Google"
 
-        page.should have_content('Logout')
+        page.should have_content('Abmelden')
         page.should have_content('eingeloggt')
         page.should have_content('Google')
        end
@@ -77,7 +77,7 @@ describe "Oauth Feature" do
 
         click_link "Sign in with Google"
 
-        page.should have_content('Login')
+        page.should have_content('Anmelden')
         page.should have_content('nicht eingeloggt')
        end
     end

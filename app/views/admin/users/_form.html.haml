@@ -1,0 +1,64 @@
+.well
+  = form_for [:admin, @user], html: { class: "form-horizontal" } do |f|
+    - if @user.errors.any?
+      .alert.alert-error
+        %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+
+    .control-group
+      .control-label= f.label :email
+      .controls
+        = f.text_field :email, placeholder: User.human_attribute_name(:email)
+
+    .control-group
+      .control-label= f.label :first_name
+      .controls
+        = f.text_field :first_name, placeholder: User.human_attribute_name(:first_name)
+
+    .control-group
+      .control-label= f.label :last_name
+      .controls
+        = f.text_field :last_name, placeholder: User.human_attribute_name(:last_name)
+
+    .control-group
+      .control-label= f.label :phone
+      .controls
+        = f.text_field :phone, placeholder: User.human_attribute_name(:phone)
+
+    .control-group
+      .control-label= f.label :mobile
+      .controls
+        = f.text_field :mobile, placeholder: User.human_attribute_name(:mobile)
+
+    .control-group
+      .control-label
+        = f.label :street
+      .controls
+        = f.text_field :street, placeholder: User.human_attribute_name(:street)
+        = f.text_field :houseno, placeholder: User.human_attribute_name(:houseno), class: 'input-small'
+
+    .control-group
+      .control-label
+      .controls
+        = f.text_field :zipcode, placeholder: User.human_attribute_name(:zipcode), class: 'input-small'
+        = f.text_field :city, placeholder: User.human_attribute_name(:city)
+
+    .control-group
+      .controls
+        %label.checkbox
+          = f.check_box :member_active
+          Aktives Mitglied
+
+    .control-group
+      .control-label
+        = f.label :role
+      .controls
+        = f.select :role, User::ROLES.map{|r| [t(r, scope: :roles), r]}
+
+    .control-group
+      .controls
+        - if @user.new_record?
+          = f.submit t('btn.users.create'), class: 'btn btn-success'
+        - else
+          = f.submit t('btn.users.update'), class: 'btn btn-info'

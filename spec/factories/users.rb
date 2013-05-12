@@ -10,7 +10,7 @@ FactoryGirl.define do
     phone       "01234567890"
     mobile      "09876543210"
 
-    address     "Evergreen Terrace"
+    street      "Evergreen Terrace"
     houseno     "742a"
     zipcode     "12345"
     city        "Springfield"

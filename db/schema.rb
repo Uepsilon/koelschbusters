@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(:version => 20130504191355) do
     t.string   "last_sign_in_ip"
     t.string   "first_name",             :default => "",       :null => false
     t.string   "last_name",              :default => "",       :null => false
-    t.string   "address"
+    t.string   "street"
     t.string   "houseno"
     t.string   "zipcode"
     t.string   "city"

@@ -1,0 +1,17 @@
+%ul.nav.nav-list
+  %li.nav-header Administration
+  - if can? :manage, User
+    %li.divider &nbsp;
+    %li.nav-header Benutzerverwaltung
+    %li= link_to "Übersicht", :admin_users
+    %li= link_to "Neuer Benutzer", :new_admin_user
+  - if can? :manage, News
+    %li.divider &nbsp;
+    %li.nav-header Beiträge
+    %li= link_to "Übersicht", :admin_news_index
+    %li= link_to "Neuer Beitrag", :new_admin_news
+  - if can? :manage, Gallery
+    %li.divider &nbsp;
+    %li.nav-header Bilder
+    %li= link_to "Übersicht", :admin_galleries
+    %li= link_to "Neue Gallerie", :new_admin_gallery

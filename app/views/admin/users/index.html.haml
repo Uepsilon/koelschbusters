@@ -1,25 +1,37 @@
 #users
-  %table
+  %h1 Benutzerverwaltung
+  %table.table.table-striped.table-bordered
     %thead
-      %th
-        %td ID
-        %td Name
-        %td Email
-        %td Adresse
-        %td Telefon
-        %td Mobil
-        %td{:colspan => 2} Optionen
+      %tr
+        %th= User.human_attribute_name(:name)
+        %th= User.human_attribute_name(:email)
+        %th= User.human_attribute_name(:address)
+        %th= User.human_attribute_name(:phone)
+        %th= User.human_attribute_name(:mobile)
+        %th= User.human_attribute_name(:role)
+        %th &nbsp;
     %tbody
       - @users.each do |user|
-        %tr
-          %td= user.id
+        / which class should the user row get?
+        - user_row_class = ''
+        - user_row_class = 'warning' if user.role? :management
+        - user_row_class = 'success' if user.role? :admin
+        - user_row_class = 'error' unless user.active?
+        %tr{class: user_row_class}
           %td= user.name
           %td= user.email
-          %td= "#{user.address} #{user.houseno}, #{user.zipcode} #{user.city}"
+          %td
+            - if user.address?
+              %address
+                = "#{user.street} #{user.houseno}"
+                %br
+                = "#{user.zipcode} #{user.city}"
           %td= user.phone
           %td= user.mobile
-          %td= link_to "Bearbeiten", [:edit, :admin, user]
-          %td= link_to "Löschen", [:admin, user], :confirm => "Sicher?", :method => :delete
+          %td= t user.role, scope: :roles
+          %td.centered
+            = link_to content_tag(:i, " Bearbeiten", class: "icon-pencil"), [:edit, :admin, user], class: "btn btn-primary btn-small"
+            = link_to content_tag(:i, " Löschen", class: "icon-trash"), [:admin, user], method: :delete, confirm: t('confirms.users.delete', username: user.name), class: "btn btn-danger btn-small"
 
 
-  = link_to "Neues Mitglied", :new_admin_user
+  = link_to t('btn.users.create'), :new_admin_user, class: "btn btn-success"
