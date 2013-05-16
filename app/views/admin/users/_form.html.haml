@@ -59,6 +59,6 @@
     .control-group
       .controls
         - if @user.new_record?
-          = f.submit t('btn.users.create'), class: 'btn btn-success'
+          = f.submit t('links.users.create'), class: 'btn btn-success'
         - else
-          = f.submit t('btn.users.update'), class: 'btn btn-info'
+          = f.submit t('links.users.update'), class: 'btn btn-info'

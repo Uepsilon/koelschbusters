@@ -17,18 +17,17 @@
     %link(href="favicon.ico" rel="shortcut icon")
 
 
-  %body
+  %body#admin
     = render 'layouts/navigation'
 
     .container-fluid
-
       .row-fluid
-        .span10
+        .span9
           = render_breadcrumbs
 
           = bootstrap_flash
           = yield
-        .span2
+        .span3
           .well.sidebar-nav
             = render 'layouts/sidebar'
 

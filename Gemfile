@@ -31,7 +31,7 @@ gem 'hirb'
 gem 'twitter-bootstrap-rails'
 gem 'therubyracer'
 gem 'html_truncator'
-
+gem 'will_paginate'
 
 gem 'omniauth'
 gem 'omniauth-twitter'

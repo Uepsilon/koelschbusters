@@ -1,24 +1,47 @@
 de:
+  general:
+    administation:    Administration
+    user-management:  Benutzerverwaltung
+    news:             Beiträge
+    pictures:         Bilder
+
   links:
-    root:     Startseite
-    profile:  Profil
-    logout:   Abmelden
-    login:    Anmelden
-    pictures: Bilder
+    users:
+      index:      Übersicht
+      create:     Benutzer anlegen
+      edit:       Benutzer aktualisieren
+      delete:     Benutzer löschen
+    news:
+      index:      Übersicht
+      show:       Beitrag anzeigen
+      create:     Beitrag erstellen
+      edit:       Beitrag bearbeiten
+      delete:     Beitrag löschen
+      publish:    Beitrag veröffentlichen
+      unpublish:  Beitrag zurückziehen
+    general:
+      root:         Startseite
+      dashboard:    Dashboard
+      overview:     Übersicht
+      profile:      Profil
+      logout:       Abmelden
+      login:        Anmelden
+      pictures:     Bilder
+
+  breadcrumbs:
+    admin:
+      application:
+        index:      Dashboard
+      news:
+        index:      Beiträge
+        edit:       Bearbeiten
+        update:     Aktualisieren
+
 
   roles:
     members:    Mitglied
     management: Vorstand
     admin:      Administrator
-
-  breadcrumbs:
-    admin:
-      application:
-        index: Dashboard
-      users:
-        index: Benutzerverwaltung
-        new:   Benutzer anlegen
-        edit:  Benutzer bearbeiten
 
   flash:
     users:
@@ -30,11 +53,6 @@ de:
   confirms:
     users:
       delete: "Bist du sicher, dass du '%{username}' löschen möchtest?"
-
-  btn:
-    users:
-      create: Benutzer erstellen
-      update: Benutzer aktualisieren
 
   date:
     abbr_day_names:

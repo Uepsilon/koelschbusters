@@ -1,28 +1,23 @@
 class Admin::NewsController < Admin::ApplicationController
   load_and_authorize_resource
 
-  # GET /news
-  # GET /news.json
+  add_breadcrumb :index, :admin_news_index
+
   def index
+    @news = @news.order(:id).paginate page: params[:page], per_page: 5
   end
 
-  # GET /news/1
-  # GET /news/1.json
-  def show
-  end
-
-  # GET /news/new
-  # GET /news/new.json
   def new
+    add_breadcrumb :new, :new_admin_news
   end
 
-  # GET /news/1/edit
   def edit
+    add_breadcrumb :edit, [:admin, @news]
   end
 
-  # POST /news
-  # POST /news.json
   def create
+    add_breadcrumb :new, [:new, :admin, :news]
+
     @news.user = current_user
     if @news.save
       redirect_to :admin_news_index
@@ -31,9 +26,9 @@ class Admin::NewsController < Admin::ApplicationController
     end
   end
 
-  # PUT /news/1
-  # PUT /news/1.json
   def update
+    add_breadcrumb :edit, [:admin, @news]
+
     if @news.update_attributes params[:news]
       redirect_to :admin_news_index
     else
@@ -41,8 +36,6 @@ class Admin::NewsController < Admin::ApplicationController
     end
   end
 
-  # DELETE /news/1
-  # DELETE /news/1.json
   def destroy
     @news.destroy
     redirect_to :admin_news_index

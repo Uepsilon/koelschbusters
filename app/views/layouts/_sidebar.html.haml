@@ -1,17 +1,18 @@
 %ul.nav.nav-list
-  %li.nav-header Administration
+  %li.nav-header= t('general.administration')
+  = link_to t('links.dashboard'), :admin_root
   - if can? :manage, User
     %li.divider &nbsp;
-    %li.nav-header Benutzerverwaltung
-    %li= link_to "Übersicht", :admin_users
-    %li= link_to "Neuer Benutzer", :new_admin_user
+    %li.nav-header= t('general.user-management')
+    %li= link_to t('links.overview'), :admin_users
+    %li= link_to t('links.user.create'), :new_admin_user
   - if can? :manage, News
     %li.divider &nbsp;
-    %li.nav-header Beiträge
-    %li= link_to "Übersicht", :admin_news_index
-    %li= link_to "Neuer Beitrag", :new_admin_news
+    %li.nav-header= t('general.news')
+    %li= link_to t('links.overview'), :admin_news_index
+    %li= link_to t('links.news.create'), :new_admin_news
   - if can? :manage, Gallery
     %li.divider &nbsp;
-    %li.nav-header Bilder
-    %li= link_to "Übersicht", :admin_galleries
-    %li= link_to "Neue Gallerie", :new_admin_gallery
+    %li.nav-header= t('general.pictures')
+    %li= link_to t('links.overview'), :admin_galleries
+    %li= link_to t('links.gallery.create'), :new_admin_gallery

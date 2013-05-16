@@ -1,0 +1,15 @@
+#pages
+  - if can? :manage, User
+    .hero-unit
+      %h1 Benutzer
+      %p Benutzer anlegen, ändern und löschen
+      %p
+        = link_to t('links.users.index'), :admin_users, class: "btn btn-primary btn-large"
+        = link_to t('links.users.create'), :new_admin_user, class: "btn btn-primary btn-large"
+  - if can? :manage, News
+    .hero-unit
+      %h1 Nachrichten
+      %p Nachrichten erstellen, editieren und löschen
+      %p
+        = link_to t('links.news.index'), :admin_news_index, class: "btn btn-primary btn-large"
+        = link_to t('links.news.create'), :new_admin_news, class: "btn btn-primary btn-large"

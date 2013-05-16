@@ -8,12 +8,12 @@
       %a.brand(href="#") Koelschbusters
       .container.nav-collapse
         %ul.nav
-          %li= link_to t('links.root'), :root
-          %li= link_to t('links.pictures'), :galleries
+          %li= link_to t('links.general.root'), :root
+          %li= link_to t('links.general.pictures'), :galleries
 
         %ul.nav.pull-right
           - if user_signed_in?
-            %li= link_to t('links.profile'), current_user
-            %li= link_to t('links.logout'), :destroy_user_session, method: :delete
+            %li= link_to t('links.general.profile'), current_user
+            %li= link_to t('links.general.logout'), :destroy_user_session, method: :delete
           - else
-            %li= link_to t('links.login'), :new_user_session
+            %li= link_to t('links.general.login'), :new_user_session
