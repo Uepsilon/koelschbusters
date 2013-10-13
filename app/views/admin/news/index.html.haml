@@ -2,32 +2,34 @@
   %h1 Beitragsverwaltung
 
   - @news.each do |news|
-    .hero-unit.label-important
+    .jumbotron
       .pull-left
-        %h1= news.title
-        %h5= "URL: #{news_url news}"
+        %h2= news.title
+        %h5= "URL: #{link_to news_url(news), news, target: :blank}".html_safe
       .pull-right
         - if not news.published?
           %span.label.label-info Unveröffentlicht
         - if news.internal?
-          %span.label.label-important Interner Beitrag
+          %span.label.label-danger Interner Beitrag
       %p.clearfix
-      .well
-        %p= news.teaser.html_safe
-        %p.clearfix
+      .panel.panel-default
+        .panel-heading Vorschau
+        .panel-body= news.teaser.html_safe
 
-      .well
-        %p= news.body.html_safe
-        %p.clearfix
+      .panel.panel-default
+        .panel-heading Vollansicht
+        .panel-body= news.body.html_safe
+
       %p.pull-left
-        = link_to t('links.news.show'), news, class: "btn btn-info"
-        = link_to t('links.news.edit'), [:edit, :admin, news], class: "btn btn-primary"
+        = link_to t('links.news.show'), news, class: "btn btn-info btn-sm"
+        = link_to t('links.news.edit'), [:edit, :admin, news], class: "btn btn-primary btn-sm"
       %p.pull-right
         - if news.published?
-          = link_to t('links.news.unpublish'), [:unpublish, :admin, news], method: :put, class: "btn btn-warning"
+          = link_to t('links.news.unpublish'), [:unpublish, :admin, news], method: :put, class: "btn btn-warning btn-sm"
         - else
-          = link_to t('links.news.publish'), [:publish, :admin, news], method: :put, class: "btn btn-success"
-        = link_to t('links.news.delete'), [:admin, news], method: :delete, class: "btn btn-danger"
+          = link_to t('links.news.publish'), [:publish, :admin, news], method: :put, class: "btn btn-success btn-sm"
+        = link_to t('links.news.delete'), [:admin, news], method: :delete, class: "btn btn-danger btn-sm"
+      %br.clear
 
   = will_paginate @news
 
@@ -56,4 +58,4 @@
 
 %br
 
-= link_to t('links.news.create'), :new_admin_news, class: 'btn btn-success btn-large'
+= link_to t('links.news.new'), :new_admin_news, class: 'btn btn-success'

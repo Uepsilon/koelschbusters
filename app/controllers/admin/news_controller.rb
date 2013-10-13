@@ -1,22 +1,22 @@
 class Admin::NewsController < Admin::ApplicationController
   load_and_authorize_resource
 
-  add_breadcrumb :index, :admin_news_index
+  add_breadcrumb I18n.t('links.news.index'), [:admin, :news, :index]
 
   def index
     @news = @news.order(:id).paginate page: params[:page], per_page: 5
   end
 
   def new
-    add_breadcrumb :new, :new_admin_news
+    add_breadcrumb I18n.t('links.news.new'), [:new ,:admin, :news]
   end
 
   def edit
-    add_breadcrumb :edit, [:admin, @news]
+    add_breadcrumb I18n.t('links.news.index'), [:edit, :admin, @news]
   end
 
   def create
-    add_breadcrumb :new, [:new, :admin, :news]
+    add_breadcrumb I18n.t('links.news.new'), [:new ,:admin, :news]
 
     @news.user = current_user
     if @news.save
@@ -27,7 +27,7 @@ class Admin::NewsController < Admin::ApplicationController
   end
 
   def update
-    add_breadcrumb :edit, [:admin, @news]
+    add_breadcrumb I18n.t('links.news.index'), [:edit, :admin, @news]
 
     if @news.update_attributes params[:news]
       redirect_to :admin_news_index

@@ -1,17 +1,17 @@
 class Admin::UsersController < Admin::ApplicationController
   load_and_authorize_resource
   before_filter :check_not_self, :only => [:edit, :update, :destroy]
-  add_breadcrumb :index, [:admin, :users]
+  add_breadcrumb I18n.t('links.users.index'), [:admin, :users]
 
   def index
   end
 
   def new
-    add_breadcrumb :new, :new_admin_users
+    add_breadcrumb I18n.t('links.users.new'), new_admin_user_path
   end
 
   def create
-    add_breadcrumb :new, :new_admin_users
+    add_breadcrumb I18n.t('links.users.new'), new_admin_user_path
 
     if @user.save
       flash[:notice] = I18n.t('flash.users.created')
@@ -22,12 +22,12 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def edit
-    add_breadcrumb :edit, [:admin, @user]
+    add_breadcrumb I18n.t('links.users.edit'), [:edit, :admin, @user]
 
   end
 
   def update
-    add_breadcrumb :edit, [:admin, @user]
+    add_breadcrumb I18n.t('links.users.edit'), [:edit, :admin, @user]
     if @user.update_attributes params[:user]
       flash[:notice] = I18n.t('flash.users.updated')
       redirect_to :admin_users

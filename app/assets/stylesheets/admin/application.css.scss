@@ -1,0 +1,46 @@
+/*
+ *= require_self
+ *= require bootstrap
+ */
+
+@import '../variables';
+
+#admin {
+  .jumbotron {
+    font-size: 14px;
+    padding: 25px;
+  }
+
+  .container:nth-of-type(2) {
+    padding-top: 75px;
+  }
+
+  form {
+    .field_with_errors {
+      display: inline-block;
+
+      label,
+      input {
+        color: $error-color;
+      }
+
+      input {
+        border: 1px solid $error-color;
+      }
+    }
+  }
+
+  table {
+    &.table-bordered {
+      td {
+        vertical-align: middle;
+      }
+    }
+
+    td {
+      &.centered {
+        text-align: center;
+      }
+    }
+  }
+}

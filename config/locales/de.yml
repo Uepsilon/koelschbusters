@@ -1,58 +1,77 @@
 de:
   general:
-    administation:    Administration
+    administration:   Administration
     user-management:  Benutzerverwaltung
     news:             Beiträge
     pictures:         Bilder
 
+  headlines:
+    admin:
+      news:
+        new:          Neuen Beitrag erstellen
+
   links:
+    dashboard:        Dashboard
+    back:             Zurück
+    create:           Erstellen
+    cancel:           Abbrechen
+    update:           Aktualisieren
     users:
-      index:      Übersicht
-      create:     Benutzer anlegen
-      edit:       Benutzer aktualisieren
-      delete:     Benutzer löschen
+      overview:       Übersicht
+      index:          Benutzerübersicht
+      new:            Benutzer anlegen
+      edit:           Benutzer aktualisieren
+      delete:         Löschen
     news:
-      index:      Übersicht
-      show:       Beitrag anzeigen
-      create:     Beitrag erstellen
-      edit:       Beitrag bearbeiten
-      delete:     Beitrag löschen
-      publish:    Beitrag veröffentlichen
-      unpublish:  Beitrag zurückziehen
+      overview:       Übersicht
+      index:          Beitragsübersicht
+      show:           Beitrag anzeigen
+      new:            Beitrag erstellen
+      edit:           Beitrag aktualisieren
+      delete:         Beitrag löschen
+      publish:        Beitrag veröffentlichen
+      unpublish:      Beitrag zurückziehen
+    gallery:
+      overview:       Galerieübersicht
+      new:            Galerie anlegen
     general:
-      root:         Startseite
-      dashboard:    Dashboard
-      overview:     Übersicht
-      profile:      Profil
-      logout:       Abmelden
-      login:        Anmelden
-      pictures:     Bilder
+      root:           Startseite
+      dashboard:      Dashboard
+      overview:       Übersicht
+      profile:        Profil
+      logout:         Abmelden
+      login:          Anmelden
+      pictures:       Bilder
 
   breadcrumbs:
     admin:
       application:
-        index:      Dashboard
+        index:        Dashboard
       news:
-        index:      Beiträge
-        edit:       Bearbeiten
-        update:     Aktualisieren
+        index:        Beiträge
+        new:          Beitrag erstellen
+        edit:         Aktualisieren
+      users:
+        index:        Benutzerverwaltung
+        new:          Benutzer anlegen
+        edit:         Benutzer aktualisieren
 
 
   roles:
-    members:    Mitglied
-    management: Vorstand
-    admin:      Administrator
+    member:           Mitglied
+    management:       Vorstand
+    admin:            Administrator
 
   flash:
     users:
-      created: Benutzer angelegt.
-      updated: Benutzer geändert.
-      deleted: Benutzer gelöscht.
+      created:        Benutzer angelegt.
+      updated:        Benutzer geändert.
+      deleted:        Benutzer gelöscht.
       cannot_edit_yourself: Du sollst nicht an dir selber rumspielen!
 
   confirms:
     users:
-      delete: "Bist du sicher, dass du '%{username}' löschen möchtest?"
+      delete:         "Bist du sicher, dass du '%{username}' löschen möchtest?"
 
   date:
     abbr_day_names:
@@ -268,3 +287,8 @@ de:
         houseno:    Hausnummer
         zipcode:    PLZ
         city:       Ort
+        member_active: Aktiv
+      news:
+        title:      Überschrift
+        body:       Beitrag
+        internal:   Interner Beitrag

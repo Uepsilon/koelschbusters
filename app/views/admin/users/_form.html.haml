@@ -6,59 +6,59 @@
         - @user.errors.full_messages.each do |msg|
           %li= msg
 
-    .control-group
-      .control-label= f.label :email
-      .controls
-        = f.text_field :email, placeholder: User.human_attribute_name(:email)
+    .form-group
+      = f.label :email, class: "col-lg-2 control-label"
+      .col-lg-10
+        = f.text_field :email, placeholder: User.human_attribute_name(:email), class: "form-control"
 
-    .control-group
-      .control-label= f.label :first_name
-      .controls
-        = f.text_field :first_name, placeholder: User.human_attribute_name(:first_name)
+    .form-group
+      = f.label :first_name, class: "col-lg-2 control-label"
+      .col-lg-10
+        = f.text_field :first_name, placeholder: User.human_attribute_name(:first_name), class: "form-control"
 
-    .control-group
-      .control-label= f.label :last_name
-      .controls
-        = f.text_field :last_name, placeholder: User.human_attribute_name(:last_name)
+    .form-group
+      = f.label :last_name, class: "col-lg-2 control-label"
+      .col-lg-10
+        = f.text_field :last_name, placeholder: User.human_attribute_name(:last_name), class: "form-control"
 
-    .control-group
-      .control-label= f.label :phone
-      .controls
-        = f.text_field :phone, placeholder: User.human_attribute_name(:phone)
+    .form-group
+      = f.label :phone, class: "col-lg-2 control-label"
+      .col-lg-10
+        = f.text_field :phone, placeholder: User.human_attribute_name(:phone), class: "form-control"
 
-    .control-group
-      .control-label= f.label :mobile
-      .controls
-        = f.text_field :mobile, placeholder: User.human_attribute_name(:mobile)
+    .form-group
+      = f.label :mobile, class: "col-lg-2 control-label"
+      .col-lg-10
+        = f.text_field :mobile, placeholder: User.human_attribute_name(:mobile), class: "form-control"
 
-    .control-group
-      .control-label
-        = f.label :street
-      .controls
-        = f.text_field :street, placeholder: User.human_attribute_name(:street)
-        = f.text_field :houseno, placeholder: User.human_attribute_name(:houseno), class: 'input-small'
+    .form-group
+      %label{class: "col-lg-2 control-label"} Adresse
+      .col-lg-7
+        = f.text_field :street, placeholder: User.human_attribute_name(:street), class: "form-control"
+      .col-lg-3
+        = f.text_field :houseno, placeholder: User.human_attribute_name(:houseno), class: "form-control"
 
-    .control-group
-      .control-label
-      .controls
-        = f.text_field :zipcode, placeholder: User.human_attribute_name(:zipcode), class: 'input-small'
-        = f.text_field :city, placeholder: User.human_attribute_name(:city)
+    .form-group
+      %label{class: "col-lg-2 control-label"} &nbsp;
+      .col-lg-3
+        = f.text_field :zipcode, placeholder: User.human_attribute_name(:zipcode), class: "form-control"
+      .col-lg-7
+        = f.text_field :city, placeholder: User.human_attribute_name(:city), class: "form-control"
 
-    .control-group
-      .controls
-        %label.checkbox
-          = f.check_box :member_active
-          Aktives Mitglied
+    .form-group
+      = f.label :member_active, class: "col-lg-2 control-label"
+      .col-lg-10
+        = f.check_box :member_active
 
-    .control-group
-      .control-label
-        = f.label :role
-      .controls
-        = f.select :role, User::ROLES.map{|r| [t(r, scope: :roles), r]}
+    .form-group
+      = f.label :role, class: "col-lg-2 control-label"
+      .col-lg-10
+        = f.select :role, User::ROLES.map{|r| [t(r, scope: :roles), r]}, {}, class: "form-control"
 
-    .control-group
-      .controls
+    .form-group
+      .col-lg-10.pull-right
         - if @user.new_record?
-          = f.submit t('links.users.create'), class: 'btn btn-success'
+          = f.submit t('links.create'), class: 'btn btn-success'
         - else
-          = f.submit t('links.users.update'), class: 'btn btn-info'
+          = f.submit t('links.update'), class: 'btn btn-info'
+        = link_to t('links.cancel'), :admin_users, class: 'btn btn-warning'

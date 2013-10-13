@@ -20,15 +20,16 @@
   %body
     = render 'layouts/navigation'
 
-    .container-fluid
+    .container
 
-      .row-fluid
-        .span10
-          = bootstrap_flash
+      .row
+        %div{:class => "#{can?(:access, :admin) ? "span10" : "span12"}"}
+          = render 'layouts/flashs'
           = yield
-        .span2
-          .well.sidebar-nav
-            = render 'layouts/sidebar'
+        - if can? :access, :admin
+          .col-md-2
+            .well.sidebar-nav
+              = render 'layouts/sidebar'
 
       %footer
         %p &copy; Company 2013

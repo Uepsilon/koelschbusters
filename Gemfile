@@ -28,10 +28,11 @@ gem 'html5-rails'
 gem "ckeditor"
 gem 'paperclip'
 gem 'hirb'
-gem 'twitter-bootstrap-rails'
+# gem 'twitter-bootstrap-rails'
 gem 'therubyracer'
 gem 'html_truncator'
 gem 'will_paginate'
+gem "breadcrumbs_on_rails"
 
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -68,3 +69,6 @@ end
 
 # To use debugger
 # gem 'debugger'
+
+# Puma Server
+gem 'puma'

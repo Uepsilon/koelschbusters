@@ -16,7 +16,7 @@
         - user_row_class = ''
         - user_row_class = 'warning' if user.role? :management
         - user_row_class = 'success' if user.role? :admin
-        - user_row_class = 'error' unless user.active?
+        - user_row_class = 'danger' unless user.active?
         %tr{class: user_row_class}
           %td= user.name
           %td= user.email
@@ -30,14 +30,14 @@
           %td= user.mobile
           %td= t user.role, scope: :roles
           %td.centered
-            = link_to content_tag(:i, " #{t('links.users.edit')}", class: "icon-pencil"), [:edit, :admin, user], class: "btn btn-primary btn-small"
-            = link_to content_tag(:i, " #{t('links.users.delete')}", class: "icon-trash"), [:admin, user], method: :delete, confirm: t('confirms.users.delete', username: user.name), class: "btn btn-danger btn-small"
+            = link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), [:edit, :admin, user], class: "btn btn-primary btn-xs", title: "#{t('links.users.edit')}"
+            = link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), [:admin, user], method: :delete, confirm: t('confirms.users.delete', username: user.name), class: "btn btn-danger btn-xs", title: "#{t('links.users.delete')}"
 
   .labels.pull-right
-    %span.label Legende
-    %span.label.label-important Inaktive User
+    %span.label.label-info Legende
+    %span.label.label-danger Inaktive User
     %span.label.label-success Administratoren
     %span.label.label-warning Management
 
   .btns.pull-left
-    = link_to t('links.users.create'), :new_admin_user, class: "btn btn-success btn-large"
+    = link_to t('links.users.new'), :new_admin_user, class: "btn btn-success"
