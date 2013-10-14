@@ -5,7 +5,7 @@
     .jumbotron
       .pull-left
         %h2= news.title
-        %h5= "URL: #{link_to news_url(news), news, target: :blank}".html_safe
+        %h5= "URL: #{link_to news_url(news), news}".html_safe
       .pull-right
         - if not news.published?
           %span.label.label-info Unveröffentlicht

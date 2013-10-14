@@ -12,7 +12,7 @@ class Admin::NewsController < Admin::ApplicationController
   end
 
   def edit
-    add_breadcrumb I18n.t('links.news.index'), [:edit, :admin, @news]
+    add_breadcrumb I18n.t('links.news.edit'), [:edit, :admin, @news]
   end
 
   def create
@@ -27,7 +27,7 @@ class Admin::NewsController < Admin::ApplicationController
   end
 
   def update
-    add_breadcrumb I18n.t('links.news.index'), [:edit, :admin, @news]
+    add_breadcrumb I18n.t('links.news.edit'), [:edit, :admin, @news]
 
     if @news.update_attributes params[:news]
       redirect_to :admin_news_index

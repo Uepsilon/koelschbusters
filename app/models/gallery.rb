@@ -1,6 +1,5 @@
 class Gallery < ActiveRecord::Base
-  has_many :pictures
-
+  has_many :pictures, :dependent => :destroy
   attr_accessible :title
 
   validates :title, presence: true

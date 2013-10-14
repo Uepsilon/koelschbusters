@@ -1,4 +1,12 @@
 #pictures.edit
-  = render 'form'
+  .panel.panel-default
+    .panel-heading
+      Bild in
+      %span.strong= @gallery.title
+      bearbeiten
+    .panel-body
+      = render 'form'
 
-  = link_to "Zurück", [:admin, @gallery, :pictures]
+  .panel.panel-default
+    .panel-heading Aktuelles Bild
+    .panel-body= image_tag @picture.picture.url(:thumb)

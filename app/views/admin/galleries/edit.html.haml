@@ -1,6 +1,8 @@
-#gallery
-  = form_for [:admin, @gallery] do |f|
-    .label= f.label :title
-    .input= f.text_field :title
-
-    .button= f.submit
+#gallery.edit
+  .panel.panel-default
+    .panel-heading
+      %span.strong
+        = @gallery.title
+      aktualisieren
+    .panel-body
+      = render 'form'

@@ -1,8 +1,24 @@
-= form_for [:admin, @gallery, @picture] do |f|
-  .label= f.label :picture
-  .input= f.file_field :picture, accept: "image/*"
+= form_for [:admin, @gallery, @picture], html: { class: "form-horizontal" } do |f|
+  - if @picture.errors.any?
+    .alert.alert-error
+      %ul
+      - @picture.errors.full_messages.each do |msg|
+        %li= msg
 
-  .label= f.label :internal
-  .input= f.check_box :internal
+  .form-group
+    = f.label :picture, class: "col-lg-4 control-label"
+    .col-lg-8
+      .input= f.file_field :picture
 
-  .submit= f.submit
+  .form-group
+    = f.label :internal, class: "col-lg-4 control-label"
+    .col-lg-8
+      = f.check_box :internal
+
+  .form-group
+    .col-lg-8.pull-right
+      - if @picture.new_record?
+        = f.submit t('links.create'), class: 'btn btn-success'
+      - else
+        = f.submit t('links.update'), class: 'btn btn-info'
+      = link_to t('links.cancel'), admin_gallery_pictures_path(@gallery), class: 'btn btn-warning'

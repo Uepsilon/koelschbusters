@@ -32,8 +32,16 @@ de:
       publish:        Beitrag veröffentlichen
       unpublish:      Beitrag zurückziehen
     gallery:
-      overview:       Galerieübersicht
+      overview:       Übersicht
+      index:          Galerieübersicht
       new:            Galerie anlegen
+      edit:           Galerie bearbeiten
+      delete:         Galerie löschen
+      pictures:       Bilder anzeigen
+    picture:
+      new:            Bild anlegen
+      edit:           Bild aktualisieren
+      delete:         Bild löschen
     general:
       root:           Startseite
       dashboard:      Dashboard
@@ -70,8 +78,8 @@ de:
       cannot_edit_yourself: Du sollst nicht an dir selber rumspielen!
 
   confirms:
-    users:
-      delete:         "Bist du sicher, dass du '%{username}' löschen möchtest?"
+    delete:         "Bist du sicher, dass du '%{name}' löschen möchtest?"
+    delete_unnamed: "Bist du sicher, dass du das löschen möchtest?"
 
   date:
     abbr_day_names:
@@ -292,3 +300,8 @@ de:
         title:      Überschrift
         body:       Beitrag
         internal:   Interner Beitrag
+      gallery:
+        title:      Galeriename
+      picture:
+        picture:    Bild
+        internal:   Nur für Mitglieder

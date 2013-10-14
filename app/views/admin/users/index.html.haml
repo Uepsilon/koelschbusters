@@ -31,7 +31,7 @@
           %td= t user.role, scope: :roles
           %td.centered
             = link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), [:edit, :admin, user], class: "btn btn-primary btn-xs", title: "#{t('links.users.edit')}"
-            = link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), [:admin, user], method: :delete, confirm: t('confirms.users.delete', username: user.name), class: "btn btn-danger btn-xs", title: "#{t('links.users.delete')}"
+            = link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), [:admin, user], method: :delete, confirm: t('confirms.delete', name: user.name), class: "btn btn-danger btn-xs", title: "#{t('links.users.delete')}"
 
   .labels.pull-right
     %span.label.label-info Legende

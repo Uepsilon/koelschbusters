@@ -1,15 +1,24 @@
 #pages
   - if can? :manage, User
-    .jumbotron
-      %h2 Benutzer
-      %p Benutzer anlegen, ändern und löschen
-      %p
+    .panel.panel-default
+      .panel-heading Benutzer
+      .panel-body Benutzer anlegen, ändern und löschen
+      .panel-body
         = link_to t('links.users.index'), :admin_users, class: "btn btn-primary btn-sm"
-        = link_to t('links.users.create'), :new_admin_user, class: "btn btn-primary btn-sm"
+        = link_to t('links.users.new'), :new_admin_user, class: "btn btn-success btn-sm"
+
   - if can? :manage, News
-    .jumbotron
-      %h2 Nachrichten
-      %p Nachrichten erstellen, editieren und löschen
-      %p
+    .panel.panel-default
+      .panel-heading Nachrichten
+      .panel-body Nachrichten erstellen, editieren und löschen
+      .panel-body
         = link_to t('links.news.index'), :admin_news_index, class: "btn btn-primary btn-sm"
-        = link_to t('links.news.create'), :new_admin_news, class: "btn btn-primary btn-sm"
+        = link_to t('links.news.new'), :new_admin_news, class: "btn btn-success btn-sm"
+
+  - if can? :manage, Gallery
+    .panel.panel-default
+      .panel-heading Galerien
+      .panel-body Gallerien erstellen und Bilder hochladen
+      .panel-body
+        = link_to t('links.gallery.index'), :admin_galleries, class: "btn btn-primary btn-sm"
+        = link_to t('links.gallery.new'), :new_admin_gallery, class: "btn btn-success btn-sm"

@@ -1,18 +1,25 @@
 #pictures
-  %h1= "Alle Bilder in der Gallery #{@gallery.title}"
-
-  %table
+  %h1
+    Alle Bilder in
+    %span.strong= @gallery.title
+  %table.table.table-striped.table-bordered
     %thead
       %tr
-        %th ID
         %th Bild
-        %th{:colspan => 2} Optionen
+        %th Optionen
     %tbody
-    - @pictures.each do |picture|
-      %tr
-        %td= picture.id
-        %td= image_tag picture.picture.url(:thumb)
-        %td= link_to "Bearbeiten", [:edit, :admin, @gallery, picture]
-        %td= link_to "Löschen", [:admin, @gallery, picture], :method => :delete, :confirm => "Sind Sie sicher?"
+      - @pictures.each do |picture|
+      - row_class = ''
+        - row_class = 'success' unless picture.internal
+        %tr{class: row_class}
+          %td= image_tag picture.picture.url(:thumb)
+          %td.centered
+            = link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), [:edit, :admin, @gallery, picture], class: "btn btn-primary btn-xs", title: "#{t('links.picture.edit')}"
+            = link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), [:admin, @gallery, picture], method: :delete, confirm: t('confirms.delete_unnamed'), class: "btn btn-danger btn-xs", title: "#{t('links.picture.delete')}"
 
-  = link_to "Neues Bild hochladen", [:new, :admin, @gallery, :picture]
+  .labels.pull-right
+    %span.label.label-info Legende
+    %span.label.label-success Öffentliches Bild
+
+  .btns.pull-left
+    = link_to t('links.picture.new'), new_admin_gallery_picture_path(@gallery), class: "btn btn-success"

@@ -1,13 +1,18 @@
 class Admin::GalleriesController < Admin::ApplicationController
   load_and_authorize_resource
 
+  add_breadcrumb I18n.t('links.gallery.index'), [:admin, :galleries]
+
   def index
   end
 
   def new
+    add_breadcrumb I18n.t('links.gallery.new'), [:new, :admin, :gallery]
   end
 
   def create
+    add_breadcrumb I18n.t('links.gallery.new'), [:new, :admin, :gallery]
+
     if @gallery.save
       flash[:notice] = "Gallerie wurde erstellt."
       redirect_to :admin_galleries
@@ -17,9 +22,12 @@ class Admin::GalleriesController < Admin::ApplicationController
   end
 
   def edit
+    add_breadcrumb I18n.t('links.gallery.edit'), [:edit, :admin, @gallery]
   end
 
   def update
+    add_breadcrumb I18n.t('links.gallery.edit'), [:edit, :admin, @gallery]
+
     if @gallery.update_attributes params[:gallery]
       flash[:notice] = "Gallerie wurde aktualisiert."
       redirect_to :admin_galleries

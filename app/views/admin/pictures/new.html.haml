@@ -1,2 +1,8 @@
 #pictures.new
-  = render 'form'
+  .panel.panel-default
+    .panel-heading
+      Neues Bild in
+      %span.strong= @gallery.title
+      anlegen
+    .panel-body
+      = render 'form'
