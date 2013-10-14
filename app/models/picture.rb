@@ -10,7 +10,7 @@ class Picture < ActiveRecord::Base
 
   has_attached_file :picture,
                     :default_style => :original,
-                    :url  => "/galerie/:gallery_id/bild/:id/:style",
+                    :url  => "/galerie/:gallery_id/bild/:id/:style.:extension",
                     :path => ":rails_root/shared/pictures/:id/:style/:basename.:extension",
                     :styles => { thumb: '200>' }
 
