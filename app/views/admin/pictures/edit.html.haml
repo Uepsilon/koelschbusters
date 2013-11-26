@@ -9,4 +9,5 @@
 
   .panel.panel-default
     .panel-heading Aktuelles Bild
-    .panel-body= image_tag @picture.picture.url(:thumb)
+    .panel-body
+      = link_to image_tag(@picture.picture.url(:thumb)), @picture.picture.url(:original), class: :fancybox
