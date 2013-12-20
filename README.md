@@ -1,34 +1,36 @@
 # Kölschbusters
 
-Die neue Homepage der Kölschbusters ist OpenSource!
+Homepage of the famous __Wahner Kölschbusters__
 
-### Bisherige Features
-
-* Adminbereich
-  * Userverwaltung
-  * Newsverwaltung
-* Startseite mit Newsübersicht
+### Working Stuff
+* Admin
+  * Usermanagement
+  * Newsmanagement
+  * Gallerymanagment
+* News
+  * Overview (Blogish)
+  * Detailview
 * User
-  * Profil zum Ändern von Einstellungen + Login
-  * Login per Twitter, Google, Facebook (Omniauth)
+  * Profile
+  * Login via Twitter, Facebook and Google (Omniauth)
+* Gallery
+  * public Galleries 
+  * internal Galleries
 
-### Geplante Features
+### Planned Stuff
+* Comments
+  * News
+  * Galleryimages
+* Calendar
+  * public Events
+  * internal Events
+* Discussionplattform
+* Tagging
+  * News
+  * Events
+  * Galleries + Pictures
 
-* Diverse Seiten mit redaktionierbaren Inhalten (Über uns, Sponsoren, etc.)
-* Kommunikationsplattform
-* Bildergalerie
-  * Upload
-  * Rollenbasierte Sichtbarkeit
-  * Tagging
-* Videogalerie (optional)
-  * Upload
-  * Rollenbasierte Sichtbarkeit
-  * Tagging
-* Kalender
-  * Rollenbasierte Kalendereinträge
-* und noch mehr
-
-### Now supported by Travis :)
+### BADGES!!
 
 [![Build Status](https://travis-ci.org/Uepsilon/koelschbusters.png?branch=master)](https://travis-ci.org/Uepsilon/koelschbusters)
 [![Code Climate](https://codeclimate.com/github/Uepsilon/koelschbusters.png)](https://codeclimate.com/github/Uepsilon/koelschbusters)
