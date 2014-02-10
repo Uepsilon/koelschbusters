@@ -2,9 +2,10 @@ require 'spec_helper'
 
 describe Admin::PicturesController do
   # Cleanup mess after test
-  after(:each) { Gallery.destroy_all }
-  after(:each) { Picture.destroy_all }
-
+  after(:each) {
+    Gallery.destroy_all
+    Picture.destroy_all
+  }
   # context "when user not logged in" do
   #   let(:picture) { create :picture }
 
@@ -88,6 +89,7 @@ describe Admin::PicturesController do
 
   context "when authorized user is logged in" do
     before(:each) { login_manager }
+
     let!(:gallery) { create :gallery_with_pictures }
 
     describe "GET #index" do

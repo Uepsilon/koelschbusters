@@ -1,18 +1,2 @@
-%ul.nav.nav-pills.nav-stacked
-  %li.navbar-header= t('general.administration')
-  %li= link_to t('links.dashboard'), :admin_root
-  - if can? :manage, User
-    %li.divider &nbsp;
-    %li.navbar-header= t('general.user-management')
-    %li= link_to t('links.users.overview'), :admin_users
-    %li= link_to t('links.users.new'), :new_admin_user
-  - if can? :manage, News
-    %li.divider &nbsp;
-    %li.navbar-header= t('general.news')
-    %li= link_to t('links.news.overview'), :admin_news_index
-    %li= link_to t('links.news.new'), :new_admin_news
-  - if can? :manage, Gallery
-    %li.divider &nbsp;
-    %li.navbar-header= t('general.pictures')
-    %li= link_to t('links.gallery.overview'), :admin_galleries
-    %li= link_to t('links.gallery.new'), :new_admin_gallery
+.well.welcome
+  Willkommen auf der Homepage der Wahner Kölschbusters

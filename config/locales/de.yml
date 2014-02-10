@@ -16,14 +16,15 @@ de:
     create:           Erstellen
     cancel:           Abbrechen
     update:           Aktualisieren
+    read_more:        Weiterlesen
+    pages:
+      imprint:        Impressum
     users:
-      overview:       Übersicht
       index:          Benutzerübersicht
       new:            Benutzer anlegen
       edit:           Benutzer aktualisieren
       delete:         Löschen
     news:
-      overview:       Übersicht
       index:          Beitragsübersicht
       show:           Beitrag anzeigen
       new:            Beitrag erstellen
@@ -32,7 +33,6 @@ de:
       publish:        Beitrag veröffentlichen
       unpublish:      Beitrag zurückziehen
     gallery:
-      overview:       Übersicht
       index:          Galerieübersicht
       new:            Galerie anlegen
       edit:           Galerie bearbeiten

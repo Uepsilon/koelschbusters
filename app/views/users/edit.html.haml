@@ -1,27 +1,38 @@
 #profile
-  = form_for @user do |f|
-    .label= f.label :first_name
-    .field= f.text_field :first_name
-
-    .label= f.label :last_name
-    .field= f.text_field :last_name
-
-    .label= f.label :street
-    .field= f.text_field :street
-
-    .label= f.label :houseno
-    .field= f.text_field :houseno
-
-    .label= f.label :zipcode
-    .field= f.text_field :zipcode, :maxlength => 5
-
-    .label= f.label :city
-    .field= f.text_field :city
-
-    .label= f.label :phone
-    .field= f.text_field :phone
-
-    .label= f.label :mobile
-    .field= f.text_field :mobile
-
-    .button= f.submit
+  .well
+    %h2.title Profil bearbeiten
+    = form_for @user, html: {class: "form-horizontal"} do |f|
+      .form-group
+        .col-sm-5
+          = f.label :first_name, class: "sr-only"
+          = f.text_field :first_name, class: "form-control", placeholder: "Vorname"
+      .form-group
+        .col-sm-5
+          = f.label :last_name, class: "sr-only"
+          = f.text_field :last_name, class: "form-control", placeholder: "Nachname"
+      .form-group
+        .col-xs-3
+          = f.label :street, class: "sr-only"
+          = f.text_field :street, class: "form-control", placeholder: "Straße"
+        .col-xs-2
+          = f.label :houseno, class: "sr-only"
+          = f.text_field :houseno, class: "form-control", placeholder: "Hausnummer"
+      .form-group
+        .col-xs-2
+          = f.label :zipcode, class: "sr-only"
+          = f.text_field :zipcode, class: "form-control", placeholder: "PLZ", maxlength: 5
+        .col-xs-3
+          = f.label :city, class: "sr-only"
+          = f.text_field :city, class: "form-control", placeholder: "Ort"
+      .form-group
+        .col-sm-5
+          = f.label :phone, class: "sr-only"
+          = f.text_field :phone, class: "form-control", placeholder: "Telefonnummer"
+      .form-group
+        .col-sm-5
+          = f.label :mobile, class: "sr-only"
+          = f.text_field :mobile, class: "form-control", placeholder: "Handynummer"
+      .form-group
+        .col-sm-12
+          = f.submit "Änderungen speichern", class: "btn btn-success"
+          = link_to "Änderungen verwerfen", current_user, class: "btn btn-danger"

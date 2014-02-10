@@ -27,7 +27,7 @@ class Ckeditor::AttachmentFilesController < Ckeditor::ApplicationController
   protected
 
     def find_asset
-      @attachment = Ckeditor.attachment_file_model.get!(params[:id])
+      @attachment = Ckeditor.attachment_file_model.find params[:id]
     end
 
     def authorize_resource

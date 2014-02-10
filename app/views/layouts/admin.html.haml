@@ -22,16 +22,13 @@
 
     .container
       .row
-        .col-md-9
+        .col-md-12
           .panel.panel-default
             .panel-heading
               = render_breadcrumbs
 
           = render 'layouts/flashs'
           = yield
-        .col-md-3
-          .well.sidebar-nav
-            = render 'layouts/sidebar'
 
       %footer
         %p &copy; Company 2013

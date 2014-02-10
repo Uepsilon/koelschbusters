@@ -2,7 +2,7 @@ class Ckeditor::PicturesController < Ckeditor::ApplicationController
   before_filter :find_asset, :only => [:destroy, :show]
 
   def index
-    @pictures = Ckeditor.picture_model.find_all(ckeditor_pictures_scope)
+    @pictures = Ckeditor.picture_model.all
     respond_with(@pictures)
   end
 
@@ -16,7 +16,7 @@ class Ckeditor::PicturesController < Ckeditor::ApplicationController
 
   def create
     @picture = Ckeditor::Picture.new
-    respond_with_asset(@picture)
+    respond_with_asset(@picture, style: :thumb)
   end
 
   def destroy
@@ -27,7 +27,7 @@ class Ckeditor::PicturesController < Ckeditor::ApplicationController
   protected
 
     def find_asset
-      @picture = Ckeditor.picture_model.get!(params[:id])
+      @picture = Ckeditor.picture_model.find params[:id]
     end
 
     def authorize_resource

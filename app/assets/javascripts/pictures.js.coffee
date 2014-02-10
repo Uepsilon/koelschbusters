@@ -1,5 +1,5 @@
 $ ->
-  $('a.fancybox').fancybox(
+  $('a.fancybox, a.gallery-picture').fancybox(
     openEffect:   'elastic'
     closeEffect:  'elastic'
     padding:      2

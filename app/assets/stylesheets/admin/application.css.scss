@@ -1,11 +1,11 @@
 /*
  *= require_self
- *= require bootstrap
  *= require ../jquery.fancybox
  *= require ../jquery.fancybox-buttons
+ *= require bootstrap
  */
 
-@import '../variables';
+@import 'variables';
 
 #admin {
   .jumbotron {
@@ -49,4 +49,12 @@
       }
     }
   }
+
+
+
+.navbar-brand {
+  img {
+    height: 25px;
+  }
+}
 }

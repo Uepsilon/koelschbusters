@@ -5,15 +5,39 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand(href="#") Koelschbusters
+      %a.navbar-brand(href="#")
+        = image_tag "logo.png"
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li= link_to t('links.general.root'), :root
         %li= link_to t('links.general.pictures'), :galleries
-
-      %ul.nav.navbar-nav.pull-right
         - if user_signed_in?
           %li= link_to t('links.general.profile'), current_user
-          %li= link_to t('links.general.logout'), :destroy_user_session, method: :delete
+          - if can? :manage, User or can? :manage, News or can? :manage, Gallery
+            %li.dropdown
+              = link_to "#{t('general.administration')} #{content_tag(:b, '', class: :caret)}".html_safe, '#', class: "dropdown-toggle", "data-toggle" => "dropdown"
+
+              %ul.dropdown-menu
+                %li= link_to t('links.dashboard'), :admin_root
+                - if can? :manage, User
+                  %li.divider &nbsp;
+                  %li= link_to t('links.users.index'), :admin_users
+                  %li= link_to t('links.users.new'), :new_admin_user
+                - if can? :manage, News
+                  %li.divider &nbsp;
+                  %li= link_to t('links.news.index'), :admin_news_index
+                  %li= link_to t('links.news.new'), :new_admin_news
+                - if can? :manage, Gallery
+                  %li.divider &nbsp;
+                  %li= link_to t('links.gallery.index'), :admin_galleries
+                  %li= link_to t('links.gallery.new'), :new_admin_gallery
+
+      .navbar-right
+        - if user_signed_in?
+          .navbar-text= "Eingeloggt als #{current_user.name}"
+          %ul.nav.navbar-nav
+            %li= link_to t('links.general.logout'), :destroy_user_session, method: :delete, class: "btn btn-danger"
         - else
-          %li= link_to t('links.general.login'), :new_user_session
+          .navbar-text= "Willkommen bei den Wahner Kölschbusters"
+          %ul.nav.navbar-nav
+            %li.navbar-right= link_to t('links.general.login'), :new_user_session, class: "btn btn-success"

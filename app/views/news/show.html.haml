@@ -1,3 +1,9 @@
-#news
-  .title= @news.title
+#news.news.well.news{class: "#{"internal-news" if @news.internal?}"}
+  %h2.title.pull-left= @news.title
+  .date.pull-right
+    %span.glyphicon.glyphicon-time
+    = l @news.published_at, format: :long
+  %br.clear
   .body= @news.body.html_safe
+  .link.pull-left= link_to t('links.back'), :news_index, class: "btn btn-danger"
+  %br.clear

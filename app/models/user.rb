@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
 
   def add_oauth(auth, provider)
     self.send("#{provider}_uid=", auth.uid)
-    self.send("#{provider}_name=", provider == :twiter ? auth.info.nickname : auth.info.name)
+    self.send("#{provider}_name=", provider == :twitter ? auth.info.nickname : auth.info.name)
 
     self.save
   end

@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require h5bp
 //= require ckeditor/init
 //= require jquery.fancybox.pack
 //= require jquery.fancybox-buttons

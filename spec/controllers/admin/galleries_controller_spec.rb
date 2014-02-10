@@ -2,8 +2,11 @@ require 'spec_helper'
 
 describe Admin::GalleriesController do
   # Cleanup mess after test
-  after(:each) { Gallery.destroy_all }
-  after(:each) { Picture.destroy_all }
+  after(:each) {
+    Gallery.destroy_all
+    Picture.destroy_all
+    p "Deleted"
+  }
 
   context "when authorized user is logged in" do
     before(:each) { login_manager }

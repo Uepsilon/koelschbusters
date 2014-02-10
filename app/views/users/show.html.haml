@@ -1,45 +1,67 @@
 #profile
-  %h1 Dein Profil
+  .well
+    %h2.title Dein Profil
 
-  %table
-    %tbody
-      %tr
-        %th Email
-        %td= current_user.email
-      %tr
-        %th Name
-        %td= current_user.name
+    %table.table.table-responsive
+      %tbody
+        %tr
+          %th Email
+          %td= current_user.email
+        %tr
+          %th Name
+          %td= current_user.name
+        %tr
+          %th{rowspan: 2} Adresse
+          %td= "#{current_user.street} #{current_user.houseno}"
+        %tr
+          %td= "#{current_user.zipcode} #{current_user.city}"
+        - if current_user.phone?
+          %tr
+            %th Telefonnummr
+            %td= current_user.phone
+        - if current_user.mobile?
+          %tr
+            %th Handynummer
+            %td= current_user.mobile
 
-      %tr
-        %th Rolle
-        %td= current_user.role
+        %tr
+          %th Rolle
+          %td= current_user.role.capitalize
 
-  .options
-    = link_to "Profil ändern", :edit_user
-    = link_to "Login ändern",  :edit_login
+    .options
+      = link_to "Profil ändern", :edit_user, class: "btn btn-danger"
+      = link_to "Login ändern",  :edit_login, class: "btn btn-danger"
 
-  .oauth
-    .twitter
-      - unless current_user.twitter_uid.nil?
-        Twitter:
-        = link_to current_user.twitter_name, "http://www.twitter.com/#{current_user.twitter_name}"
-        = link_to "Entfernen", delete_oauth_path(:twitter), :method => :delete
-      - else
-        = link_to "Mit Twitter verknüpfen", user_omniauth_authorize_path(:twitter)
+  .well
+    %h2.title Alternative Loginmethoden verwalten
+    %p
+      Wenn dein Konto auf der Kölschbusters-Webseite mit einer der unten genannten Seiten verknüpfst, kannst du dich in
+      Zukunft ohne Passwort einloggen. Das erspart Zeit und erhöht die Sicherheit, da du ein langes, kompliziertes Passwort
+      wählen kannst.
 
-    .google
-      - unless current_user.google_uid.nil?
-        Verknüpfung mit Google:
-        = link_to "#{current_user.google_name}", "http://plus.google.com/#{current_user.google_uid}"
-        = link_to "Entfernen", delete_oauth_path(:google), :method => :delete
-      - else
-        = link_to "Mit Google verknüpfen", user_omniauth_authorize_path(:google_oauth2)
+    %table.table.table-responsive.oauth
+      %tbody
+        %tr.twitter
+          %td{width: "75px"}= image_tag "twitter_icon.png", alt: "Twitter", class: :minithumb
+          - unless current_user.twitter_uid.nil?
+            %td{width: "25%"}= link_to "Verknüpft mit #{content_tag(:b, current_user.twitter_name)}".html_safe, "http://www.twitter.com/#{current_user.twitter_name}"
+            %td{align: "right"}= link_to "Verknüpfung aufheben", delete_oauth_path(:twitter), :method => :delete, class: "btn btn-danger"
+          - else
+            %td{colspan: 2}= link_to "Mit Twitter verknüpfen", user_omniauth_authorize_path(:twitter)
+
+        %tr.google
+          %td= image_tag "google_oauth2_icon.png", alt: "Google Plus", class: :minithumb
+          - unless current_user.google_uid.nil?
+            %td= link_to "Verknüpft mit #{content_tag(:b, current_user.google_name)}".html_safe, "http://plus.google.com/#{current_user.google_uid}"
+            %td{align: "right"}= link_to "Verknüpfung aufheben", delete_oauth_path(:google), :method => :delete, class: "btn btn-danger"
+          - else
+            %td{colspan: 2}= link_to "Mit Google verknüpfen", user_omniauth_authorize_path(:google_oauth2)
 
 
-    .facebook
-      - unless current_user.facebook_uid.nil?
-        Facebook:
-        = link_to current_user.facebook_name, "http://www.facebook.com/#{current_user.facebook_name}"
-        = link_to "Entfernen", delete_oauth_path(:facebook), :method => :delete
-      - else
-        = link_to "Mit Facebook verknüpfen", user_omniauth_authorize_path(:facebook)
+        %tr.facebook
+          %td= image_tag "facebook_icon.png", alt: "Facebook", class: :minithumb
+          - unless current_user.facebook_uid.nil?
+            %td= link_to "Verknüpft mit #{content_tag(:b, current_user.facebook_name)}".html_safe, "http://www.facebook.com/#{current_user.facebook_name}"
+            %td{align: "right"}= link_to "Verknüpfung aufheben", delete_oauth_path(:facebook), :method => :delete, class: "btn btn-danger"
+          - else
+            %td{colspan: 2}= link_to "Mit Facebook verknüpfen", user_omniauth_authorize_path(:facebook)

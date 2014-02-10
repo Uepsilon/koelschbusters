@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe Gallery do
-  # Cleanup mess after test
-  after(:each) { Gallery.destroy_all }
-  after(:each) { Picture.destroy_all }
-
   describe "Validations" do
     it "should be invalid without a title" do
       subject.should_not be_valid
@@ -18,6 +14,7 @@ describe Gallery do
   end
 
   describe "Scopes" do
+
     let!(:gallery_with_pictures) { create :gallery_with_pictures }
     let!(:gallery_without_pictures) { create :gallery }
     it "returns gallery with all pictures " do

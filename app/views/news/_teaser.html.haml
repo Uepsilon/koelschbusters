@@ -1,4 +1,9 @@
-.news
-  .title= news.title
+.news.well{class: "#{"internal-news" if news.internal?}"}
+  %h2.title.pull-left= news.title
+  .date.pull-right
+    %span.glyphicon.glyphicon-time
+    = l news.published_at, format: :long
+  %br.clear
   .body= news.teaser.html_safe
-  .link= link_to "Mehr", news
+  .link.pull-right= link_to t('links.read_more'), news, class: "btn btn-danger"
+  %br.clear

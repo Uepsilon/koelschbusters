@@ -4,15 +4,15 @@ class Picture < ActiveRecord::Base
     attachment.instance.gallery_id
   end
 
-  STYLES = %w[original thumb]
+  STYLES = %w[original thumb maxithumb]
 
   belongs_to :gallery
 
   has_attached_file :picture,
                     :default_style => :original,
                     :url  => "/galerie/:gallery_id/bild/:id/:style.:extension",
-                    :path => ":rails_root/shared/pictures/:id/:style/:basename.:extension",
-                    :styles => { thumb: '200>' }
+                    :path => ":rails_root/shared/:rails_env/pictures/:id/:style/:basename.:extension",
+                    :styles => { thumb: '200>', maxithumb: '250>'  }
 
   attr_accessible :internal, :picture
 

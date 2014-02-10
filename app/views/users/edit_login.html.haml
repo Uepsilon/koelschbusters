@@ -1,18 +1,28 @@
 #profile
-  = form_for @user, :url => :update_login do |f|
-    .label= f.label :current_password
-    .field= f.password_field :current_password
-
-    .label= f.label :email
-    .field= f.text_field :email
-
-    .label= f.label :email_confirmation
-    .field= f.text_field :email_confirmation
-
-    .label= f.label :password
-    .field= f.password_field :password
-
-    .label= f.label :password_confirmation
-    .field= f.password_field :password_confirmation
-
-    .button= f.submit
+  .well
+    %h2.title Login ändern
+    = form_for @user, :url => :update_login, html: {class: "form-horizontal"} do |f|
+      .form-group
+        .col-sm-5
+          = f.label :current_password, class: "sr-only"
+          = f.password_field :current_password, class: "form-control", placeholder: "Aktuelles Passwort"
+      .form-group
+        .col-sm-5
+          = f.label :email, class: "sr-only"
+          = f.text_field :email, class: "form-control", placeholder: "E-Mail Adresse"
+      .form-group
+        .col-sm-5
+          = f.label :email_confirmation, class: "sr-only"
+          = f.text_field :email_confirmation, class: "form-control", placeholder: "E-Mail Adresse bestätigen"
+      .form-group
+        .col-sm-5
+          = f.label :password, class: "sr-only"
+          = f.password_field :password, class: "form-control", placeholder: "Neues Passwort"
+      .form-group
+        .col-sm-5
+          = f.label :password_confirmation, class: "sr-only"
+          = f.password_field :password_confirmation, class: "form-control", placeholder: "Passwort bestätigen"
+      .form-group
+        .col-sm-12
+          = f.submit "Änderungen speichern", class: "btn btn-success"
+          = link_to "Änderungen verwerfen", current_user, class: "btn btn-danger"
