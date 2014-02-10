@@ -1,8 +1,5 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'yaml'
-OAUTH_CONFIG = YAML.load(File.read(File.expand_path('../oauth.yml', __FILE__)))
-
 require 'rails/all'
 
 if defined?(Bundler)

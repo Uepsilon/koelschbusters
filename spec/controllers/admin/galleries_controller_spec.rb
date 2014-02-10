@@ -5,7 +5,6 @@ describe Admin::GalleriesController do
   after(:each) {
     Gallery.destroy_all
     Picture.destroy_all
-    p "Deleted"
   }
 
   context "when authorized user is logged in" do

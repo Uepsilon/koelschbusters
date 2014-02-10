@@ -247,11 +247,11 @@ Devise.setup do |config|
 
 
   # OAUTH2 for google
-  config.omniauth :google_oauth2, OAUTH_CONFIG['google']['app-id'], OAUTH_CONFIG['google']['app-secret'], { access_type: "offline", approval_prompt: "" }
+  config.omniauth :google_oauth2, Figaro.env.google_app_id, Figaro.env.google_app_secret, { access_type: "offline", approval_prompt: "" }
 
   # OAUTH2 for twitter
-  config.omniauth :twitter, OAUTH_CONFIG['twitter']['app-id'], OAUTH_CONFIG['twitter']['app-secret']
+  config.omniauth :twitter, Figaro.env.twitter_app_id, Figaro.env.twitter_app_secret
 
   # OAUTH2 for facebook
-  config.omniauth :facebook, OAUTH_CONFIG['facebook']['app-id'], OAUTH_CONFIG['facebook']['app-secret']
+  config.omniauth :facebook, Figaro.env.facebook_app_id, Figaro.env.facebook_app_secret
 end

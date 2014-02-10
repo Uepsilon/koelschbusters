@@ -1,2 +1,62 @@
-#imprint
-  %h1 Wahner Kölschbusters
+#imprint.well
+  %h2.title Wahner Kölschbusters
+
+  %p Angaben gemäß § 5 TMG:
+
+  %h4.title Kontakt
+  %table.address
+    %tr
+      %th Straße
+      %td= Figaro.env.contact_street
+    %tr
+      %th Ort
+      %td= Figaro.env.contact_city
+
+  %h4.title Vertreten durch den Vorstand
+  %table.person
+    %tr
+      %th Name
+      %td= Figaro.env.president_name
+    %tr
+      %th Email
+      %td= Figaro.env.president_email
+
+  %h4.title Betreiber
+  %table.person
+    %tr
+      %th Name
+      %td= Figaro.env.admin_name
+    %tr
+      %th Email
+      %td= Figaro.env.admin_email
+
+  %h4.title Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:
+  %table.person
+    %tr
+      %th Name
+      %td= Figaro.env.journalist_name
+    %tr
+      %th Email
+      %td= Figaro.env.journalist_email
+
+  %h4.title Bildnachweis
+  %p
+    Urheber des Hintergrund-Bildes (Dom und Hohenzollernbrücke):
+    %b Thomas Wolf
+    |
+    =link_to "www.foto-tw.de", "http://www.foto-tw.de"
+
+  %h4.title Datenschutz
+  %p
+    Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten
+    personenbezogene Daten (beispielsweise Name, Anschrift oder eMail-Adressen) erhoben werden, erfolgt dies, soweit
+    möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte
+    weitergegeben.
+  %p
+    Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail)
+    Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
+  %p
+    Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht
+    ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit ausdrücklich widersprochen. Die
+    Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von
+    Werbeinformationen, etwa durch Spam-Mails, vor.

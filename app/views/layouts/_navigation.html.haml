@@ -11,6 +11,7 @@
       %ul.nav.navbar-nav
         %li= link_to t('links.general.root'), :root
         %li= link_to t('links.general.pictures'), :galleries
+        %li= link_to t('links.pages.about'), :about
         - if user_signed_in?
           %li= link_to t('links.general.profile'), current_user
           - if can? :manage, User or can? :manage, News or can? :manage, Gallery

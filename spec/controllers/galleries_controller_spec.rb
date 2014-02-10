@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe GalleriesController do
-  after { Gallery.destroy_all }
-  after { Picture.destroy_all }
+  after(:all) { Gallery.destroy_all }
+  after(:all) { Picture.destroy_all }
 
   let!(:gallery_with_pictures) { create :gallery_with_pictures }
   let!(:gallery_with_internal_pictures) { create :gallery_with_internal_pictures }
@@ -24,7 +24,7 @@ describe GalleriesController do
       subject { assigns(:pictures) }
 
       it { response.status.should eq 200 }
-      it { subject.should eq gallery_with_pictures.pictures }
+      it { subject.should match_array(gallery_with_pictures.pictures) }
     end
   end
 

@@ -10,6 +10,8 @@ class News < ActiveRecord::Base
 
   before_validation :find_teaser
 
+  self.per_page = 10
+
   validates :title,   :presence => true
   validates :body,    :presence => true
   validates :teaser,  :presence => true, :allow_blank => true, :allow_nil => true

@@ -13,7 +13,7 @@ describe "Oauth Feature" do
 
         visit "/login"
 
-        click_link "Sign in with Twitter"
+        page.first(".twitter-login").click
 
         page.should have_content('Abmelden')
         page.should have_content('erfolgreich')
@@ -25,7 +25,7 @@ describe "Oauth Feature" do
 
         visit "/login"
 
-        click_link "Sign in with Twitter"
+        page.first(".twitter-login").click
 
         page.should have_content('Anmelden')
         page.should have_content('nicht eingeloggt')
@@ -38,7 +38,7 @@ describe "Oauth Feature" do
 
         visit "/login"
 
-        click_link "Sign in with Facebook"
+        page.first(".facebook-login").click
 
         page.should have_content('Abmelden')
         page.should have_content('eingeloggt')
@@ -50,7 +50,7 @@ describe "Oauth Feature" do
 
         visit "/login"
 
-        click_link "Sign in with Facebook"
+        page.first(".facebook-login").click
 
         page.should have_content('Anmelden')
         page.should have_content('nicht eingeloggt')
@@ -63,7 +63,7 @@ describe "Oauth Feature" do
 
         visit "/login"
 
-        click_link "Sign in with Google"
+        page.first(".google_oauth2-login").click
 
         page.should have_content('Abmelden')
         page.should have_content('eingeloggt')
@@ -75,7 +75,7 @@ describe "Oauth Feature" do
 
         visit "/login"
 
-        click_link "Sign in with Google"
+        page.first(".google_oauth2-login").click
 
         page.should have_content('Anmelden')
         page.should have_content('nicht eingeloggt')
@@ -96,9 +96,9 @@ describe "Oauth Feature" do
 
         visit "/profil"
 
-        click_link "Twitter"
+        page.first('.twitter-link').click
 
-        page.should have_content('Twitter: TestUser')
+        page.should have_content('TestUser')
        end
 
        it "removes twitter from account" do
@@ -106,9 +106,9 @@ describe "Oauth Feature" do
 
           visit "/profil"
 
-          page.should have_content('Twitter: TestUser')
+          page.should have_content('TestUser')
 
-          click_link "Entfernen"
+          page.first('.twitter-unlink').click
 
           page.should have_content('Mit Twitter verknüpfen')
        end
@@ -120,9 +120,9 @@ describe "Oauth Feature" do
 
         visit "/profil"
 
-        click_link "Facebook"
+        page.first('.facebook-link').click
 
-        page.should have_content('Facebook: TestUser')
+        page.should have_content('TestUser')
        end
 
        it "removes facebook from account" do
@@ -130,9 +130,9 @@ describe "Oauth Feature" do
 
           visit "/profil"
 
-          page.should have_content('Facebook: TestUser')
+          page.should have_content('TestUser')
 
-          click_link "Entfernen"
+          page.first('.facebook-unlink').click
 
           page.should have_content('Mit Facebook verknüpfen')
        end
@@ -144,9 +144,9 @@ describe "Oauth Feature" do
 
         visit "/profil"
 
-        click_link "Google"
+        page.first('.google_oauth2-link').click
 
-        page.should have_content('Google: TestUser')
+        page.should have_content('TestUser')
        end
 
        it "removes google from account" do
@@ -154,9 +154,9 @@ describe "Oauth Feature" do
 
           visit "/profil"
 
-          page.should have_content('Google: TestUser')
+          page.should have_content('TestUser')
 
-          click_link "Entfernen"
+          page.first('.google_oauth2-unlink').click
 
           page.should have_content('Mit Google verknüpfen')
        end

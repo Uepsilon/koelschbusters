@@ -24,6 +24,7 @@ gem 'hirb'
 gem 'therubyracer'
 gem 'html_truncator'
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 gem "breadcrumbs_on_rails"
 
 gem 'omniauth'
@@ -64,3 +65,6 @@ end
 
 # Puma Server
 gem 'puma'
+
+# Configuration
+gem "figaro"

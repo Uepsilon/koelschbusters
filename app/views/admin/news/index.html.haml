@@ -31,7 +31,8 @@
         = link_to t('links.news.delete'), [:admin, news], method: :delete, class: "btn btn-danger btn-sm"
       %br.clear
 
-  = will_paginate @news
+  .pageination
+    = will_paginate @news, renderer: BootstrapPagination::Rails, previous_label: "Weiter", next_label: "Zurück"
 
 / %table
 /   %tr

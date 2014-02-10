@@ -2,7 +2,7 @@ $linkRed: #ac2925;
 $linkRedHover: #d2322d;
 $linkBorderColor: #ac2925;
 $borderRadius: 5px;
-$bgOpacity: 0.85;
+$bgOpacity: 0.95;
 
 @import "variables";
 @import url("http://fonts.googleapis.com/css?family=Ruda");
@@ -14,7 +14,7 @@ body{
   margin: 0;
   height: 100%;
   background: asset-url('bg/1.jpg', images) no-repeat center center;
-  background-size: 100% 100%;
+  background-size: cover;
   background-attachment:fixed;
 
   a {
@@ -26,14 +26,30 @@ body{
     text-decoration: none;
   }
 
+  .pageination {
+    text-align: center;
+  }
+
   .well {
     background-color: rgba(255, 255, 255, $bgOpacity);
 
     .title {
       margin: 0 0 10px 0;
-      font-size: 20px;
       font-family: "Sansita One";
       font-weight: bold;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
+    h4 {
+      font-size: 14px;
+    }
+
+    h6 {
+      font-size: 12px;
+      font-weight: normal;
     }
   }
 
@@ -148,23 +164,41 @@ body{
           margin: 20px;
           float: left;
           height: 200px;
+          position: relative;
 
           .img-container {
             display: inline-block;
-            vertical-align: center;
             margin-bottom: 10px;
+            height: 100%;
+
+            .helper {
+              display: inline-block;
+              height: 100%;
+              vertical-align: middle;
+            }
 
             img {
               margin: auto 0;
             }
           }
 
-          .name{
-            font-size: 16px;
-            font-family: "Sansita One";
+          .name,
+          .count {
+            position: absolute;
+            font-size: 20px;
             font-weight: bold;
-            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+            text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
             color: #fff;
+          }
+
+          .name {
+            top: 5px;
+            left: 5px;
+          }
+
+          .count {
+            bottom: 5px;
+            right: 5px;
           }
         }
 
@@ -172,6 +206,18 @@ body{
           margin: 5px;
           float: left;
           height: 200px;
+        }
+      }
+
+      #imprint {
+        .person,
+        .address {
+          min-width: 350px;
+          margin-bottom: 25px;
+
+          th {
+            width: 25%;
+          }
         }
       }
     }
