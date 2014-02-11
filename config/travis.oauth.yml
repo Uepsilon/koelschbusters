@@ -1,11 +1,8 @@
-google:
-  app-id:     "randomAppId"
-  app-secret: "randomAppSecret"
+GOOGLE_APP_ID:        "randomAppId"
+GOOGLE_APP_SECRET:    "randomAppSecret"
 
-twitter:
-  app-id:     "randomAppId"
-  app-secret: "randomAppSecret"
+TWITTER_APP_ID:       "randomAppId"
+TWITTER_APP_SECRET:   "randomAppSecret"
 
-facebook:
-  app-id:     "randomAppId"
-  app-secret: "randomAppSecret"
+FACEBOOK_APP_ID:      "randomAppId"
+FACEBOOK_APP_SECRET:  "randomAppSecret"
