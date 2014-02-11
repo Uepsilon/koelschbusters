@@ -147,7 +147,7 @@ describe User do
     end
 
     context 'when role is management' do
-      subject {create(:user, :manager)}
+      subject {create(:user, :management)}
 
       it { subject.role?(:member).should be_true }
       it { subject.role?(:management).should be_true }
@@ -186,8 +186,8 @@ describe User do
       it{ should be_able_to(:access, :admin) }
     end
 
-    context "when is a manager" do
-      let(:user){ create(:user, :manager) }
+    context "when is a management" do
+      let(:user){ create(:user, :management) }
 
       # manage users
       it{ should be_able_to(:manage, User) }

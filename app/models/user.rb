@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   # possible roles
-  ROLES   = %w[member management admin]
+  ROLES   = %w[guest member management admin]
 
   has_many :news
 

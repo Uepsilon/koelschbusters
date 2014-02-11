@@ -24,7 +24,7 @@ FactoryGirl.define do
       role "admin"
     end
 
-    trait :manager do
+    trait :management do
       last_name "Smithers"
       role "management"
     end

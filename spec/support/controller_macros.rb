@@ -11,7 +11,7 @@ module ControllerMacros
   def login_manager(manager=nil)
     @request.env["devise.mapping"] = Devise.mappings[:manager]
     if manager.nil? or not manager.is_a? User
-      sign_in FactoryGirl.create(:user, :manager)
+      sign_in FactoryGirl.create(:user, :management)
     else
       sign_in manager
     end
