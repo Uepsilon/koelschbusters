@@ -203,9 +203,15 @@ body{
         }
 
         .picture {
-          margin: 5px;
+          margin: 15px;
           float: left;
           height: 200px;
+
+          .helper {
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+          }
         }
       }
 

@@ -4,8 +4,9 @@
     .pictures
       - @pictures.each do |picture|
         %span.picture
+          %span.helper &nbsp;
           = link_to image_tag(picture.picture.url(:thumb), class: "img-rounded"), picture.picture.url, class: "gallery-picture", rel: "gallery"
 
     %br.clear
-    = link_to "Zurück zur Übersicht", :galleries, class: "btn btn-danger pull-right"
+    = link_to "Zurück zur Übersicht", :galleries, class: "btn btn-danger"
     %br.clear

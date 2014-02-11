@@ -12,7 +12,9 @@
                 = image_tag gallery.pictures.first.picture.url(:thumb), class: "img-rounded"
               .count= "#{pluralize gallery.pictures.count, "Bild", "Bilder"}"
             - else
-              .img-container= image_tag gallery.public_pictures.first.picture.url(:thumb), class: "img-rounded"
+              .img-container
+                %span.helper &nbsp;
+                = image_tag gallery.public_pictures.first.picture.url(:thumb), class: "img-rounded"
               .count= "#{pluralize gallery.public_pictures.count, "Bild", "Bilder"}"
       %br.clear
     - else

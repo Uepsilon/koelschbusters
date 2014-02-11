@@ -44,7 +44,7 @@
         %tr.twitter
           %td{width: "75px"}= image_tag "twitter_icon.png", alt: "Twitter", class: :minithumb
           - unless current_user.twitter_uid.nil?
-            %td{width: "25%"}= link_to "Verknüpft mit #{content_tag(:b, current_user.twitter_name)}".html_safe, "http://www.twitter.com/#{current_user.twitter_name}"
+            %td{width: "50%"}= link_to "Verknüpft mit #{content_tag(:b, current_user.twitter_name)}".html_safe, "http://www.twitter.com/#{current_user.twitter_name}"
             %td{align: "right"}= link_to "Verknüpfung aufheben", delete_oauth_path(:twitter), :method => :delete, class: "btn btn-danger twitter-unlink"
           - else
             %td{colspan: 2}= link_to "Mit Twitter verknüpfen", user_omniauth_authorize_path(:twitter), class: "twitter-link"
