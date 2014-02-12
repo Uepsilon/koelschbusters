@@ -171,9 +171,12 @@ body{
 
           .category {
             float: left;
+            padding-top: 1px;
+            padding-left: 5px;
           }
 
           .date {
+            padding-right: 5px;
             float: right;
           }
         }

@@ -6,3 +6,7 @@ TWITTER_APP_SECRET:   "randomAppSecret"
 
 FACEBOOK_APP_ID:      "randomAppId"
 FACEBOOK_APP_SECRET:  "randomAppSecret"
+
+
+CONTACT_EMAIL:    "contact@example.com"
+NOREPLY_EMAIL:    "noreply@example.com"
