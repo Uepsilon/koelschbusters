@@ -23,13 +23,18 @@ de:
     users:
       index:          Benutzerübersicht
       new:            Benutzer anlegen
-      edit:           Benutzer aktualisieren
+      edit:           Benutzer bearbeiten
       delete:         Löschen
+    categories:
+      index:          Kategorieübersicht
+      new:            Kategorie erstellen
+      edit:           Kategorie bearbeiten
+      delete:         Kategorie löschen
     news:
       index:          Beitragsübersicht
       show:           Beitrag anzeigen
       new:            Beitrag erstellen
-      edit:           Beitrag aktualisieren
+      edit:           Beitrag bearbeiten
       delete:         Beitrag löschen
       publish:        Beitrag veröffentlichen
       unpublish:      Beitrag zurückziehen
@@ -41,7 +46,7 @@ de:
       pictures:       Bilder anzeigen
     picture:
       new:            Bild anlegen
-      edit:           Bild aktualisieren
+      edit:           Bild bearbeiten
       delete:         Bild löschen
     general:
       root:           Startseite
@@ -73,10 +78,14 @@ de:
 
   flash:
     users:
-      created:        Benutzer angelegt.
-      updated:        Benutzer geändert.
-      deleted:        Benutzer gelöscht.
+      created:        Benutzer angelegt
+      updated:        Benutzer geändert
+      deleted:        Benutzer gelöscht
       cannot_edit_yourself: Du sollst nicht an dir selber rumspielen!
+    categories:
+      created:        Kategorie angelegt
+      updated:        Kategorie geändert
+      deleted:        Kategorie gelöscht
 
   confirms:
     delete:         "Bist du sicher, dass du '%{name}' löschen möchtest?"
@@ -280,7 +289,9 @@ de:
 
   activerecord:
     models:
-      user: Benutzer
+      user:         Benutzer
+      category:   Kategorie
+      news:         Neuigkeit
     attributes:
       user:
         name:       Name
@@ -297,10 +308,14 @@ de:
         zipcode:    PLZ
         city:       Ort
         member_active: Aktiv
+      category:
+        title:      Titel
+        slug:       URL-Format
       news:
         title:      Überschrift
         body:       Beitrag
         internal:   Interner Beitrag
+        category:   Kategorie
       gallery:
         title:      Galeriename
       picture:

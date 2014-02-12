@@ -1,0 +1,19 @@
+#categories
+  %h1 Kategorieverwaltung
+  %table.table.table-striped.table-bordered
+    %thead
+      %tr
+        %th= Category.human_attribute_name(:title)
+        %th= Category.human_attribute_name(:slug)
+        %th &nbsp;
+    %tbody
+      - @categories.each do |category|
+        %tr
+          %td= category.title
+          %td= category.to_param
+          %td.centered
+            = link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), [:edit, :admin, category], class: "btn btn-primary btn-xs", title: "#{t('links.categorys.edit')}"
+            = link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), [:admin, category], method: :delete, confirm: t('confirms.delete', name: category.title), class: "btn btn-danger btn-xs", title: "#{t('links.categorys.delete')}"
+
+  .btns.pull-left
+    = link_to t('links.categories.new'), :new_admin_category, class: "btn btn-success"

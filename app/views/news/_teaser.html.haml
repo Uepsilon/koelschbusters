@@ -1,9 +1,17 @@
-.news.well{class: "#{"internal-news" if news.internal?}"}
-  %h2.title.pull-left= news.title
-  .date.pull-right
-    %span.glyphicon.glyphicon-time
-    = l news.published_at, format: :long
-  %br.clear
+.well{class: "#{"internal-news" if news.internal?}"}
+  %h2.title= news.title
+  - if news.internal?
+    %h2.internal Interner Beitrag
   .body= news.teaser.html_safe
+  %br.clear
+  .info
+    - if news.category
+      .category
+        Kategorie:
+        = link_to news.category.title, categorized_news_path(category: news.category.to_param)
+    .date
+      %span.glyphicon.glyphicon-time
+      = l news.published_at, format: :long
+    %br.clear
   .link.pull-right= link_to t('links.read_more'), news, class: "btn btn-danger"
   %br.clear

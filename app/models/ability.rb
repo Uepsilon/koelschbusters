@@ -21,6 +21,7 @@ class Ability
 
       can :manage, Picture
       can :manage, Gallery
+      can :manage, Category
 
     elsif user.role? :member
       # MEMBERS
@@ -32,6 +33,8 @@ class Ability
       can :read, Gallery do |gallery|
         gallery.pictures.any?
       end
+
+      can :read, Category
 
       # Users can edit themselves
       can :edit, User do |u|
@@ -53,6 +56,7 @@ class Ability
         gallery.public_pictures.any?
       end
 
+      can :read, Category
     end
 
 

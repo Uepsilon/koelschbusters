@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130504191355) do
+ActiveRecord::Schema.define(:version => 20140211145039) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "title",      :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -44,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20130504191355) do
     t.datetime "updated_at",                      :null => false
     t.datetime "published_at"
     t.boolean  "internal",     :default => false
+    t.integer  "category_id"
   end
 
   add_index "news", ["internal"], :name => "index_news_on_internal"

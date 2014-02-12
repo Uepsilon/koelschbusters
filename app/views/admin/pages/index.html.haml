@@ -7,6 +7,14 @@
         = link_to t('links.users.index'), :admin_users, class: "btn btn-primary btn-sm"
         = link_to t('links.users.new'), :new_admin_user, class: "btn btn-success btn-sm"
 
+  - if can? :manage, Category
+    .panel.panel-default
+      .panel-heading Kategorien
+      .panel-body Kategorien erstellen, editieren und löschen
+      .panel-body
+        = link_to t('links.categories.index'), :admin_categories, class: "btn btn-primary btn-sm"
+        = link_to t('links.categories.new'), :new_admin_category, class: "btn btn-success btn-sm"
+
   - if can? :manage, News
     .panel.panel-default
       .panel-heading Nachrichten

@@ -1,0 +1,19 @@
+= form_for [:admin, @category], html: { class: "form-horizontal" } do |f|
+  - if @category.errors.any?
+    .alert.alert-danger
+      %ul
+      - @category.errors.full_messages.each do |msg|
+        %li= msg
+
+  .form-group
+    = f.label :title, class: "col-lg-2 control-label"
+    .col-lg-10
+      = f.text_field :title, placeholder: Category.human_attribute_name(:title), class: "form-control"
+
+  .form-group
+    .col-lg-10.pull-right
+      - if @category.new_record?
+        = f.submit t('links.create'), class: 'btn btn-success'
+      - else
+        = f.submit t('links.update'), class: 'btn btn-info'
+      = link_to t('links.cancel'), :admin_categories, class: 'btn btn-warning'

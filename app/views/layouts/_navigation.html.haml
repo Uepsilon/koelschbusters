@@ -24,6 +24,10 @@
                   %li.divider &nbsp;
                   %li= link_to t('links.users.index'), :admin_users
                   %li= link_to t('links.users.new'), :new_admin_user
+                - if can? :manage, Category
+                  %li.divider &nbsp;
+                  %li= link_to t('links.categories.index'), :admin_categories
+                  %li= link_to t('links.categories.new'), :new_admin_category
                 - if can? :manage, News
                   %li.divider &nbsp;
                   %li= link_to t('links.news.index'), :admin_news_index

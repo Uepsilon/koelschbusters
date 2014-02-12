@@ -1,9 +1,18 @@
-#news.news.well.news{class: "#{"internal-news" if @news.internal?}"}
-  %h2.title.pull-left= @news.title
-  .date.pull-right
-    %span.glyphicon.glyphicon-time
-    = l @news.published_at, format: :long
-  %br.clear
-  .body= @news.body.html_safe
-  .link.pull-left= link_to t('links.back'), :news_index, class: "btn btn-danger"
-  %br.clear
+#news
+  .news.well{class: "#{"internal-news" if @news.internal?}"}
+    %h2.title= @news.title
+    - if @news.internal?
+      %h2.internal Interner Beitrag
+    .body= @news.body.html_safe
+    %br.clear
+    .link.pull-left= link_to t('links.back'), :news_index, class: "btn btn-danger"
+    .info
+      - if @news.category
+        .category
+          Kategorie:
+          = link_to @news.category.title, categorized_news_path(category: @news.category.to_param)
+      .date
+        %span.glyphicon.glyphicon-time
+        = l @news.published_at, format: :long
+      %br.clear
+    %br.clear

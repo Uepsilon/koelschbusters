@@ -2,8 +2,9 @@ require "html_truncator"
 
 class News < ActiveRecord::Base
   belongs_to :user
+  belongs_to :category
 
-  attr_accessible :user, :body, :teaser, :title, :published_at, :internal
+  attr_accessible :user, :body, :teaser, :title, :published_at, :internal, :category_id
 
   scope :published,   where('published_at IS NOT NULL AND published_at <= ?', DateTime.now)
   scope :ffa,         where(:internal => false)

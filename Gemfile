@@ -32,6 +32,10 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
+group :development do
+  gem "letter_opener"
+end
+
 group :development, :test do
   gem 'quiet_assets'
   gem 'rspec-rails'

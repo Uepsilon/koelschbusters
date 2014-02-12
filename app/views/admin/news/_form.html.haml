@@ -22,9 +22,14 @@
       = f.check_box :internal
 
   .form-group
+    = f.label :category_id, News.human_attribute_name(:category), class: "col-lg-2 control-label"
+    .col-lg-10
+      = f.select :category_id, Category.all.map{|cat| [cat.title, cat.id]}, {prompt: "Kategorie wählen", include_blank: "Keine Kategorie"}, class: "form-control"
+
+  .form-group
     .col-lg-10.pull-right
       - if @news.new_record?
         = f.submit t('links.create'), class: 'btn btn-success'
       - else
         = f.submit t('links.update'), class: 'btn btn-info'
-      = link_to t('links.cancel'), :admin_users, class: 'btn btn-warning'
+      = link_to t('links.cancel'), :admin_news_index, class: 'btn btn-warning'

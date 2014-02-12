@@ -6,6 +6,10 @@
       .pull-left
         %h2= news.title
         %h5= "URL: #{link_to news_url(news), news}".html_safe
+        - if news.category.nil?
+          %h5 Kategorie: Keine Kategorie
+        - else
+          %h5= "Kategorie: #{link_to news.category.title, admin_categorized_news_path(category: news.category.to_param)}".html_safe
       .pull-right
         - if not news.published?
           %span.label.label-info Unveröffentlicht

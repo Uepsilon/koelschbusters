@@ -18,10 +18,12 @@ Koelschbusters::Application.routes.draw do
     match   "profil/:provider" => "users#remove_oauth",   via: :delete,  as: :delete_oauth
   end
 
-  resources :news, only: [:index, :show], path: "neuigkeiten"
+  resources :news, only: [:index, :show], path: "news"
+  get "news(/kategorie/:category)(/seite/:page)", to: "news#index", as: :categorized_news
+
   resource :user, only: [:show, :edit, :update], path: "profil"
 
-  resources :galleries, only: [:index, :show], path: "gallerie"
+  resources :galleries, only: [:index, :show], path: "galerie"
   match "galerie/:gallery_id/bild/:id(/:style)" => "pictures#show", via: :get, as: :picture, defaults: { style: :original }
 
   namespace :admin do
@@ -33,10 +35,14 @@ Koelschbusters::Application.routes.draw do
         put 'unpublish'
       end
     end
+    get "news(/category/:category(/page/:page))", to: "news#index", as: :categorized_news
+
     resources :users, except: :show
     resources :galleries, except: :show do
       resources :pictures, except: :show
     end
+
+    resources :categories, except: :show
   end
 
   # The priority is based upon order of creation:

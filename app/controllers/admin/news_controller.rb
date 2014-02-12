@@ -4,6 +4,8 @@ class Admin::NewsController < Admin::ApplicationController
   add_breadcrumb I18n.t('links.news.index'), [:admin, :news, :index]
 
   def index
+    @news = @news.joins(:category).where(categories: {id: params[:category]}) unless params[:category].nil?
+
     @news = @news.order("id DESC").paginate(page: params[:page], per_page: 5)
   end
 

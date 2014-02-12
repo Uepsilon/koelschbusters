@@ -1,10 +1,12 @@
 require 'spec_helper'
 
 describe Admin::NewsController do
+  let!(:category) { create(:category) }
   let!(:regular_news) { create(:news) }
   let!(:private_news) { create(:news, :members_only) }
   let!(:unpublished_news) { create(:news, :unpublished) }
   let!(:upcoming_news) { create(:news, :upcoming) }
+  let!(:categorized_news) { create(:news, category: category) }
 
   context "when user not logged in" do
     describe "GET #index" do
@@ -111,7 +113,7 @@ describe Admin::NewsController do
   context "when authorized user is logged in" do
     before(:each) { login_manager }
 
-    describe "GET #index" do
+    describe "GET #index without Category" do
       before(:each) { get :index }
       subject { assigns(:news) }
 
@@ -120,6 +122,20 @@ describe Admin::NewsController do
       it { should include(private_news) }
       it { should include(unpublished_news) }
       it { should include(upcoming_news) }
+      it { should include(categorized_news) }
+    end
+
+    describe "GET #index with Category" do
+      before(:each) { get(:index, category: categorized_news.category.to_param) }
+      subject { assigns(:news) }
+
+      it { response.status.should eq(200) }
+      it { should include(categorized_news) }
+
+      it { should_not include(regular_news) }
+      it { should_not include(private_news) }
+      it { should_not include(unpublished_news) }
+      it { should_not include(upcoming_news) }
     end
 
     describe "GET #new" do

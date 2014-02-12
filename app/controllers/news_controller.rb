@@ -2,6 +2,7 @@ class NewsController < ApplicationController
   load_and_authorize_resource
 
   def index
+    @news = @news.joins(:category).where(categories: {id: params[:category]}) unless params[:category].nil?
     @news = @news.published.order("published_at DESC").paginate(page: params[:page])
   end
 

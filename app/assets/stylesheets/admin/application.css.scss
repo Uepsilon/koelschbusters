@@ -8,6 +8,12 @@
 @import 'variables';
 
 #admin {
+  .container {
+    .row {
+      padding-bottom: 75px;
+    }
+  }
+
   .jumbotron {
     font-size: 14px;
     padding: 25px;
@@ -50,11 +56,36 @@
     }
   }
 
+  footer {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 50px;
+    margin-top: -50px;
+    border-top: 3px solid #f00;
+    padding: 15px;
+    color: #fff;
+    background-color: #000;
+    bottom: 0;
 
+    .social {
+      float: right;
+      margin: 0 50px;
 
-.navbar-brand {
-  img {
-    height: 25px;
+      > div {
+        float: left;
+
+        img {
+          height: 25px;
+          width: 25px;
+        }
+      }
+    }
   }
-}
+
+  .navbar-brand {
+    img {
+      height: 25px;
+    }
+  }
 }

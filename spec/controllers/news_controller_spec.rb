@@ -26,33 +26,71 @@ shared_examples_for "an inaccessible news" do
 end
 
 describe NewsController do
+  let!(:category) { create(:category) }
   let!(:regular_news) { create(:news) }
   let!(:private_news) { create(:news, :members_only) }
   let!(:unpublished_news) { create(:news, :unpublished) }
   let!(:upcoming_news) { create(:news, :upcoming) }
+  let!(:categorized_news) { create(:news, category: category) }
+  let!(:private_categorized_news) { create(:news, :members_only, category: category) }
 
   describe 'GET #index' do
     context "when user is logged in" do
-      before(:each) { login_user }
-      before(:each) { get :index }
-      subject { assigns(:news) }
+      context "and no category is filtered" do
+        before(:each) { login_user }
+        before(:each) { get :index }
+        subject { assigns(:news) }
 
-      it { response.should be_success }
-      it { should include(regular_news)}
-      it { should include(private_news) }
-      it { should_not include(unpublished_news) }
-      it { should_not include(upcoming_news) }
+        it { response.should be_success }
+        it { should include(regular_news)}
+        it { should include(private_news) }
+        it { should include(categorized_news) }
+        it { should include(private_categorized_news) }
+        it { should_not include(unpublished_news) }
+        it { should_not include(upcoming_news) }
+      end
+
+      context "and category is filtered" do
+        before(:each) { login_user }
+        before(:each) { get :index, category: categorized_news.category.to_param }
+        subject { assigns(:news) }
+
+        it { response.should be_success }
+        it { should include(categorized_news) }
+        it { should include(private_categorized_news) }
+        it { should_not include(regular_news)}
+        it { should_not include(private_news) }
+        it { should_not include(unpublished_news) }
+        it { should_not include(upcoming_news) }
+      end
     end
 
     context "when user is not logged in" do
-      before(:each) { get :index }
-      subject { assigns(:news) }
+      context "and no category is filtered" do
+        before(:each) { get :index }
+        subject { assigns(:news) }
 
-      it { response.should be_success }
-      it { should include(regular_news) }
-      it { should_not include(private_news) }
-      it { should_not include(unpublished_news) }
-      it { should_not include(upcoming_news) }
+        it { response.should be_success }
+        it { should include(regular_news) }
+        it { should include(categorized_news) }
+        it { should_not include(private_news) }
+        it { should_not include(unpublished_news) }
+        it { should_not include(upcoming_news) }
+        it { should_not include(private_categorized_news) }
+      end
+
+      context "and category is filtered" do
+        before(:each) { get :index, category: categorized_news.category.to_param }
+        subject { assigns(:news) }
+
+        it { response.should be_success }
+        it { should include(categorized_news) }
+        it { should_not include(regular_news)}
+        it { should_not include(private_news) }
+        it { should_not include(unpublished_news) }
+        it { should_not include(upcoming_news) }
+        it { should_not include(private_categorized_news) }
+      end
     end
   end
 

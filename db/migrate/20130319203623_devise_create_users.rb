@@ -48,7 +48,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.boolean :member_active,  :default => false
 
 
-      t.string  :role,          :null => false, :default => 'guest'
+      t.string  :role,          :null => false, :default => 'member'
 
       t.timestamps
     end
