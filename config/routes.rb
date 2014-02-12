@@ -8,8 +8,9 @@ Koelschbusters::Application.routes.draw do
 
   root to: "news#index"
 
-  get :imprint, to: "pages#imprint", as: :imprint, path: "impressum"
-  get :about, to: "pages#about", as: :about, path: "ueber-uns"
+  get   :imprint, to: "pages#imprint",  as: :imprint,   path: "impressum"
+  get   :about,   to: "pages#about",    as: :about,     path: "ueber-uns"
+  post  :about,   to: "pages#contact",  as: :contact,   path: "ueber-uns"
 
   devise_for :users, path: '', path_names: {sign_in: 'login', sign_out: 'logout'}, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   devise_scope :users do

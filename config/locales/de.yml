@@ -5,6 +5,12 @@ de:
     news:             Beiträge
     pictures:         Bilder
 
+  contact:
+    email:      E-Mail Adresse
+    name:       Name
+    subject:    Betreff
+    text:       Nachricht
+
   headlines:
     admin:
       news:
@@ -56,6 +62,8 @@ de:
       logout:         Abmelden
       login:          Anmelden
       pictures:       Bilder
+    contact:
+      send:           Absenden
 
   breadcrumbs:
     admin:
@@ -321,3 +329,8 @@ de:
       picture:
         picture:    Bild
         internal:   Nur für Mitglieder
+      contact:
+        email:      E-Mail Adresse
+        name:       Name
+        subject:    Betreff
+        text:       Nachricht
