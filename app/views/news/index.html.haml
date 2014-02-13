@@ -1,4 +1,9 @@
 #news
+  - unless params[:category].nil?
+    .alert.alert-warning
+      Alle Einträge der Kategorie
+      %b= @category.title
+
   - @news.each do |news|
     .teaser
       = render :partial => 'teaser', :locals => {:news => news}
