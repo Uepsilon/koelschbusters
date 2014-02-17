@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
   # possible roles
   ROLES   = %w[guest member management admin]
+  PROVIDER = {
+    google_oauth2:  :google,
+    twitter:        :twitter,
+    facebook:       :facebook
+  }
 
   has_many :news
 

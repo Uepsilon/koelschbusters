@@ -9,4 +9,5 @@
         .col-sm-10= f.email_field :email, autofocus: true, class: "form-control", placeholder: "E-Mail Adresse"
       .form-group
         .col-sm-offset-2.col-sm-10
-          = f.submit "Passwort zurücksetzen", class: "btn btn-default"
+          = f.submit "Passwort zurücksetzen", class: "btn btn-default btn-success"
+          = link_to t('links.general.cancel'), new_session_path(resource_name), class: "btn btn-default btn-danger"

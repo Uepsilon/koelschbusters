@@ -8,8 +8,8 @@
       %a.navbar-brand(href = "#{root_path}")
         = image_tag "logo.png"
     .collapse.navbar-collapse
-      %a.navbar-text.navbar-brand(href = "#{root_path}") Wahner Kölschbusters
       %ul.nav.navbar-nav.navbar-left
+        %li= link_to "Wahner Kölschbusters", :root, class: :brand
         %li= link_to t('links.general.root'), :root
         %li= link_to t('links.general.pictures'), :galleries
         %li= link_to t('links.pages.about'), :about

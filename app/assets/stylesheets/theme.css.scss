@@ -116,6 +116,20 @@ body{
           background-color: #47a447;
           border-color: #4cae4c;
         }
+
+        a.brand {
+          margin-left: 85px;
+          font-size: 23px;
+          font-weight: bold;
+          color: $linkRedHover;
+          font-family: $brandFont;
+          text-shadow: 2px 2px #ccc;
+        }
+
+        a.brand:hover {
+          background: none;
+          border: none;
+        }
       }
     }
 
@@ -128,15 +142,6 @@ body{
     }
 
     .navbar-brand {
-      &.navbar-text {
-        font-size: 23px;
-        font-weight: bold;
-        color: $linkRedHover;
-        font-family: $brandFont;
-        text-shadow: 2px 2px #ccc;
-        margin: 18px 0 18px 75px;
-      }
-
       img {
         position: absolute;
         height: 100px;

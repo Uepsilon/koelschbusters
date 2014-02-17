@@ -16,8 +16,8 @@
               Eingeloggt bleiben
       .form-group
         .col-sm-offset-2.col-sm-10
-          = f.submit "Einloggen", class: "btn btn-default"
-          = link_to "Passwort vergessen?", new_password_path(resource_name), class: "btn btn-default"
+          = f.submit t('links.general.login'), class: "btn btn-default btn-success"
+          = link_to t('links.general.forgot_password'), new_password_path(resource_name), class: "btn btn-default btn-danger"
   .well
     %h2.title Alternative Loginmöglichkeiten
     - resource_class.omniauth_providers.each do |provider|

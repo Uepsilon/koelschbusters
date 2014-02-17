@@ -41,27 +41,11 @@
 
     %table.table.table-responsive.oauth
       %tbody
-        %tr.twitter
-          %td{width: "75px"}= image_tag "twitter_icon.png", alt: "Twitter", class: :minithumb
-          - unless current_user.twitter_uid.nil?
-            %td{width: "50%"}= link_to "Verknüpft mit #{content_tag(:b, current_user.twitter_name)}".html_safe, "http://www.twitter.com/#{current_user.twitter_name}"
-            %td{align: "right"}= link_to "Verknüpfung aufheben", delete_oauth_path(:twitter), :method => :delete, class: "btn btn-danger twitter-unlink"
-          - else
-            %td{colspan: 2}= link_to "Mit Twitter verknüpfen", user_omniauth_authorize_path(:twitter), class: "twitter-link"
-
-        %tr.google
-          %td= image_tag "google_oauth2_icon.png", alt: "Google Plus", class: :minithumb
-          - unless current_user.google_uid.nil?
-            %td= link_to "Verknüpft mit #{content_tag(:b, current_user.google_name)}".html_safe, "http://plus.google.com/#{current_user.google_uid}"
-            %td{align: "right"}= link_to "Verknüpfung aufheben", delete_oauth_path(:google), :method => :delete, class: "btn btn-danger google_oauth2-unlink"
-          - else
-            %td{colspan: 2}= link_to "Mit Google verknüpfen", user_omniauth_authorize_path(:google_oauth2), class: "google_oauth2-link"
-
-
-        %tr.facebook
-          %td= image_tag "facebook_icon.png", alt: "Facebook", class: :minithumb
-          - unless current_user.facebook_uid.nil?
-            %td= link_to "Verknüpft mit #{content_tag(:b, current_user.facebook_name)}".html_safe, "http://www.facebook.com/#{current_user.facebook_name}"
-            %td{align: "right"}= link_to "Verknüpfung aufheben", delete_oauth_path(:facebook), :method => :delete, class: "btn btn-danger facebook-unlink"
-          - else
-            %td{colspan: 2}= link_to "Mit Facebook verknüpfen", user_omniauth_authorize_path(:facebook), class: "facebook-link"
+        - User.omniauth_providers.each do |provider|
+          %tr(class: provider)
+            %td{width: "75px"}= image_tag "#{provider}.png", alt: provider.capitalize, class: :minithumb
+            - unless current_user.send("#{User::PROVIDER[provider]}_uid").nil?
+              %td{width: "50%"}= "Verknüpft mit #{content_tag(:b, current_user.send("#{User::PROVIDER[provider]}_name"))}".html_safe
+              %td{align: "right"}= link_to "Verknüpfung aufheben", delete_oauth_path(User::PROVIDER[provider]), :method => :delete, class: "btn btn-danger #{provider}-unlink"
+            - else
+              %td{colspan: 2}= link_to "Mit #{User::PROVIDER[provider].capitalize} verknüpfen", user_omniauth_authorize_path(provider.to_sym), class: "#{provider}-link"

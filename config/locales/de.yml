@@ -63,6 +63,8 @@ de:
       logout:         Abmelden
       login:          Anmelden
       pictures:       Bilder
+      forgot_password:  Passwort vergessen
+      cancel:         Abbrechen
     contact:
       send:           Absenden
 
