@@ -9,4 +9,4 @@
       = render :partial => 'teaser', :locals => {:news => news}
 
   .pageination
-    = will_paginate @news, renderer: BootstrapPagination::Rails, previous_label: "Weiter", next_label: "Zurück"
+    = will_paginate @news, renderer: BootstrapPagination::Rails, previous_label: "Zurück", next_label: "Weiter"

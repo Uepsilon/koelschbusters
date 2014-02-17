@@ -59,6 +59,8 @@ class Ability
       can :read, Category
     end
 
+    can :create, Contact
+
 
     # if user.role? :management
     #   # MANAGEMENT / ADMIN GOES HERE

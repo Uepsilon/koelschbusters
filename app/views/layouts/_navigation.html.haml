@@ -5,18 +5,20 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand(href="#")
+      %a.navbar-brand(href = "#{root_path}")
         = image_tag "logo.png"
     .collapse.navbar-collapse
-      %ul.nav.navbar-nav
+      %a.navbar-text.navbar-brand(href = "#{root_path}") Wahner Kölschbusters
+      %ul.nav.navbar-nav.navbar-left
         %li= link_to t('links.general.root'), :root
         %li= link_to t('links.general.pictures'), :galleries
         %li= link_to t('links.pages.about'), :about
+        %li= link_to t('links.pages.contact'), :contact
         - if user_signed_in?
           %li= link_to t('links.general.profile'), current_user
-          - if can? :manage, User or can? :manage, News or can? :manage, Gallery
+          - if can? :manage, User or can? :manage, News or can? :manage, Gallery or can? :manaege, Category
             %li.dropdown
-              = link_to "#{t('general.administration')} #{content_tag(:b, '', class: :caret)}".html_safe, '#', class: "dropdown-toggle", "data-toggle" => "dropdown"
+              / = link_to "#{t('general.administration')} #{content_tag(:b, '', class: :caret)}".html_safe, '#', class: "dropdown-toggle", "data-toggle" => "dropdown"
 
               %ul.dropdown-menu
                 %li= link_to t('links.dashboard'), :admin_root
@@ -45,4 +47,4 @@
         - else
           .navbar-text= "Willkommen bei den Wahner Kölschbusters"
           %ul.nav.navbar-nav
-            %li.navbar-right= link_to t('links.general.login'), :new_user_session, class: "btn btn-success"
+            %li= link_to t('links.general.login'), :new_user_session, class: "btn btn-success"

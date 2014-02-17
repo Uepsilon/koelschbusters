@@ -4,17 +4,21 @@ $linkBorderColor: #ac2925;
 $borderRadius: 5px;
 $bgOpacity: 0.95;
 $fontColor: #555;
+$defaultFont: "Ruda";
+$brandFont: "Alegreya SC:700";
+$titleFont: "Sansita One";
 
 @import "variables";
-@import url("http://fonts.googleapis.com/css?family=Ruda");
-@import url("http://fonts.googleapis.com/css?family=Sansita One");
+@import url("http://fonts.googleapis.com/css?family=" + $defaultFont);
+@import url("http://fonts.googleapis.com/css?family=" + $titleFont);
+@import url("http://fonts.googleapis.com/css?family=" + $brandFont);
 
 body{
-  font-family: "Ruda", sans-serif;
+  font-family: $defaultFont, sans-serif;
   padding: 0;
   margin: 0;
   height: 100%;
-  background: asset-url('bg/1.jpg', images) no-repeat center center;
+  background: asset-url("bg/1.jpg", images) no-repeat center center;
   background-size: cover;
   background-attachment:fixed;
   color: $fontColor;
@@ -37,7 +41,7 @@ body{
 
     .title {
       margin: 0 0 10px 0;
-      font-family: "Sansita One";
+      font-family: $titleFont;
       font-weight: bold;
     }
 
@@ -70,8 +74,20 @@ body{
     background-color: #fff;
     border-bottom: 10px solid #f00;
 
-    .navbar-text {
-      margin: 35px 15px 35px 0;
+    .navbar-collapse {
+      margin-left: 25px;
+    }
+
+
+    .navbar-right{
+      li {
+        a {
+          display: inline-block;
+        }
+      }
+      .navbar-text {
+        margin: 35px 15px 35px 0;
+      }
     }
 
     .navbar-nav {
@@ -112,15 +128,20 @@ body{
     }
 
     .navbar-brand {
+      &.navbar-text {
+        font-size: 23px;
+        font-weight: bold;
+        color: $linkRedHover;
+        font-family: $brandFont;
+        text-shadow: 2px 2px #ccc;
+        margin: 18px 0 18px 75px;
+      }
+
       img {
         position: absolute;
         height: 100px;
         z-index: 9999;
       }
-    }
-
-    .navbar-collapse {
-      margin-left: 125px;
     }
   }
 
@@ -151,7 +172,7 @@ body{
         .internal {
           font-size: 14px;
           color: $linkRed;
-          font-family: "Sansita One";
+          font-family: $titleFont;
           font-weight: bold;
           position: absolute;
           top: 0px;
@@ -299,7 +320,7 @@ body{
 
     .social {
       float: right;
-      margin: 0 50px;
+      margin: -3px 10px 0 0;
 
       > div {
         float: left;

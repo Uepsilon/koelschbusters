@@ -11,7 +11,7 @@
         = link_to news.category.title, categorized_news_path(category: news.category.to_param)
     .date
       %span.glyphicon.glyphicon-time
-      = l news.published_at, format: :long
+      = l news.published_at.localtime, format: :short
     %br.clear
   .link.pull-right= link_to t('links.read_more'), news, class: "btn btn-danger"
   %br.clear

@@ -3,38 +3,3 @@
     %h2.title Über uns
     %p
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-  .well
-    %h2.title Kontakt
-    %p
-      Wenn Sie eine Frage oder ein anderes anliegen haben, können Sie uns über dieses Formular eine Nachricht zukommen lassen.
-    = form_for @contact, url: contact_path, html: { class: "form-horizontal" } do |f|
-      - if @contact.errors.any?
-        .alert.alert-danger
-          %ul
-          - @contact.errors.full_messages.each do |msg|
-            %li= msg
-
-      .form-group
-        = f.label :name, t('contact.name'), class: "col-lg-2 control-label"
-        .col-lg-10
-          = f.text_field :name, placeholder: t('contact.name'), class: "form-control"
-
-      .form-group
-        = f.label :email, t('contact.email'), class: "col-lg-2 control-label"
-        .col-lg-10
-          = f.text_field :email, placeholder: "#{t('contact.email')} (optional)", class: "form-control"
-
-      .form-group
-        = f.label :subject, t('contact.subject'), class: "col-lg-2 control-label"
-        .col-lg-10
-          = f.text_field :subject, placeholder: "#{t('contact.subject')} (optional)", class: "form-control"
-
-      .form-group
-        = f.label :text, t('contact.text'), class: "col-lg-2 control-label"
-        .col-lg-10
-          = f.text_area :text, placeholder: t('contact.text'), class: "form-control", rows: 5
-
-      .form-group
-        .col-lg-10.pull-right
-          = f.submit t('links.contact.send'), class: 'btn btn-success'
-          = link_to t('links.cancel'), :about, class: 'btn btn-danger'
