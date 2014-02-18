@@ -15,12 +15,11 @@
         %li= link_to t('links.pages.about'), :about
         %li= link_to t('links.pages.contact'), :contact
         - if user_signed_in?
-          %li= link_to t('links.general.profile'), current_user
           - if can? :manage, User or can? :manage, News or can? :manage, Gallery or can? :manaege, Category
             %li.dropdown
-              / = link_to "#{t('general.administration')} #{content_tag(:b, '', class: :caret)}".html_safe, '#', class: "dropdown-toggle", "data-toggle" => "dropdown"
-
+              = link_to "#{t('general.administration')} #{content_tag(:b, '', class: :caret)}".html_safe, '#', class: "dropdown-toggle", "data-toggle" => "dropdown"
               %ul.dropdown-menu
+                %li= link_to t('links.general.profile'), current_user
                 %li= link_to t('links.dashboard'), :admin_root
                 - if can? :manage, User
                   %li.divider &nbsp;
@@ -38,6 +37,8 @@
                   %li.divider &nbsp;
                   %li= link_to t('links.gallery.index'), :admin_galleries
                   %li= link_to t('links.gallery.new'), :new_admin_gallery
+          - else
+            %li= link_to t('links.general.profile'), current_user
 
       .navbar-right
         - if user_signed_in?

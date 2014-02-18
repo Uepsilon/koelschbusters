@@ -88,7 +88,9 @@ describe UsersController do
 
         it { should redirect_to(:user) }
         it { assigns(:user).should eq(user) }
-        it { assigns(:user).email.should eq("test@example.com")}
+        it { assigns(:user).unconfirmed_email.should eq("test@example.com")}
+        it { assigns(:user).confirmation_token.should_not be_nil}
+        it { assigns(:user).confirmation_sent_at.should_not be_nil }
       end
 
       context "with invalid params" do

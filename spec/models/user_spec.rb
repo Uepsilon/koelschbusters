@@ -30,10 +30,10 @@ describe User do
 
     it "is invalid without an email_confirmation when email changes" do
       user = create(:user)
-      user.update_attributes(email: "email@changed.com")
+      user.update_attributes(email: "email@changed.com", email_confirmation: "")
 
       user.should be_invalid
-      user.errors.should include(:email_confirmation)
+      user.errors.should include(:email)
     end
 
     it "is invalid without a password_confirmation when password changes" do
@@ -107,13 +107,16 @@ describe User do
     end
 
     it "email should require confirmation on change" do
-      user.email              = 'TestEmailAddress@Example.com'
+      user.email                = 'TestEmailAddress@Example.com'
+      user.email_confirmation   = ''
+      user.skip_reconfirmation!
       user.save
 
       user.should_not be_valid
-      user.errors.should include(:email_confirmation)
+      user.errors.should include(:email)
 
-      user.email_confirmation = 'TestEmailAddress@Example.com'
+      user.email_confirmation   = 'TestEmailAddress@Example.com'
+      user.skip_reconfirmation!
       user.save
 
       user.should be_valid
@@ -123,6 +126,7 @@ describe User do
     it "email should be always be lower case" do
       user.email              = 'TestEmailAddress@Example.com'
       user.email_confirmation = 'TestEmailAddress@Example.com'
+      user.skip_reconfirmation!
       user.save
 
       user.email.should eq('testemailaddress@example.com')

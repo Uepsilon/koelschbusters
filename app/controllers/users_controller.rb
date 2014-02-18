@@ -14,8 +14,6 @@ class UsersController < ApplicationController
       flash[:notice] = "Dein Profil wurde geändert."
       redirect_to :user
     else
-      flash[:alert] = @user.errors
-
       render :edit
     end
   end
@@ -27,9 +25,17 @@ class UsersController < ApplicationController
   def update_login
     if @user.update_with_password(params[:user])
       sign_in @user, :bypass => true
+
+      if not params[:user][:password].nil?
+        flash[:notice] = "Dein Passwort wurde erfolgreich geändert."
+      end
+
+      if @user.unconfirmed_email == params[:user][:email]
+        flash[:notice] = "Bitte bestätige deine neue E-Mail-Adresse. Wir haben dir dazu eine E-Mail geschickt."
+      end
+
       redirect_to :user
     else
-      flash[:alert] = @user.errors
       render :edit_login
     end
   end

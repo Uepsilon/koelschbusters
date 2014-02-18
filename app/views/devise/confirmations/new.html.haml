@@ -1,0 +1,11 @@
+#confirmation
+  .well
+    %h2.title E-Mail-Adresse bestätigen
+    = form_for resource, as: resource_name, url: confirmation_path(resource_name), method: :post, html: {class: "form-horizontal"} do |f|
+      .form-group
+        = f.label :email, class: "col-sm-2  control-label"
+        .col-sm-10= f.email_field :email, autofocus: true, class: "form-control", placeholder: "E-Mail Adresse"
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          = f.submit t('links.general.confirm'), class: "btn btn-default btn-success"
+          = link_to t('links.general.cancel'), :root, class: "btn btn-default btn-danger"

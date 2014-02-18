@@ -39,7 +39,6 @@ end
 group :development, :test do
   gem 'quiet_assets'
   gem 'rspec-rails'
-  gem 'guard-rspec'
   gem 'debugger'
   gem 'forgery'
   # gem 'ruby-debug'

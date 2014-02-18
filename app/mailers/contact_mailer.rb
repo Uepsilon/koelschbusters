@@ -9,4 +9,10 @@ class ContactMailer < ActionMailer::Base
     subject = "Kontaktanfrage" if subject.blank?
     mail(subject: subject)
   end
+
+  def welcome_instructions(user)
+    @user = user
+
+    mail(to: user.email, subject: "Dein Account für die Webseite der Wahner Kölschbusters")
+  end
 end

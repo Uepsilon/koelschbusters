@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :recoverable, :rememberable,
+  devise :database_authenticatable, :recoverable, :rememberable, :confirmable,
          :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2, :twitter, :facebook]
 
   attr_accessible :email, :email_confirmation,
@@ -35,8 +35,7 @@ class User < ActiveRecord::Base
   after_create      :wipe_virtual_password
 
   validates :email,         :presence => true,      :uniqueness => true
-  validates :email,         :confirmation => true , :if => :email_confirmation?
-  validates :email_confirmation, :presence => true, :on => :update, :if => :email_confirmation?
+  validates :email,         :confirmation => true
 
   validates :password,      :presence => true,     :on => :create
   validates :password,      :confirmation => true, :on => :update, :if => :password_changed?
@@ -98,10 +97,6 @@ class User < ActiveRecord::Base
     not self.password.nil?
   end
 
-  def email_confirmation?
-    self.email_changed?
-  end
-
   def email_downcase
     self.email               = self.email.downcase
     self.email_confirmation  = self.email_confirmation.downcase unless email_confirmation.nil?
@@ -114,5 +109,10 @@ class User < ActiveRecord::Base
 
   def stringify_role
     role = role.to_s
+  end
+
+  # welcome email
+  def send_on_create_confirmation_instructions
+    ContactMailer.welcome_instructions(self).deliver
   end
 end

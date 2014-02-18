@@ -32,5 +32,8 @@ FactoryGirl.define do
     trait :inactive do
       member_active false
     end
+
+    before(:create) { |user| user.skip_confirmation! }
+    after(:create) { |user| user.skip_reconfirmation! }
   end
 end

@@ -1,6 +1,6 @@
 de:
   general:
-    administration:   Administration
+    administration:   Admin
     user-management:  Benutzerverwaltung
     news:             Beiträge
     pictures:         Bilder
@@ -65,6 +65,7 @@ de:
       pictures:       Bilder
       forgot_password:  Passwort vergessen
       cancel:         Abbrechen
+      confirm:        Bestätigen
     contact:
       send:           Absenden
 
@@ -319,6 +320,7 @@ de:
         zipcode:    PLZ
         city:       Ort
         member_active: Aktiv
+        current_password: Aktuelles Passwort
       category:
         title:      Titel
         slug:       URL-Format
