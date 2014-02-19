@@ -7,5 +7,17 @@ TWITTER_APP_SECRET:   "randomAppSecret"
 FACEBOOK_APP_ID:      "randomAppId"
 FACEBOOK_APP_SECRET:  "randomAppSecret"
 
+ADMIN_NAME:       Max Mustermann
+ADMIN_EMAIL:      'max[at]randomAddress[dot]de'
+
+PRESIDENT_NAME:   Alfred Hitchcock
+PRESIDENT_EMAIL:  'alfred[at]randomAddress[dot]de'
+
+JOURNALIST_NAME:   Quentin Tarantino
+JOURNALIST_EMAIL:  'Quentin[at]randomAddress[dot]de'
+
+CONTACT_STREET:   "Musterstraße 123"
+CONTACT_CITY:     "12345 Musterhausen"
+
 CONTACT_EMAIL:    "contact@example.com"
 NOREPLY_EMAIL:    "noreply@example.com"
