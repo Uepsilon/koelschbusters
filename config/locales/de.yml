@@ -302,7 +302,7 @@ de:
   activerecord:
     models:
       user:         Benutzer
-      category:   Kategorie
+      category:     Kategorie
       news:         Neuigkeit
     attributes:
       user:
