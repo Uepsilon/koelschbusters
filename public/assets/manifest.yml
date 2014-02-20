@@ -35,10 +35,8 @@ twitter.png: twitter-c6f05ca421943631d11b97a6669d36e8.png
 twitter/index.png: twitter-c6f05ca421943631d11b97a6669d36e8.png
 application.js: application-942d78545681223675d1b6d38f4dc550.js
 application/index.js: application-942d78545681223675d1b6d38f4dc550.js
-admin/application.css: admin/application-787667b3c96b371f4e5caab9d2ddaa27.css
-admin/application/index.css: admin/application-787667b3c96b371f4e5caab9d2ddaa27.css
-application.css: application-678f5bab952ccf2ed7ed6f0cfe2feec9.css
-application/index.css: application-678f5bab952ccf2ed7ed6f0cfe2feec9.css
+application.css: application-9a56ee0f6af2d582e2d29dc9865b3f69.css
+application/index.css: application-9a56ee0f6af2d582e2d29dc9865b3f69.css
 ckeditor/application.js: ckeditor/application-ffeed4af1f9174907fefbc284b25d0c2.js
 ckeditor/application/index.js: ckeditor/application-ffeed4af1f9174907fefbc284b25d0c2.js
 ckeditor/config.js: ckeditor/config-7171da15c2fced586e56a7eb7350dab4.js

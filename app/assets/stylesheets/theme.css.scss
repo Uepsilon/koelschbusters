@@ -13,7 +13,7 @@ $titleFont: "Sansita One";
 @import url("http://fonts.googleapis.com/css?family=" + $titleFont);
 @import url("http://fonts.googleapis.com/css?family=" + $brandFont);
 
-body{
+body#main {
   font-family: $defaultFont, sans-serif;
   padding: 0;
   margin: 0;
