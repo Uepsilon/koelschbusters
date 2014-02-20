@@ -13,6 +13,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'bootstrap-sass'
   gem 'uglifier'
+  gem 'turbo-sprockets-rails3'
 end
 
 gem 'jquery-rails'
