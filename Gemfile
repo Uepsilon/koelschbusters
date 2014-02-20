@@ -34,6 +34,7 @@ gem 'omniauth-google-oauth2'
 
 group :development do
   gem "letter_opener"
+  gem 'uberspacify', git: 'git://github.com/Uepsilon/uberspacify.git', branch: :pgsql
 end
 
 group :development, :test do

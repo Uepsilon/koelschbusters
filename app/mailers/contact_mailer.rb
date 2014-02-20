@@ -10,8 +10,9 @@ class ContactMailer < ActionMailer::Base
     mail(subject: subject)
   end
 
-  def welcome_instructions(user)
-    @user = user
+  def welcome_instructions(user, token)
+    @user   = user
+    @token  = token
 
     mail(to: user.email, subject: "Dein Account für die Webseite der Wahner Kölschbusters")
   end

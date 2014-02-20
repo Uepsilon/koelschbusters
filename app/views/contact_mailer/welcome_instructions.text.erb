@@ -1,0 +1,22 @@
+Hallo <%= @user.first_name %>,
+
+soeben wurde für dich ein Account auf der Webseite der Wahner Kölschbusters angelegt.
+
+Bitte bestätige deine E-Mail-Adresse indem du auf folgenden Link klickst:
+<%= confirmation_url(@user, :confirmation_token => @token) %>
+(Solltest du nicht auf den Link klicken können, so kopiere ihn bitte in die Adresszeile
+deines Browsers)
+
+Du kannst dich anschließend mit dieser E-Mail-Adresse einloggen. Verwende dazu bitte folgendes Passwort
+"<%= @user.uncrypt_password %>" (selbstverständlich ohne ").
+
+Nachdem du die E-Mail-Adresse bestätigt und dich mit deinem Passwort eingeloggt hast, würden wir
+dich bitten, dein Passwort zu ändern.
+
+Weiterhin kannst du deinen Account auf der Seite der Wahner Kölschbusters mit deinem Account
+bei Google, Twitter oder Facebook verknüpfen. Nachdem du das gemacht hast, kannst du dich
+über diese Seiten auf der Webseite der Wahner Kölschbusters einloggen.
+
+Viele Grüße
+
+Wahner Kölschbusters
