@@ -27,7 +27,8 @@ class User < ActiveRecord::Base
                   :twitter_uid, :twitter_name,
                   :facebook_uid, :facebook_name
 
-  attr_accessor   :email_confirmation, :uncrypt_password
+  attr_accessor :email_confirmation
+  attr_accessor :uncrypt_password
 
   before_validation :random_password, :on => :create
   before_validation :email_downcase
@@ -90,8 +91,10 @@ class User < ActiveRecord::Base
 
   def random_password
     # Create random password if password not set
-    self.uncrypt_password = Devise.friendly_token[0,20] if self.password.nil?
-    self.password = self.uncrypt_password
+    if self.password.nil?
+      self.uncrypt_password = Devise.friendly_token[0,20]
+      self.password = self.uncrypt_password
+    end
   end
 
   def password_changed?
