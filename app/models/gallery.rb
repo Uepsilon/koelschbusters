@@ -1,5 +1,5 @@
 class Gallery < ActiveRecord::Base
-  has_many :pictures, :dependent => :destroy
+  has_many :pictures, dependent: :destroy, order: "created_at ASC"
   attr_accessible :title
 
   validates :title, presence: true

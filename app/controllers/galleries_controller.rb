@@ -3,14 +3,13 @@ class GalleriesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @galleries = @galleries.order("created_at DESC")
   end
 
   def show
     if user_signed_in?
-      @pictures = @gallery.pictures.order("created_at DESC")
+      @pictures = @gallery.pictures
     else
-      @pictures = @gallery.public_pictures.order("created_at DESC")
+      @pictures = @gallery.public_pictures
     end
   end
 
