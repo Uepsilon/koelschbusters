@@ -12,7 +12,7 @@ class Picture < ActiveRecord::Base
                     :default_style => :original,
                     :url  => "/galerie/:gallery_id/bild/:id/:style.:extension",
                     :path => ":rails_root/shared/:rails_env/pictures/:id/:style/:basename.:extension",
-                    :styles => { thumb: '200>x150>'  }
+                    :styles => { thumb: '200x150>'  }
 
   attr_accessible :internal, :picture
 
