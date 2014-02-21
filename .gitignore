@@ -16,6 +16,7 @@ rerun.txt
 pickle-email-*.html
 db/seed*
 shared/*
+path/*
 
 # Ignore application configuration
 /config/application.yml
