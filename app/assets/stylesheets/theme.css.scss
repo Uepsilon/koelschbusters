@@ -5,7 +5,7 @@ $borderRadius: 5px;
 $bgOpacity: 0.95;
 $fontColor: #555;
 $defaultFont: "Ruda";
-$brandFont: "Alegreya SC:700";
+$brandFont: "Sansita One";
 $titleFont: "Sansita One";
 
 @import "variables";
@@ -121,7 +121,7 @@ body#main {
 
         a.brand {
           margin-left: 85px;
-          font-size: 23px;
+          font-size: 16px;
           font-weight: bold;
           color: $linkRedHover;
           font-family: $brandFont;
