@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   after_create      :wipe_virtual_password
 
   validates :email,         :presence => true,      :uniqueness => true
-  validates :email,         :confirmation => true
+  validates :email,         :confirmation => true, :if => :email_confirmation?
 
   validates :password,      :presence => true,     :on => :create
   validates :password,      :confirmation => true, :on => :update, :if => :password_changed?
@@ -95,6 +95,10 @@ class User < ActiveRecord::Base
       self.uncrypt_password = Devise.friendly_token[0,20]
       self.password = self.uncrypt_password
     end
+  end
+
+  def email_confirmation?
+    self.email_changed?
   end
 
   def password_changed?
