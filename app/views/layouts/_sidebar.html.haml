@@ -2,10 +2,11 @@
   Willkommen auf der Homepage der Wahner Kölschbusters
 
 // show only if News index
-- if controller_name.to_sym == :news
+- if controller_name.to_sym  == :news
   .well.categories
     %h4.title Kategorien
     %ul
-      - Category.all.each do |cat|
+      %li.category= link_to "Alle Kategorien", :root
+      - Category.order(:title).all.each do |cat|
         - if cat.news.any?
           %li.category= link_to cat.title, categorized_news_path(category: cat.to_param)
