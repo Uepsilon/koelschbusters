@@ -6,7 +6,7 @@
         .gallery
           %a{href: gallery_path(gallery)}
             .name= gallery.title
-            - if can? :read, gallery.internal_pictures.first?
+            - if can? :read, gallery.internal_pictures.first
               .img-container
                 %span.helper &nbsp;
                 = image_tag gallery.pictures.first.picture.url(:thumb), class: "img-rounded"
