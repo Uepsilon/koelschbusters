@@ -70,7 +70,7 @@ Koelschbusters::Application.configure do
   config.action_mailer.delivery_method = :sendmail
   config.action_mailer.sendmail_settings = {
         location:  '/usr/sbin/sendmail',
-        arguments: '-i -t'
+        arguments: '-i'
   }
   config.action_mailer.default_url_options = { host: 'www.koelschbusters.de' }
 end
