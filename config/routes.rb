@@ -8,8 +8,10 @@ Koelschbusters::Application.routes.draw do
 
   root to: "news#index"
 
-  get   :imprint, to: "pages#imprint",  as: :imprint,   path: "impressum"
-  get   :about,   to: "pages#about",    as: :about,     path: "ueber-uns"
+  get   :imprint,     to: "pages#imprint",      as: :imprint,     path: "impressum"
+  get   :about,       to: "pages#about",        as: :about,       path: "ueber-uns"
+  get   :management,  to: "pages#management",   as: :management,  path: "vorstand"
+  get   :carnival_float, to: "pages#carnival_float",  as: :carnival_float, path: "wagenbau"
 
   resource :contact, only: :create, path: "kontakt"
   get "kontakt", to: "contacts#new", as: :contact

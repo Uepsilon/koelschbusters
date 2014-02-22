@@ -12,7 +12,12 @@
         %li= link_to "Wahner Kölschbusters", :root, class: :brand
         %li= link_to t('links.general.root'), :root
         %li= link_to t('links.general.pictures'), :galleries
-        %li= link_to t('links.pages.about'), :about
+        %li.dropdown
+          = link_to "#{t('links.pages.about')} #{content_tag(:b, '', class: :caret)}".html_safe, '#', class: "dropdown-toggle", "data-toggle" => "dropdown"
+          %ul.dropdown-menu
+            %li= link_to t('links.pages.about'), :about
+            %li= link_to t('links.pages.management'), :management
+            %li= link_to t('links.pages.carnival_float'), :carnival_float
         %li= link_to t('links.pages.contact'), :contact
         - if user_signed_in?
           - if can? :manage, User or can? :manage, News or can? :manage, Gallery or can? :manaege, Category

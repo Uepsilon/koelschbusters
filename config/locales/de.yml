@@ -27,6 +27,8 @@ de:
       imprint:        Impressum
       about:          Über uns
       contact:        Kontakt
+      management:     Vorstand
+      carnival_float: Karnevalswagen
     users:
       index:          Benutzerübersicht
       new:            Benutzer anlegen

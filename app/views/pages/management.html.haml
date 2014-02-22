@@ -1,0 +1,25 @@
+#about.management
+  .well
+    %h2.title Der Vorstand
+    %p Der Vorstand der Wahner Kölschbusters besteht aus folgenden fünf Vereinsmitgliedern:
+    %p
+      %table.table.borderless
+        %tr
+          %th{width: 150} Vorsitzender:
+          %td= Figaro.env.president_name
+        %tr
+          %th{width: 150} 1. Stellvertreter:
+          %td= Figaro.env.first_representive_name
+        %tr
+          %th{width: 150} 2. Stellvertreter:
+          %td= Figaro.env.second_representive_name
+        %tr
+          %th{width: 150} Schriftführerin:
+          %td= Figaro.env.clerk_name
+        %tr
+          %th Kassiererin:
+          %td= Figaro.env.treasurer_name
+    %p
+      Fragen oder Anregungen können über das
+      =link_to "Kontaktformular", :contact
+      an uns adressiert werden.

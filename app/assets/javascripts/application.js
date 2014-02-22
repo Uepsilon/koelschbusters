@@ -18,5 +18,3 @@
 //= require jquery.fancybox-buttons
 //= require jquery.fancybox-media
 //= require_tree .
-
-
