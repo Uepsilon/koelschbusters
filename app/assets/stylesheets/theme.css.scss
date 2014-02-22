@@ -195,7 +195,7 @@ body#main {
     height: auto;
     min-height: 100%;
 
-    .row {
+    .row:first-child {
       padding-top: 25px;
       padding-bottom: 70px;
       margin-top: 100px;
