@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
     if @contact.valid?
       ContactMailer.contact_email(@contact).deliver
       flash[:notice] = "Vielen Dank für Ihre Nachricht."
-      redirect_to :new_contact
+      redirect_to :contact
     else
       render :new
     end
