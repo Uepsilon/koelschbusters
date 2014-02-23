@@ -32,7 +32,7 @@
           = link_to t('links.news.unpublish'), [:unpublish, :admin, news], method: :put, class: "btn btn-warning btn-sm"
         - else
           = link_to t('links.news.publish'), [:publish, :admin, news], method: :put, class: "btn btn-success btn-sm"
-        = link_to t('links.news.delete'), [:admin, news], method: :delete, class: "btn btn-danger btn-sm"
+        = link_to t('links.news.delete'), [:admin, news], method: :delete, class: "btn btn-danger btn-sm", confirm: t('confirms.delete', name: news.title)
       %br.clear
 
   .pageination
