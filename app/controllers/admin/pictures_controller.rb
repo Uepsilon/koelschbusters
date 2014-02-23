@@ -48,4 +48,17 @@ class Admin::PicturesController < Admin::ApplicationController
     flash[:notice] = "Bild wurde gelöscht."
     redirect_to [:admin, @gallery, :pictures]
   end
+
+  def publish
+    @picture.publish
+    flash[:notice] = "Bild wurde veröffentlich."
+    redirect_to [:admin, @gallery, :pictures]
+  end
+
+  def unpublish
+    @picture.unpublish
+    Rails.logger.debug @picture.inspect
+    flash[:notice] = "Bild wurde zurück gezogen."
+    redirect_to [:admin, @gallery, :pictures]
+  end
 end

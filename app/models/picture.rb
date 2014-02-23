@@ -19,4 +19,18 @@ class Picture < ActiveRecord::Base
   validates_attachment_size         :picture, less_than: 2.megabytes
   validates_attachment_presence     :picture
   validates_attachment_content_type :picture, content_type: ['image/jpeg', 'image/png', 'image/gif']
+
+  def published?
+    self.internal == true
+  end
+
+  def publish
+    self.internal = false
+    self.save
+  end
+
+  def unpublish
+    self.internal = true
+    self.save
+  end
 end
