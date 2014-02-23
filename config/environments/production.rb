@@ -73,4 +73,9 @@ Koelschbusters::Application.configure do
         arguments: '-i'
   }
   config.action_mailer.default_url_options = { host: 'www.koelschbusters.de' }
+
+  config.middleware.use ExceptionNotifier,
+  :email_prefix => "[Kölschbuster Server Exception] ",
+  :sender_address => %{"Kölschbuster Server" <notifier@koelschbusters.de>},
+  :exception_recipients => Figaro.env.notifier_email
 end
