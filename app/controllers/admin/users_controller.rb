@@ -4,6 +4,7 @@ class Admin::UsersController < Admin::ApplicationController
   add_breadcrumb I18n.t('links.users.index'), [:admin, :users]
 
   def index
+    @users = @users.order(:last_name)
   end
 
   def new
