@@ -3,7 +3,6 @@ class GalleriesController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @galleries = Gallery.select('galleries.*, MAX(pictures.created_at) AS latest_pic').joins(:pictures).order('latest_pic DESC').group('galleries.id')
   end
 
   def show
@@ -17,10 +16,11 @@ class GalleriesController < ApplicationController
   protected
 
   def load_galleries
+    @galleries = Gallery.select('galleries.*, MAX(pictures.created_at) AS latest_pic').joins(:pictures).order('latest_pic DESC').group('galleries.id')
     if user_signed_in?
-      @galleries = Gallery.with_pictures
+      @galleries = @galleries.with_pictures
     else
-      @galleries = Gallery.with_public_pictures
+      @galleries = @galleries.with_public_pictures
     end
   end
 end
