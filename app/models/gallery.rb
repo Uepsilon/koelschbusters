@@ -4,6 +4,10 @@ class Gallery < ActiveRecord::Base
 
   validates :title, presence: true
 
+  def to_param
+    [id, self.slugify].join('-')
+  end
+
   def self.with_pictures
     joins(:pictures).group('galleries.id')
   end
@@ -18,5 +22,14 @@ class Gallery < ActiveRecord::Base
 
   def internal_pictures
     pictures.where(internal: true)
+  end
+
+  protected
+
+  def slugify
+    slug = self.title
+    slug.gsub!(/%/, ' prozent')
+    slug.gsub!(/€/, ' euro')
+    slug.parameterize
   end
 end
