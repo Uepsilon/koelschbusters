@@ -3,11 +3,10 @@ class GalleriesController < ApplicationController
   load_and_authorize_resource
 
   def index
+    @galleries = Gallery.select('galleries.*, MAX(pictures.created_at) AS latest_pic').joins(:pictures).order('latest_pic DESC').group('galleries.id')
   end
 
   def show
-    @galleries = Gallery.select('galleries.*, MAX(pictures.created_at) AS latest_pic').joins(:pictures).order('latest_pic').group('galleries.id')
-
     if user_signed_in?
       @pictures = @gallery.pictures
     else

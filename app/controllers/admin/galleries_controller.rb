@@ -4,7 +4,7 @@ class Admin::GalleriesController < Admin::ApplicationController
   add_breadcrumb I18n.t('links.gallery.index'), [:admin, :galleries]
 
   def index
-    @galleries = Gallery.select('galleries.*, MAX(pictures.created_at) AS latest_pic').joins(:pictures).order('latest_pic').group('galleries.id')
+    @galleries = Gallery.select('galleries.*, MAX(pictures.created_at) AS latest_pic').joins(:pictures).order('latest_pic DESC').group('galleries.id')
   end
 
   def new
