@@ -9,7 +9,7 @@
         = image_tag "logo.png"
     .collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-left
-        %li= link_to "Wahner Kölschbusters", :root, class: :brand
+        %li= link_to "Wahner KölschBusters", :root, class: :brand
         %li= link_to t('links.general.root'), :root
         %li= link_to t('links.general.pictures'), :galleries
         %li.dropdown
@@ -51,6 +51,6 @@
           %ul.nav.navbar-nav
             %li= link_to t('links.general.logout'), :destroy_user_session, method: :delete, class: "btn btn-danger"
         - else
-          .navbar-text= "Willkommen bei den Wahner Kölschbusters"
+          .navbar-text= "Willkommen bei den Wahner KölschBusters"
           %ul.nav.navbar-nav
             %li= link_to t('links.general.login'), :new_user_session, class: "btn btn-success"
