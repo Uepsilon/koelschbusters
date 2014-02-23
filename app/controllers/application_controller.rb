@@ -3,14 +3,22 @@ class ApplicationController < ActionController::Base
 
   unless Rails.env.development?
     rescue_from Exception, with: :render_500
-    rescue_from CanCan::AccessDenied, :with => :render_404
+    rescue_from CanCan::AccessDenied, :with => :render_401
     rescue_from ActiveRecord::RecordNotFound, with: :render_404
     rescue_from ActionController::RoutingError, with: :render_404
+    rescue_from ::AbstractController::ActionNotFound, with: :render_404
     rescue_from ActionController::UnknownController, with: :render_404
-    rescue_from ActionController::UnknownAction, with: :render_404
   end
 
   protected
+
+  def render_401(exception)
+    @not_found_path = exception.message
+    respond_to do |format|
+      format.html { render template: 'errors/access_denied', layout: 'layouts/application', status: 401 }
+      format.all { render nothing: true, status: 401 }
+    end
+  end
 
   def render_404(exception)
     @not_found_path = exception.message
