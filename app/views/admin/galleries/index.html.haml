@@ -1,4 +1,4 @@
-#galleries
+#galleries.well
   %h1 Galerieverwaltung
   %table.table.table-striped.table-bordered
     %thead
@@ -25,5 +25,4 @@
     %span.label.label-info Legende
     %span.label.label-success Öffentliche Galerie
 
-  .btns.pull-left
-    = link_to t('links.gallery.new'), :new_admin_gallery, class: "btn btn-success"
+  .btns= link_to t('links.gallery.new'), :new_admin_gallery, class: "btn btn-success"

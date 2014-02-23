@@ -1,4 +1,4 @@
-#categories
+#categories.well
   %h1 Kategorieverwaltung
   %table.table.table-striped.table-bordered
     %thead
@@ -15,5 +15,4 @@
             = link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), [:edit, :admin, category], class: "btn btn-primary btn-xs", title: "#{t('links.categorys.edit')}"
             = link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), [:admin, category], method: :delete, confirm: t('confirms.delete', name: category.title), class: "btn btn-danger btn-xs", title: "#{t('links.categorys.delete')}"
 
-  .btns.pull-left
-    = link_to t('links.categories.new'), :new_admin_category, class: "btn btn-success"
+  .btns= link_to t('links.categories.new'), :new_admin_category, class: "btn btn-success"

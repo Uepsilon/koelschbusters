@@ -1,26 +1,18 @@
-#pictures
+#pictures.well
   %h1
     Alle Bilder in
     %span.strong= @gallery.title
-  %table.table.table-striped.table-bordered
-    %thead
-      %tr
-        %th Bild
-        %th Optionen
-    %tbody
-      - @pictures.each do |picture|
-      - row_class = ''
-        - row_class = 'success' unless picture.internal
-        %tr{class: row_class}
-          %td
-            = link_to image_tag(picture.picture.url(:thumb)), picture.picture.url(:original), class: :fancybox, rel: "fancybox-gallery"
-          %td.centered
-            = link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), [:edit, :admin, @gallery, picture], class: "btn btn-primary btn-xs", title: "#{t('links.picture.edit')}"
-            = link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), [:admin, @gallery, picture], method: :delete, confirm: t('confirms.delete_unnamed'), class: "btn btn-danger btn-xs", title: "#{t('links.picture.delete')}"
+  - @pictures.each do |picture|
+    .picture{class: "#{"internal" if picture.internal}"}
+      .img= link_to image_tag(picture.picture.url(:thumb), class: "img-rounded"), picture.picture.url(:original), class: :fancybox, rel: "fancybox-gallery"
+      .options
+        = link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), [:edit, :admin, @gallery, picture], class: "btn btn-primary btn-xs", title: "#{t('links.picture.edit')}"
+        = link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), [:admin, @gallery, picture], method: :delete, confirm: t('confirms.delete_unnamed'), class: "btn btn-danger btn-xs", title: "#{t('links.picture.delete')}"
+
+  %br.clear
 
   .labels.pull-right
     %span.label.label-info Legende
     %span.label.label-success Öffentliches Bild
 
-  .btns.pull-left
-    = link_to t('links.picture.new'), new_admin_gallery_picture_path(@gallery), class: "btn btn-success"
+  .btns= link_to t('links.picture.new'), new_admin_gallery_picture_path(@gallery), class: "btn btn-success"
