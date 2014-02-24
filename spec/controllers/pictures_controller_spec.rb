@@ -7,6 +7,8 @@ describe PicturesController do
   let!(:gallery) { create :gallery_with_pictures }
 
   context "when user is logged in" do
+    before(:each) { login_user }
+
     describe "GET #show" do
       before { get :show, gallery_id: gallery.to_param, id: gallery.pictures.first.to_param }
 

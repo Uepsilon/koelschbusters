@@ -18,4 +18,32 @@ describe Picture do
       picture.errors.should include :picture_file_size
     end
   end
+
+  describe "public?" do
+    let(:picture) { create(:picture) }
+    let(:published_picture) { create(:picture, :public) }
+
+    it { picture.public?.should be_false}
+    it { published_picture.public?.should be_true}
+  end
+
+  describe "publish" do
+    let(:picture) { create(:picture) }
+
+    it "should be public after publishing" do
+      picture.public?.should be_false
+      picture.publish
+      picture.public?.should be_true
+    end
+  end
+
+  describe "unpublish" do
+    let(:picture) { create(:picture, :public) }
+
+    it "should be public after publishing" do
+      picture.public?.should be_true
+      picture.unpublish
+      picture.public?.should be_false
+    end
+  end
 end

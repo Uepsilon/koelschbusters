@@ -3,11 +3,11 @@
     Alle Bilder in
     %span.strong= @gallery.title
   - @pictures.each do |picture|
-    .picture{class: "#{"internal" if picture.published?}"}
+    .picture{class: "#{"internal" unless picture.public?}"}
       .img= link_to image_tag(picture.picture.url(:thumb), class: "img-rounded"), picture.picture.url(:original), class: :fancybox, rel: "fancybox-gallery"
       .options
         = link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), [:edit, :admin, @gallery, picture], class: "btn btn-primary btn-xs", title: "#{t('links.picture.edit')}"
-        - if picture.published?
+        - if picture.public?
           = link_to content_tag(:i, "", class: "glyphicon glyphicon-ok"), [:publish, :admin, @gallery, picture], method: :put, class: "btn btn-info btn-xs", title: "#{t('links.picture.edit')}"
         - else
           = link_to content_tag(:i, "", class: "glyphicon glyphicon-remove"), [:unpublish, :admin, @gallery, picture], method: :put, class: "btn btn-warning btn-xs", title: "#{t('links.picture.edit')}"

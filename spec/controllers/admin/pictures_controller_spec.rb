@@ -6,86 +6,110 @@ describe Admin::PicturesController do
     Gallery.destroy_all
     Picture.destroy_all
   }
-  # context "when user not logged in" do
-  #   let(:picture) { create :picture }
+  context "when user not logged in" do
+    let(:picture) { create :picture }
 
-  #   describe "GET #index" do
-  #     it_should_behave_like "has to be logged in" do
-  #       before { get :index, gallery_id: picture.gallery_id }
-  #     end
-  #   end
+    describe "GET #index" do
+      it_should_behave_like "has to be logged in" do
+        before { get :index, gallery_id: picture.gallery_id }
+      end
+    end
 
-  #   describe "GET #new" do
-  #     it_should_behave_like "has to be logged in" do
-  #       before { get :new, gallery_id: picture.gallery_id }
-  #     end
-  #   end
+    describe "GET #new" do
+      it_should_behave_like "has to be logged in" do
+        before { get :new, gallery_id: picture.gallery_id }
+      end
+    end
 
-  #   describe "POST #create" do
-  #     it_should_behave_like "has to be logged in" do
-  #       before { post :create, picture: attributes_for(:picture), gallery_id: picture.gallery_id }
-  #     end
-  #   end
+    describe "POST #create" do
+      it_should_behave_like "has to be logged in" do
+        before { post :create, picture: attributes_for(:picture), gallery_id: picture.gallery_id }
+      end
+    end
 
-  #   describe "GET #edit" do
-  #     it_should_behave_like "has to be logged in" do
-  #       before { get :edit, id: picture.to_param, gallery_id: picture.gallery_id }
-  #     end
-  #   end
+    describe "GET #edit" do
+      it_should_behave_like "has to be logged in" do
+        before { get :edit, id: picture.to_param, gallery_id: picture.gallery_id }
+      end
+    end
 
-  #   describe "PUT #update" do
-  #     it_should_behave_like "has to be logged in" do
-  #       before { put :update, id: picture.to_param, picture: attributes_for(:picture), gallery_id: picture.gallery_id }
-  #     end
-  #   end
+    describe "PUT #update" do
+      it_should_behave_like "has to be logged in" do
+        before { put :update, id: picture.to_param, picture: attributes_for(:picture), gallery_id: picture.gallery_id }
+      end
+    end
 
-  #   describe "DELETE #destroy" do
-  #     it_should_behave_like "has to be logged in" do
-  #       before { delete :destroy, id: picture.to_param, gallery_id: picture.gallery_id }
-  #     end
-  #   end
-  # end
+    describe "DELETE #destroy" do
+      it_should_behave_like "has to be logged in" do
+        before { delete :destroy, id: picture.to_param, gallery_id: picture.gallery_id }
+      end
+    end
 
-  # context "when not authorized user is logged in" do
-  #   let(:picture) { create :picture }
-  #   before(:each) { login_user }
+    describe "PUT #publish" do
+      it_should_behave_like "has to be logged in" do
+        before { put :publish, id: picture.to_param, gallery_id: picture.gallery_id }
+      end
+    end
 
-  #   describe "GET #index" do
-  #     it_should_behave_like "has insufficient rights" do
-  #       before { get :index, gallery_id: picture.gallery_id }
-  #     end
-  #   end
+    describe "PUT #unpublish" do
+      it_should_behave_like "has to be logged in" do
+        before { put :unpublish, id: picture.to_param, gallery_id: picture.gallery_id }
+      end
+    end
+  end
 
-  #   describe "GET #new" do
-  #     it_should_behave_like "has insufficient rights" do
-  #       before { get :new, gallery_id: picture.gallery_id }
-  #     end
-  #   end
+  context "when not authorized user is logged in" do
+    let(:picture) { create :picture }
+    before(:each) { login_user }
 
-  #   describe "POST #create" do
-  #     it_should_behave_like "has insufficient rights" do
-  #       before { post :create, picture: attributes_for(:picture), gallery_id: picture.gallery_id }
-  #     end
-  #   end
+    describe "GET #index" do
+      it_should_behave_like "has insufficient rights" do
+        before { get :index, gallery_id: picture.gallery_id }
+      end
+    end
 
-  #   describe "GET #edit" do
-  #     it_should_behave_like "has insufficient rights" do
-  #       before { get :edit, id: picture.to_param, gallery_id: picture.gallery_id }
-  #     end
-  #   end
+    describe "GET #new" do
+      it_should_behave_like "has insufficient rights" do
+        before { get :new, gallery_id: picture.gallery_id }
+      end
+    end
 
-  #   describe "PUT #update" do
-  #     it_should_behave_like "has insufficient rights" do
-  #       before { put :update, id: picture.to_param, picture: attributes_for(:picture), gallery_id: picture.gallery_id }
-  #     end
-  #   end
+    describe "POST #create" do
+      it_should_behave_like "has insufficient rights" do
+        before { post :create, picture: attributes_for(:picture), gallery_id: picture.gallery_id }
+      end
+    end
 
-  #   describe "DELETE #destroy" do
-  #     it_should_behave_like "has insufficient rights" do
-  #       before { delete :destroy, id: picture.to_param, gallery_id: picture.gallery_id }
-  #     end
-  #   end
-  # end
+    describe "GET #edit" do
+      it_should_behave_like "has insufficient rights" do
+        before { get :edit, id: picture.to_param, gallery_id: picture.gallery_id }
+      end
+    end
+
+    describe "PUT #update" do
+      it_should_behave_like "has insufficient rights" do
+        before { put :update, id: picture.to_param, picture: attributes_for(:picture), gallery_id: picture.gallery_id }
+      end
+    end
+
+    describe "DELETE #destroy" do
+      it_should_behave_like "has insufficient rights" do
+        before { delete :destroy, id: picture.to_param, gallery_id: picture.gallery_id }
+      end
+    end
+
+    describe "PUT #publish" do
+      it_should_behave_like "has insufficient rights" do
+        before { put :publish, id: picture.to_param, gallery_id: picture.gallery_id }
+      end
+    end
+
+    describe "PUT #unpublish" do
+      it_should_behave_like "has insufficient rights" do
+        before { put :unpublish, id: picture.to_param, gallery_id: picture.gallery_id }
+      end
+    end
+  end
 
   context "when authorized user is logged in" do
     before(:each) { login_manager }
@@ -187,6 +211,32 @@ describe Admin::PicturesController do
 
       it "redirects to pictures" do
         delete :destroy, gallery_id: gallery.to_param, id: gallery.pictures.first.to_param
+        response.should redirect_to [:admin, gallery, :pictures]
+      end
+    end
+
+    describe "PUT #publish" do
+      it "publishes picture" do
+        expect {
+          put :publish, gallery_id: gallery.to_param, id: gallery.pictures.first.to_param
+        }.to change(gallery.public_pictures, :count).by(1)
+      end
+
+      it "redirects to pictures" do
+        put :publish, gallery_id: gallery.to_param, id: gallery.pictures.first.to_param
+        response.should redirect_to [:admin, gallery, :pictures]
+      end
+    end
+
+    describe "PUT #unpublish" do
+      it "unpublishes picture" do
+        expect {
+          put :unpublish, gallery_id: gallery.to_param, id: gallery.public_pictures.first.to_param
+        }.to change(gallery.public_pictures, :count).by(-1)
+      end
+
+      it "redirects to pictures" do
+        put :unpublish, gallery_id: gallery.to_param, id: gallery.public_pictures.first.to_param
         response.should redirect_to [:admin, gallery, :pictures]
       end
     end

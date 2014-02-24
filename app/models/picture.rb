@@ -20,8 +20,8 @@ class Picture < ActiveRecord::Base
   validates_attachment_presence     :picture
   validates_attachment_content_type :picture, content_type: ['image/jpeg', 'image/png', 'image/gif']
 
-  def published?
-    self.internal == true
+  def public?
+    not self.internal?
   end
 
   def publish

@@ -5,7 +5,7 @@ describe GalleriesController do
   after(:all) { Picture.destroy_all }
 
   let!(:gallery_with_pictures) { create :gallery_with_pictures }
-  let!(:gallery_with_internal_pictures) { create :gallery_with_internal_pictures }
+  let!(:gallery_with_internal_pictures_only) { create :gallery_with_internal_pictures_only }
 
   context "when user is logged in" do
     before { login_user }
@@ -16,7 +16,7 @@ describe GalleriesController do
 
       it { response.status.should eq 200 }
       it { subject.should include gallery_with_pictures }
-      it { subject.should include gallery_with_internal_pictures }
+      it { subject.should include gallery_with_internal_pictures_only }
     end
 
     describe "GET #show" do
@@ -35,7 +35,7 @@ describe GalleriesController do
 
       it { response.status.should eq 200 }
       it { subject.should include gallery_with_pictures }
-      it { subject.should_not include gallery_with_internal_pictures }
+      it { subject.should_not include gallery_with_internal_pictures_only }
     end
   end
 
@@ -59,7 +59,7 @@ describe GalleriesController do
     end
 
     describe "GET #show for an gallery with internal pictures" do
-      before { get :show, id: gallery_with_internal_pictures.to_param }
+      before { get :show, id: gallery_with_internal_pictures_only.to_param }
       subject { assigns(:pictures) }
 
       it { response.status.should eq 401 }
