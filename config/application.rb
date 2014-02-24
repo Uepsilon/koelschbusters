@@ -67,5 +67,8 @@ module Koelschbusters
 
     # Precompile additional assets
     config.assets.precompile += %w( .svg .eot .woff .ttf )
+
+    config.exceptions_app = self.routes
+
   end
 end
