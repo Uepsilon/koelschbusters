@@ -25,6 +25,10 @@ class News < ActiveRecord::Base
     not self.published_at.nil? and self.published_at <= DateTime.now.utc
   end
 
+  def public?
+    not self.internal?
+  end
+
   protected
 
   def find_teaser

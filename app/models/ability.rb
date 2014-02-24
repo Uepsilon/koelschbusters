@@ -34,8 +34,6 @@ class Ability
         gallery.pictures.any?
       end
 
-      can :read, Category
-
       # Users can edit themselves
       can :edit, User do |u|
           u.id == user.id
@@ -44,21 +42,20 @@ class Ability
     elsif user.role? :guest
       # GUESTS
       can :read, News, News.published.ffa do |news|
-        news.published? and not news.internal?
+        news.published? and news.public?
       end
 
       can :read, Picture do |picture|
-        not picture.internal?
+        picture.public?
       end
 
       # can :read, Gallery
       can :read, Gallery do |gallery|
         gallery.public_pictures.any?
       end
-
-      can :read, Category
     end
 
+    can :read, Category
     can :create, Contact
 
 
