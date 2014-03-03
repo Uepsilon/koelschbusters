@@ -29,6 +29,9 @@ class Admin::UsersController < Admin::ApplicationController
 
   def update
     add_breadcrumb I18n.t('links.users.edit'), [:edit, :admin, @user]
+
+    @user.skip_reconfirmation!
+
     if @user.update_attributes params[:user]
       flash[:notice] = I18n.t('flash.users.updated')
       redirect_to :admin_users
