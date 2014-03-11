@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   }
 
   has_many :news
+  has_many :news_comments
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

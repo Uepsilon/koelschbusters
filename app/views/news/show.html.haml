@@ -1,18 +1,29 @@
 #news
-  .news.well{class: "#{"internal-news" if @news.internal?}"}
-    %h2.title= @news.title
-    - if @news.internal?
-      %h2.internal Interner Beitrag
-    .body= @news.body.html_safe
-    %br.clear
-    .link.pull-left= link_to t('links.back'), :news_index, class: "btn btn-danger"
-    .info
-      - if @news.category
-        .category
-          Kategorie:
-          = link_to @news.category.title, categorized_news_path(category: @news.category.to_param)
-      .date
-        %span.glyphicon.glyphicon-time
-        = l @news.published_at.localtime, format: :long
-      %br.clear
-    %br.clear
+  = render :partial => 'news', :locals => {:news => @news}
+
+#comments
+  %a{name: :comments}
+  - if can? :read, NewsComment and not @news.comments.empty?
+    .well
+      %h2.title=pluralize @news.comments.accessible_by(current_ability).count, "Kommentar", "Kommentare"
+      - @news.comments.each do |comment|
+        .comment{class: "#{"inactive" unless comment.active?}"}
+          - unless comment.active?
+            .inactive-marker Nicht freigeschaltet
+          .info
+            - if comment.user
+              %span.author= comment.user.first_name
+            - else
+              %span.author= comment.username
+            schrieb am
+            %span.date= l comment.created_at.localtime, format: :long
+          .body= simple_format comment.body
+          - if can? :manage, comment
+            .options
+              = link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), [:edit, @news, comment], class: "btn btn-primary btn-xs", title: "#{t('links.categorys.edit')}"
+              = link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), [@news, comment], method: :delete, confirm: t('confirms.delete', name: "diesen Kommentar"), class: "btn btn-danger btn-xs", title: "#{t('links.categorys.delete')}"
+
+  - if can? :create, NewsComment
+    .well.comment-form
+      %h2.title Kommentar erstellen
+      = render "news_comments/form"

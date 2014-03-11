@@ -11,5 +11,6 @@ class NewsController < ApplicationController
   end
 
   def show
+    @news_comment = NewsComment.new
   end
 end

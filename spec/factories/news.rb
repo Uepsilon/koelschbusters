@@ -1,11 +1,11 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :news do
     sequence(:title)  {|n| "Random News Title #{n}" }
     body              { Forgery::LoremIpsum.paragraphs(5) }
     internal          false
     published_at      DateTime.now - 1.day
+
+    user
 
     trait :members_only do
       internal        true

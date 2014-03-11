@@ -23,7 +23,9 @@ Koelschbusters::Application.routes.draw do
     match   "profil/:provider" => "users#remove_oauth",   via: :delete,  as: :delete_oauth
   end
 
-  resources :news, only: [:index, :show], path: "news"
+  resources :news, only: [:index, :show], path: "news" do
+    resources :news_comments, except: [:new, :index, :show]
+  end
   get "news(/kategorie/:category)(/seite/:page)", to: "news#index", as: :categorized_news
 
   resource :user, only: [:show, :edit, :update], path: "profil"

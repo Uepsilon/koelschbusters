@@ -4,14 +4,19 @@
     %h2.internal Interner Beitrag
   .body= news.teaser.html_safe
   %br.clear
-  .info
+  .info{class: "#{news.comments.any? ? :small : :regular}"}
     - if news.category
       .category
         Kategorie:
         = link_to news.category.title, categorized_news_path(category: news.category.to_param)
     .date
       %span.glyphicon.glyphicon-time
-      = l news.published_at.localtime, format: :short
+      = news.published_at.localtime.strftime("%d.%m.%Y, %R Uhr")
     %br.clear
-  .link.pull-right= link_to t('links.read_more'), news, class: "btn btn-danger"
+  .pull-right
+    .link
+      = link_to content_tag(:i, " #{t('links.read_more')}", class: "glyphicon glyphicon-search"), news, class: "btn btn-danger", title: t('links.read_more')
+      - if news.comments.any?
+        = link_to content_tag(:i, " #{news.comments.accessible_by(current_ability).count}", class: "glyphicon glyphicon-envelope"), news_path(news, anchor: :comments), class: "btn btn-warning", title: "#{news.comments.accessible_by(current_ability).count} #{t('links.comments')}"
+    / .link= link_to , news, class: "btn btn-danger"
   %br.clear

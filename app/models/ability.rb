@@ -23,6 +23,8 @@ class Ability
       can :manage, Gallery
       can :manage, Category
 
+      can :manage, NewsComment
+
     elsif user.role? :member
       # MEMBERS
       can :read, News, News.published do |news|
@@ -39,6 +41,13 @@ class Ability
           u.id == user.id
       end
 
+      # can read and create comments for news, can also edit / delete his own comments
+      can :read, NewsComment do |comment|
+        comment.active?
+      end
+
+      can :manage, NewsComment, user_id: user.id
+
     elsif user.role? :guest
       # GUESTS
       can :read, News, News.published.ffa do |news|
@@ -53,6 +62,13 @@ class Ability
       can :read, Gallery do |gallery|
         gallery.public_pictures.any?
       end
+
+      # can read and create Comments for News
+      can :read, NewsComment do |comment|
+        comment.active?
+      end
+
+      can :create, NewsComment
     end
 
     can :read, Category
