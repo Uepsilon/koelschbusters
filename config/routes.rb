@@ -36,8 +36,8 @@ Koelschbusters::Application.routes.draw do
 
     resources :news,  except: :show do
       member do
-        put 'publish'
-        put 'unpublish'
+        put 'publish', format: :js
+        put 'unpublish', format: :js
       end
     end
     get "news(/kategorie/:category)(/seite/:page)", to: "news#index", as: :categorized_news

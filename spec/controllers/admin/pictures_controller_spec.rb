@@ -218,26 +218,26 @@ describe Admin::PicturesController do
     describe "PUT #publish" do
       it "publishes picture" do
         expect {
-          put :publish, gallery_id: gallery.to_param, id: gallery.pictures.first.to_param
+          put :publish, gallery_id: gallery.to_param, id: gallery.pictures.first.to_param, format: :js
         }.to change(gallery.public_pictures, :count).by(1)
       end
 
-      it "redirects to pictures" do
-        put :publish, gallery_id: gallery.to_param, id: gallery.pictures.first.to_param
-        response.should redirect_to [:admin, gallery, :pictures]
+      it "render publish js templates" do
+        put :publish, gallery_id: gallery.to_param, id: gallery.pictures.first.to_param, format: :js
+        response.should render_template(:publish)
       end
     end
 
     describe "PUT #unpublish" do
       it "unpublishes picture" do
         expect {
-          put :unpublish, gallery_id: gallery.to_param, id: gallery.public_pictures.first.to_param
+          put :unpublish, gallery_id: gallery.to_param, id: gallery.public_pictures.first.to_param, format: :js
         }.to change(gallery.public_pictures, :count).by(-1)
       end
 
-      it "redirects to pictures" do
-        put :unpublish, gallery_id: gallery.to_param, id: gallery.public_pictures.first.to_param
-        response.should redirect_to [:admin, gallery, :pictures]
+      it "render unpublish js templates" do
+        put :unpublish, gallery_id: gallery.to_param, id: gallery.public_pictures.first.to_param, format: :js
+        response.should render_template(:unpublish)
       end
     end
   end
