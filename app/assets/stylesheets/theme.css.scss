@@ -255,15 +255,19 @@ body#main {
 
       #gallery {
         .gallery {
-          margin: 20px;
           float: left;
           height: 200px;
+          width: 250px;
           position: relative;
+          border: 1px solid #fff;
+          margin: 0 15px 15px 15px;
 
           .img-container {
             display: inline-block;
             margin-bottom: 10px;
             height: 100%;
+            width: 100%;
+            text-align: center;
 
             .helper {
               display: inline-block;
@@ -272,17 +276,16 @@ body#main {
             }
 
             img {
-              margin: auto 0;
+              margin: auto;
             }
           }
 
           .name,
           .count {
-            position: absolute;
-            font-size: 20px;
+            font-family: $titleFont;
             font-weight: bold;
-            text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
-            color: #fff;
+            font-size: 16px;
+            position: absolute;
           }
 
           .name {
@@ -297,7 +300,7 @@ body#main {
         }
 
         .picture {
-          margin: 15px;
+          margin:  0 15px 15px 15px;
           float: left;
           height: 200px;
 
