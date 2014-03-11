@@ -259,8 +259,7 @@ body#main {
           height: 200px;
           width: 250px;
           position: relative;
-          border: 1px solid #fff;
-          margin: 0 15px 15px 15px;
+          margin-right: 15px;
 
           .img-container {
             display: inline-block;
@@ -286,21 +285,23 @@ body#main {
             font-weight: bold;
             font-size: 16px;
             position: absolute;
+            color: #fff;
+            text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
           }
 
           .name {
             top: 5px;
-            left: 5px;
+            left: 20px;
           }
 
           .count {
             bottom: 5px;
-            right: 5px;
+            right: 20px;
           }
         }
 
         .picture {
-          margin:  0 15px 15px 15px;
+          margin-right: 15px;
           float: left;
           height: 200px;
 
