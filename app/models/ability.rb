@@ -64,7 +64,7 @@ class Ability
       end
 
       # can read and create Comments for News
-      can :read, NewsComment do |comment|
+      can :read, NewsComment, ["activated_at < ?", DateTime.now] do |comment|
         comment.active?
       end
 

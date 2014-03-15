@@ -6,7 +6,7 @@
 
   - @news.each do |news|
     .teaser
-      = render :partial => 'teaser', :locals => {:news => news}
+      = render partial: 'teaser', locals: {news: news}
 
   .pageination
     = will_paginate @news, renderer: BootstrapPagination::Rails, previous_label: "Zurück", next_label: "Weiter"

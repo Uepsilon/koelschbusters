@@ -1,0 +1,2 @@
+$("#news-comments .news-comment-<%= @news_comment.id %>").addClass('inactive');
+$("#news-comments .news-comment-<%= @news_comment.id %>").html('<%= escape_javascript(render partial: 'news_comments/news_comment', locals: {comment: @news_comment}) %>');

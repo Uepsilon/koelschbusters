@@ -3,7 +3,6 @@ class CreateNewsComments < ActiveRecord::Migration
     create_table :news_comments do |t|
 
       t.string      :username
-      t.string      :email
       t.text        :body
       t.references  :news
       t.references  :user

@@ -1,0 +1,7 @@
+#news
+  = render :partial => 'news/news', :locals => {:news => @news}
+
+#comments
+  .well.comment-form
+    %h2.title Kommentar bearbeiten
+    = render "form"

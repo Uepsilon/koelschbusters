@@ -49,6 +49,47 @@
     }
   }
 
+  #news-comments {
+    .news-comment {
+      &.inactive {
+
+        // background: asset-url('striped-bg.png', image) repeat top left;
+        background-color: #fff;
+        background-image:
+        linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+        linear-gradient(#eee .1em, transparent .1em);
+        background-size: 100% 1.2em;
+        padding-left: 125px;
+
+        .inactive-marker {
+          position: absolute;
+          top: 5px;
+          right: 10px;
+          color: $linkRed;
+          font-family: $titleFont;
+        }
+      }
+
+      .options {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+      }
+
+      position: relative;
+
+      .info {
+        margin: 5px 0;
+        font-size: 11px;
+      }
+
+      .date,
+      .author {
+        font-weight: bold;
+      }
+    }
+  }
+
   .picture {
     position: relative;
     margin: 20px;

@@ -42,6 +42,15 @@ Koelschbusters::Application.routes.draw do
         put 'unpublish'
       end
     end
+
+    resources :news_comments, only: [:index, :destroy] do
+      member do
+        put 'activate'
+        put 'deactivate'
+      end
+    end
+
+
     get "news(/kategorie/:category)(/seite/:page)", to: "news#index", as: :categorized_news
 
     resources :users, except: :show

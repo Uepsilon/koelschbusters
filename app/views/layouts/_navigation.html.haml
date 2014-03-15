@@ -41,6 +41,9 @@
                     %li.divider &nbsp;
                     %li= link_to t('links.news.index'), :admin_news_index
                     %li= link_to t('links.news.new'), :new_admin_news
+                  - if can? :manage, NewsComment
+                    %li.divider &nbsp;
+                    %li= link_to t('links.news_comments.index'), :admin_news_comments
                   - if can? :manage, Gallery
                     %li.divider &nbsp;
                     %li= link_to t('links.gallery.index'), :admin_galleries

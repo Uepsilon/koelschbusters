@@ -24,6 +24,12 @@ de:
     update:           Aktualisieren
     read_more:        Weiterlesen
     comments:         Kommentare
+    news_comments:
+      index:          Kommentarübersicht
+      edit:           Kommentar bearbeiten
+      delete:         Kommentar löschen
+      activate:       Kommentar aktivieren
+      deactivate:     Kommentar deaktivieren
     pages:
       imprint:        Impressum
       about:          Über uns
@@ -105,6 +111,7 @@ de:
   confirms:
     delete:         "Bist du sicher, dass du '%{name}' löschen möchtest?"
     delete_unnamed: "Bist du sicher, dass du das löschen möchtest?"
+    deactivate:     "Bist du sicher, dass du '%{name}' deaktivieren möchtest?"
 
   date:
     abbr_day_names:

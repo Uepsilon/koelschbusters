@@ -1,0 +1,2 @@
+module Admin::NewsCommentsHelper
+end
