@@ -44,7 +44,13 @@ Koelschbusters::Application.routes.draw do
 
     resources :users, except: :show
     resources :galleries, except: :show do
+      collection do
+        put "sort"
+      end
       resources :pictures, except: :show do
+        collection do
+          put "sort"
+        end
         member do
           match :publish, via: :put
           match :unpublish, via: :put

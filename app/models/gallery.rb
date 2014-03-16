@@ -4,6 +4,10 @@ class Gallery < ActiveRecord::Base
 
   validates :title, presence: true
 
+  default_scope order(:position)
+
+  before_create :set_position
+
   def to_param
     [id, self.slugify].join('-')
   end
@@ -22,6 +26,10 @@ class Gallery < ActiveRecord::Base
 
   def internal_pictures
     pictures.where(internal: true)
+  end
+
+  def set_position
+    self.position = Gallery.all.maximum(:position) + 1
   end
 
   protected

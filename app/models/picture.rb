@@ -4,9 +4,11 @@ class Picture < ActiveRecord::Base
     attachment.instance.gallery_id
   end
 
-  STYLES = %w[original thumb maxithumb]
+  STYLES = %w[original thumb]
 
   belongs_to :gallery
+
+  default_scope order(:position)
 
   has_attached_file :picture,
                     :default_style => :original,
@@ -15,6 +17,8 @@ class Picture < ActiveRecord::Base
                     :styles => { original: '1200x1200>', thumb: '200x150>'  }
 
   attr_accessible :internal, :picture
+
+  before_create :set_position
 
   validates_attachment_size         :picture, less_than: 5.megabytes
   validates_attachment_presence     :picture
@@ -32,5 +36,9 @@ class Picture < ActiveRecord::Base
   def unpublish
     self.internal = true
     self.save
+  end
+
+  def set_position
+    self.position = Picture.all.maximum(:position) + 1
   end
 end
