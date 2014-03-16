@@ -3,7 +3,7 @@ require "html_truncator"
 class News < ActiveRecord::Base
   belongs_to  :user
   belongs_to  :category
-  has_many    :comments, class_name: "NewsComment"
+  has_many    :comments, class_name: "NewsComment", dependent: :destroy
 
   attr_accessible :user, :body, :teaser, :title, :published_at, :internal, :category_id
 
