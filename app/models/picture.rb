@@ -24,6 +24,8 @@ class Picture < ActiveRecord::Base
   validates_attachment_presence     :picture
   validates_attachment_content_type :picture, content_type: ['image/jpeg', 'image/png', 'image/gif']
 
+  validates :gallery_id, presence: true
+
   def public?
     not self.internal?
   end
@@ -39,6 +41,7 @@ class Picture < ActiveRecord::Base
   end
 
   def set_position
-    self.position = Picture.all.maximum(:position) + 1
+    self.position
+    self.position = self.gallery.pictures.maximum(:position) + 1 if self.gallery.pictures.maximum(:position)
   end
 end

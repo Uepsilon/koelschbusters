@@ -29,7 +29,8 @@ class Gallery < ActiveRecord::Base
   end
 
   def set_position
-    self.position = Gallery.all.maximum(:position) + 1
+    self.position = 0
+    self.position = Gallery.maximum(:position) + 1 if Gallery.maximum(:position)
   end
 
   protected
