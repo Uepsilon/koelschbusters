@@ -32,6 +32,8 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'coveralls', require: false
+gem 'whenever', require: false
+
 
 group :development do
   gem "letter_opener"
