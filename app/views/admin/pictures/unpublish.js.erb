@@ -1,0 +1,5 @@
+var picture = $(".picture[attr=picture-<%= @picture.id %>");
+
+picture.addClass('internal');
+$("a.btn-warning", picture).removeClass('btn-warning').addClass('btn-info').attr('href', "<%= publish_admin_gallery_picture_path %>")
+$("i.glyphicon-remove", picture).removeClass('glyphicon-remove').addClass('glyphicon-ok');

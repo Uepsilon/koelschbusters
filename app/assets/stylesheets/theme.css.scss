@@ -307,15 +307,18 @@ body#main {
 
       #gallery {
         .gallery {
-          margin: 20px;
           float: left;
           height: 200px;
+          width: 250px;
           position: relative;
+          margin-right: 15px;
 
           .img-container {
             display: inline-block;
             margin-bottom: 10px;
             height: 100%;
+            width: 100%;
+            text-align: center;
 
             .helper {
               display: inline-block;
@@ -324,32 +327,33 @@ body#main {
             }
 
             img {
-              margin: auto 0;
+              margin: auto;
             }
           }
 
           .name,
           .count {
-            position: absolute;
-            font-size: 20px;
+            font-family: $titleFont;
             font-weight: bold;
-            text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+            font-size: 16px;
+            position: absolute;
             color: #fff;
+            text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
           }
 
           .name {
             top: 5px;
-            left: 5px;
+            left: 20px;
           }
 
           .count {
             bottom: 5px;
-            right: 5px;
+            right: 20px;
           }
         }
 
         .picture {
-          margin: 15px;
+          margin-right: 15px;
           float: left;
           height: 200px;
 

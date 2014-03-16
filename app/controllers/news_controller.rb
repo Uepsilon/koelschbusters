@@ -8,6 +8,7 @@ class NewsController < ApplicationController
     end
     @news = @news.published.order("published_at DESC").paginate(page: params[:page])
 
+    fresh_when last_modified: @news.maximum(:published_at), public: true
   end
 
   def show

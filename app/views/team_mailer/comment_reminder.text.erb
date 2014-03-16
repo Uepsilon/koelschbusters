@@ -1,0 +1,9 @@
+Hallo <%= @user.first_name %>,
+
+Es gibt noch <%= pluralize @inactive_comment_count, "nicht aktivierten Kommentar", "nicht aktivierte Kommentare" %>.
+
+Um alle nicht aktivierten Kommentare zu sehen, benutze bitte diesen Link:
+<%= admin_news_comments_url %>
+
+Viele Grüße
+Die Webseite ;)

@@ -1,21 +1,21 @@
 #gallery
   .well
     %h2.title Unsere Bildergalerien
-    - unless @galleries.nil?
-      - @galleries.each do |gallery|
-        .gallery
-          %a{href: gallery_path(gallery)}
-            .name= gallery.title
-            - if can? :read, gallery.internal_pictures.first
-              .img-container
-                %span.helper &nbsp;
-                = image_tag gallery.pictures.first.picture.url(:thumb), class: "img-rounded"
-              .count= "#{pluralize gallery.pictures.count, "Bild", "Bilder"}"
-            - else
-              .img-container
-                %span.helper &nbsp;
-                = image_tag gallery.public_pictures.first.picture.url(:thumb), class: "img-rounded"
-              .count= "#{pluralize gallery.public_pictures.count, "Bild", "Bilder"}"
-      %br.clear
-    - else
-      Es gibt leider keine für dich zugängliche Gallerie.
+  - unless @galleries.nil?
+    - @galleries.each do |gallery|
+      .gallery
+        %a{href: gallery_path(gallery)}
+          .name= gallery.title
+          - if can? :read, gallery.internal_pictures.first
+            .img-container
+              %span.helper &nbsp;
+              = image_tag gallery.pictures.first.picture.url(:thumb), class: "img-thumbnail"
+            .count= "#{pluralize gallery.pictures.count, "Bild", "Bilder"}"
+          - else
+            .img-container
+              %span.helper &nbsp;
+              = image_tag gallery.public_pictures.first.picture.url(:thumb), class: "img-thumbnail"
+            .count= "#{pluralize gallery.public_pictures.count, "Bild", "Bilder"}"
+    %br.clear
+  - else
+    .well Es gibt leider keine für dich zugängliche Gallerie.

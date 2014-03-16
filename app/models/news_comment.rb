@@ -31,4 +31,12 @@ class NewsComment < ActiveRecord::Base
     self.activated_at = nil
     self.save!
   end
+
+  def self.team_reminder
+    if self.inactive.count
+      User.where(role: [:admin, :management]).each do |user|
+        TeamMailer.comment_reminder(user, self.inactive.count).deliver
+      end
+    end
+  end
 end
