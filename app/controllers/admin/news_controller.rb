@@ -54,6 +54,7 @@ class Admin::NewsController < Admin::ApplicationController
       flash[:alert] = "News konnte nicht veröffentlicht werden."
     end
 
+    expire_fragment(controller: 'news', action: 'index', action_suffix: 'news')
     redirect_to :admin_news_index
   end
 
@@ -64,6 +65,7 @@ class Admin::NewsController < Admin::ApplicationController
       flash[:alert] = "Veröffentlichung der News konnte nicht zurück gezogen werden."
     end
 
+    expire_fragment(controller: 'news', action: 'index', action_suffix: 'news')
     redirect_to :admin_news_index
   end
 end

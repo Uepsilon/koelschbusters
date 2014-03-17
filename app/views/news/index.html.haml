@@ -4,9 +4,10 @@
       Alle Einträge der Kategorie
       %b= @category.title
 
-  - @news.each do |news|
-    .teaser
-      = render :partial => 'teaser', :locals => {:news => news}
+  - cache(action: 'index', action_suffix: 'news', page: params[:page]) do
+    - @news.each do |news|
+      .teaser
+        = render :partial => 'teaser', :locals => {:news => news}
 
-  .pageination
-    = will_paginate @news, renderer: BootstrapPagination::Rails, previous_label: "Zurück", next_label: "Weiter"
+    .pageination
+      = will_paginate @news, renderer: BootstrapPagination::Rails, previous_label: "Zurück", next_label: "Weiter"
