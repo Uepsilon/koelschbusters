@@ -1,8 +1,9 @@
 require "html_truncator"
 
 class News < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :category
+  belongs_to  :user
+  belongs_to  :category
+  has_many    :comments, class_name: "NewsComment", dependent: :destroy
 
   attr_accessible :user, :body, :teaser, :title, :published_at, :internal, :category_id
 
@@ -16,6 +17,7 @@ class News < ActiveRecord::Base
   validates :title,   :presence => true
   validates :body,    :presence => true
   validates :teaser,  :presence => true, :allow_blank => true, :allow_nil => true
+  validates :user_id, :presence => true
 
   def to_param
     [id, self.slugify].join('-')

@@ -7,7 +7,8 @@
   - cache(action: 'index', action_suffix: 'news', page: params[:page]) do
     - @news.each do |news|
       .teaser
-        = render :partial => 'teaser', :locals => {:news => news}
+        = render partial: 'teaser', locals: {news: news}
+>>>>>>> comment
 
     .pageination
       = will_paginate @news, renderer: BootstrapPagination::Rails, previous_label: "Zurück", next_label: "Weiter"

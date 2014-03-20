@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140218125917) do
+ActiveRecord::Schema.define(:version => 20140311190536) do
 
   create_table "categories", :force => true do |t|
     t.string   "title",      :null => false
@@ -55,6 +55,17 @@ ActiveRecord::Schema.define(:version => 20140218125917) do
 
   add_index "news", ["internal"], :name => "index_news_on_internal"
   add_index "news", ["published_at"], :name => "index_news_on_published_at"
+
+  create_table "news_comments", :force => true do |t|
+    t.string   "username"
+    t.string   "email"
+    t.text     "body"
+    t.integer  "news_id"
+    t.integer  "user_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.datetime "activated_at"
+  end
 
   create_table "pictures", :force => true do |t|
     t.boolean  "internal"
