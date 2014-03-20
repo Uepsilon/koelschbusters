@@ -21,11 +21,11 @@ class NewsComment < ActiveRecord::Base
   end
 
   def active?
-    not self.activated_at.nil? and self.activated_at <= DateTime.now.utc
+    not self.activated_at.nil? and self.activated_at <= DateTime.now
   end
 
   def activate
-    self.activated_at = DateTime.now.utc
+    self.activated_at = DateTime.now
   end
 
   def activate!

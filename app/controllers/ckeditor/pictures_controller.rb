@@ -16,7 +16,7 @@ class Ckeditor::PicturesController < Ckeditor::ApplicationController
 
   def create
     @picture = Ckeditor::Picture.new
-    respond_with_asset(@picture, style: :thumb)
+    respond_with_asset @picture
   end
 
   def destroy

@@ -24,7 +24,7 @@ class News < ActiveRecord::Base
   end
 
   def published?
-    not self.published_at.nil? and self.published_at <= DateTime.now.utc
+    not self.published_at.nil? and self.published_at <= DateTime.now
   end
 
   def public?
