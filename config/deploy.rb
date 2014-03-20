@@ -31,12 +31,12 @@ namespace :deploy do
     end
   end
 
-  desc "Update the crontab file"
-  task :update_crontab do
-    on roles(:db) do
-      run "cd #{release_path} && whenever --update-crontab #{application}"
-    end
-  end
+  # desc "Update the crontab file"
+  # task :update_crontab do
+  #   on roles(:db) do
+  #     run "cd #{release_path} && whenever --update-crontab #{application}"
+  #   end
+  # end
 end
 
 namespace :symlink do
@@ -52,4 +52,4 @@ end
 after :deploy, "symlink:pictures"
 after :deploy, "deploy:restart"
 after :deploy, "deploy:cleanup"
-after :deploy, "deploy:update_crontab"
+# after :deploy, "deploy:update_crontab"
