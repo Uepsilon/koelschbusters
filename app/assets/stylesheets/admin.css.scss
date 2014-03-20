@@ -34,6 +34,10 @@
     margin: 0;
   }
 
+  .sortable {
+    cursor: move;
+  }
+
   form {
     .field_with_errors {
       // display: inline-block;

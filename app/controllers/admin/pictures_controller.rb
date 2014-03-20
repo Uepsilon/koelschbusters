@@ -56,4 +56,16 @@ class Admin::PicturesController < Admin::ApplicationController
   def unpublish
     @picture.unpublish
   end
+
+  def sort
+    gallery = Gallery.find params[:gallery_id]
+
+    params[:positions].each do |picture_id, position|
+      gallery.pictures.find(picture_id).update_attribute(:position, position)
+    end
+
+    respond_to do |format|
+      format.json { render json: {success: true }}
+    end
+  end
 end

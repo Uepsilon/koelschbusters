@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140311190536) do
+ActiveRecord::Schema.define(:version => 20140316193509) do
 
   create_table "categories", :force => true do |t|
     t.string   "title",      :null => false
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20140311190536) do
     t.string   "title",      :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "position"
   end
 
   create_table "news", :force => true do |t|
@@ -76,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20140311190536) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.integer  "position"
   end
 
   add_index "pictures", ["internal"], :name => "index_pictures_on_internal"

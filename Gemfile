@@ -17,6 +17,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'jquery-ui-sass-rails'
 gem 'haml-rails'
 gem "ckeditor", "4.0.7"
 gem 'paperclip'

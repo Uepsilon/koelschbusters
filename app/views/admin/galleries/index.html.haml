@@ -7,11 +7,11 @@
         %th Bilder
         %th Öffentliche Bilder
         %th Optionen
-    %tbody
+    %tbody.sortable{data: {'update-url' => sort_admin_galleries_url}}
       - @galleries.each do |gallery|
       - row_class = ''
         - row_class = 'success' if gallery.public_pictures.count > 0
-        %tr{class: row_class}
+        %tr{class: row_class, data: {item_id: gallery.id}}
           %td= gallery.title
           %td= gallery.pictures.count
           %td= gallery.public_pictures.count

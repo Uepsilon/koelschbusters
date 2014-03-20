@@ -41,4 +41,14 @@ class Admin::GalleriesController < Admin::ApplicationController
     flash[:notice] = "Gallerie wurde gelöscht."
     redirect_to :admin_galleries
   end
+
+  def sort
+    params[:positions].each do |gallery_id, position|
+      Gallery.find(gallery_id).update_attribute(:position, position)
+    end
+
+    respond_to do |format|
+      format.json { render json: {success: true }}
+    end
+  end
 end
