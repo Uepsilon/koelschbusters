@@ -8,7 +8,7 @@ class Admin::NewsCommentsController < Admin::ApplicationController
   end
 
   def activate
-    @news_comment.activate
+    @news_comment.activate!
 
     respond_to do |format|
       format.html{ redirect_to admin_news_comments, notice: "Kommentar aktiviert"}
@@ -17,7 +17,7 @@ class Admin::NewsCommentsController < Admin::ApplicationController
   end
 
   def deactivate
-    @news_comment.deactivate
+    @news_comment.deactivate!
 
     respond_to do |format|
       format.html{ redirect_to admin_news_comments, notice: "Kommentar deaktiviert"}

@@ -6,13 +6,15 @@ class NewsComment < ActiveRecord::Base
 
   default_scope order("created_at DESC")
 
-  validates :username,  presence: true, :if     => :guest_comment
-  validates :user_id,   presence: true, :unless => :guest_comment
+  validates :username,  presence: true, if: :guest_comment
+  validates :user_id,   presence: true, unless: :guest_comment
 
   validates :body,      presence: true
   validates :news_id,   presence: true
 
   attr_accessible :body, :username, :news_id, :user_id
+
+  before_save :activate, unless: :guest_comment
 
   def guest_comment
     self.user_id.nil?
@@ -24,10 +26,14 @@ class NewsComment < ActiveRecord::Base
 
   def activate
     self.activated_at = DateTime.now.utc
+  end
+
+  def activate!
+    self.activate
     self.save!
   end
 
-  def deactivate
+  def deactivate!
     self.activated_at = nil
     self.save!
   end
