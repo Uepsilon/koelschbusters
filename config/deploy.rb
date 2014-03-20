@@ -31,8 +31,6 @@ namespace :deploy do
     end
   end
 
-  after "deploy:symlink", "deploy:update_crontab"
-
   desc "Update the crontab file"
   task :update_crontab do
     on roles(:db) do
