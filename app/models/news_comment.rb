@@ -39,7 +39,7 @@ class NewsComment < ActiveRecord::Base
   end
 
   def self.team_reminder
-    if self.inactive.count
+    if self.inactive.count > 0
       User.where(role: [:admin, :management]).each do |user|
         TeamMailer.comment_reminder(user, self.inactive.count).deliver
       end
