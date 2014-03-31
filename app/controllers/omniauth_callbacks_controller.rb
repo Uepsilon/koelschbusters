@@ -1,4 +1,5 @@
- class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+# encoding: UTF-8
+class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def google_oauth2
     process_auth_result(:google)

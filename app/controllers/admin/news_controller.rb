@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Admin::NewsController < Admin::ApplicationController
   load_and_authorize_resource
 

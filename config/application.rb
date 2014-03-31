@@ -70,5 +70,6 @@ module Koelschbusters
 
     config.exceptions_app = self.routes
 
+    config.autoload_paths << Rails.root.join('app', 'concerns')
   end
 end

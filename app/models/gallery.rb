@@ -1,4 +1,7 @@
+# encoding: UTF-8
 class Gallery < ActiveRecord::Base
+  include Slugify
+
   has_many :pictures, dependent: :destroy, order: "created_at ASC"
   attr_accessible :title
 
@@ -36,9 +39,6 @@ class Gallery < ActiveRecord::Base
   protected
 
   def slugify
-    slug = self.title
-    slug.gsub!(/%/, ' prozent')
-    slug.gsub!(/€/, ' euro')
-    slug.parameterize
+    slug = Slugify.slugify self.title
   end
 end

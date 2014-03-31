@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Admin::GalleriesController < Admin::ApplicationController
   load_and_authorize_resource
 

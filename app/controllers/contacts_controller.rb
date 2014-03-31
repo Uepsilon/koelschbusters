@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class ContactsController < ApplicationController
   load_and_authorize_resource
 

@@ -17,7 +17,7 @@ development:
   encoding: unicode
   database: koelschbusters_development
   pool: 5
-  username: root
+  username: pgadmin
   password: devel
   host: localhost
 
@@ -44,7 +44,7 @@ test:
   encoding: unicode
   database: koelschbusters_test
   pool: 5
-  username: root
+  username: pgadmin
   password: devel
   host: localhost
 

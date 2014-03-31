@@ -1,6 +1,9 @@
+# encoding: UTF-8
 require "html_truncator"
 
 class News < ActiveRecord::Base
+  include Slugify
+
   belongs_to  :user
   belongs_to  :category
   has_many    :comments, class_name: "NewsComment", dependent: :destroy
@@ -39,9 +42,6 @@ class News < ActiveRecord::Base
   end
 
   def slugify
-    slug = self.title
-    slug.gsub!(/%/, ' prozent')
-    slug.gsub!(/€/, ' euro')
-    slug.parameterize
+    slug = Slugify.slugify self.title
   end
 end

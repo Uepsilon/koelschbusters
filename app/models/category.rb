@@ -1,4 +1,7 @@
+# encoding: UTF-8
 class Category < ActiveRecord::Base
+  include Slugify
+
   has_many :news
 
   attr_accessor :slug
@@ -13,9 +16,6 @@ class Category < ActiveRecord::Base
   protected
 
   def slugify
-    slug = self.title
-    slug.gsub!(/%/, ' prozent')
-    slug.gsub!(/€/, ' euro')
-    slug.parameterize
+    slug = Slugify.slugify  self.title
   end
 end

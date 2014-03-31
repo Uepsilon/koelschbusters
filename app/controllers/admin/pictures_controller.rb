@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Admin::PicturesController < Admin::ApplicationController
   load_and_authorize_resource :gallery
   load_and_authorize_resource :picture, through: :gallery
