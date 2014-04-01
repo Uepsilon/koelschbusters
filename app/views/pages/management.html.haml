@@ -1,25 +1,77 @@
 #about.management
   .well
     %h2.title Der Vorstand
-    %p Der Vorstand der Wahner KölschBusters besteht aus folgenden fünf Vereinsmitgliedern:
     %p
-      %table.table.borderless
-        %tr
-          %th{width: 150} Vorsitzender:
-          %td= Figaro.env.president_name
-        %tr
-          %th{width: 150} 1. Stellvertreter:
-          %td= Figaro.env.first_representive_name
-        %tr
-          %th{width: 150} 2. Stellvertreter:
-          %td= Figaro.env.second_representive_name
-        %tr
-          %th{width: 150} Schriftführerin:
-          %td= Figaro.env.clerk_name
-        %tr
-          %th Schatzmeisterin:
-          %td= Figaro.env.treasurer_name
-    %p
-      Fragen oder Anregungen können über das
+      Der Vorstand der Wahner KölschBusters besteht aus fünf Vereinsmitgliedern.
+      %br
+      Sie können ihnen direkt eine E-Mail an die angegebene Adresse schicken oder
+      alle per
       =link_to "Kontaktformular", :contact
-      an uns adressiert werden.
+      erreichen.
+
+  .well
+    %h2.title Vorsitzender:
+    .row
+      .col-md-4= link_to image_tag("management/ml.jpg", title: "#{Figaro.env.president_name}", alt: "#{Figaro.env.president_name}", width: "100%", class: "img-rounded"), image_path("management/ml.jpg"), class: :fancybox
+      .col-md-8
+        %table
+          %tr
+            %th{width: "75px"} Name
+            %td
+              %b= Figaro.env.president_name
+          %tr
+            %th E-Mail
+            %td= ApplicationHelper.email_antispam Figaro.env.president_email
+  .well
+    %h2.title 1. Stellvertreter:
+    .row
+      .col-md-4= link_to image_tag("management/tb.jpg", title: "#{Figaro.env.first_representive_name}", alt: "#{Figaro.env.first_representive_name}", width: "100%", class: "img-rounded"), image_path("management/tb.jpg"), class: :fancybox
+      .col-md-8
+        %table
+          %tr
+            %th{width: "75px"} Name
+            %td
+              %b= Figaro.env.first_representive_name
+          %tr
+            %th E-Mail
+            %td= ApplicationHelper.email_antispam Figaro.env.first_representive_email
+  .well
+    %h2.title 2. Stellvertreter:
+    .row
+      .col-md-4= link_to image_tag("management/rg.jpg", title: "#{Figaro.env.second_representive_name}", alt: "#{Figaro.env.second_representive_name}", width: "100%", class: "img-rounded"), image_path("management/rg.jpg"), class: :fancybox
+      .col-md-8
+        %table
+          %tr
+            %th{width: "75px"} Name
+            %td
+              %b= Figaro.env.second_representive_name
+          %tr
+            %th E-Mail
+            %td= ApplicationHelper.email_antispam Figaro.env.second_representive_email
+  .well
+    %h2.title Schriftführerin:
+    .row
+      .col-md-4= link_to image_tag("management/mz.jpg", title: "#{Figaro.env.clerk_name}", alt: "#{Figaro.env.clerk_name}", width: "100%", class: "img-rounded"), image_path("management/mz.jpg"), class: :fancybox
+      .col-md-8
+        %table
+          %tr
+            %th{width: "75px"} Name
+            %td
+              %b= Figaro.env.clerk_name
+          %tr
+            %th E-Mail
+            %td= ApplicationHelper.email_antispam Figaro.env.clerk_email
+  .well
+    %h2.title Schatzmeisterin:
+    .row
+      .col-md-4= link_to image_tag("management/tr.jpg", title: "#{Figaro.env.treasurer_name}", alt: "#{Figaro.env.treasurer_name}", width: "100%", class: "img-rounded"), image_path("management/tr.jpg"), class: :fancybox
+      .col-md-8
+        %table
+          %tr
+            %th{width: "75px"} Name
+            %td
+              %b= Figaro.env.treasurer_name
+          %tr
+            %th E-Mail
+            %td= ApplicationHelper.email_antispam Figaro.env.treasurer_email
+

@@ -14,4 +14,8 @@ class PagesController < ApplicationController
 
   def carnival_float
   end
+
+  def member_acquisition
+
+  end
 end

@@ -19,7 +19,7 @@
       %td= Figaro.env.president_name
     %tr
       %th Email
-      %td= Figaro.env.president_email
+      %td= ApplicationHelper.email_antispam Figaro.env.president_email
 
   %h4.title Betreiber
   %table.person
@@ -28,7 +28,7 @@
       %td= Figaro.env.admin_name
     %tr
       %th Email
-      %td= Figaro.env.admin_email
+      %td= ApplicationHelper.email_antispam Figaro.env.admin_email
 
   %h4.title Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:
   %table.person
@@ -37,7 +37,7 @@
       %td= Figaro.env.journalist_name
     %tr
       %th Email
-      %td= Figaro.env.journalist_email
+      %td= ApplicationHelper.email_antispam Figaro.env.journalist_email
 
   %h4.title Bildnachweis
   %p
