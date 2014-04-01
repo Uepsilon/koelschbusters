@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
-  belongs_to  :news
-  belongs_to  :user
+  belongs_to :user
+  belongs_to :commentable, polymorphic: true
 
   scope :inactive, where(activated_at: nil)
 
@@ -10,7 +10,7 @@ class Comment < ActiveRecord::Base
   validates :user_id,   presence: true, unless: :guest_comment
 
   validates :body,      presence: true
-  validates :news_id,   presence: true
+  validates :commentable_id,   presence: true
 
   attr_accessible :body, :username, :news_id, :user_id
 

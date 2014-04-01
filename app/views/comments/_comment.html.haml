@@ -10,8 +10,8 @@
 .body= simple_format comment.body
 - if can? :manage, comment
   .options
-    = link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), [:edit, comment.news, comment], class: "btn btn-primary btn-xs", title: "#{t('links.comments.edit')}"
-    = link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), [ comment.news, comment], method: :delete, confirm: t('confirms.delete', name: "diesen Kommentar"), class: "btn btn-danger btn-xs", title: "#{t('links.comments.delete')}"
+    = link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), [:edit, comment.commentable, comment], class: "btn btn-primary btn-xs", title: "#{t('links.comments.edit')}"
+    = link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), [ comment.commentable, comment], method: :delete, confirm: t('confirms.delete', name: "diesen Kommentar"), class: "btn btn-danger btn-xs", title: "#{t('links.comments.delete')}"
     - if can? :manage, comment and can? :access, :admin
       - if comment.active?
         = link_to content_tag(:i, "", class: "glyphicon glyphicon-remove"), [:deactivate, :admin, comment], method: :put, confirm: t('confirms.deactivate', name: "diesen Kommentar"), class: "btn btn-warning btn-xs", title: "#{t('links.comments.deactivate')}", remote: true
