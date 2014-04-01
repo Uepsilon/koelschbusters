@@ -36,6 +36,7 @@ gem 'omniauth-google-oauth2'
 gem 'coveralls', require: false
 gem 'whenever', require: false
 
+gem 'rails-i18n', '~> 3.0.0' # For 3.x
 
 group :development do
   gem "letter_opener"

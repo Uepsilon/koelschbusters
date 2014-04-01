@@ -16,7 +16,7 @@ module Koelschbusters
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += Dir[    ]
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -33,6 +33,7 @@ module Koelschbusters
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.enforce_available_locales = true
     config.i18n.default_locale = :de
+    config.i18n.available_locales = :de
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
@@ -63,13 +64,11 @@ module Koelschbusters
     config.assets.initialize_on_precompile = false
 
     # Add Fonts-Path to Assets
-    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+    config.assets.paths += Dir[Rails.root.join('app', 'assets', 'fonts')]
 
     # Precompile additional assets
     config.assets.precompile += %w( .svg .eot .woff .ttf )
 
     config.exceptions_app = self.routes
-
-    config.autoload_paths << Rails.root.join('app', 'concerns')
   end
 end

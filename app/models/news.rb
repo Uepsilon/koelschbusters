@@ -6,11 +6,11 @@ class News < ActiveRecord::Base
 
   belongs_to  :user
   belongs_to  :category
-  has_many    :comments, class_name: "NewsComment", dependent: :destroy
+  has_many    :comments, class_name: "Comment", dependent: :destroy
 
   attr_accessible :user, :body, :teaser, :title, :published_at, :internal, :category_id
 
-  scope :published,   where('published_at IS NOT NULL AND published_at <= ?', DateTime.now)
+  scope :published,   where('published_at IS NOT NULL AND published_at <= ?', Time.now)
   scope :ffa,         where(:internal => false)
 
   before_validation :find_teaser
@@ -27,7 +27,7 @@ class News < ActiveRecord::Base
   end
 
   def published?
-    not self.published_at.nil? and self.published_at <= DateTime.now
+    not self.published_at.nil? and self.published_at <= Time.now
   end
 
   def public?

@@ -1,16 +1,16 @@
 #news
   = render :partial => 'news', :locals => {:news => @news}
 
-#news-comments
-  %a{name: "news-comments"}
-  - if can? :read, NewsComment and not @news.comments.empty?
+#comments
+  %a{name: "comments"}
+  - if can? :read, Comment and not @news.comments.empty?
     .well
       %h2.title=pluralize @news.comments.accessible_by(current_ability).count, "Kommentar", "Kommentare"
       - @news.comments.accessible_by(current_ability).each do |comment|
-        .news-comment{class: "#{"inactive" unless comment.active?} news-comment-#{comment.id}"}
-          = render partial: "news_comments/news_comment", locals: { comment: comment }
+        .comment{class: "#{"inactive" unless comment.active?} comment-#{comment.id}"}
+          = render partial: "comments/comment", locals: { comment: comment }
 
-  - if can? :create, NewsComment
+  - if can? :create, Comment
     .well.comment-form
       %h2.title Kommentar erstellen
-      = render "news_comments/form"
+      = render "comments/form"

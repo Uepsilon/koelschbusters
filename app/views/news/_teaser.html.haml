@@ -15,6 +15,6 @@
     .link
       = link_to content_tag(:i, " #{t('links.read_more')}", class: "glyphicon glyphicon-search"), news, class: "btn btn-danger", title: t('links.read_more')
       - if news.comments.accessible_by(current_ability).any?
-        = link_to content_tag(:i, " #{news.comments.accessible_by(current_ability).count}", class: "glyphicon glyphicon-comment"), news_path(news, anchor: "news-comments"), class: "btn btn-warning", title: "#{news.comments.accessible_by(current_ability).count} #{t('links.comments')}"
+        = link_to content_tag(:i, " #{news.comments.accessible_by(current_ability).count}", class: "glyphicon glyphicon-comment"), news_path(news, anchor: "comments"), class: "btn btn-warning", title: "#{news.comments.accessible_by(current_ability).count} #{t('links.comments')}"
     / .link= link_to , news, class: "btn btn-danger"
   %br.clear

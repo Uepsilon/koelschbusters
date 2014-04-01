@@ -36,7 +36,7 @@ class Ability
     can :manage, Gallery
     can :manage, Category
 
-    can :manage, NewsComment
+    can :manage, Comment
   end
 
   def member
@@ -55,10 +55,10 @@ class Ability
     end
 
     # can read and create comments for news, can also edit / delete his own comments
-    can :read, NewsComment, ["activated_at < ?", DateTime.now] do |comment|
+    can :read, Comment, ["activated_at < ?", DateTime.now] do |comment|
       comment.active?
     end
-    can :manage, NewsComment, user_id: @user.id
+    can :manage, Comment, user_id: @user.id
   end
 
   def guest
@@ -76,9 +76,9 @@ class Ability
     end
 
     # can read and create Comments for News
-    can :read, NewsComment, ["activated_at < ?", DateTime.now] do |comment|
+    can :read, Comment, ["activated_at < ?", DateTime.now] do |comment|
       comment.active?
     end
-    can :create, NewsComment
+    can :create, Comment
   end
 end

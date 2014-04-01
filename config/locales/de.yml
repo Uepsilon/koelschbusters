@@ -24,7 +24,7 @@ de:
     update:           Aktualisieren
     read_more:        Weiterlesen
     comments:         Kommentare
-    news_comments:
+    comments:
       index:          Kommentarübersicht
       edit:           Kommentar bearbeiten
       delete:         Kommentar löschen
@@ -314,9 +314,9 @@ de:
       user:         Benutzer
       category:     Kategorie
       news:         Neuigkeit
-      news_comments: Kommentare
+      comments: Kommentare
     attributes:
-      news_comment:
+      comment:
         username:   Name
         email:      E-Mail-Adresse
         body:       Kommentar

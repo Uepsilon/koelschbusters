@@ -1,0 +1,11 @@
+#comments
+  %h1 Kommentarübersicht
+  - if @comments.each.any?
+    - @comments.each do |comment|
+      .well.comment{class: "#{"inactive" unless comment.active?} comment-#{comment.id}"}
+        = render "comments/comment", { comment: comment }
+  - else
+    .well Keine unveröffentlichten Kommentare
+
+  .pageination
+    = will_paginate @comments, renderer: BootstrapPagination::Rails, previous_label: "Zurück", next_label: "Weiter"

@@ -24,7 +24,7 @@ Koelschbusters::Application.routes.draw do
   end
 
   resources :news, only: [:index, :show], path: "news" do
-    resources :news_comments, except: [:new, :index, :show]
+    resources :comments, except: [:new, :index, :show]
   end
   get "news(/kategorie/:category)(/seite/:page)", to: "news#index", as: :categorized_news
 
@@ -43,7 +43,7 @@ Koelschbusters::Application.routes.draw do
       end
     end
 
-    resources :news_comments, only: [:index, :destroy] do
+    resources :comments, only: [:index, :destroy] do
       member do
         put 'activate'
         put 'deactivate'
