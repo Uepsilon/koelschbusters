@@ -21,11 +21,11 @@ class Comment < ActiveRecord::Base
   end
 
   def active?
-    not self.activated_at.nil? and self.activated_at <= DateTime.now
+    not self.activated_at.nil? and self.activated_at <= Time.now
   end
 
   def activate
-    self.activated_at = DateTime.now
+    self.activated_at = Time.now
   end
 
   def activate!

@@ -16,9 +16,11 @@
         - if news.internal?
           %span.label.label-danger Interner Beitrag
       %p.clearfix
-      .panel.panel-default
-        .panel-heading Vorschau
-        .panel-body= news.teaser.html_safe
+
+      - if news.teaser != news.body
+        .panel.panel-default
+          .panel-heading Vorschau
+          .panel-body= news.teaser.html_safe
 
       .panel.panel-default
         .panel-heading Vollansicht

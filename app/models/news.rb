@@ -10,7 +10,7 @@ class News < ActiveRecord::Base
 
   attr_accessible :user, :body, :teaser, :title, :published_at, :internal, :category_id
 
-  scope :published,   where('published_at IS NOT NULL AND published_at <= ?', Time.now)
+  scope :published,   -> { where("news.published_at <= ?", Time.now)}
   scope :ffa,         where(:internal => false)
 
   before_validation :find_teaser
