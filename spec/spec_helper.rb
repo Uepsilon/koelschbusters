@@ -44,15 +44,15 @@ RSpec.configure do |config|
   # order dependency and want to debug it, you can fix the order by providing
   # the seed, which is printed after each run.
   #     --seed 1234
-  config.order = "random"
+  config.order = 'random'
 
   # Factory Girl
   config.include FactoryGirl::Syntax::Methods
 
 
   # Devise
-  config.include Devise::TestHelpers, :type => :controller
-  config.include ControllerMacros,    :type => :controller
+  config.include Devise::TestHelpers, type: :controller
+  config.include ControllerMacros,    type: :controller
 
   # Clean Up after run
   config.after(:suite) do # or :each or :all

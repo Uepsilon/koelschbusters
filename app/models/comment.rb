@@ -1,27 +1,42 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id               :integer          not null, primary key
+#  username         :string(255)
+#  body             :text
+#  user_id          :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  activated_at     :datetime
+#  commentable_id   :integer
+#  commentable_type :string(255)
+#
+
 class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :commentable, polymorphic: true
 
   scope :inactive, where(activated_at: nil)
 
-  default_scope order("created_at DESC")
+  default_scope order('created_at DESC')
 
-  validates :username,  presence: true, if: :guest_comment
-  validates :user_id,   presence: true, unless: :guest_comment
+  validates :username, presence: true, if: :guest_comment
+  validates :user_id, presence: true, unless: :guest_comment
 
-  validates :body,      presence: true
-  validates :commentable_id,   presence: true
+  validates :body, presence: true
+  validates :commentable_id, presence: true
 
   attr_accessible :body, :username, :news_id, :user_id
 
   before_save :activate, unless: :guest_comment
 
   def guest_comment
-    self.user_id.nil?
+    user_id.nil?
   end
 
   def active?
-    not self.activated_at.nil? and self.activated_at <= Time.now
+    activated_at.present? && activated_at <= Time.now
   end
 
   def activate
@@ -29,19 +44,19 @@ class Comment < ActiveRecord::Base
   end
 
   def activate!
-    self.activate
-    self.save!
+    activate
+    save!
   end
 
   def deactivate!
     self.activated_at = nil
-    self.save!
+    save!
   end
 
   def self.team_reminder
-    if self.inactive.count > 0
+    if inactive.count > 0
       User.where(role: [:admin, :management]).each do |user|
-        TeamMailer.comment_reminder(user, self.inactive.count).deliver
+        TeamMailer.comment_reminder(user, inactive.count).deliver
       end
     end
   end

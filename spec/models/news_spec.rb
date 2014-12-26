@@ -1,26 +1,42 @@
+# == Schema Information
+#
+# Table name: news
+#
+#  id           :integer          not null, primary key
+#  title        :string(255)
+#  body         :text
+#  teaser       :text
+#  user_id      :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  published_at :datetime
+#  internal     :boolean          default(FALSE)
+#  category_id  :integer
+#
+
 require 'spec_helper'
 
 describe News do
   before(:each) { News.destroy_all }
 
-  describe "Validation" do
-    it "should be invalid without a title" do
+  describe 'Validation' do
+    it 'should be invalid without a title' do
       subject.should be_invalid
       subject.errors.should include(:title)
     end
 
-    it "should be invalid without a teaser" do
+    it 'should be invalid without a teaser' do
       subject.should be_invalid
       subject.errors.should include(:teaser)
     end
 
-    it "should be invalid without a body" do
+    it 'should be invalid without a body' do
       subject.should be_invalid
       subject.errors.should include(:body)
     end
   end
 
-  describe "#to_param" do
+  describe '#to_param' do
     # reload to reset sequence => make sure title-1 matches
     # (otherwise depends on order of tests)
     before { FactoryGirl.reload }
@@ -32,7 +48,7 @@ describe News do
     end
   end
 
-  describe "#published?" do
+  describe '#published?' do
     let(:news)              { create(:news) }
     let(:unpublished_news)  { create(:news, :unpublished) }
     let(:upcoming_news)     { create(:news, :upcoming) }
@@ -48,19 +64,19 @@ describe News do
     let(:unpublished_news)  { create(:news, :unpublished) }
     let(:upcoming_news)     { create(:news, :upcoming) }
 
-    context "when internal-flag is used" do
-      subject {News.ffa.all}
+    context 'when internal-flag is used' do
+      subject { News.ffa.all }
 
-      it {should include(news)}
-      it {should_not include(private_news)}
+      it { should include(news) }
+      it { should_not include(private_news) }
     end
 
-    context "when published_at is used" do
-      subject {News.published.all}
+    context 'when published_at is used' do
+      subject { News.published.all }
 
-      it {should include(news)}
-      it {should_not include(unpublished_news)}
-      it {should_not include(upcoming_news)}
+      it { should include(news) }
+      it { should_not include(unpublished_news) }
+      it { should_not include(upcoming_news) }
     end
   end
 end
