@@ -1,4 +1,15 @@
 # encoding: UTF-8
+# == Schema Information
+#
+# Table name: galleries
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)      not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  position   :integer
+#
+
 class Gallery < ActiveRecord::Base
   include Slugify
 

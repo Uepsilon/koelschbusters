@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: galleries
+#
+#  id         :integer          not null, primary key
+#  title      :string(255)      not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  position   :integer
+#
+
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do

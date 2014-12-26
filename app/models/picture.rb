@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: pictures
+#
+#  id                   :integer          not null, primary key
+#  internal             :boolean
+#  gallery_id           :integer
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  picture_file_name    :string(255)
+#  picture_content_type :string(255)
+#  picture_file_size    :integer
+#  picture_updated_at   :datetime
+#  position             :integer
+#
+
 class Picture < ActiveRecord::Base
 
   Paperclip.interpolates :gallery_id do |attachment, style|
