@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.16'
+gem 'rails', '3.2.18'
 
 gem 'pg'
 gem 'devise'
@@ -20,14 +20,14 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-ui-sass-rails'
 gem 'haml-rails'
-gem "ckeditor", "4.0.7"
+gem "ckeditor", '4.0.7'
 gem 'paperclip'
 gem 'hirb'
 gem 'therubyracer'
 gem 'html_truncator'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
-gem "breadcrumbs_on_rails"
+gem 'breadcrumbs_on_rails'
 
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -39,25 +39,27 @@ gem 'whenever', require: false
 gem 'rails-i18n', '~> 3.0.0' # For 3.x
 
 group :development do
-  gem "letter_opener"
-  gem "capistrano-rails"
+  gem 'letter_opener'
+  gem 'capistrano-rails'
 end
 
 group :development, :test do
   gem 'quiet_assets'
-  gem 'rspec-rails'
-  gem 'debugger'
+  gem 'rspec-rails', '2.14.1'
+  # gem 'debugger'
   gem 'forgery'
   # Puma Server
   gem 'puma'
+  gem 'rubocop'
+  gem 'annotate'
 end
 
 group :test do
-  gem "shoulda-matchers"
+  gem 'shoulda-matchers'
   gem 'capybara'
   gem 'simplecov'
   gem 'factory_girl_rails'
 end
 
 # Configuration
-gem "figaro"
+gem 'figaro'
