@@ -14,18 +14,12 @@ class ApplicationController < ActionController::Base
 
   def render_401(exception = nil)
     @not_found_path = exception.message unless exception.nil?
-    respond_to do |format|
-      format.html { render template: 'errors/access_denied', layout: 'layouts/application', status: 401 }
-      format.all { render nothing: true, status: 401 }
-    end
+    render_errors(401, 'access_denied')
   end
 
   def render_404(exception = nil)
     @not_found_path = exception.message unless exception.nil?
-    respond_to do |format|
-      format.html { render template: 'errors/not_found', layout: 'layouts/application', status: 404 }
-      format.all { render nothing: true, status: 404 }
-    end
+    render_errors(404, 'not_found')
   end
 
   def render_422(exception = nil)
@@ -35,9 +29,13 @@ class ApplicationController < ActionController::Base
 
   def render_500(exception = nil)
     logger.debug exception.backtrace.join("\n") unless exception.nil?
+    render_errors(500, 'internal_server_error')
+  end
+
+  def render_errors(status, error)
     respond_to do |format|
-      format.html { render template: 'errors/internal_server_error', layout: 'layouts/application', status: 500 }
-      format.all { render nothing: true, status: 500 }
+      format.html { render "errors/#{error}", layout: 'layouts/application', status: status }
+      format.all { render nothing: true, status: status }
     end
   end
 end
