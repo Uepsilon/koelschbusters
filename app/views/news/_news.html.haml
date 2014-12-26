@@ -12,6 +12,9 @@
         = link_to news.category.title, categorized_news_path(category: news.category.to_param)
     .date
       %span.glyphicon.glyphicon-time
-      = l news.published_at.localtime, format: :long
+      - if news.published?
+        = l news.published_at, format: :long
+      - else
+        Unveröffentlicht
     %br.clear
   %br.clear
