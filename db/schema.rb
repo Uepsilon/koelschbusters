@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140401155541) do
+ActiveRecord::Schema.define(:version => 20141226215415) do
 
   create_table "categories", :force => true do |t|
     t.string   "title",      :null => false
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20140401155541) do
     t.datetime "published_at"
     t.boolean  "internal",     :default => false
     t.integer  "category_id"
+    t.time     "notified_at"
   end
 
   add_index "news", ["internal"], :name => "index_news_on_internal"

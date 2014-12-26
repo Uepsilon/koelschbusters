@@ -1,0 +1,9 @@
+Hallo <%= @user.first_name %>,
+
+es wurde ein neuer, interner Beitrag veröffentlicht.
+
+Den Beitrag "<%= @news.title %>" findest du hier:
+<%= news_url(id: @news) %>
+
+Viele Grüße
+Die Webseite ;)

@@ -38,6 +38,8 @@ class News < ActiveRecord::Base
   validates :teaser, presence: true, allow_blank: true, allow_nil: true
   validates :user_id, presence: true
 
+  after_find :notify_members
+
   def to_param
     [id, slugify].join('-')
   end
@@ -50,7 +52,22 @@ class News < ActiveRecord::Base
     !internal?
   end
 
+  def notified?
+    notified_at.present?
+  end
+
   protected
+
+  def notify_members
+    return if public? || !published? || notified?
+
+    User.all.each do |user|
+      NewsMailer.notification(user, self).deliver
+    end
+
+    self.notified_at = Time.now
+    self.save!
+  end
 
   def find_teaser
     # Let's take the first 100 Words
