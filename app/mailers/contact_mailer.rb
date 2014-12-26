@@ -7,7 +7,7 @@ class ContactMailer < ActionMailer::Base
     @details = details
 
     subject = details.subject
-    subject = "Kontaktanfrage" if subject.blank?
+    subject = 'Kontaktanfrage' if subject.blank?
     mail(subject: subject)
   end
 
@@ -15,6 +15,6 @@ class ContactMailer < ActionMailer::Base
     @user   = user
     @token  = token
 
-    mail(to: user.email, subject: "Dein Account für die Webseite der Wahner Kölschbusters")
+    mail(to: user.email, subject: 'Dein Account für die Webseite der Wahner Kölschbusters')
   end
 end

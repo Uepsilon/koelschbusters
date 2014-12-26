@@ -52,6 +52,7 @@ group :development, :test do
   gem 'puma'
   gem 'rubocop'
   gem 'annotate'
+  gem 'better_errors'
 end
 
 group :test do

@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    @user = user || User.new(role: "guest", member_active: true)
+    @user = user || User.new(role: 'guest', member_active: true)
 
     # Abilitys for all
     can :read,    Category
@@ -51,11 +51,11 @@ class Ability
 
     # Users can edit themselves
     can :edit, User do |u|
-        u.id == @user.id
+      u.id == @user.id
     end
 
     # can read and create comments for news, can also edit / delete his own comments
-    can :read, Comment, ["activated_at < ?", DateTime.now] do |comment|
+    can :read, Comment, ['activated_at < ?', DateTime.now] do |comment|
       comment.active?
     end
     can :manage, Comment, user_id: @user.id
@@ -63,7 +63,7 @@ class Ability
 
   def guest
     can :read, News, News.published.ffa do |news|
-      news.published? and news.public?
+      news.published? && news.public?
     end
 
     can :read, Picture do |picture|
@@ -76,7 +76,7 @@ class Ability
     end
 
     # can read and create Comments for News
-    can :read, Comment, ["activated_at < ?", DateTime.now] do |comment|
+    can :read, Comment, ['activated_at < ?', DateTime.now] do |comment|
       comment.active?
     end
     can :create, Comment
