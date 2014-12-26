@@ -46,16 +46,12 @@ class Admin::NewsController < Admin::ApplicationController
 
   def publish
     if @news.update_attributes(published_at: DateTime.now)
-      if @news.published_at <= DateTime.now
-        flash[:notice] = 'News wurde veröffentlicht.'
-      else
-        flash[:notice] = 'Veröffentlichungsdatum wurde vorgemerkt.'
-      end
+      flash[:notice] = 'News wurde veröffentlicht.'
     else
       flash[:alert] = 'News konnte nicht veröffentlicht werden.'
     end
 
-    expire_fragment(controller: 'news', action: 'index', action_suffix: 'news')
+    expire_fragment controller: 'news', action: 'index', action_suffix: 'news'
     redirect_to :admin_news_index
   end
 
@@ -66,7 +62,7 @@ class Admin::NewsController < Admin::ApplicationController
       flash[:alert] = 'Veröffentlichung der News konnte nicht zurück gezogen werden.'
     end
 
-    expire_fragment(controller: 'news', action: 'index', action_suffix: 'news')
+    expire_fragment controller: 'news', action: 'index', action_suffix: 'news'
     redirect_to :admin_news_index
   end
 end

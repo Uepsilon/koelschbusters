@@ -39,7 +39,7 @@
 
 class User < ActiveRecord::Base
   # possible roles
-  ROLES   = %w[guest member management admin]
+  ROLES   = %w(guest member management admin)
   PROVIDER = {
     google_oauth2:  :google,
     twitter:        :twitter,
@@ -51,9 +51,9 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
+  # :lockable, :timeoutable && :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :confirmable,
-         :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2, :twitter, :facebook]
+         :trackable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2, :twitter, :facebook]
 
   attr_accessible :email, :email_confirmation,
                   :password, :password_confirmation, :current_password,
@@ -70,26 +70,26 @@ class User < ActiveRecord::Base
   attr_accessor :email_confirmation
   attr_accessor :uncrypt_password
 
-  before_validation :random_password, :on => :create
+  before_validation :random_password, on: :create
   before_validation :email_downcase
   before_validation :stringify_role
-  after_create      :wipe_virtual_password
+  after_create :wipe_virtual_password
 
-  validates :email,         :presence => true,      :uniqueness => true
-  validates :email,         :confirmation => true, :if => :email_confirmation?
+  validates :email, presence: true, uniqueness: true
+  validates :email, confirmation: true, if: :email_confirmation?
 
-  validates :password,      :presence => true,     :on => :create
-  validates :password,      :confirmation => true, :on => :update, :if => :password_changed?
-  validates :password_confirmation, :presence => true,  :on => :update, :if => :password_changed?
+  validates :password, presence: true, on: :create
+  validates :password, confirmation: true, on: :update, if: :password_changed?
+  validates :password_confirmation, presence: true, on: :update, if: :password_changed?
 
-  validates :first_name,    :presence => true
-  validates :last_name,     :presence => true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 
-  validates :phone,         :numericality => {:only_integer => true}, :allow_nil => true, :allow_blank => true
-  validates :mobile,        :numericality => {:only_integer => true}, :allow_nil => true, :allow_blank => true
+  validates :phone, numericality: { only_integer: true }, allow_nil: true, allow_blank: true
+  validates :mobile, numericality: { only_integer: true }, allow_nil: true, allow_blank: true
 
-  validates :zipcode,       :length =>  {:is => 5}, :numericality => {:only_integer => true}, :allow_nil => true, :allow_blank => true
-  validates :role,          :inclusion => {:in => ROLES}
+  validates :zipcode, length:  { is: 5 }, numericality: { only_integer: true }, allow_nil: true, allow_blank: true
+  validates :role, inclusion: { in: ROLES }
 
   def name
     "#{first_name} #{last_name}"
@@ -100,7 +100,7 @@ class User < ActiveRecord::Base
   end
 
   def role?(base_role)
-      (ROLES.index(base_role.to_s) <= ROLES.index(role)) and active?
+    (ROLES.index(base_role.to_s) <= ROLES.index(role)) && active?
   end
 
   def self.find_by_oauth(auth, provider)
@@ -108,46 +108,46 @@ class User < ActiveRecord::Base
   end
 
   def add_oauth(auth, provider)
-    self.send("#{provider}_uid=", auth.uid)
-    self.send("#{provider}_name=", provider == :twitter ? auth.info.nickname : auth.info.name)
+    send "#{provider}_uid=", auth.uid
+    send "#{provider}_name=", (provider == :twitter ? auth.info.nickname : auth.info.name)
 
-    self.save
+    save
   end
 
   def remove_oauth(provider)
-    unless self.send("#{provider}_uid").nil?
-      self.send("#{provider}_uid=", nil)
-      self.send("#{provider}_name=", nil)
+    unless send("#{provider}_uid").nil?
+      send "#{provider}_uid=", nil
+      send "#{provider}_name=", nil
     end
 
-    return self.save if self.changed?
+    return save if changed?
   end
 
   def address?
-    (street.present? and houseno.present?) and (city.present? or zipcode.present?)
+    (street.present? && houseno.present?) && (city.present? || zipcode.present?)
   end
 
   protected
 
   def random_password
     # Create random password if password not set
-    if self.password.nil?
-      self.uncrypt_password = Devise.friendly_token[0,20]
-      self.password = self.uncrypt_password
-    end
+    return unless password.nil?
+
+    self.uncrypt_password = Devise.friendly_token[0, 20]
+    self.password = uncrypt_password
   end
 
   def email_confirmation?
-    self.email_changed?
+    email_changed?
   end
 
   def password_changed?
-    not self.password.nil?
+    password.present?
   end
 
   def email_downcase
-    self.email               = self.email.downcase
-    self.email_confirmation  = self.email_confirmation.downcase unless email_confirmation.nil?
+    self.email               = email.downcase
+    self.email_confirmation  = email_confirmation.downcase unless email_confirmation.nil?
   end
 
   def wipe_virtual_password
@@ -156,7 +156,7 @@ class User < ActiveRecord::Base
   end
 
   def stringify_role
-    role = role.to_s
+    self.role = role.to_s
   end
 
   # welcome email
