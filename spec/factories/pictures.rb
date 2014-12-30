@@ -25,11 +25,11 @@ FactoryGirl.define do
     internal true
     gallery
 
-    trait :oversized do
+    factory :oversized_picture do
       picture { fixture_file_upload(Rails.root.join('spec', 'factories', 'pictures', 'oversized.png'), 'image/png') }
     end
 
-    trait :public do
+    factory :public_picture do
       internal false
     end
   end

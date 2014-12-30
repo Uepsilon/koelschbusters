@@ -3,7 +3,7 @@ require 'spec_helper'
 describe PagesController do
   render_views
 
-  describe "GET imprint" do
+  describe 'GET imprint' do
     before(:each) { get :imprint }
 
     it { should render_template(:imprint) }

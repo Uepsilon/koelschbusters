@@ -13,7 +13,7 @@
 class Gallery < ActiveRecord::Base
   include Slugify
 
-  has_many :pictures, dependent: :destroy, order: "created_at ASC"
+  has_many :pictures, dependent: :destroy, order: 'created_at ASC'
   attr_accessible :title
 
   validates :title, presence: true
@@ -23,7 +23,7 @@ class Gallery < ActiveRecord::Base
   before_create :set_position
 
   def to_param
-    [id, self.slugify].join('-')
+    [id, slugify].join('-')
   end
 
   def self.with_pictures
@@ -50,6 +50,6 @@ class Gallery < ActiveRecord::Base
   protected
 
   def slugify
-    slug = Slugify.slugify self.title
+    Slugify.slugify title
   end
 end

@@ -55,7 +55,6 @@ RSpec.configure do |config|
   # Factory Girl
   config.include FactoryGirl::Syntax::Methods
 
-
   # Devise
   config.include Devise::TestHelpers, type: :controller
   config.include ControllerMacros,    type: :controller
@@ -63,7 +62,7 @@ RSpec.configure do |config|
   # Clean Up after run
   config.after(:suite) do # or :each or :all
     Dir["#{Rails.root}/shared/test/pictures/*"].each do |folder|
-        FileUtils.rm_rf folder
+      FileUtils.rm_rf folder
     end
   end
 end

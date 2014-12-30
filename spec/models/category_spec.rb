@@ -12,8 +12,8 @@ require 'spec_helper'
 
 describe Category do
   subject { create(:category) }
-  describe "Validation" do
-    it "has a valid factory" do
+  describe 'Validation' do
+    it 'has a valid factory' do
       subject.should be_valid
     end
 

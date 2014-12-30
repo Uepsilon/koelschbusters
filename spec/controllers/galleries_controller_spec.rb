@@ -1,16 +1,16 @@
 require 'spec_helper'
 
 describe GalleriesController do
-  after(:all) { Gallery.destroy_all }
-  after(:all) { Picture.destroy_all }
+  # after(:all) { Gallery.destroy_all }
+  # after(:all) { Picture.destroy_all }
 
   let!(:gallery_with_pictures) { create :gallery_with_pictures }
   let!(:gallery_with_internal_pictures_only) { create :gallery_with_internal_pictures_only }
 
-  context "when user is logged in" do
+  context 'when user is logged in' do
     before { login_user }
 
-    describe "GET #index" do
+    describe 'GET #index' do
       before { get :index }
       subject { assigns(:galleries) }
 
@@ -19,7 +19,7 @@ describe GalleriesController do
       it { subject.should include gallery_with_internal_pictures_only }
     end
 
-    describe "GET #show" do
+    describe 'GET #show' do
       before { get :show, id: gallery_with_pictures.to_param }
       subject { assigns(:pictures) }
 
@@ -28,8 +28,8 @@ describe GalleriesController do
     end
   end
 
-  context "when user is not logged in" do
-    describe "GET #index" do
+  context 'when user is not logged in' do
+    describe 'GET #index' do
       before { get :index }
       subject { assigns(:galleries) }
 
@@ -39,30 +39,30 @@ describe GalleriesController do
     end
   end
 
-    describe "GET #show for an gallery with public pictures" do
-      before { get :show, id: gallery_with_pictures.to_param }
-      subject { assigns(:pictures) }
+  describe 'GET #show for an gallery with public pictures' do
+    before { get :show, id: gallery_with_pictures.to_param }
+    subject { assigns(:pictures) }
 
-      it { response.status.should eq 200 }
+    it { response.status.should eq 200 }
 
-      it "assigns public pictures" do
-        gallery_with_pictures.public_pictures do |picture|
-          subject.should include picture
-        end
-      end
-
-      it "does not assigns internal pictures" do
-        gallery_with_pictures.internal_pictures do |picture|
-          subject.should_not include picture
-        end
+    it 'assigns public pictures' do
+      gallery_with_pictures.public_pictures do |picture|
+        subject.should include picture
       end
     end
 
-    describe "GET #show for an gallery with internal pictures" do
-      before { get :show, id: gallery_with_internal_pictures_only.to_param }
-      subject { assigns(:pictures) }
-
-      it { response.status.should eq 401 }
-      it { subject.should be_nil }
+    it 'does not assigns internal pictures' do
+      gallery_with_pictures.internal_pictures do |picture|
+        subject.should_not include picture
+      end
     end
+  end
+
+  describe 'GET #show for an gallery with internal pictures' do
+    before { get :show, id: gallery_with_internal_pictures_only.to_param }
+    subject { assigns(:pictures) }
+
+    it { response.status.should eq 401 }
+    it { subject.should be_nil }
+  end
 end

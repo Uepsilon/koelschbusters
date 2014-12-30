@@ -12,6 +12,7 @@
 #  published_at :datetime
 #  internal     :boolean          default(FALSE)
 #  category_id  :integer
+#  notified_at  :time
 #
 
 FactoryGirl.define do

@@ -19,44 +19,44 @@ require 'spec_helper'
 describe Picture do
   before(:each) { Picture.destroy_all }
 
-  describe "Validations" do
-    it "has a valid factory" do
-      pic = create(:picture).should be_valid
+  describe 'Validations' do
+    it 'has a valid factory' do
+      create(:picture).should be_valid
     end
 
-    it "should be invalid without a picture" do
+    it 'should be invalid without a picture' do
       should validate_presence_of :picture
     end
 
-    it "should be invalid with a picture > 5MB" do
-      picture = build(:picture, :oversized)
+    it 'should be invalid with a picture > 5MB' do
+      picture = build(:oversized_picture)
       picture.should be_invalid
       picture.errors.should include :picture_file_size
     end
   end
 
-  describe "public?" do
+  describe 'public?' do
     let(:picture) { create(:picture) }
-    let(:published_picture) { create(:picture, :public) }
+    let(:published_picture) { create(:public_picture) }
 
-    it { picture.public?.should be_false}
-    it { published_picture.public?.should be_true}
+    it { picture.public?.should be_false }
+    it { published_picture.public?.should be_true }
   end
 
-  describe "publish" do
+  describe 'publish' do
     let(:picture) { create(:picture) }
 
-    it "should be public after publishing" do
+    it 'should be public after publishing' do
       picture.public?.should be_false
       picture.publish
       picture.public?.should be_true
     end
   end
 
-  describe "unpublish" do
-    let(:picture) { create(:picture, :public) }
+  describe 'unpublish' do
+    let(:picture) { create(:public_picture) }
 
-    it "should be public after publishing" do
+    it 'should be public after publishing' do
       picture.public?.should be_true
       picture.unpublish
       picture.public?.should be_false

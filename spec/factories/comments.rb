@@ -13,15 +13,16 @@
 #  commentable_type :string(255)
 #
 
-require 'spec_helper'
+FactoryGirl.define do
+  factory :comment do
+    body 'Lorem Ipsum'
 
-describe Comment do
-  subject { create :news_comment, :anonymous }
-  describe 'Validation' do
-    it 'has a valid factory' do
-      subject.should be_valid
+    factory :news_comment do
+      association :commentable, factory: :news
     end
 
-    it { should validate_presence_of(:body) }
+    trait :anonymous do
+      username 'Roadrunner'
+    end
   end
 end

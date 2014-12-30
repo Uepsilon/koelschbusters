@@ -20,9 +20,8 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-ui-sass-rails'
 gem 'haml-rails'
-gem "ckeditor", '4.0.7'
+gem 'ckeditor', '4.0.7'
 gem 'paperclip'
-gem 'hirb'
 gem 'therubyracer'
 gem 'html_truncator'
 gem 'will_paginate'
@@ -33,10 +32,10 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
-gem 'coveralls', require: false
 gem 'whenever', require: false
 
 gem 'rails-i18n', '~> 3.0.0' # For 3.x
+gem 'hirb'
 
 group :development do
   gem 'letter_opener'
@@ -54,6 +53,7 @@ group :development, :test do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'coveralls', require: false
 end
 
 group :test do

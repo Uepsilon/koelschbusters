@@ -13,20 +13,22 @@
 
 FactoryGirl.define do
   factory :gallery do
-    sequence (:title) { |i| "Gallery#{i}" }
-  end
+    sequence(:title) { |i| "Gallery#{i}" }
 
-  factory :gallery_with_pictures, parent: :gallery do
-    after(:create) do |gallery|
-      FactoryGirl.create(:picture, gallery: gallery)
-      FactoryGirl.create(:picture, :public, gallery: gallery)
+    transient do
+      pictures_count 2
     end
-  end
 
-  factory :gallery_with_internal_pictures_only, parent: :gallery do
-    after(:create) do |gallery|
-      2.times do
-        FactoryGirl.create(:picture, gallery: gallery)
+    factory :gallery_with_pictures do
+      after(:create) do |gallery|
+        create :picture, gallery: gallery
+        create :public_picture, gallery: gallery
+      end
+    end
+
+    factory :gallery_with_internal_pictures_only do
+      after(:create) do |gallery, evaluator|
+        create_list :picture, evaluator.pictures_count, gallery: gallery
       end
     end
   end

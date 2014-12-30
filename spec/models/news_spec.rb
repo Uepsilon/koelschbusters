@@ -12,58 +12,40 @@
 #  published_at :datetime
 #  internal     :boolean          default(FALSE)
 #  category_id  :integer
+#  notified_at  :time
 #
 
 require 'spec_helper'
 
 describe News do
-  before(:each) { News.destroy_all }
+  let!(:news)              { create(:news) }
+  let!(:unpublished_news)  { create(:news, :unpublished) }
+  let!(:upcoming_news)     { create(:news, :upcoming) }
+  let!(:private_news)      { create(:news, :members_only) }
 
   describe 'Validation' do
-    it 'should be invalid without a title' do
-      subject.should be_invalid
-      subject.errors.should include(:title)
+    it 'has a valid factory' do
+      news.should be_valid
     end
 
-    it 'should be invalid without a teaser' do
-      subject.should be_invalid
-      subject.errors.should include(:teaser)
-    end
-
-    it 'should be invalid without a body' do
-      subject.should be_invalid
-      subject.errors.should include(:body)
-    end
+    it { news.should validate_presence_of(:title) }
+    it { news.should validate_presence_of(:body) }
+    it { news.should validate_presence_of(:user_id) }
   end
 
   describe '#to_param' do
-    # reload to reset sequence => make sure title-1 matches
-    # (otherwise depends on order of tests)
-    before { FactoryGirl.reload }
-
-    subject { create(:news) }
-
     it 'returns a slug' do
-      subject.to_param.should eq("#{subject.id}-random-news-title-1")
+      news.to_param.should start_with("#{news.id}-random-news-title")
     end
   end
 
   describe '#published?' do
-    let(:news)              { create(:news) }
-    let(:unpublished_news)  { create(:news, :unpublished) }
-    let(:upcoming_news)     { create(:news, :upcoming) }
-
     it { news.published?.should be_true }
     it { unpublished_news.published?.should be_false }
     it { upcoming_news.published?.should be_false }
   end
 
   describe 'scopes' do
-    let(:news)              { create(:news) }
-    let(:private_news)      { create(:news, :members_only) }
-    let(:unpublished_news)  { create(:news, :unpublished) }
-    let(:upcoming_news)     { create(:news, :upcoming) }
-
     context 'when internal-flag is used' do
       subject { News.ffa.all }
 
