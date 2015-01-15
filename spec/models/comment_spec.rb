@@ -16,12 +16,31 @@
 require 'spec_helper'
 
 describe Comment do
-  subject { create :news_comment, :anonymous }
+  let!(:user) { create :user }
+
+  let!(:anonymous_news_comment) { create :news_comment, :anonymous }
+  let!(:user_news_comment) { create :news_comment, user: user }
+
   describe 'Validation' do
-    it 'has a valid factory' do
-      subject.should be_valid
+    it { anonymous_news_comment.should be_valid }
+    it { user_news_comment.should be_valid }
+    it { should validate_presence_of(:body) }
+  end
+
+  describe 'Methods' do
+    it { anonymous_news_comment.guest_comment.should be_true }
+    it { user_news_comment.guest_comment.should be_false }
+
+    it 'active anonymous news comment' do
+      anonymous_news_comment.active?.should be_false
+      anonymous_news_comment.activate!
+      anonymous_news_comment.active?.should be_true
     end
 
-    it { should validate_presence_of(:body) }
+    it 'deactive user news comment' do
+      user_news_comment.active?.should be_true
+      user_news_comment.deactivate!
+      user_news_comment.active?.should be_false
+    end
   end
 end

@@ -29,7 +29,7 @@ class Comment < ActiveRecord::Base
 
   attr_accessible :body, :username, :news_id, :user_id
 
-  before_save :activate, unless: :guest_comment
+  before_create :activate, unless: :guest_comment
 
   def guest_comment
     user_id.nil?
