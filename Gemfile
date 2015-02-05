@@ -29,6 +29,7 @@ gem 'will_paginate-bootstrap'
 gem 'breadcrumbs_on_rails'
 
 gem 'omniauth'
+gem 'omniauth-oauth2', '~> 1.2'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
