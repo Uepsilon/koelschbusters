@@ -242,9 +242,7 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = "/my_engine/users/auth"
 
-
   config.secret_key = '13db32a6d16ab9c44e27a709f413b1fe751e4bb53f4ebb2d181c7fa690bdb388b35312f8cabd76c2b3c0193f41a4076b7013da13515a12089a55479cf420f1f0'
-
 
   # OAUTH2 for google
   config.omniauth :google_oauth2, Figaro.env.google_app_id, Figaro.env.google_app_secret, { access_type: "offline", approval_prompt: "" }
