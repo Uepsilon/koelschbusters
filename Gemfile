@@ -1,26 +1,23 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.18'
+gem 'rails', '4.2'
 
 gem 'pg'
 gem 'devise'
-gem 'cancan'
+gem 'cancancan'
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'bootstrap-sass'
-  gem 'uglifier'
-  gem 'turbo-sprockets-rails3'
-end
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'bootstrap-sass'
+gem 'uglifier'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'jquery-ui-sass-rails'
+# gem 'jquery-ui-sass-rails'
 gem 'haml-rails'
-gem 'ckeditor', '4.0.7'
+gem 'ckeditor'
 gem 'paperclip'
 gem 'therubyracer'
 gem 'html_truncator'
@@ -35,18 +32,15 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'whenever', require: false
 
-gem 'rails-i18n', '~> 3.0.0' # For 3.x
-gem 'hirb'
-
 group :development do
+  gem 'quiet_assets'
   gem 'letter_opener'
   gem 'capistrano-rails'
 end
 
 group :development, :test do
-  gem 'quiet_assets'
-  gem 'rspec-rails', '2.14.1'
-  # gem 'debugger'
+  gem 'pry'
+  gem 'rspec-rails'
   gem 'forgery'
   # Puma Server
   gem 'puma'
@@ -54,15 +48,12 @@ group :development, :test do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'coveralls', require: false
+  gem 'guard-rspec'
 end
 
 group :test do
   gem 'shoulda-matchers'
   gem 'capybara'
-  gem 'simplecov'
+  gem 'coveralls', require: false
   gem 'factory_girl_rails'
 end
-
-# Configuration
-gem 'figaro'
