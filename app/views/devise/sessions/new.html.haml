@@ -3,19 +3,19 @@
     %h2.title Einloggen
     = form_for resource, as: resource_name, url: session_path(resource_name), html: {class: "form-horizontal"} do |f|
       .form-group
-        = f.label :email, class: "col-sm-2  control-label"
-        .col-sm-10= f.email_field :email, autofocus: true, class: "form-control", placeholder: "E-Mail Adresse"
+        = f.label :email, class: "col-sm-3 control-label"
+        .col-sm-9= f.email_field :email, autofocus: true, class: "form-control", placeholder: "E-Mail Adresse"
       .form-group
-        = f.label :password, class: "col-sm-2  control-label"
-        .col-sm-10= f.password_field :password, class: "form-control", placeholder: "Password"
+        = f.label :password, class: "col-sm-3 control-label"
+        .col-sm-9= f.password_field :password, class: "form-control", placeholder: "Password"
       .form-group
-        .col-sm-offset-2.col-sm-10
+        .col-sm-offset-3.col-sm-9
           .checkbox
             %label
               = f.check_box(:remember_me)
               Eingeloggt bleiben
       .form-group
-        .col-sm-offset-2.col-sm-10
+        .col-sm-offset-3.col-sm-9
           = f.submit t('links.general.login'), class: "btn btn-default btn-success"
           = link_to t('links.general.forgot_password'), new_password_path(resource_name), class: "btn btn-default btn-danger"
   .well

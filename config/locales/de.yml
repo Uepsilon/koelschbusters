@@ -336,6 +336,8 @@ de:
         city:       Ort
         member_active: Aktiv
         current_password: Aktuelles Passwort
+        password: Neues Passwort
+        password_confirmation: Passwort bestätigen
       category:
         title:      Titel
         slug:       URL-Format
