@@ -5,7 +5,7 @@ class Admin::ApplicationController < ApplicationController
 
   add_breadcrumb I18n.t('links.dashboard'), :admin_root_path
 
-  protected
+  private
 
   def authorize_admin
     authorize! :access, :admin

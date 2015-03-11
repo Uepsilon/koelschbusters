@@ -13,7 +13,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     process_auth_result(:facebook)
   end
 
-  protected
+  private
 
   def process_auth_result(provider)
     @provider_name = provider.to_s.capitalize

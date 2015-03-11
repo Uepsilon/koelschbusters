@@ -3,16 +3,16 @@ Koelschbusters::Application.configure do
 
   # The test environment is used exclusively to run your application's
   # test suite. You never need to work with it otherwise. Remember that
-  # your test database is "scratch space" for the test suite and is wiped
+  # your test database is 'scratch space' for the test suite and is wiped
   # and recreated between test runs. Don't rely on the data there!
   config.cache_classes = true
 
   # Configure static asset server for tests with Cache-Control for performance
-  config.serve_static_assets = true
-  config.static_cache_control = "public, max-age=3600"
+  config.serve_static_files = true
+  config.static_cache_control = 'public, max-age=3600'
 
   # Log error messages when you accidentally call methods on nil
-  config.whiny_nils = true
+  config.eager_load = false
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
@@ -29,37 +29,34 @@ Koelschbusters::Application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
-  # Raise exception on mass assignment protection for Active Record models
-  config.active_record.mass_assignment_sanitizer = :strict
-
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
 end
 
 OmniAuth.config.test_mode = true
 
-OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
-  :provider => 'twitter',
-  :uid => '12345',
-  :info => {
-    :nickname => 'TestUser'
+OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new(
+  provider: 'twitter',
+  uid: '12345',
+  info: {
+    nickname: 'TestUser'
   }
-});
+)
 
-OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
-  :provider => 'google_oauth2',
-  :uid => '12345',
-  :info => {
-    :name => "TestUser"
+OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(
+  provider: 'google_oauth2',
+  uid: '12345',
+  info: {
+    name: 'TestUser'
   }
-});
+)
 
-OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
-  :provider => 'facebook',
-  :uid => '12345',
-  :info => {
-    :name => 'TestUser'
+OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(
+  provider: 'facebook',
+  uid: '12345',
+  info: {
+    name: 'TestUser'
   }
-});
+)

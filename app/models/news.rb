@@ -25,10 +25,8 @@ class News < ActiveRecord::Base
   belongs_to :category
   has_many :comments, as: :commentable, dependent: :destroy
 
-  attr_accessible :user, :body, :teaser, :title, :published_at, :internal, :category_id
-
   scope :published, -> { where('news.published_at <= ?', Time.now) }
-  scope :ffa, where(internal: false)
+  scope :ffa, -> { where internal: false }
 
   before_validation :find_teaser
 
@@ -57,25 +55,21 @@ class News < ActiveRecord::Base
     notified_at.present?
   end
 
-  protected
+  private
 
   def notify_members
     return if public? || !published? || notified?
 
     User.all.each do |user|
-      NewsMailer.notification(user, self).deliver
+      NewsMailer.notification(user, self).deliver_now
     end
 
     self.notified_at = Time.now
-    self.save!
+    save!
   end
 
   def find_teaser
     # Let's take the first 100 Words
     self.teaser = HTML_Truncator.truncate(body, 100)
-  end
-
-  def slugify
-    Slugify.slugify title
   end
 end

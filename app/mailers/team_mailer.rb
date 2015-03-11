@@ -1,5 +1,5 @@
 class TeamMailer < ActionMailer::Base
-  default from:   Figaro.env.noreply_email
+  default from:   Rails.application.secrets.noreply_email
 
   def comment_reminder(user, inactive_comment_count)
     @inactive_comment_count = inactive_comment_count

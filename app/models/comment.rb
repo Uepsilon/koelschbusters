@@ -17,17 +17,15 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :commentable, polymorphic: true
 
-  scope :inactive, where(activated_at: nil)
+  scope :inactive, -> { where activated_at: nil }
 
-  default_scope order('created_at DESC')
+  default_scope -> { order created_at: :desc }
 
   validates :username, presence: true, if: :guest_comment
   validates :user_id, presence: true, unless: :guest_comment
 
   validates :body, presence: true
   validates :commentable_id, presence: true
-
-  attr_accessible :body, :username, :news_id, :user_id
 
   before_create :activate, unless: :guest_comment
 
@@ -56,7 +54,7 @@ class Comment < ActiveRecord::Base
   def self.team_reminder
     if inactive.count > 0
       User.where(role: [:admin, :management]).each do |user|
-        TeamMailer.comment_reminder(user, inactive.count).deliver
+        TeamMailer.comment_reminder(user, inactive.count).deliver_now
       end
     end
   end

@@ -1,4 +1,3 @@
-# encoding: UTF-8
 class Admin::NewsController < Admin::ApplicationController
   load_and_authorize_resource
 
@@ -6,7 +5,6 @@ class Admin::NewsController < Admin::ApplicationController
 
   def index
     @news = @news.joins(:category).where(categories: { id: params[:category] }) unless params[:category].nil?
-
     @news = @news.order('id DESC').paginate page: params[:page], per_page: 5
   end
 
@@ -32,7 +30,7 @@ class Admin::NewsController < Admin::ApplicationController
   def update
     add_breadcrumb I18n.t('links.news.edit'), [:edit, :admin, @news]
 
-    if @news.update_attributes params[:news]
+    if @news.update news_params
       redirect_to :admin_news_index
     else
       render :edit
@@ -45,7 +43,7 @@ class Admin::NewsController < Admin::ApplicationController
   end
 
   def publish
-    if @news.update_attributes(published_at: DateTime.now)
+    if @news.update(published_at: DateTime.now)
       flash[:notice] = 'News wurde veröffentlicht.'
       expire_fragment controller: 'news', action: 'index', action_suffix: 'news'
     else
@@ -56,7 +54,7 @@ class Admin::NewsController < Admin::ApplicationController
   end
 
   def unpublish
-    if @news.update_attributes(published_at: nil)
+    if @news.update(published_at: nil)
       flash[:notice] = 'Veröffentlichung der News wurde zurück gezogen.'
       expire_fragment controller: 'news', action: 'index', action_suffix: 'news'
     else
@@ -64,5 +62,11 @@ class Admin::NewsController < Admin::ApplicationController
     end
 
     redirect_to :admin_news_index
+  end
+
+  private
+
+  def news_params
+    params.require(:news).permit(:body, :teaser, :title, :internal, :category_id)
   end
 end

@@ -3,36 +3,34 @@
     %h2.title Profil bearbeiten
     = form_for @user, html: {class: "form-horizontal"} do |f|
       .form-group
-        .col-sm-5
+        .col-xs-6
           = f.label :first_name, class: "sr-only"
           = f.text_field :first_name, class: "form-control", placeholder: "Vorname"
-      .form-group
-        .col-sm-5
+        .col-xs-6
           = f.label :last_name, class: "sr-only"
           = f.text_field :last_name, class: "form-control", placeholder: "Nachname"
       .form-group
-        .col-xs-3
+        .col-xs-8
           = f.label :street, class: "sr-only"
           = f.text_field :street, class: "form-control", placeholder: "Straße"
-        .col-xs-2
+        .col-xs-4
           = f.label :houseno, class: "sr-only"
           = f.text_field :houseno, class: "form-control", placeholder: "Hausnummer"
       .form-group
-        .col-xs-2
+        .col-xs-4
           = f.label :zipcode, class: "sr-only"
           = f.text_field :zipcode, class: "form-control", placeholder: "PLZ", maxlength: 5
-        .col-xs-3
+        .col-xs-8
           = f.label :city, class: "sr-only"
           = f.text_field :city, class: "form-control", placeholder: "Ort"
       .form-group
-        .col-sm-5
+        .col-xs-6
           = f.label :phone, class: "sr-only"
           = f.text_field :phone, class: "form-control", placeholder: "Telefonnummer"
-      .form-group
-        .col-sm-5
+        .col-xs-6
           = f.label :mobile, class: "sr-only"
           = f.text_field :mobile, class: "form-control", placeholder: "Handynummer"
       .form-group
-        .col-sm-12
+        .col-xs-12
           = f.submit "Änderungen speichern", class: "btn btn-success"
           = link_to "Änderungen verwerfen", current_user, class: "btn btn-danger"

@@ -1,11 +1,7 @@
-# encoding: UTF-8
 class Admin::GalleriesController < Admin::ApplicationController
   load_and_authorize_resource
 
   add_breadcrumb I18n.t('links.gallery.index'), [:admin, :galleries]
-
-  def index
-  end
 
   def new
     add_breadcrumb I18n.t('links.gallery.new'), [:new, :admin, :gallery]
@@ -15,7 +11,7 @@ class Admin::GalleriesController < Admin::ApplicationController
     add_breadcrumb I18n.t('links.gallery.new'), [:new, :admin, :gallery]
 
     if @gallery.save
-      flash[:notice] = "Gallerie wurde erstellt."
+      flash[:notice] = 'Gallerie wurde erstellt.'
       redirect_to :admin_galleries
     else
       render :new
@@ -29,8 +25,8 @@ class Admin::GalleriesController < Admin::ApplicationController
   def update
     add_breadcrumb I18n.t('links.gallery.edit'), [:edit, :admin, @gallery]
 
-    if @gallery.update_attributes params[:gallery]
-      flash[:notice] = "Gallerie wurde aktualisiert."
+    if @gallery.update gallery_params
+      flash[:notice] = 'Gallerie wurde aktualisiert.'
       redirect_to :admin_galleries
     else
       render :edit
@@ -39,7 +35,7 @@ class Admin::GalleriesController < Admin::ApplicationController
 
   def destroy
     @gallery.destroy
-    flash[:notice] = "Gallerie wurde gelöscht."
+    flash[:notice] = 'Gallerie wurde gelöscht.'
     redirect_to :admin_galleries
   end
 
@@ -49,7 +45,13 @@ class Admin::GalleriesController < Admin::ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: {success: true }}
+      format.json { render json: { success: true } }
     end
+  end
+
+  private
+
+  def gallery_params
+    params.require(:gallery).permit(:title)
   end
 end

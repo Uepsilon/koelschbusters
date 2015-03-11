@@ -55,18 +55,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :rememberable, :confirmable,
          :trackable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2, :twitter, :facebook]
 
-  attr_accessible :email, :email_confirmation,
-                  :password, :password_confirmation, :current_password,
-                  :remember_me,
-                  :first_name, :last_name,
-                  :role,
-                  :phone, :mobile,
-                  :member_active,
-                  :street, :houseno, :zipcode, :city,
-                  :google_uid, :google_name,
-                  :twitter_uid, :twitter_name,
-                  :facebook_uid, :facebook_name
-
   attr_accessor :email_confirmation
   attr_accessor :uncrypt_password
 
@@ -127,7 +115,7 @@ class User < ActiveRecord::Base
     (street.present? && houseno.present?) && (city.present? || zipcode.present?)
   end
 
-  protected
+  private
 
   def random_password
     # Create random password if password not set
@@ -161,6 +149,6 @@ class User < ActiveRecord::Base
 
   # welcome email
   def send_on_create_confirmation_instructions
-    ContactMailer.welcome_instructions(self, @raw_confirmation_token).deliver
+    ContactMailer.welcome_instructions(self, @raw_confirmation_token).deliver_now
   end
 end

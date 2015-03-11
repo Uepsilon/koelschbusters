@@ -17,7 +17,7 @@
 #= require jquery.fancybox.pack
 #= require jquery.fancybox-buttons
 #= require jquery.fancybox-media
-#= require jquery.ui.all
+#= require jquery-ui
 #= require_tree .
 
 $ ->

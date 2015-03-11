@@ -7,37 +7,37 @@
   %table.address
     %tr
       %th Straße
-      %td= Figaro.env.contact_street
+      %td= Rails.application.secrets.contact_street
     %tr
       %th Ort
-      %td= Figaro.env.contact_city
+      %td= Rails.application.secrets.contact_city
 
   %h4.title Vertreten durch den Vorstand
   %table.person
     %tr
       %th Name
-      %td= Figaro.env.president_name
+      %td= Rails.application.secrets.president_name
     %tr
       %th Email
-      %td= ApplicationHelper.email_antispam Figaro.env.president_email
+      %td= ApplicationHelper.email_antispam Rails.application.secrets.president_email
 
   %h4.title Betreiber
   %table.person
     %tr
       %th Name
-      %td= Figaro.env.admin_name
+      %td= Rails.application.secrets.admin_name
     %tr
       %th Email
-      %td= ApplicationHelper.email_antispam Figaro.env.admin_email
+      %td= ApplicationHelper.email_antispam Rails.application.secrets.admin_email
 
   %h4.title Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:
   %table.person
     %tr
       %th Name
-      %td= Figaro.env.journalist_name
+      %td= Rails.application.secrets.journalist_name
     %tr
       %th Email
-      %td= ApplicationHelper.email_antispam Figaro.env.journalist_email
+      %td= ApplicationHelper.email_antispam Rails.application.secrets.journalist_email
 
   %h4.title Bildnachweis
   %p

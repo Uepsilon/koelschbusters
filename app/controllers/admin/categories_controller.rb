@@ -28,7 +28,7 @@ class Admin::CategoriesController < Admin::ApplicationController
   def update
     add_breadcrumb I18n.t('links.categories.edit'), [:edit, :admin, @category]
 
-    if @category.update_attributes params[:category]
+    if @category.update category_params
       flash[:notice] = I18n.t('flash.categories.updated')
       redirect_to :admin_categories
     else
@@ -41,5 +41,11 @@ class Admin::CategoriesController < Admin::ApplicationController
     flash[:notice] = I18n.t('flash.categories.deleted')
 
     redirect_to :admin_categories
+  end
+
+  private
+
+  def category_params
+    params.require(:category).permit(:title)
   end
 end

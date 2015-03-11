@@ -1,6 +1,6 @@
 class Admin::UsersController < Admin::ApplicationController
   load_and_authorize_resource
-  before_filter :check_not_self, :only => [:edit, :update, :destroy]
+  before_filter :check_not_self, only: %i(edit update destroy)
   add_breadcrumb I18n.t('links.users.index'), [:admin, :users]
 
   def index
@@ -24,7 +24,6 @@ class Admin::UsersController < Admin::ApplicationController
 
   def edit
     add_breadcrumb I18n.t('links.users.edit'), [:edit, :admin, @user]
-
   end
 
   def update
@@ -32,7 +31,7 @@ class Admin::UsersController < Admin::ApplicationController
 
     @user.skip_reconfirmation!
 
-    if @user.update_attributes params[:user]
+    if @user.update user_params
       flash[:notice] = I18n.t('flash.users.updated')
       redirect_to :admin_users
     else
@@ -47,12 +46,17 @@ class Admin::UsersController < Admin::ApplicationController
     redirect_to :admin_users
   end
 
-  protected
+  private
+
+  def user_params
+    params.require(:user).permit(:email, :first_name, :last_name, :phone, :mobile,
+                                 :street, :houseno, :zipcode, :city, :member_active, :role)
+  end
 
   def check_not_self
-    unless @user.id != current_user.id
-      flash[:warning] = I18n.t('flash.users.cannot_edit_yourself')
-      redirect_to :admin_users
-    end
+    return if  @user.id != current_user.id
+
+    flash[:warning] = I18n.t('flash.users.cannot_edit_yourself')
+    redirect_to :admin_users
   end
 end

@@ -1,37 +1,43 @@
 class Ckeditor::PicturesController < Ckeditor::ApplicationController
-  before_filter :find_asset, :only => [:destroy, :show]
-
   def index
-    @pictures = Ckeditor.picture_model.all
-    respond_with(@pictures)
-  end
+    @pictures = Ckeditor.picture_adapter.find_all(ckeditor_pictures_scope)
+    @pictures = Ckeditor::Paginatable.new(@pictures).page(params[:page])
 
-  def show
-    if can? :read, @picture
-      send_file @picture.data.path(params[:style]), :type => @picture.data_content_type, :disposition => 'inline'
-    else
-      render :nothing => true
+    respond_to do |format|
+      format.html { render layout: @pictures.first_page? }
     end
   end
 
   def create
-    @picture = Ckeditor::Picture.new
-    respond_with_asset @picture
+    @picture = Ckeditor.picture_model.new
+    respond_with_asset(@picture)
   end
 
   def destroy
     @picture.destroy
-    respond_with(@picture, :location => pictures_path)
+
+    respond_to do |format|
+      format.html { redirect_to pictures_path }
+      format.json { render nothing: true, status: 204 }
+    end
+  end
+
+  def show
+    if can? :read, @picture
+      send_file @picture.data.path(params[:style]), type: @picture.data_content_type, disposition: 'inline'
+    else
+      render nothing: true
+    end
   end
 
   protected
 
-    def find_asset
-      @picture = Ckeditor.picture_model.find params[:id]
-    end
+  def find_asset
+    @picture = Ckeditor.picture_adapter.get!(params[:id])
+  end
 
-    def authorize_resource
-      model = (@picture || Ckeditor::Picture)
-      @authorization_adapter.try(:authorize, params[:action], model)
-    end
+  def authorize_resource
+    model = (@picture || Ckeditor.picture_model)
+    @authorization_adapter.try(:authorize, params[:action], model)
+  end
 end

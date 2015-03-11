@@ -11,7 +11,7 @@ class Admin::CommentsController < Admin::ApplicationController
     @comment.activate!
 
     respond_to do |format|
-      format.html{ redirect_to admin_comments, notice: "Kommentar aktiviert"}
+      format.html{ redirect_to admin_comments, notice: 'Kommentar aktiviert'}
       format.js { render :activate }
     end
   end
@@ -20,7 +20,7 @@ class Admin::CommentsController < Admin::ApplicationController
     @comment.deactivate!
 
     respond_to do |format|
-      format.html{ redirect_to admin_comments, notice: "Kommentar deaktiviert"}
+      format.html{ redirect_to admin_comments, notice: 'Kommentar deaktiviert'}
       format.js { render :deactivate }
     end
   end

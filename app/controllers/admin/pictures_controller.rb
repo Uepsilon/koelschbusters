@@ -1,4 +1,3 @@
-# encoding: UTF-8
 class Admin::PicturesController < Admin::ApplicationController
   load_and_authorize_resource :gallery
   load_and_authorize_resource :picture, through: :gallery
@@ -20,7 +19,7 @@ class Admin::PicturesController < Admin::ApplicationController
     add_breadcrumb I18n.t('links.picture.new'), [:new, :admin, @gallery, :picture]
 
     if @picture.save
-      flash[:notice] = "Bild wurde erstellt."
+      flash[:notice] = 'Bild wurde erstellt.'
       redirect_to [:admin, @gallery, :pictures]
     else
       render :new
@@ -36,8 +35,8 @@ class Admin::PicturesController < Admin::ApplicationController
     add_breadcrumb @gallery.title, [:admin, @gallery, :pictures]
     add_breadcrumb I18n.t('links.picture.edit'), [:edit, :admin, @gallery, @picture]
 
-    if @picture.update_attributes params[:picture]
-      flash[:notice] = "Bild wurde aktualisiert."
+    if @picture.update picture_params
+      flash[:notice] = 'Bild wurde aktualisiert.'
       redirect_to [:admin, @gallery, :pictures]
     else
       render :edit
@@ -46,7 +45,7 @@ class Admin::PicturesController < Admin::ApplicationController
 
   def destroy
     @picture.destroy
-    flash[:notice] = "Bild wurde gelöscht."
+    flash[:notice] = 'Bild wurde gelöscht.'
     redirect_to [:admin, @gallery, :pictures]
   end
 
@@ -66,7 +65,13 @@ class Admin::PicturesController < Admin::ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: {success: true }}
+      format.json { render json: {success: true } }
     end
+  end
+
+  private
+
+  def picture_params
+    params.require(:picture).permit(:internal, :picture)
   end
 end

@@ -13,12 +13,11 @@
 class Gallery < ActiveRecord::Base
   include Slugify
 
-  has_many :pictures, dependent: :destroy, order: 'created_at ASC'
-  attr_accessible :title
+  has_many :pictures, -> { order created_at: :asc }, dependent: :destroy
 
   validates :title, presence: true
 
-  default_scope order(:position)
+  default_scope -> { order position: :asc }
 
   before_create :set_position
 
@@ -45,11 +44,5 @@ class Gallery < ActiveRecord::Base
   def set_position
     self.position = 0
     self.position = Gallery.maximum(:position) + 1 if Gallery.maximum(:position)
-  end
-
-  protected
-
-  def slugify
-    Slugify.slugify title
   end
 end

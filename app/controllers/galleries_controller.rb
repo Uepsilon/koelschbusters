@@ -13,7 +13,7 @@ class GalleriesController < ApplicationController
     end
   end
 
-  protected
+  private
 
   def load_galleries
     @galleries = Gallery.select('galleries.*, MAX(pictures.created_at) AS latest_pic').joins(:pictures).order('latest_pic DESC').group('galleries.id')

@@ -245,11 +245,11 @@ Devise.setup do |config|
   config.secret_key = '13db32a6d16ab9c44e27a709f413b1fe751e4bb53f4ebb2d181c7fa690bdb388b35312f8cabd76c2b3c0193f41a4076b7013da13515a12089a55479cf420f1f0'
 
   # OAUTH2 for google
-  config.omniauth :google_oauth2, Figaro.env.google_app_id, Figaro.env.google_app_secret, { access_type: "offline", approval_prompt: "" }
+  config.omniauth :google_oauth2, Rails.application.secrets.google_app_id, Rails.application.secrets.google_app_secret, { access_type: "offline", approval_prompt: "" }
 
   # OAUTH2 for twitter
-  config.omniauth :twitter, Figaro.env.twitter_app_id, Figaro.env.twitter_app_secret
+  config.omniauth :twitter, Rails.application.secrets.twitter_app_id, Rails.application.secrets.twitter_app_secret
 
   # OAUTH2 for facebook
-  config.omniauth :facebook, Figaro.env.facebook_app_id, Figaro.env.facebook_app_secret
+  config.omniauth :facebook, Rails.application.secrets.facebook_app_id, Rails.application.secrets.facebook_app_secret
 end

@@ -23,20 +23,9 @@ class Ability
 
     # CKEDITOR
     can :access, :ckeditor   # needed to access Ckeditor filebrowser
-    can [:read, :create, :destroy], Ckeditor::Picture
-    can [:read, :create, :destroy], Ckeditor::AttachmentFile
+    can :manage, [Ckeditor::Picture, Ckeditor::AttachmentFile]
 
-    # management + admin can manage all users
-    can :manage, User
-
-    # Creating News
-    can :manage, News
-
-    can :manage, Picture
-    can :manage, Gallery
-    can :manage, Category
-
-    can :manage, Comment
+    can :manage, [User, News, Picture, Gallery, Category, Comment]
   end
 
   def member

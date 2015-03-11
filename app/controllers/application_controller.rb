@@ -10,29 +10,27 @@ class ApplicationController < ActionController::Base
     rescue_from ActionController::UnknownController, with: :render_404
   end
 
-  protected
-
   def render_401(exception = nil)
-    @not_found_path = exception.message unless exception.nil?
-    render_errors(401, 'access_denied')
+    render_errors 401, :access_denied, exception
   end
 
   def render_404(exception = nil)
-    @not_found_path = exception.message unless exception.nil?
-    render_errors(404, 'not_found')
+    render_errors 404, :not_found, exception
   end
 
-  def render_422(exception = nil)
-    @not_found_path = exception.message unless exception.nil?
+  def render_422(_exception = nil)
     render nothing: true, status: 422
   end
 
   def render_500(exception = nil)
-    logger.debug exception.backtrace.join("\n") unless exception.nil?
-    render_errors(500, 'internal_server_error')
+    render_errors 500, :internal_server_error, exception
   end
 
-  def render_errors(status, error)
+  private
+
+  def render_errors(status, error, exception)
+    logger.debug exception.backtrace.join("\n") unless exception.nil?
+
     respond_to do |format|
       format.html { render "errors/#{error}", layout: 'layouts/application', status: status }
       format.all { render nothing: true, status: status }
