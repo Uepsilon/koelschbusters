@@ -42,7 +42,7 @@ describe Gallery do
       galleries.should include gallery_with_pictures
       galleries.each do |gallery|
         gallery.public_pictures.each do |picture|
-          picture.internal.should_not be_true
+          picture.internal.should_not be true
         end
       end
     end

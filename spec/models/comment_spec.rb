@@ -28,19 +28,19 @@ describe Comment do
   end
 
   describe 'Methods' do
-    it { anonymous_news_comment.guest_comment.should be_true }
-    it { user_news_comment.guest_comment.should be_false }
+    it { anonymous_news_comment.guest_comment.should be true }
+    it { user_news_comment.guest_comment.should be false }
 
     it 'active anonymous news comment' do
-      anonymous_news_comment.active?.should be_false
+      anonymous_news_comment.active?.should be false
       anonymous_news_comment.activate!
-      anonymous_news_comment.active?.should be_true
+      anonymous_news_comment.active?.should be true
     end
 
     it 'deactive user news comment' do
-      user_news_comment.active?.should be_true
+      user_news_comment.active?.should be true
       user_news_comment.deactivate!
-      user_news_comment.active?.should be_false
+      user_news_comment.active?.should be false
     end
   end
 end

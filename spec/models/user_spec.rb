@@ -69,15 +69,15 @@ describe User do
 
     it 'is invalid without an email_confirmation when email changes' do
       user = create(:user)
-      user.update_attributes(email: 'email@changed.com', email_confirmation: '')
+      user.update(email: 'email@changed.com', email_confirmation: '')
 
       user.should be_invalid
-      user.errors.should include(:email)
+      user.errors.should include(:email_confirmation)
     end
 
     it 'is invalid without a password_confirmation when password changes' do
       user = create(:user)
-      user.update_attributes(password: 'NewPassword123')
+      user.update(password: 'NewPassword123')
 
       user.should be_invalid
       user.errors.should include(:password_confirmation)
@@ -152,7 +152,7 @@ describe User do
       user.save
 
       user.should_not be_valid
-      user.errors.should include(:email)
+      user.errors.should include(:email_confirmation)
 
       user.email_confirmation   = 'TestEmailAddress@Example.com'
       user.skip_reconfirmation!
@@ -184,25 +184,25 @@ describe User do
     context 'when role is member' do
       subject { create(:user) }
 
-      it { subject.role?(:member).should be_true }
-      it { subject.role?(:management).should be_false }
-      it { subject.role?(:admin).should be_false }
+      it { subject.role?(:member).should be true }
+      it { subject.role?(:management).should be false }
+      it { subject.role?(:admin).should be false }
     end
 
     context 'when role is management' do
       subject { create(:user, :management) }
 
-      it { subject.role?(:member).should be_true }
-      it { subject.role?(:management).should be_true }
-      it { subject.role?(:admin).should be_false }
+      it { subject.role?(:member).should be true }
+      it { subject.role?(:management).should be true }
+      it { subject.role?(:admin).should be false }
     end
 
     context 'when role is admin' do
       subject { create(:user, :admin) }
 
-      it { subject.role?(:member).should be_true }
-      it { subject.role?(:management).should be_true }
-      it { subject.role?(:admin).should be_true }
+      it { subject.role?(:member).should be true }
+      it { subject.role?(:management).should be true }
+      it { subject.role?(:admin).should be true }
     end
   end
 

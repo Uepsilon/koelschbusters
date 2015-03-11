@@ -40,9 +40,9 @@ describe News do
   end
 
   describe '#published?' do
-    it { news.published?.should be_true }
-    it { unpublished_news.published?.should be_false }
-    it { upcoming_news.published?.should be_false }
+    it { news.published?.should be true }
+    it { unpublished_news.published?.should be false }
+    it { upcoming_news.published?.should be false }
   end
 
   describe 'scopes' do

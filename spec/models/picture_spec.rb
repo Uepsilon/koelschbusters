@@ -39,17 +39,17 @@ describe Picture do
     let(:picture) { create(:picture) }
     let(:published_picture) { create(:public_picture) }
 
-    it { picture.public?.should be_false }
-    it { published_picture.public?.should be_true }
+    it { picture.public?.should be false }
+    it { published_picture.public?.should be true }
   end
 
   describe 'publish' do
     let(:picture) { create(:picture) }
 
     it 'should be public after publishing' do
-      picture.public?.should be_false
+      picture.public?.should be false
       picture.publish
-      picture.public?.should be_true
+      picture.public?.should be true
     end
   end
 
@@ -57,9 +57,9 @@ describe Picture do
     let(:picture) { create(:public_picture) }
 
     it 'should be public after publishing' do
-      picture.public?.should be_true
+      picture.public?.should be true
       picture.unpublish
-      picture.public?.should be_false
+      picture.public?.should be false
     end
   end
 end
