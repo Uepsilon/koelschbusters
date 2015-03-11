@@ -8,8 +8,8 @@ set :user, 'koelschb'
 set :repo_url,  'git@github.com:Uepsilon/koelschbusters.git'
 set :deploy_to, '/var/www/virtual/koelschb/rails/koelschbusters/'
 
-set :linked_files, %w{config/database.yml config/application.yml}
-set :linked_dirs, %w{bin log tmp vendor/bundle public/system public/assets}
+set :linked_files, %w(config/database.yml config/application.yml)
+set :linked_dirs, %w(bin log tmp vendor/bundle public/system public/assets)
 
 set :bundle_path, -> { '~/.gem' }
 set :bundle_binstubs, nil
@@ -43,8 +43,8 @@ namespace :symlink do
   desc 'Symlinks shared folder'
   task :pictures do
     on roles(:app) do
-      execute "mkdir -p #{current_path.join("shared", "production")}"
-      execute "ln -s #{shared_path.join('pictures')} #{current_path.join("shared", fetch(:rails_env).to_s, "pictures")}"
+      execute "mkdir -p #{current_path.join('shared', 'production')}"
+      execute "ln -s #{shared_path.join('pictures')} #{current_path.join('shared', fetch(:rails_env).to_s, 'pictures')}"
     end
   end
 end
