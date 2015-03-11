@@ -19,7 +19,7 @@ Koelschbusters::Application.routes.draw do
 
   devise_scope :users do
     get :edit_login, to: 'users#edit_login', path: 'profil/login'
-    put :update_login, to: 'users#update_login', path: 'profil/login'
+    patch :update_login, to: 'users#update_login', path: 'profil/login'
     delete 'profil/:provider' => 'users#remove_oauth', as: :delete_oauth
   end
 
@@ -71,6 +71,5 @@ Koelschbusters::Application.routes.draw do
     resources :categories, except: :show
   end
 
-  match "*path", to: "application#render_404", via: :all
-
+  match '*path', to: 'application#render_404', via: :all
 end
