@@ -54,12 +54,6 @@ module Koelschbusters
 
     config.assets.initialize_on_precompile = false
 
-    # Add Fonts-Path to Assets
-    config.assets.paths += Dir[Rails.root.join('app', 'assets', 'fonts')]
-
-    # Precompile additional assets
-    config.assets.precompile += %w( .svg .eot .woff .ttf )
-
     config.exceptions_app = self.routes
   end
 end

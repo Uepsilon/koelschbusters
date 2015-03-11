@@ -23,7 +23,6 @@ Koelschbusters::Application.configure do
   config.eager_load = true
   config.assets.js_compressor = :uglifier
 
-
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
@@ -35,7 +34,7 @@ Koelschbusters::Application.configure do
   # config.force_ssl = true
 
   # See everything in the log (default is :info)
-  # config.log_level = :debug
+  config.log_level = :info
 
   # Prepend all log lines with the following tags
   # config.log_tags = [ :subdomain, :uuid ]
