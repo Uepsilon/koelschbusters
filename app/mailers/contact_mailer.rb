@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class ContactMailer < ActionMailer::Base
-  default from:   Rails.application.secrets.noreply_email
-  default to:     Rails.application.secrets.contact_email
+  default from: Rails.application.secrets.noreply_email
+  default to: Rails.application.secrets.contact_email
 
   def contact_email(details)
     @details = details

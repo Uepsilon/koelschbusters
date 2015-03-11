@@ -8,7 +8,7 @@ set :user, 'koelschb'
 set :repo_url,  'git@github.com:Uepsilon/koelschbusters.git'
 set :deploy_to, '/var/www/virtual/koelschb/rails/koelschbusters/'
 
-set :linked_files, %w(config/database.yml config/application.yml)
+set :linked_files, %w(config/database.yml config/secrets.yml)
 set :linked_dirs, %w(bin log tmp vendor/bundle public/system public/assets)
 
 set :bundle_path, -> { '~/.gem' }
@@ -17,7 +17,6 @@ set :bundle_binstubs, nil
 # Suppress all those debug messages
 set :log_level, :info
 
-#set :default_env, { path: "~/.gem/ruby/2.0.0/bin:$PATH" }
 SSHKit.config.command_map[:rake]  = 'bundle exec rake'
 SSHKit.config.command_map[:rails] = 'bundle exec rails'
 
@@ -38,7 +37,6 @@ namespace :deploy do
     end
   end
 end
-
 namespace :symlink do
   desc 'Symlinks shared folder'
   task :pictures do

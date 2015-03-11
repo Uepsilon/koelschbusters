@@ -1,5 +1,5 @@
 class NewsMailer < ActionMailer::Base
-  default from:   Rails.application.secrets.noreply_email
+  default from: Rails.application.secrets.noreply_email
 
   def notification(user, news)
     @news = news
