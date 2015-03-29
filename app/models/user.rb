@@ -46,6 +46,14 @@ class User < ActiveRecord::Base
     facebook:       :facebook
   }
 
+  has_many :user_events
+  has_many :events, through: :user_events
+  has_many :participating_events,
+           -> { where 'user_events.participation' => true },
+           through: :user_events,
+           class_name: 'Event',
+           source: :event
+
   has_many :news
   has_many :comments
 

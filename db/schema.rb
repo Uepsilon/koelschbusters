@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141226215415) do
+ActiveRecord::Schema.define(version: 20150329173159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,17 @@ ActiveRecord::Schema.define(version: 20141226215415) do
     t.datetime "activated_at"
     t.integer  "commentable_id"
     t.string   "commentable_type", limit: 255
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.boolean  "internal",    default: true
+    t.string   "title",                      null: false
+    t.text     "description",                null: false
+    t.datetime "starts_at",                  null: false
+    t.datetime "ends_at",                    null: false
+    t.string   "location",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "galleries", force: :cascade do |t|
@@ -85,6 +96,16 @@ ActiveRecord::Schema.define(version: 20141226215415) do
   end
 
   add_index "pictures", ["internal"], name: "index_pictures_on_internal", using: :btree
+
+  create_table "user_events", force: :cascade do |t|
+    t.integer  "event_id",                      null: false
+    t.integer  "user_id",                       null: false
+    t.boolean  "participation", default: false, null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "user_events", ["user_id", "event_id"], name: "index_user_events_on_user_id_and_event_id", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "",       null: false

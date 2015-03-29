@@ -42,6 +42,10 @@ require 'spec_helper'
 
 describe User do
   describe 'Validation' do
+    it { should have_many(:user_events) }
+    it { should have_many(:events) }
+    it { should have_many(:participating_events) }
+
     it 'has a valid factory' do
       create(:user).should be_valid
     end
@@ -203,6 +207,30 @@ describe User do
       it { subject.role?(:member).should be true }
       it { subject.role?(:management).should be true }
       it { subject.role?(:admin).should be true }
+    end
+  end
+
+  context 'event' do
+    let(:event) { create :event }
+    let(:user) { create :user }
+
+    it 'should include participating events' do
+      user.user_events.create event: event, participation: true
+
+      expect(user.events).to include event
+      expect(user.participating_events).to include event
+    end
+
+    it 'should not include declined events' do
+      user.user_events.create event: event, participation: false
+
+      expect(user.events).to include event
+      expect(user.participating_events).not_to include event
+    end
+
+    it 'should not include not processed' do
+      expect(user.events).not_to include event
+      expect(user.participating_events).not_to include event
     end
   end
 

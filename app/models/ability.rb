@@ -48,6 +48,9 @@ class Ability
       comment.active?
     end
     can :manage, Comment, user_id: @user.id
+
+    can :read, Event
+    can :manage, UserEvent, user_id: @user.id
   end
 
   def guest
@@ -69,5 +72,7 @@ class Ability
       comment.active?
     end
     can :create, Comment
+
+    can :read, Event, internal: false
   end
 end
