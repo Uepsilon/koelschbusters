@@ -36,6 +36,9 @@ group :development do
   gem 'quiet_assets'
   gem 'letter_opener'
   gem 'capistrano-rails'
+  gem 'annotate'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development, :test do
@@ -44,16 +47,13 @@ group :development, :test do
   gem 'forgery'
   # Puma Server
   gem 'puma'
-  gem 'rubocop'
-  gem 'annotate'
-  gem 'better_errors'
-  gem 'binding_of_caller'
   gem 'guard-rspec'
+  gem 'rubocop'
+  gem 'factory_girl_rails'
 end
 
 group :test do
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'coveralls', require: false
-  gem 'factory_girl_rails'
 end
