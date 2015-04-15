@@ -69,6 +69,7 @@ Koelschbusters::Application.routes.draw do
     end
 
     resources :categories, except: :show
+    resources :events
   end
 
   match '*path', to: 'application#render_404', via: :all

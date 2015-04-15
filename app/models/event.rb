@@ -14,10 +14,18 @@
 #
 
 class Event < ActiveRecord::Base
+  default_scope -> { where('ends_at > ?', Time.now).order(starts_at: :asc, ends_at: :asc) }
+
   has_many :user_events
   has_many :users, through: :user_events
   has_many :participants,
            -> { where 'user_events.participation' => true },
+           through: :user_events,
+           class_name: 'User',
+           source: :user
+
+  has_many :declinings,
+           -> { where 'user_events.participation' => false },
            through: :user_events,
            class_name: 'User',
            source: :user
@@ -28,4 +36,8 @@ class Event < ActiveRecord::Base
   validates :starts_at, presence: true
   validates :ends_at, presence: true
   validates :location, presence: true
+
+  def event_coordinates
+    Geocoder.coordinates location unless location.blank?
+  end
 end

@@ -38,8 +38,8 @@
     - if can? :manage, Event
       .col-xm-12.col-md-6
         .panel.panel-default
-          .panel-heading Events
-          .panel-body Events verwalten
+          .panel-heading= Event.model_name.human count: 2
+          .panel-body= "#{Event.model_name.human count: 2} verwalten"
           .panel-body
             = link_to t('links.index'), :admin_events, class: "btn btn-primary btn-sm"
             = link_to t('links.create'), :new_admin_event, class: "btn btn-success btn-sm"

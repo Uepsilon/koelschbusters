@@ -1,6 +1,7 @@
 de:
   links:
     create: Erstellen
+    save: Speichern
     update: Bearbeiten
     delete: Löschen
     index: Übersicht

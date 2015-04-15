@@ -9,6 +9,7 @@
 #= require jquery.fancybox-buttons
 #= require jquery.fancybox-media
 #= require jquery-ui
+#= require ../events
 #= require ../fancybox
 #= require_tree .
 

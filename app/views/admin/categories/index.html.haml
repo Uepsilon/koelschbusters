@@ -1,4 +1,4 @@
-#categories.well
+#categories
   %h1 Kategorieverwaltung
   %table.table.table-bordered
     %thead
@@ -15,4 +15,4 @@
             = link_to icon(:pencil), [:edit, :admin, category], class: "btn btn-primary btn-xs", title: "#{t('links.update')}"
             = link_to icon(:trash), [:admin, category], method: :delete, data: { confirm: t('confirmations.named.delete', name: category.title) }, class: "btn btn-danger btn-xs", title: "#{t('links.delete')}"
 
-  .btns= link_to t('links.categories.new'), :new_admin_category, class: "btn btn-success"
+  .btns= link_to t('links.create'), :new_admin_category, class: "btn btn-success"

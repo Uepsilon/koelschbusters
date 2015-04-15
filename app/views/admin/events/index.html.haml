@@ -1,0 +1,23 @@
+#events
+  %h1 Eventverwaltung
+  %table.table.table-bordered
+    %thead
+      %tr
+        %th= Event.human_attribute_name(:title)
+        %th= Event.human_attribute_name(:starts_at)
+        %th= Event.human_attribute_name(:ends_at)
+        %th= Event.human_attribute_name(:internal)
+        %th &nbsp;
+    %tbody
+      - @events.each do |event|
+        %tr
+          %td= event.title
+          %td= l event.starts_at
+          %td= l event.ends_at
+          %td= event.internal ? 'Ja' : 'Nein'
+          %td.centered
+            = link_to icon('eye-open'), [:admin, event], class: "btn btn-primary btn-xs btn-success", title: "#{t('links.show')}"
+            = link_to icon(:pencil), [:edit, :admin, event], class: "btn btn-primary btn-xs", title: "#{t('links.update')}"
+            = link_to icon(:trash), [:admin, event], method: :delete, data: { confirm: t('confirmations.named.delete', name: event.title) }, class: "btn btn-danger btn-xs", title: "#{t('links.delete')}"
+
+  .btns= link_to t(:create, scope: :links), :new_admin_event, class: "btn btn-success"

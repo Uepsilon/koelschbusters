@@ -1,0 +1,32 @@
+#events.show
+  %h1= @event.title
+
+  %dl.dl-horizontal.well
+    %dt= Event.human_attribute_name :description
+    %dd= @event.description.html_safe
+
+  %dl.dl-horizontal.well
+    %dt= Event.human_attribute_name :location
+    %dd
+      = @event.location
+      #map-canvas{ style: 'min-height: 400px; max-height: 800px; max-width: 800px', data: { rel: @event.event_coordinates }}
+
+  %dl.dl-horizontal.well
+    %dt= Event.human_attribute_name :starts_at
+    %dd= l @event.starts_at
+
+    %dt= Event.human_attribute_name :ends_at
+    %dd= l @event.ends_at
+
+  .row
+    .col-sm-6
+      %h5.well-title Teilnehmer
+      %ul.list-group
+        - @event.participants.each do |user|
+          %li.list-group-item.list-group-item-success= user.name
+
+    .col-sm-6
+      %h5.well-title Absagen
+      %ul.list-group
+        - @event.declinings.each do |user|
+          %li.list-group-item.list-group-item-alert= user.name

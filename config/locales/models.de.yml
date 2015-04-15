@@ -10,9 +10,9 @@ de:
       category: Kategorie
       news: Neuigkeit
       comments: Kommentare
-      events:
-        one: Event
-        other: Events
+      event:
+        one: Termin
+        other: Termine
     attributes:
       comment:
         username: Name

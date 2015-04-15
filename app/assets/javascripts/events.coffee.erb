@@ -1,0 +1,25 @@
+if $('#map-canvas').length > 0
+  script = document.createElement('script')
+  script.type = 'text/javascript'
+  script.src = 'http://maps.googleapis.com/maps/api/js?key=<%= Rails.application.secrets.google_maps_api_key %>&sensor=true&callback=renderMap&signed_in=true'
+  document.body.appendChild script
+
+  mapCoordinates = ->
+    lat = $('#map-canvas').data('rel')[0]
+    lng = $('#map-canvas').data('rel')[1]
+    new (google.maps.LatLng)(lat, lng)
+
+  @renderMap = ->
+    mapOptions =
+      center: mapCoordinates()
+      zoom: 16
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+
+    map = new (google.maps.Map)(document.getElementById('map-canvas'), mapOptions)
+
+    image = '<%= image_path('map-marker.png') %>'
+    beachMarker = new (google.maps.Marker)(
+      position: mapCoordinates()
+      map: map
+      animation: google.maps.Animation.DROP
+      icon: image)
