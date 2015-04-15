@@ -3,7 +3,7 @@ class Admin::ApplicationController < ApplicationController
   before_filter :authorize_admin
   layout 'admin'
 
-  add_breadcrumb I18n.t('links.dashboard'), :admin_root_path
+  add_breadcrumb I18n.t('breadcrumbs.dashboard'), :admin_root_path
 
   private
 

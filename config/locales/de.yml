@@ -1,117 +1,36 @@
 de:
   general:
-    administration:   Admin
-    user-management:  Benutzerverwaltung
-    news:             Beiträge
-    pictures:         Bilder
+    administration: Admin
+    user-management: Benutzerverwaltung
+    news: Beiträge
+    pictures: Bilder
 
   contact:
-    email:      E-Mail Adresse
-    name:       Name
-    subject:    Betreff
-    text:       Nachricht
+    email: E-Mail Adresse
+    name: Name
+    subject: Betreff
+    text: Nachricht
 
   headlines:
     admin:
       news:
-        new:          Neuen Beitrag erstellen
-
-  links:
-    dashboard:        Admin-Dashboard
-    back:             Zurück
-    create:           Erstellen
-    cancel:           Abbrechen
-    update:           Aktualisieren
-    read_more:        Weiterlesen
-    comments:         Kommentare
-    comments:
-      index:          Kommentarübersicht
-      edit:           Kommentar bearbeiten
-      delete:         Kommentar löschen
-      activate:       Kommentar aktivieren
-      deactivate:     Kommentar deaktivieren
-    pages:
-      imprint:        Impressum
-      about:          Über uns
-      contact:        Kontakt
-      management:     Vorstand
-      carnival_float: Karnevalswagen
-    users:
-      index:          Benutzerübersicht
-      new:            Benutzer anlegen
-      edit:           Benutzer bearbeiten
-      delete:         Löschen
-    categories:
-      index:          Kategorieübersicht
-      new:            Kategorie erstellen
-      edit:           Kategorie bearbeiten
-      delete:         Kategorie löschen
-    news:
-      index:          Beitragsübersicht
-      show:           Beitrag anzeigen
-      new:            Beitrag erstellen
-      edit:           Beitrag bearbeiten
-      delete:         Beitrag löschen
-      publish:        Beitrag veröffentlichen
-      unpublish:      Beitrag zurückziehen
-    gallery:
-      index:          Galerieübersicht
-      new:            Galerie anlegen
-      edit:           Galerie bearbeiten
-      delete:         Galerie löschen
-      pictures:       Bilder anzeigen
-    picture:
-      new:            Bild anlegen
-      edit:           Bild bearbeiten
-      delete:         Bild löschen
-    general:
-      root:           Startseite
-      dashboard:      Dashboard
-      overview:       Übersicht
-      profile:        Profil
-      logout:         Abmelden
-      login:          Anmelden
-      pictures:       Bilder
-      forgot_password:  Passwort vergessen
-      cancel:         Abbrechen
-      confirm:        Bestätigen
-    contact:
-      send:           Absenden
-
-  breadcrumbs:
-    admin:
-      application:
-        index:        Dashboard
-      news:
-        index:        Beiträge
-        new:          Beitrag erstellen
-        edit:         Aktualisieren
-      users:
-        index:        Benutzerverwaltung
-        new:          Benutzer anlegen
-        edit:         Benutzer aktualisieren
-
+        new: Neuen Beitrag erstellen
 
   roles:
-    member:           Mitglied
-    management:       Vorstand
-    admin:            Administrator
+    member: Mitglied
+    management: Vorstand
+    admin: Administrator
 
   flash:
     users:
-      created:        Benutzer angelegt
-      updated:        Benutzer geändert
-      deleted:        Benutzer gelöscht
+      created: Benutzer angelegt
+      updated: Benutzer geändert
+      deleted: Benutzer gelöscht
       cannot_edit_yourself: Du sollst nicht an dir selber rumspielen!
     categories:
-      created:        Kategorie angelegt
-      updated:        Kategorie geändert
-      deleted:        Kategorie gelöscht
-
-  confirms:
-    delete:         "Bist du sicher, dass du '%{name}' löschen möchtest?"
-    delete_unnamed: "Bist du sicher, dass du das löschen möchtest?"
-    deactivate:     "Bist du sicher, dass du '%{name}' deaktivieren möchtest?"
+      created: Kategorie angelegt
+      updated: Kategorie geändert
+      deleted: Kategorie gelöscht
 
   date:
     abbr_day_names:
@@ -308,51 +227,3 @@ de:
       long: ! '%A, %d. %B %Y, %H:%M Uhr'
       short: ! '%d. %B, %H:%M Uhr'
     pm: nachmittags
-
-  activerecord:
-    models:
-      user:         Benutzer
-      category:     Kategorie
-      news:         Neuigkeit
-      comments: Kommentare
-    attributes:
-      comment:
-        username:   Name
-        email:      E-Mail-Adresse
-        body:       Kommentar
-      user:
-        name:       Name
-        first_name: Vorname
-        last_name:  Nachname
-        email:      E-Mail-Adresse
-        phone:      Telefonnummer
-        mobile:     Handynummer
-        role:       Rolle
-        active:     aktiv
-        address:    Adresse
-        street:     Straße
-        houseno:    Hausnummer
-        zipcode:    PLZ
-        city:       Ort
-        member_active: Aktiv
-        current_password: Aktuelles Passwort
-        password: Neues Passwort
-        password_confirmation: Passwort bestätigen
-      category:
-        title:      Titel
-        slug:       URL-Format
-      news:
-        title:      Überschrift
-        body:       Beitrag
-        internal:   Interner Beitrag
-        category:   Kategorie
-      gallery:
-        title:      Galeriename
-      picture:
-        picture:    Bild
-        internal:   Nur für Mitglieder
-      contact:
-        email:      E-Mail Adresse
-        name:       Name
-        subject:    Betreff
-        text:       Nachricht

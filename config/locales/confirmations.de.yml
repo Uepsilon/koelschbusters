@@ -1,0 +1,6 @@
+de:
+  confirmations:
+    delete: 'Bist du sicher, dass du das löschen möchtest?'
+    named:
+      delete: "Bist du sicher, dass du '%{name}' löschen möchtest?"
+      deactivate: "Bist du sicher, dass du '%{name}' deaktivieren möchtest?"

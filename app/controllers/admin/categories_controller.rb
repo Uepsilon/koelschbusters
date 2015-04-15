@@ -1,17 +1,17 @@
 class Admin::CategoriesController < Admin::ApplicationController
   load_and_authorize_resource
-  add_breadcrumb I18n.t('links.categories.index'), [:admin, :categories]
+  add_breadcrumb I18n.t('breadcrumbs.categories'), [:admin, :categories]
 
   def index
     @categories = @categories.order(:title)
   end
 
   def new
-    add_breadcrumb I18n.t('links.categories.new'), new_admin_category_path
+    add_breadcrumb I18n.t('breadcrumbs.new'), new_admin_category_path
   end
 
   def create
-    add_breadcrumb I18n.t('links.categories.new'), new_admin_category_path
+    add_breadcrumb I18n.t('breadcrumbs.new'), new_admin_category_path
 
     if @category.save
       flash[:notice] = I18n.t('flash.categories.created')
@@ -22,11 +22,11 @@ class Admin::CategoriesController < Admin::ApplicationController
   end
 
   def edit
-    add_breadcrumb I18n.t('links.categories.edit'), [:edit, :admin, @category]
+    add_breadcrumb I18n.t('breadcrumbs.edit'), [:edit, :admin, @category]
   end
 
   def update
-    add_breadcrumb I18n.t('links.categories.edit'), [:edit, :admin, @category]
+    add_breadcrumb I18n.t('breadcrumbs.edit'), [:edit, :admin, @category]
 
     if @category.update category_params
       flash[:notice] = I18n.t('flash.categories.updated')

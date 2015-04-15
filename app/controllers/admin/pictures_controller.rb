@@ -2,8 +2,7 @@ class Admin::PicturesController < Admin::ApplicationController
   load_and_authorize_resource :gallery
   load_and_authorize_resource :picture, through: :gallery
 
-  add_breadcrumb I18n.t('links.gallery.index'), [:admin, :galleries]
-
+  add_breadcrumb I18n.t('breadcrumbs.gallery'), [:admin, :galleries]
 
   def index
     add_breadcrumb @gallery.title, [:admin, @gallery, :pictures]
@@ -11,12 +10,12 @@ class Admin::PicturesController < Admin::ApplicationController
 
   def new
     add_breadcrumb @gallery.title, [:admin, @gallery, :pictures]
-    add_breadcrumb I18n.t('links.picture.new'), [:new, :admin, @gallery, :picture]
+    add_breadcrumb I18n.t('breadcrumbs.new'), [:new, :admin, @gallery, :picture]
   end
 
   def create
     add_breadcrumb @gallery.title, [:admin, @gallery, :pictures]
-    add_breadcrumb I18n.t('links.picture.new'), [:new, :admin, @gallery, :picture]
+    add_breadcrumb I18n.t('breadcrumbs.new'), [:new, :admin, @gallery, :picture]
 
     if @picture.save
       flash[:notice] = 'Bild wurde erstellt.'
@@ -28,12 +27,12 @@ class Admin::PicturesController < Admin::ApplicationController
 
   def edit
     add_breadcrumb @gallery.title, [:admin, @gallery, :pictures]
-    add_breadcrumb I18n.t('links.picture.edit'), [:edit, :admin, @gallery, @picture]
+    add_breadcrumb I18n.t('breadcrumbs.edit'), [:edit, :admin, @gallery, @picture]
   end
 
   def update
     add_breadcrumb @gallery.title, [:admin, @gallery, :pictures]
-    add_breadcrumb I18n.t('links.picture.edit'), [:edit, :admin, @gallery, @picture]
+    add_breadcrumb I18n.t('breadcrumbs.edit'), [:edit, :admin, @gallery, @picture]
 
     if @picture.update picture_params
       flash[:notice] = 'Bild wurde aktualisiert.'

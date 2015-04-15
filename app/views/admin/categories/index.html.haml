@@ -12,7 +12,7 @@
           %td= category.title
           %td= category.to_param
           %td.centered
-            = link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), [:edit, :admin, category], class: "btn btn-primary btn-xs", title: "#{t('links.categorys.edit')}"
-            = link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), [:admin, category], method: :delete, confirm: t('confirms.delete', name: category.title), class: "btn btn-danger btn-xs", title: "#{t('links.categorys.delete')}"
+            = link_to icon(:pencil), [:edit, :admin, category], class: "btn btn-primary btn-xs", title: "#{t('links.update')}"
+            = link_to icon(:trash), [:admin, category], method: :delete, data: { confirm: t('confirmations.named.delete', name: category.title) }, class: "btn btn-danger btn-xs", title: "#{t('links.delete')}"
 
   .btns= link_to t('links.categories.new'), :new_admin_category, class: "btn btn-success"

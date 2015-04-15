@@ -1,7 +1,7 @@
 class Admin::NewsController < Admin::ApplicationController
   load_and_authorize_resource
 
-  add_breadcrumb I18n.t('links.news.index'), [:admin, :news, :index]
+  add_breadcrumb I18n.t('breadcrumbs.news'), [:admin, :news, :index]
 
   def index
     @news = @news.joins(:category).where(categories: { id: params[:category] }) unless params[:category].nil?
@@ -9,15 +9,15 @@ class Admin::NewsController < Admin::ApplicationController
   end
 
   def new
-    add_breadcrumb I18n.t('links.news.new'), [:new, :admin, :news]
+    add_breadcrumb I18n.t('breadcrumbs.new'), [:new, :admin, :news]
   end
 
   def edit
-    add_breadcrumb I18n.t('links.news.edit'), [:edit, :admin, @news]
+    add_breadcrumb I18n.t('breadcrumbs.edit'), [:edit, :admin, @news]
   end
 
   def create
-    add_breadcrumb I18n.t('links.news.new'), [:new, :admin, :news]
+    add_breadcrumb I18n.t('breadcrumbs.new'), [:new, :admin, :news]
 
     @news.user = current_user
     if @news.save
@@ -28,7 +28,7 @@ class Admin::NewsController < Admin::ApplicationController
   end
 
   def update
-    add_breadcrumb I18n.t('links.news.edit'), [:edit, :admin, @news]
+    add_breadcrumb I18n.t('breadcrumbs.edit'), [:edit, :admin, @news]
 
     if @news.update news_params
       redirect_to :admin_news_index

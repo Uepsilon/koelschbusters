@@ -11,8 +11,8 @@
         .col-sm-9= f.password_field :password_confirmation, class: "form-control", placeholder: User.human_attribute_name(:password_confirmation)
       .form-group
         .col-sm-offset-3.col-sm-9
-          = f.submit t('links.general.confirm'), class: "btn btn-default btn-success"
-          = link_to t('links.general.cancel'), :new_user_session, class: "btn btn-default btn-danger"
+          = f.submit t('links.confirm'), class: "btn btn-default btn-success"
+          = link_to t('links.cancel'), :new_user_session, class: "btn btn-default btn-danger"
   .well
     %h2.title Alternative Loginmöglichkeiten
     - resource_class.omniauth_providers.each do |provider|

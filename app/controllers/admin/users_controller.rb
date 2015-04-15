@@ -1,18 +1,18 @@
 class Admin::UsersController < Admin::ApplicationController
   load_and_authorize_resource
   before_filter :check_not_self, only: %i(edit update destroy)
-  add_breadcrumb I18n.t('links.users.index'), [:admin, :users]
+  add_breadcrumb I18n.t('breadcrumbs.users'), [:admin, :users]
 
   def index
     @users = @users.order(:last_name)
   end
 
   def new
-    add_breadcrumb I18n.t('links.users.new'), new_admin_user_path
+    add_breadcrumb I18n.t('breadcrumbs.new'), new_admin_user_path
   end
 
   def create
-    add_breadcrumb I18n.t('links.users.new'), new_admin_user_path
+    add_breadcrumb I18n.t('breadcrumbs.new'), new_admin_user_path
 
     if @user.save
       flash[:notice] = I18n.t('flash.users.created')
@@ -23,11 +23,11 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def edit
-    add_breadcrumb I18n.t('links.users.edit'), [:edit, :admin, @user]
+    add_breadcrumb I18n.t('breadcrumbs.edit'), [:edit, :admin, @user]
   end
 
   def update
-    add_breadcrumb I18n.t('links.users.edit'), [:edit, :admin, @user]
+    add_breadcrumb I18n.t('breadcrumbs.edit'), [:edit, :admin, @user]
 
     @user.skip_reconfirmation!
 

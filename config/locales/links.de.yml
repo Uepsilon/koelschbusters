@@ -1,0 +1,45 @@
+de:
+  links:
+    create: Erstellen
+    update: Bearbeiten
+    delete: Löschen
+    index: Übersicht
+    show: Details
+
+    read_more: Weiterlesen
+    comments: Kommentare
+    root: Startseite
+    dashboard: Dashboard
+    overview: Übersicht
+    profile: Profil
+    back: Zurück
+    cancel: Abbrechen
+    confirm: Bestätigen
+
+    logout: Abmelden
+    login: Anmelden
+    forgot_password: Passwort vergessen
+
+    activate: Aktivieren
+    deactivate: Deaktivieren
+
+    publish: Veröffentlichen
+    unpublish: Zurückziehen
+
+    pictures: Bilder
+    users: Benutzer
+    comments: Kommentare
+    categories: Kategorien
+    news: Beiträge
+    galleries: Galerien
+    events: Termine
+
+    pages:
+      imprint: Impressum
+      about: Über uns
+      contact: Kontakt
+      management: Vorstand
+      carnival_float: Karnevalswagen
+
+    contact:
+      send: Absenden

@@ -1,18 +1,18 @@
-#pictures.well
+#pictures
   %h1
     Alle Bilder in
     %span.strong= @gallery.title
     #pictures.sortable{data: {'update-url' => sort_admin_gallery_pictures_path(gallery_id: @gallery.id)}}
       - @pictures.each do |picture|
         .picture{class: "#{"internal" unless picture.public?}", attr: "picture-#{picture.id}", data: { item_id: picture.id }}
-          .img= link_to image_tag(picture.picture.url(:thumb), class: "img-rounded"), picture.picture.url(:original), class: :fancybox, rel: "fancybox-gallery"
+          = link_to image_tag(picture.picture.url(:thumb), class: "img-circle"), picture.picture.url(:original), class: :fancybox, rel: "fancybox-gallery"
           .options
-            = link_to content_tag(:i, "", class: "glyphicon glyphicon-pencil"), [:edit, :admin, @gallery, picture], class: "btn btn-primary btn-xs", title: "#{t('links.picture.edit')}"
+            = link_to icon(:pencil), [:edit, :admin, @gallery, picture], class: "btn btn-primary btn-xs", title: "#{t('links.picture.edit')}"
             - if picture.public?
-              = link_to content_tag(:i, "", class: "glyphicon glyphicon-remove"), [:unpublish, :admin, @gallery, picture], method: :put, class: "btn btn-warning btn-xs", title: "#{t('links.picture.unpublish')}", remote: true
+              = link_to icon(:remove), [:unpublish, :admin, @gallery, picture], method: :put, class: "btn btn-warning btn-xs", title: "#{t('links.picture.unpublish')}", remote: true
             - else
-              = link_to content_tag(:i, "", class: "glyphicon glyphicon-ok"), [:publish, :admin, @gallery, picture], method: :put, class: "btn btn-info btn-xs", title: "#{t('links.picture.publish')}", remote: true
-            = link_to content_tag(:i, "", class: "glyphicon glyphicon-trash"), [:admin, @gallery, picture], method: :delete, confirm: t('confirms.delete_unnamed'), class: "btn btn-danger btn-xs", title: "#{t('links.picture.delete')}"
+              = link_to icon(:ok), [:publish, :admin, @gallery, picture], method: :put, class: "btn btn-info btn-xs", title: "#{t('links.picture.publish')}", remote: true
+            = link_to icon(:trash), [:admin, @gallery, picture], method: :delete, data: { confirm: t('confirms.delete_unnamed') }, class: "btn btn-danger btn-xs", title: "#{t('links.picture.delete')}"
   %br.clear
 
   .labels.pull-right

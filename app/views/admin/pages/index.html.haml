@@ -1,32 +1,45 @@
 #pages
-  - if can? :manage, User
-    .panel.panel-default
-      .panel-heading Benutzer
-      .panel-body Benutzer anlegen, ändern und löschen
-      .panel-body
-        = link_to t('links.users.index'), :admin_users, class: "btn btn-primary btn-sm"
-        = link_to t('links.users.new'), :new_admin_user, class: "btn btn-success btn-sm"
+  .row
+    - if can? :manage, User
+      .col-xm-12.col-md-6
+        .panel.panel-default
+          .panel-heading Benutzer
+          .panel-body Benutzer anlegen, ändern und löschen
+          .panel-body
+            = link_to t('links.index'), :admin_users, class: "btn btn-primary btn-sm"
+            = link_to t('links.create'), :new_admin_user, class: "btn btn-success btn-sm"
+    - if can? :manage, Category
+      .col-xm-12.col-md-6
+        .panel.panel-default
+          .panel-heading Kategorien
+          .panel-body Kategorien erstellen, editieren und löschen
+          .panel-body
+            = link_to t('links.index'), :admin_categories, class: "btn btn-primary btn-sm"
+            = link_to t('links.create'), :new_admin_category, class: "btn btn-success btn-sm"
 
-  - if can? :manage, Category
-    .panel.panel-default
-      .panel-heading Kategorien
-      .panel-body Kategorien erstellen, editieren und löschen
-      .panel-body
-        = link_to t('links.categories.index'), :admin_categories, class: "btn btn-primary btn-sm"
-        = link_to t('links.categories.new'), :new_admin_category, class: "btn btn-success btn-sm"
+    - if can? :manage, News
+      .col-xm-12.col-md-6
+        .panel.panel-default
+          .panel-heading Nachrichten
+          .panel-body Nachrichten erstellen, editieren und löschen
+          .panel-body
+            = link_to t('links.index'), :admin_news_index, class: "btn btn-primary btn-sm"
+            = link_to t('links.create'), :new_admin_news, class: "btn btn-success btn-sm"
 
-  - if can? :manage, News
-    .panel.panel-default
-      .panel-heading Nachrichten
-      .panel-body Nachrichten erstellen, editieren und löschen
-      .panel-body
-        = link_to t('links.news.index'), :admin_news_index, class: "btn btn-primary btn-sm"
-        = link_to t('links.news.new'), :new_admin_news, class: "btn btn-success btn-sm"
+    - if can? :manage, Gallery
+      .col-xm-12.col-md-6
+        .panel.panel-default
+          .panel-heading Galerien
+          .panel-body Galerien erstellen und Bilder hochladen
+          .panel-body
+            = link_to t('links.index'), :admin_galleries, class: "btn btn-primary btn-sm"
+            = link_to t('links.create'), :new_admin_gallery, class: "btn btn-success btn-sm"
 
-  - if can? :manage, Gallery
-    .panel.panel-default
-      .panel-heading Galerien
-      .panel-body Gallerien erstellen und Bilder hochladen
-      .panel-body
-        = link_to t('links.gallery.index'), :admin_galleries, class: "btn btn-primary btn-sm"
-        = link_to t('links.gallery.new'), :new_admin_gallery, class: "btn btn-success btn-sm"
+    - if can? :manage, Event
+      .col-xm-12.col-md-6
+        .panel.panel-default
+          .panel-heading Events
+          .panel-body Events verwalten
+          .panel-body
+            = link_to t('links.index'), :admin_events, class: "btn btn-primary btn-sm"
+            = link_to t('links.create'), :new_admin_event, class: "btn btn-success btn-sm"

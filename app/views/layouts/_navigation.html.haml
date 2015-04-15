@@ -10,8 +10,8 @@
     .collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-left
         %li= link_to "Wahner KölschBusters", :root, class: :brand
-        %li= link_to t('links.general.root'), :root
-        %li= link_to t('links.general.pictures'), :galleries
+        %li= link_to t('links.root'), :root
+        %li= link_to t('links.pictures'), :galleries
         %li.dropdown
           = link_to "#{t('links.pages.about')} #{content_tag(:b, '', class: :caret)}".html_safe, '#', class: "dropdown-toggle", "data-toggle" => "dropdown"
           %ul.dropdown-menu
@@ -24,39 +24,13 @@
         - if user_signed_in?
           .navbar-text= "Eingeloggt als"
           %ul.nav.navbar-nav
-            - if can? :manage, User or can? :manage, News or can? :manage, Gallery or can? :manaege, Category
-              %li.dropdown
-                = link_to "#{current_user.name} #{content_tag(:b, '', class: :caret)}".html_safe, '#', class: "dropdown-toggle", "data-toggle" => "dropdown"
-                %ul.dropdown-menu
+            %li.dropdown
+              = link_to "#{current_user.name} #{content_tag(:b, '', class: :caret)}".html_safe, '#', class: "dropdown-toggle", "data-toggle" => "dropdown"
+              %ul.dropdown-menu
+                - if can? :access, :admin
                   %li= link_to t('links.dashboard'), :admin_root
-                  - if can? :manage, User
-                    %li.divider &nbsp;
-                    %li= link_to t('links.users.index'), :admin_users
-                    %li= link_to t('links.users.new'), :new_admin_user
-                  - if can? :manage, Category
-                    %li.divider &nbsp;
-                    %li= link_to t('links.categories.index'), :admin_categories
-                    %li= link_to t('links.categories.new'), :new_admin_category
-                  - if can? :manage, News
-                    %li.divider &nbsp;
-                    %li= link_to t('links.news.index'), :admin_news_index
-                    %li= link_to t('links.news.new'), :new_admin_news
-                  - if can? :manage, Comment
-                    %li.divider &nbsp;
-                    %li= link_to t('links.comments.index'), :admin_comments
-                  - if can? :manage, Gallery
-                    %li.divider &nbsp;
-                    %li= link_to t('links.gallery.index'), :admin_galleries
-                    %li= link_to t('links.gallery.new'), :new_admin_gallery
-                  %li.divider &nbsp;
-                  %li= link_to t('links.general.profile'), :user
-                  %li= link_to t('links.general.logout'), :destroy_user_session, method: :delete
-            - else
-              %li.dropdown
-                = link_to "#{current_user.name} #{content_tag(:b, '', class: :caret)}".html_safe, '#', class: "dropdown-toggle", "data-toggle" => "dropdown"
-                %ul.dropdown-menu
-                  %li= link_to t('links.general.profile'), :user
-                  %li= link_to t('links.general.logout'), :destroy_user_session, method: :delete
+                %li= link_to t('links.profile'), :user
+                %li= link_to t('links.logout'), :destroy_user_session, method: :delete
         - else
           %ul.nav.navbar-nav
-            %li= link_to t('links.general.login'), :new_user_session, class: "btn btn-success"
+            %li= link_to t('links.login'), :new_user_session, class: "btn btn-success"

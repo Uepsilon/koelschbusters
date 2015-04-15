@@ -1,0 +1,52 @@
+de:
+  attributes:
+    title: Titel
+    internal: Nur für Mitglieder
+    email: E-Mail-Adresse
+    name: Name
+  activerecord:
+    models:
+      user: Benutzer
+      category: Kategorie
+      news: Neuigkeit
+      comments: Kommentare
+      events:
+        one: Event
+        other: Events
+    attributes:
+      comment:
+        username: Name
+        body: Kommentar
+      user:
+        first_name: Vorname
+        last_name: Nachname
+        phone: Telefonnummer
+        mobile: Handynummer
+        role: Rolle
+        active: aktiv
+        address: Adresse
+        street: Straße
+        houseno: Hausnummer
+        zipcode: PLZ
+        city: Ort
+        member_active: Aktiv
+        current_password: Aktuelles Passwort
+        password: Neues Passwort
+        password_confirmation: Passwort bestätigen
+      category:
+        slug: URL-Format
+      news:
+        body: Beitrag
+        category: Kategorie
+      gallery:
+      picture:
+        picture: Bild
+      contact:
+        subject: Betreff
+        text: Nachricht
+      event:
+        description: Beschreibung
+        starts_at: Beginn
+        ends_at: Ende
+        location: Ort
+
