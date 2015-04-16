@@ -1,6 +1,4 @@
-class TeamMailer < ActionMailer::Base
-  default from: Rails.application.secrets.noreply_email
-
+class TeamMailer < ApplicationMailer
   def comment_reminder(user, inactive_comment_count)
     @inactive_comment_count = inactive_comment_count
     @user = user

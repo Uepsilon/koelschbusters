@@ -38,6 +38,7 @@ class Event < ActiveRecord::Base
   validates :location, presence: true
 
   before_validation :ensure_end
+  after_create :notify_members
 
   def event_coordinates
     Geocoder.coordinates location unless location.blank?
@@ -48,4 +49,11 @@ class Event < ActiveRecord::Base
   def ensure_end
     self.ends_at = starts_at if ends_at.blank?
   end
+
+  def notify_members
+    User.all.each do |user|
+      EventMailer.notify(user, self).deliver_now
+    end
+  end
+
 end
