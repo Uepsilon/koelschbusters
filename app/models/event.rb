@@ -30,7 +30,6 @@ class Event < ActiveRecord::Base
            class_name: 'User',
            source: :user
 
-  validates :internal, presence: true
   validates :title, presence: true
   validates :description, presence: true
   validates :starts_at, presence: true

@@ -1,13 +1,14 @@
 .well
   = render 'event'
 
-  .well
-    - method = @event.in?(@current_user.events) ? :put : :post
-    = link_to event_event_participation_path(event_id: @event.id, participation: true), method: method, class: 'btn btn-block btn-success' do
-      = icon :ok
-      = t 'links.participate'
-    = link_to event_event_participation_path(event_id: @event.id, participation: false), method: method, class: 'btn btn-block btn-danger' do
-      = icon :remove
-      = t 'links.decline'
+  - if signed_in?
+    .well
+      - method = @event.in?(@current_user.events) ? :put : :post
+      = link_to event_event_participation_path(event_id: @event.id, participation: true), method: method, class: 'btn btn-block btn-success' do
+        = icon :ok
+        = t 'links.participate'
+      = link_to event_event_participation_path(event_id: @event.id, participation: false), method: method, class: 'btn btn-block btn-danger' do
+        = icon :remove
+        = t 'links.decline'
 
   %p= link_to t('links.back'), :events, class: 'btn btn-success'

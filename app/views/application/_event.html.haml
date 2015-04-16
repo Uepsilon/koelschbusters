@@ -19,15 +19,16 @@
       %dt= Event.human_attribute_name :ends_at
       %dd= @event.end_date
 
-  .row
-    .col-sm-6
-      %h5.well-title Teilnehmer
-      %ul.list-group
-        - @event.participants.each do |user|
-          %li.list-group-item.list-group-item-success= user.name
+  - if signed_in?
+    .row
+      .col-sm-6
+        %h5.well-title Teilnehmer
+        %ul.list-group
+          - @event.participants.each do |user|
+            %li.list-group-item.list-group-item-success= user.name
 
-    .col-sm-6
-      %h5.well-title Absagen
-      %ul.list-group
-        - @event.declinings.each do |user|
-          %li.list-group-item.list-group-item-danger= user.name
+      .col-sm-6
+        %h5.well-title Absagen
+        %ul.list-group
+          - @event.declinings.each do |user|
+            %li.list-group-item.list-group-item-danger= user.name
