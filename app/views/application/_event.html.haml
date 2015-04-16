@@ -13,10 +13,11 @@
 
   %dl.dl-horizontal.well
     %dt= Event.human_attribute_name :starts_at
-    %dd= l @event.starts_at
+    %dd= @event.start_date
 
-    %dt= Event.human_attribute_name :ends_at
-    %dd= l @event.ends_at
+    - if @event.end_date.present?
+      %dt= Event.human_attribute_name :ends_at
+      %dd= @event.end_date
 
   .row
     .col-sm-6
@@ -29,4 +30,4 @@
       %h5.well-title Absagen
       %ul.list-group
         - @event.declinings.each do |user|
-          %li.list-group-item.list-group-item-alert= user.name
+          %li.list-group-item.list-group-item-danger= user.name

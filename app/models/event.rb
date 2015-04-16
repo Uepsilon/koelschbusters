@@ -37,7 +37,15 @@ class Event < ActiveRecord::Base
   validates :ends_at, presence: true
   validates :location, presence: true
 
+  before_validation :ensure_end
+
   def event_coordinates
     Geocoder.coordinates location unless location.blank?
+  end
+
+  private
+
+  def ensure_end
+    self.ends_at = starts_at if ends_at.blank?
   end
 end

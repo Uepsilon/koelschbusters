@@ -2,7 +2,7 @@ Koelschbusters::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   get 'ckeditor/pictures/:id/:style' => 'ckeditor/pictures#show'
   Ckeditor::Engine.routes.prepend do
-    resources :pictures, only: [:index, :destroy, :create]
+    resources :pictures, only: %i(index destroy create)
   end
 
   root to: 'news#index'
@@ -23,15 +23,19 @@ Koelschbusters::Application.routes.draw do
     delete 'profil/:provider' => 'users#remove_oauth', as: :delete_oauth
   end
 
-  resources :news, only: [:index, :show], path: 'news' do
-    resources :comments, except: [:new, :index, :show]
+  resources :news, only: %i(index show), path: 'news' do
+    resources :comments, except: %i(new index show)
   end
   get 'news(/kategorie/:category)(/seite/:page)', to: 'news#index', as: :categorized_news
 
-  resource :user, only: [:show, :edit, :update], path: 'profil'
+  resource :user, only: %i(show edit update), path: 'profil'
 
-  resources :galleries, only: [:index, :show], path: 'galerie'
+  resources :galleries, only: %i(index show), path: 'galerie'
   get 'galerie/:gallery_id/bild/:id(/:style)' => 'pictures#show', as: :picture, defaults: { style: :original }
+
+  resources :events, path: 'termine', only: %i(index show) do
+    resource :event_participation, path: 'teilnahme', only: %i(create update)
+  end
 
   namespace :admin do
     root to: 'pages#index'
@@ -43,7 +47,7 @@ Koelschbusters::Application.routes.draw do
       end
     end
 
-    resources :comments, only: [:index, :destroy] do
+    resources :comments, only: %i(index destroy) do
       member do
         put 'activate'
         put 'deactivate'

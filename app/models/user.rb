@@ -53,6 +53,11 @@ class User < ActiveRecord::Base
            through: :user_events,
            class_name: 'Event',
            source: :event
+  has_many :declined_events,
+           -> { where 'user_events.participation' => false },
+           through: :user_events,
+           class_name: 'Event',
+           source: :event
 
   has_many :news
   has_many :comments

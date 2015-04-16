@@ -39,4 +39,9 @@ describe Event do
     it { expect(event_with_declined_participation.participants).not_to include user }
     it { expect(event_without_participation.participants).not_to include user }
   end
+
+  context 'empty end date' do
+    let(:event) { create :event, ends_at: nil }
+    it { expect(event.ends_at).to eq event.starts_at }
+  end
 end

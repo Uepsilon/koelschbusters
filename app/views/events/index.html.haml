@@ -1,0 +1,20 @@
+#events.well
+  %h3= Event.model_name.human count: 2
+
+  %table.table.table-condensed.table-responsive
+    %thead
+      %tr
+        %th= Event.human_attribute_name :starts_at
+        %th= Event.human_attribute_name :ends_at
+        %th= Event.human_attribute_name :title
+        %th
+    %tbody
+      - @events.each do |event|
+        %tr{ class: event_row_class(event) }
+          %td= event.start_date
+          %td= event.end_date
+          %td= event.title
+          %td.text-right
+            = link_to event, class: 'btn btn-info' do
+              = icon('eye-open')
+              = t :show, scope: :links

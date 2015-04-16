@@ -10,7 +10,7 @@ de:
     read_more: Weiterlesen
     comments: Kommentare
     root: Startseite
-    dashboard: Dashboard
+    dashboard: Adminbereich
     overview: Übersicht
     profile: Profil
     back: Zurück
@@ -34,6 +34,9 @@ de:
     news: Beiträge
     galleries: Galerien
     events: Termine
+
+    participate: Teilnehmen
+    decline: Absagen
 
     pages:
       imprint: Impressum

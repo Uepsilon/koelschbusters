@@ -1,6 +1,15 @@
 class Admin::EventsController < Admin::ApplicationController
   load_and_authorize_resource
+
   add_breadcrumb I18n.t('breadcrumbs.events'), [:admin, :events]
+
+  def index
+    @events = EventDecorator.decorate_collection @events
+  end
+
+  def show
+    @event = @event.decorate
+  end
 
   def new
     add_breadcrumb I18n.t('breadcrumbs.new'), new_admin_event_path
