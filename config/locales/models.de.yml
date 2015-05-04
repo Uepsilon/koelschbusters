@@ -9,7 +9,9 @@ de:
       user: Benutzer
       category: Kategorie
       news: Neuigkeit
-      comments: Kommentare
+      comment:
+        one: Kommentar
+        other: Kommentare
       event:
         one: Termin
         other: Termine

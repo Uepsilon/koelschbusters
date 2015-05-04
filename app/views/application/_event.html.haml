@@ -1,34 +1,34 @@
 #events.show
-  %h1= @event.title
+  %h1= event.title
 
   %dl.dl-horizontal.well
     %dt= Event.human_attribute_name :description
-    %dd= @event.description.html_safe
+    %dd= event.description.html_safe
 
   %dl.dl-horizontal.well
     %dt= Event.human_attribute_name :location
     %dd
-      = @event.location
-      #map-canvas{ style: 'min-height: 400px; max-height: 800px; max-width: 800px', data: { rel: @event.event_coordinates }}
+      = event.location
+      #map-canvas{ style: 'min-height: 400px; max-height: 800px; max-width: 800px', data: { rel: event.event_coordinates }}
 
   %dl.dl-horizontal.well
     %dt= Event.human_attribute_name :starts_at
-    %dd= @event.start_date
+    %dd= event.start_date
 
-    - if @event.end_date.present?
+    - if event.end_date.present?
       %dt= Event.human_attribute_name :ends_at
-      %dd= @event.end_date
+      %dd= event.end_date
 
   - if signed_in?
     .row
       .col-sm-6
         %h5.well-title Teilnehmer
         %ul.list-group
-          - @event.participants.each do |user|
+          - event.participants.each do |user|
             %li.list-group-item.list-group-item-success= user.name
 
       .col-sm-6
         %h5.well-title Absagen
         %ul.list-group
-          - @event.declinings.each do |user|
+          - event.declinings.each do |user|
             %li.list-group-item.list-group-item-danger= user.name

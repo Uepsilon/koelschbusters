@@ -1,4 +1,4 @@
-= form_for [@news, @comment], html: { class: "form-horizontal" } do |f|
+= form_for [@comment.commentable, @comment], html: { class: "form-horizontal" } do |f|
   - if @comment.errors.any?
     .alert.alert-danger
       %ul

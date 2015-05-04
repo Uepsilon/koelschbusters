@@ -1,5 +1,10 @@
-#news
-  = render :partial => 'news/news', :locals => {:news => @news}
+.well#commentable
+  %h2.title
+    - case @comment.commentable.class.name
+    - when 'News'
+      #news= render 'news/news', news: @comment.commentable
+    - when 'Event'
+      = render 'event', event: @comment.commentable.decorate
 
 #comments
   .well.comment-form

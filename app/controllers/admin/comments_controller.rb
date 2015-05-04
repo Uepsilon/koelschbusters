@@ -1,7 +1,7 @@
 class Admin::CommentsController < Admin::ApplicationController
   load_and_authorize_resource
 
-  add_breadcrumb I18n.t('breadcrumbs.comments.index'), [:admin, :comments]
+  add_breadcrumb I18n.t('breadcrumbs.comments'), [:admin, :comments]
 
   def index
     @comments = @comments.inactive.paginate(page: params[:page])

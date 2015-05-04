@@ -10,10 +10,10 @@
 .body= simple_format comment.body
 - if can? :manage, comment
   .options
-    = link_to icon(:pencil), [:edit, comment.commentable, comment], class: "btn btn-primary btn-xs", title: "#{t('links.comments.edit')}"
-    = link_to icon(:trash"), [ comment.commentable, comment], method: :delete, confirm: t('confirmations.named.delete', name: "diesen Kommentar), class: "btn btn-danger btn-xs", title: "#{t('links.comments.delete')}"
+    = link_to icon(:pencil), [:edit, comment.commentable, comment], class: "btn btn-primary btn-xs", title: t('links.update')
+    = link_to icon(:trash), [comment.commentable, comment], method: :delete, confirm: t('confirmations.named.delete', name: "diesen Kommentar"), class: "btn btn-danger btn-xs", title: t('links.delete')
     - if can? :manage, comment and can? :access, :admin
       - if comment.active?
-        = link_to icon(:remove"), [:deactivate, :admin, comment], method: :put, confirm: t('confirms.deactivate', name: "diesen Kommentar), class: "btn btn-warning btn-xs", title: "#{t('links.comments.deactivate')}", remote: true
+        = link_to icon(:remove), [:deactivate, :admin, comment], method: :put, confirm: t('confirmations.named.deactivate', name: "diesen Kommentar"), class: "btn btn-warning btn-xs", title: t('links.deactivate'), remote: true
       - else
-        = link_to icon(:ok), [:activate, :admin, comment], method: :put, class: "btn btn-info btn-xs", title: "#{t('links.comments.deactivate')}", remote: true
+        = link_to icon(:ok), [:activate, :admin, comment], method: :put, class: "btn btn-info btn-xs", title: t('links.deactivate'), remote: true

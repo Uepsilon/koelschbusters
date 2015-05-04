@@ -34,6 +34,7 @@ Koelschbusters::Application.routes.draw do
   get 'galerie/:gallery_id/bild/:id(/:style)' => 'pictures#show', as: :picture, defaults: { style: :original }
 
   resources :events, path: 'termine', only: %i(index show) do
+    resources :comments, except: %i(new index show)
     resource :event_participation, path: 'teilnahme', only: %i(create update)
   end
 

@@ -10,6 +10,6 @@ class NewsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new
+    @comment = @news.comments.new
   end
 end

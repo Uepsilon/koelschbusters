@@ -1,5 +1,5 @@
 .well
-  = render 'event'
+  = render 'event', event: @event
 
   - if signed_in?
     .well
@@ -10,5 +10,20 @@
       = link_to event_event_participation_path(event_id: @event.id, participation: false), method: method, class: 'btn btn-block btn-danger' do
         = icon :remove
         = t 'links.decline'
+
+  #comments
+    %a{ name: 'comments' }
+    - if can? :read, Comment && @event.comments.any?
+      .well
+        %h2.title=pluralize @event.comments.accessible_by(current_ability).count, "Kommentar", "Kommentare"
+        - @event.comments.accessible_by(current_ability).each do |comment|
+          .comment{class: "#{"inactive" unless comment.active?} comment-#{comment.id}"}
+            = render partial: "comments/comment", locals: { comment: comment }
+
+
+  - if can? :create, Comment
+    .well.comment-form
+      %h2.title Kommentar erstellen
+      = render 'comments/form'
 
   %p= link_to t('links.back'), :events, class: 'btn btn-success'

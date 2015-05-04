@@ -3,7 +3,10 @@
   - if @comments.each.any?
     - @comments.each do |comment|
       .well.comment{class: "#{"inactive" unless comment.active?} comment-#{comment.id}"}
-        = render "comments/comment", { comment: comment }
+        = render 'comments/comment', comment: comment
+        %p
+          Der Kommentar wurde verfasst für:
+          %strong= "#{comment.commentable.model_name.human}: #{comment.commentable.title}"
   - else
     .well Keine unveröffentlichten Kommentare
 

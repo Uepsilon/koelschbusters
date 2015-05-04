@@ -1,10 +1,11 @@
 # encoding: UTF-8
 class CommentsController < ApplicationController
-  load_and_authorize_resource :news
-  load_and_authorize_resource :comment, through: :news
+  before_filter :load_commentable
+  authorize_resource :commentable
+  load_and_authorize_resource :comment, through: :commentable
 
   def create
-    @comment.commentable = @news
+    # @comment.commentable = @commentable
     @comment.user = current_user if user_signed_in?
 
     return unless @comment.save
@@ -32,6 +33,14 @@ class CommentsController < ApplicationController
   end
 
   private
+
+  def load_commentable
+    if params[:news_id].present?
+      @commentable = News.find params[:news_id]
+    elsif params[:event_id].present?
+      @commentable = Event.find params[:event_id]
+    end
+  end
 
   def comment_params
     params.require(:comment).permit(:body, :username)

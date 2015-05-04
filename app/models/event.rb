@@ -30,6 +30,8 @@ class Event < ActiveRecord::Base
            class_name: 'User',
            source: :user
 
+  has_many :comments, as: :commentable, dependent: :destroy
+
   validates :title, presence: true
   validates :description, presence: true
   validates :starts_at, presence: true
@@ -54,5 +56,4 @@ class Event < ActiveRecord::Base
       EventMailer.notify(user, self).deliver_now
     end
   end
-
 end
