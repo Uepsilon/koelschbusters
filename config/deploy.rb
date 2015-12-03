@@ -43,6 +43,7 @@ namespace :symlink do
     on roles(:app) do
       execute "mkdir -p #{current_path.join('shared', 'production')}"
       execute "ln -s #{shared_path.join('pictures')} #{current_path.join('shared', fetch(:rails_env).to_s, 'pictures')}"
+      execute "ln -s #{shared_path.join('ckeditor')} #{current_path.join('shared', fetch(:rails_env).to_s, 'ckeditor')}"
     end
   end
 end
