@@ -17,7 +17,7 @@ pickle-email-*.html
 db/seed*
 shared/*
 path/*
-.DS_Store
+*/.DS_Store
 
 # Ignore application configuration
 /config/application.yml
