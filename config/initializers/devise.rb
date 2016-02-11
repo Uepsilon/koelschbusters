@@ -243,7 +243,7 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = "/my_engine/users/auth"
 
   # OAUTH2 for google
-  config.omniauth :google_oauth2, Rails.application.secrets.google_app_id, Rails.application.secrets.google_app_secret, { access_type: "offline", approval_prompt: "" }
+  config.omniauth :google_oauth2, Rails.application.secrets.google_app_id, Rails.application.secrets.google_app_secret, { access_type: "offline", approval_prompt: "", skip_jwt: true }
 
   # OAUTH2 for twitter
   config.omniauth :twitter, Rails.application.secrets.twitter_app_id, Rails.application.secrets.twitter_app_secret
