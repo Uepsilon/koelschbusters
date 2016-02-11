@@ -105,21 +105,16 @@
       }
     }
 
-    .img {
-      height: 100%;
-      vertical-align: middle;
-
-      img {
-        margin: auto 0;
-        border: 5px solid #47a447;
-      }
+    img {
+      margin: auto 0;
+      border: 5px solid #47a447;
     }
 
     &.internal {
-      // img {
-      //   margin: 5px;
-      //   border: none;
-      // }
+      img {
+        margin: 5px;
+        border: none;
+      }
     }
   }
 
