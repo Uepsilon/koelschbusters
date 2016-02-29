@@ -38,6 +38,6 @@
       %br.clear
 
   .pageination
-    = will_paginate @news, renderer: BootstrapPagination::Rails, previous_label: "Zurück", next_label: "Weiter"
+    = will_paginate @news, renderer: FoundationPagination::Rails, previous_label: "Zurück", next_label: "Weiter"
 
 = link_to t('links.create'), :new_admin_news, class: 'btn btn-success btn-lg'

@@ -17,19 +17,23 @@
     %link(href="/favicon.ico" rel="shortcut icon")
 
 
-  %body#main
-    = render 'layouts/navigation'
+  %body
+    .off-canvas-wrapper
+      .off-canvas-wrapper-inner{ 'data-off-canvas-wrapper' => true }
+        .off-canvas.position-left#offCanvasLeft{ 'data-off-canvas' => true }
+          = render 'layouts/offcanvas_menu'
+        #main.off-canvas-content{ 'data-off-canvas-content' => true }
+          = render 'layouts/navigation'
 
-    #content.container
-      .row
-        .col-md-9
-          = render 'layouts/flashs'
-          = yield
-        .col-md-3.sidebar
-          = render 'layouts/sidebar'
+          #content.row
+            .small-12.medium-9.columns
+              = render 'layouts/flashes'
+              = yield
+            .columns.sidebar
+              = render 'layouts/sidebar'
 
-    %footer
-      = render 'layouts/footer'
+        %footer
+          = render 'layouts/footer'
 
     - if Rails.env.production?
       / Piwik

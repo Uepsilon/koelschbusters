@@ -1,6 +1,54 @@
-.navbar.navbar-inverse
-  .container
-    .navbar-header
+%div{ 'data-sticky-container' => true }
+  .top-bar{ 'data-sticky' => true, 'data-sticky-on' => 'small' }
+    .hide-for-large.columns
+      .top-bar-logo
+        = image_tag "logo.png"
+      .top-bar-title.row
+        .small-5.columns
+          %button.menu-icon.dark{ 'data-toggle' => 'offCanvasLeft' }
+        .columns.text-right
+          - if user_signed_in?
+            = link_to '#' do
+              = fa_icon 'user'
+              = current_user.first_name
+          - else
+            = link_to :new_user_session do
+              = fa_icon 'user'
+    .show-for-large
+      .top-bar-logo
+        = image_tag "logo.png"
+      .top-bar-title
+        %strong Wahner KölschBusters
+      .top-bar-left
+        %ul.menu.dropdown{ 'data-dropdown-menu' => true }
+          %li= link_to t('links.root'), :root
+          %li= link_to t('links.pictures'), :galleries
+          %li
+            = link_to t('links.pages.about'), '#'
+            %ul.menu.vertical
+              %li= link_to t('links.pages.about'), :about
+              %li= link_to t('links.pages.management'), :management
+              %li= link_to t('links.pages.carnival_float'), :carnival_float
+          %li= link_to t('links.events'), :events
+          %li= link_to t('links.pages.contact'), :new_contact
+      .top-bar-right
+        %ul.menu.dropdown{ 'data-dropdown-menu' => true }
+          - if user_signed_in?
+            %li
+              = link_to '#' do
+                = current_user.name
+                = fa_icon "user"
+              %ul.menu.vertical
+                - if can? :access, :admin
+                  %li= link_to t('links.dashboard'), :admin_root
+                %li= link_to t('links.profile'), :user
+                %li= link_to t('links.logout'), :destroy_user_session, method: :delete
+          - else
+            %li
+              = link_to :new_user_session do
+                = fa_icon 'user'
+
+-#
       %a.btn.btn-default.navbar-toggle(data-target=".navbar-collapse" data-toggle="collapse")
         %span.icon-bar
         %span.icon-bar

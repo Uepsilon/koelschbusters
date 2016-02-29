@@ -1,5 +1,5 @@
-.copy.pull-left &copy; 2013 Wahner KölschBusters
-.imprint.pull-right= link_to t('links.pages.imprint'), :imprint
-.social
+.copy.float-left!= "&copy; #{Date.today.year} Wahner KölschBusters"
+.imprint.float-right= link_to t('links.pages.imprint'), :imprint
+.show-for-medium.social
   .facebook= link_to image_tag("facebook.png", alt: "Facebook"), "http://www.facebook.com/koelschbusters"
   .twitter= link_to image_tag("twitter.png", alt: "Twitter"), "http://www.twitter.com/koelschbusters"

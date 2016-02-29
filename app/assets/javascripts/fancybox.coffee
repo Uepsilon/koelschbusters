@@ -1,4 +1,4 @@
-$('a.fancybox, a.gallery-picture').fancybox
+$('a.fancybox, a[data-rel="fancybox"]').fancybox
   openEffect:   'elastic'
   closeEffect:  'elastic'
   padding:      2

@@ -1,0 +1,41 @@
+.off-canvas {
+  height: 100%;
+
+  .logo {
+    text-align: right;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+
+    img {
+      height: 75px;
+    }
+  }
+
+  h2.title {
+    padding: 20px 15px 0 15px;
+    color: $white;
+    font-family: $titleFont;
+    font-size: 125%;
+    text-shadow: 2px 2px $black;
+  }
+
+  ul.menu {
+    li {
+      a, a:visited {
+        color: $white;
+        padding: 1em;
+        border-bottom: 1px solid;
+        border-color: rgba($white, 0.5);
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

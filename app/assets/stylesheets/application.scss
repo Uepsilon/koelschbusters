@@ -1,8 +1,13 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
+// global
+@import "variables";
+@import "foundation_and_overrides";
 @import "jquery-ui";
 @import "jquery.fancybox";
 @import "jquery.fancybox-buttons";
+@import "font-awesome";
+
+// customization
 @import "admin";
 @import "theme";
+@import "offcanvas";
 @import "events";

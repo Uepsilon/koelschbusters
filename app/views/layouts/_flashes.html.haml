@@ -1,0 +1,17 @@
+- unless flash.empty?
+  - flash.each do |flash_type, flash_msg|
+    - if flash_type.to_sym == :alert
+      .callout.alert{ 'data-closable' => true }
+        %button.close-button{ 'data-close' => true }
+          %span &times;
+        = flash_msg
+    - if flash_type.to_sym == :warning
+      .callout.warning{ 'data-closable' => true }
+        %button.close-button{ 'data-close' => true }
+          %span &times;
+        = flash_msg
+    - if flash_type.to_sym == :notice
+      .callout.success{ 'data-closable' => true }
+        %button.close-button{ 'data-close' => true }
+          %span &times;
+        = flash_msg

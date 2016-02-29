@@ -3,6 +3,7 @@ class GalleriesController < ApplicationController
   load_and_authorize_resource
 
   def index
+    @galleries = GalleryDecorator.decorate_collection @galleries
   end
 
   def show

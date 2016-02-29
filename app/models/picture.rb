@@ -29,7 +29,7 @@ class Picture < ActiveRecord::Base
                     default_style: :original,
                     url: '/galerie/:gallery_id/bild/:id/:style.:extension',
                     path: ':rails_root/shared/:rails_env/pictures/:id/:style/:basename.:extension',
-                    styles: { original: '1200x1200>', thumb: '200x150>'  }
+                    styles: { original: '1200x1200>', thumb: '300x250>'  }
 
   before_create :set_position
 

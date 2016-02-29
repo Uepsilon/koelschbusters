@@ -4,40 +4,41 @@
   %p Angaben gemäß § 5 TMG:
 
   %h4.title Kontakt
-  %table.address
-    %tr
-      %th Straße
-      %td= Rails.application.secrets.contact_street
-    %tr
-      %th Ort
-      %td= Rails.application.secrets.contact_city
+  %p
+    .row
+      .small-12.medium-3.columns Straße
+      .columns= Rails.application.secrets.contact_street
+    %p
+    .row
+      .small-12.medium-3.columns Ort
+      .columns= Rails.application.secrets.contact_city
 
   %h4.title Vertreten durch den Vorstand
-  %table.person
-    %tr
-      %th Name
-      %td= Rails.application.secrets.president_name
-    %tr
-      %th Email
-      %td= ApplicationHelper.email_antispam Rails.application.secrets.president_email
+  %p
+    .row
+      .small-12.medium-3.columns Name
+      .columns= Rails.application.secrets.president_name
+    .row
+      .small-12.medium-3.columns Email
+      .columns= ApplicationHelper.email_antispam Rails.application.secrets.president_email
 
   %h4.title Betreiber
-  %table.person
-    %tr
-      %th Name
-      %td= Rails.application.secrets.admin_name
-    %tr
-      %th Email
-      %td= ApplicationHelper.email_antispam Rails.application.secrets.admin_email
+  %p
+    .row
+      .small-12.medium-3.columns Name
+      .columns= Rails.application.secrets.admin_name
+    .row
+      .small-12.medium-3.columns Email
+      .columns= ApplicationHelper.email_antispam Rails.application.secrets.admin_email
 
   %h4.title Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:
-  %table.person
-    %tr
-      %th Name
-      %td= Rails.application.secrets.journalist_name
-    %tr
-      %th Email
-      %td= ApplicationHelper.email_antispam Rails.application.secrets.journalist_email
+  %p
+    .row
+      .small-12.medium-3.columns Name
+      .columns= Rails.application.secrets.journalist_name
+    .row
+      .small-12.medium-3.columns Email
+      .columns= ApplicationHelper.email_antispam Rails.application.secrets.journalist_email
 
   %h4.title Bildnachweis
   %p

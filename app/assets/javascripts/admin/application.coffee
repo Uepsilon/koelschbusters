@@ -1,9 +1,7 @@
 #= require jquery
 #= require jquery_ujs
-#= require bootstrap
 #= require moment
 #= require moment/de
-#= require bootstrap-datetimepicker
 #= require ckeditor/init
 #= require jquery.fancybox.pack
 #= require jquery.fancybox-buttons
