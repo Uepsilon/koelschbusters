@@ -10,7 +10,7 @@ gem 'cancancan'
 # in production environments by default.
 gem 'sass-rails'
 gem 'coffee-rails'
-gem 'bootstrap-sass'
+gem 'foundation-rails'
 gem 'uglifier'
 
 gem 'jquery-rails'
@@ -22,7 +22,7 @@ gem 'paperclip'
 gem 'therubyracer'
 gem 'html_truncator'
 gem 'will_paginate'
-gem 'will_paginate-bootstrap'
+gem 'will_paginate-foundation'
 gem 'breadcrumbs_on_rails'
 
 gem 'omniauth'
@@ -31,6 +31,8 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'whenever', require: false
+
+gem 'font-awesome-rails'
 
 group :development do
   gem 'quiet_assets'
@@ -50,6 +52,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'rubocop'
   gem 'factory_girl_rails'
+  gem 'rubocop'
 end
 
 group :test do
@@ -60,7 +63,6 @@ end
 
 # datetime picker
 gem 'momentjs-rails', '>= 2.9.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 
 gem 'geocoder'
 
