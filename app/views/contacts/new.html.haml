@@ -5,32 +5,36 @@
       Wenn Sie eine Frage oder ein anderes Anliegen haben, können Sie uns über dieses Formular eine Nachricht zukommen lassen.
     = form_for @contact, url: contact_path, html: { class: "form-horizontal" } do |f|
       - if @contact.errors.any?
-        .alert.alert-danger
+        .callout.alert.small{ 'data-abide-error' => true }
+          %h5
+            %span.is-invalid-label
+              = icon 'exclamation-triangle'
+            Bitte korrigieren Sie folgende Felder:
           %ul
-          - @contact.errors.full_messages.each do |msg|
-            %li= msg
+            - @contact.errors.full_messages.each do |msg|
+              %li= msg
 
-      .form-group
-        = f.label :name, t('contact.name'), class: "col-lg-2 control-label"
-        .col-lg-10
-          = f.text_field :name, placeholder: t('contact.name'), class: "form-control"
+      .row
+        .small-12.columns
+          = f.text_field :name, placeholder: t('contact.name')
 
-      .form-group
-        = f.label :email, t('contact.email'), class: "col-lg-2 control-label"
-        .col-lg-10
-          = f.text_field :email, placeholder: "#{t('contact.email')} (optional)", class: "form-control"
+      .row
+        .small-12.columns
+          = f.text_field :email, placeholder: "#{t('contact.email')} (optional)"
 
-      .form-group
-        = f.label :subject, t('contact.subject'), class: "col-lg-2 control-label"
-        .col-lg-10
-          = f.text_field :subject, placeholder: "#{t('contact.subject')} (optional)", class: "form-control"
+      .row
+        .small-12.columns
+          = f.text_field :subject, placeholder: "#{t('contact.subject')} (optional)"
 
-      .form-group
-        = f.label :text, t('contact.text'), class: "col-lg-2 control-label"
-        .col-lg-10
-          = f.text_area :text, placeholder: t('contact.text'), class: "form-control", rows: 5
+      .row
+        .small-12.columns
+          = f.text_area :text, placeholder: t('contact.text'), rows: 5
 
-      .form-group
-        .col-lg-10.pull-right
-          = f.submit t('links.contact.send'), class: 'btn btn-success'
-          = link_to t('links.cancel'), :contact, class: 'btn btn-danger'
+      .row
+        .large-12.columns.show-for-large
+          = f.submit t('links.contact.send'), class: 'button'
+          = link_to t('links.cancel'), :contact, class: 'button warning'
+        .small-12.columns.hide-for-large
+          = f.submit t('links.contact.send'), class: 'button expanded'
+        .small-12.columns.hide-for-large
+          = link_to t('links.cancel'), :contact, class: 'button warning expanded'
