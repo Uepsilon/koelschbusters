@@ -5,76 +5,15 @@
       Die Entstehung unseres Karnevalswagen oder
       %b Et jitt immer jet zu dun
 
-  .well.2015
-    %h2.title Unser Wagen im Jahr 2015
-    .row
-      .small-12.large-4.columns
-        = link_to image_tag("carnival_float/2013.jpg", title: "Unser Wagen 2013", alt: "Unser Wagen 2013"), image_path("carnival_float/2013.jpg"), class: :fancybox, rel: "carnival-float"
-      .columns.end Nachdem sich im Jahr 2014 nichts an unserem Wagen geändert hat &ndash; es wurden andere Ideen verwirklicht &ndash; musste zu unserem 11-Jährigen ein Paukenschlag her.
-
-  .well.2013
-    %h2.title Unser Wagen im Jahr 2013
-    .row
-      .small-12.large-4.columns
-        = link_to image_tag("carnival_float/2013.jpg", title: "Unser Wagen 2013", alt: "Unser Wagen 2013"), image_path("carnival_float/2013.jpg"), class: :fancybox, rel: "carnival-float"
-      .columns.end Im Jahr 2013 erschien unser Karnevalswagen in neuem Glanz: Ein neuer Anstrich in rot und weiß – und unser Wagen erstrahlt in den kölschen Farben.
-
-  .well.2012
-    %h2.title Unser Wagen im Jahr 2012
-    .row
-      .small-12.large-4.columns
-        = link_to image_tag("carnival_float/2012.jpg", title: "Unser Wagen 2012", alt: "Unser Wagen 2012"), image_path("carnival_float/2012.jpg"), class: :fancybox, rel: "carnival-float"
-      .columns.end Im Jahr 2012 gingen wir natürlich wieder beim Wahner Zug mit – zusätzlich beteiligten wir uns zum ersten Mal auch beim Porzer Zug. Das wollen wir 2015 zu unserem zehnjährigen Jubiläum wiederholen!
-
-  .well.2011
-    %h2.title Unser Wagen im Jahr 2011
-    .row
-      .small-12.large-4.columns
-        = link_to image_tag("carnival_float/2011.jpg", title: "Unser Wagen 2011", alt: "Unser Wagen 2011"), image_path("carnival_float/2011.jpg"), class: :fancybox, rel: "carnival-float"
-      .columns.end Nach kleineren Reparaturen und Ausbesserungen sah unser Wagen wieder wie neu aus. Auch in diesem Jahr liefen wir wieder beim Wahner Zug mit.
-
-  .well.2010
-    %h2.title Unser Wagen im Jahr 2010
-    .row
-      .small-12.large-4.columns
-        = link_to image_tag("carnival_float/2010.jpg", title: "Unser Wagen 2010", alt: "Unser Wagen 2010"), image_path("carnival_float/2010.jpg"), class: :fancybox, rel: "carnival-float"
-      .columns.end Regen, Schnee, Hagel? Schön ist das an Karneval zwar alles nicht, aber wir standen ab diesem Jahr im Trockenen: Unser Karnevalswagen hat ein Dach bekommen.
-
-  .well.2009
-    %h2.title Unser Wagen im Jahr 2009
-    .row
-      .small-12.large-4.columns
-        = link_to image_tag("carnival_float/2009.jpg", title: "Unser Wagen 2009", alt: "Unser Wagen 2009"), image_path("carnival_float/2009.jpg"), class: :fancybox, rel: "carnival-float"
-      .columns.end Dekoration heißt das Zauberwort: In diesem Jahr verschönerten wir unseren Karnevalswagen  und ließen unsere künstlerische Ader walten.
-
-  .well.2008
-    %h2.title Unser Wagen im Jahr 2008
-    .row
-      .small-12.large-4.columns
-        = link_to image_tag("carnival_float/2008.jpg", title: "Unser Wagen 2008", alt: "Unser Wagen 2008"), image_path("carnival_float/2008.jpg"), class: :fancybox, rel: "carnival-float"
-      .columns.end In den letzten Monaten steckten wir ganz viel Zeit und Mühe in den Bau unseres Wagens. In diesem Jahr gingen wir zum ersten Mal beim Wahner Zug mit unserem eigenen Wagen. Ein großer Erfolg für die Wahner Kölschbusters!
-
-  .well.2007
-    %h2.title Unser Wagen im Jahr 2007
-    .row
-      .small-12.large-4.columns
-        = link_to image_tag("carnival_float/2007.jpg", title: "Unser Wagen 2007", alt: "Unser Wagen 2007"), image_path("carnival_float/2007.jpg"), class: :fancybox, rel: "carnival-float"
-      .columns.end 2007 war es dann soweit: Zum ersten Mal gingen wir beim Wahner Zug mit. Wir fuhren mit einem echten amerikanischen Schulbus, den wir uns geliehen hatten.
-    %p &nbsp;
-    .row
-      .small-12.large-4.columns
-        = link_to image_tag("carnival_float/2007-2.jpg", title: "Unser Wagen 2007", alt: "Unser Wagen 2007"), image_path("carnival_float/2007-2.jpg"), class: :fancybox, rel: "carnival-float"
-      .columns.end Im Jahr 2007 gab es noch einen weiteren Meilenstein für die Kölschbusters: Wir kauften unseren zukünftigen Karnevalswagen. Auf geht’s an die Arbeit!
-
-  .well.2006
-    %h2.title Unser Wagen im Jahr 2006
-    .row
-      .small-12.large-4.columns
-        = link_to image_tag("carnival_float/2006.jpg", title: "Unser Wagen 2006", alt: "Unser Wagen 2006"), image_path("carnival_float/2006.jpg"), class: :fancybox, rel: "carnival-float"
-      .columns.end Auch 2006 versammelte sich der Verein am Wahner Zugrand. In diesem Jahr bekam der Wagen ein neues Dach, damit die Einlagerung einfacher wurde.
-
-  .well.2005
-    %h2.title Unser Wagen im Jahr 2005
-    .row
-      .small-12.large-4.columns
-        = link_to image_tag("carnival_float/2005.jpg", title: "Unser Wagen 2005", alt: "Unser Wagen 2005"), image_path("carnival_float/2005.jpg"), class: :fancybox, rel: "carnival-float"
+  - @stories.each do |year, stories|
+    .well{ class: year}
+      %h2.title= "Session #{year}"
+      - stories.each.with_index do |story, index|
+        - if index % 2 == 1
+          %br
+        .row
+          .small-12.large-4.columns
+            = link_to image_tag("carnival_float/#{story['image']}", title: year, alt: year), image_path("carnival_float/#{story['image']}"), class: :fancybox, rel: "carnival-float"
+          - if story.key? 'text'
+            .columns.end
+              %p!= story['text']
