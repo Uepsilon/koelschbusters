@@ -3,16 +3,24 @@
     %h2.title Passwort ändern
     = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "form-horizontal" }) do |f|
       = f.hidden_field :reset_password_token
-      .form-group
-        = f.label :password, class: "col-sm-3  control-label"
-        .col-sm-9= f.password_field :password, autofocus: true, class: "form-control", placeholder: User.human_attribute_name(:password)
-      .form-group
-        = f.label :password_confirmation, class: "col-sm-3  control-label"
-        .col-sm-9= f.password_field :password_confirmation, class: "form-control", placeholder: User.human_attribute_name(:password_confirmation)
-      .form-group
-        .col-sm-offset-3.col-sm-9
-          = f.submit t('links.confirm'), class: "btn btn-default btn-success"
-          = link_to t('links.cancel'), :new_user_session, class: "btn btn-default btn-danger"
+
+      %p Bitte vergib ein neues Passwort für deinen Zugang.
+
+      .row
+        .columns= f.password_field :password, autofocus: true, placeholder: User.human_attribute_name(:password)
+
+      .row
+        .columns= f.password_field :password_confirmation, placeholder: User.human_attribute_name(:password_confirmation)
+
+      .row
+        .large-10.columns.show-for-large
+          = f.submit t('links.confirm'), class: "button"
+          = link_to t('links.cancel'), :new_user_session, class: "button warning"
+        .small-12.columns.hide-for-large
+          = f.submit t('links.confirm'), class: "button expanded"
+        .small-12.columns.hide-for-large
+          = link_to t('links.cancel'), :new_user_session, class: "button warning expanded"
+
   .well
     %h2.title Alternative Loginmöglichkeiten
     - resource_class.omniauth_providers.each do |provider|

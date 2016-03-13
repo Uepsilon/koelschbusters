@@ -1,0 +1,19 @@
+%h2.title
+  Startseite
+%ul.menu.vertical
+  %li= link_to "Wahner Kölschbusters", :root, class: :brand
+
+%h2.title
+  Administration
+%ul.menu.vertical
+  %li= link_to t('links.users'), :admin_users
+  %li= link_to t('links.categories'), :admin_categories
+  %li= link_to t('links.news'), :admin_news_index
+  %li= link_to t('links.galleries'), :admin_galleries
+  %li= link_to t('links.events'), :admin_events
+
+- if user_signed_in?
+  %h2.title Benutzer
+  %ul.menu.vertical
+    %li= link_to t('links.profile'), :user
+    %li= link_to t('links.logout'), :destroy_user_session, method: :delete

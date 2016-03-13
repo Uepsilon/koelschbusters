@@ -1,0 +1,25 @@
+#gallery {
+  .thumbnail {
+    position: relative;
+
+    h4.title {
+      position: absolute;
+      padding: 5px 10px;
+      border-radius: 0 0 $borderRadius 0;
+      font-family: $titleFont;
+      text-transform: uppercase;
+      background: rgba($white, $bgOpacity);
+      font-size: 100%;
+    }
+
+    .options {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+
+      .button {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

@@ -1,4 +1,10 @@
-= render 'event', event: @event
+= render 'event', event: @event, buttongroup: false
 
-= link_to t('links.back'), :admin_events, class: 'btn btn-success'
-= link_to t('links.update'), [:edit, :admin, @event], class: 'btn btn-warning'
+.expanded.button-group
+  = link_to :admin_events, class: 'button secondary' do
+    = icon 'arrow-left'
+    = t('links.back')
+
+  = link_to [:edit, :admin, @event], class: 'button' do
+    = icon :pencil
+    = t('links.update')

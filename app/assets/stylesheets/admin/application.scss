@@ -1,6 +1,23 @@
-@import "variables";
+// global
+@import "../variables";
+@import "../foundation_and_overrides";
+@import "jquery-ui";
+@import "../jquery.fancybox";
+@import "../jquery.fancybox-buttons";
+@import "font-awesome";
+@import "jquery.datetimepicker";
 
-#admin {
+// customization
+@import "../theme";
+@import "../offcanvas";
+@import "../events";
+
+body#admin {
+
+  #main {
+    background: asset-url("bg/admin.jpg") repeat;
+    background-color: rgba($black, 0.6);
+  }
 
   h1 {
     margin: 0;
@@ -9,6 +26,18 @@
 
   td {
     vertical-align: middle;
+
+    a.button {
+      margin-bottom: 0;
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(odd) {
+        background: rgba($white, 0.5);
+      }
+    }
   }
 
   .container {
@@ -16,12 +45,6 @@
       padding-bottom: 75px;
     }
   }
-
-  .jumbotron {
-    font-size: 14px;
-    padding: 25px;
-  }
-
   .strong {
     font-weight: bold;
   }
@@ -90,7 +113,6 @@
 
   .picture {
     position: relative;
-    margin: 20px;
     display: inline-block;
 
     .options {
@@ -113,20 +135,6 @@
       img {
         margin: 5px;
         border: none;
-      }
-    }
-  }
-
-  table {
-    &.table-bordered {
-      td {
-        vertical-align: middle;
-      }
-    }
-
-    td {
-      &.centered {
-        text-align: center;
       }
     }
   }

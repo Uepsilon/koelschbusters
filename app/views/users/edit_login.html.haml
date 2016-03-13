@@ -3,31 +3,32 @@
     %h2.title Login ändern
     = form_for @user, :url => :update_login, html: {class: "form-horizontal"} do |f|
       - if @user.errors.any?
-        .alert.alert-danger
+        .callout.alert.small{ 'data-abide-error' => true }
+          %h5
+            %span.is-invalid-label
+              = icon 'exclamation-triangle'
+            Bitte korrigieren Sie folgende Felder:
           %ul
-          - @user.errors.full_messages.each do |msg|
-            %li= msg
-      .form-group
-        .col-sm-5
-          = f.label :current_password, class: "sr-only"
-          = f.password_field :current_password, class: "form-control", placeholder: "Aktuelles Passwort"
-      .form-group
-        .col-sm-5
-          = f.label :email, class: "sr-only"
-          = f.text_field :email, class: "form-control", placeholder: "E-Mail Adresse"
-      .form-group
-        .col-sm-5
-          = f.label :email_confirmation, class: "sr-only"
-          = f.text_field :email_confirmation, class: "form-control", placeholder: "E-Mail Adresse bestätigen"
-      .form-group
-        .col-sm-5
-          = f.label :password, class: "sr-only"
-          = f.password_field :password, class: "form-control", placeholder: "Neues Passwort"
-      .form-group
-        .col-sm-5
-          = f.label :password_confirmation, class: "sr-only"
-          = f.password_field :password_confirmation, class: "form-control", placeholder: "Passwort bestätigen"
-      .form-group
-        .col-sm-12
-          = f.submit "Änderungen speichern", class: "btn btn-success"
-          = link_to "Änderungen verwerfen", current_user, class: "btn btn-danger"
+            - @user.errors.full_messages.each do |msg|
+              %li= msg
+      .row
+        .small-12.columns
+          = f.password_field :current_password, placeholder: "Aktuelles Passwort"
+        .small-12.columns
+          = f.text_field :email, placeholder: "E-Mail Adresse"
+        .small-12.columns
+          = f.text_field :email_confirmation, placeholder: "E-Mail Adresse bestätigen"
+        .small-12.columns
+          = f.password_field :password, placeholder: "Neues Passwort"
+        .small-12.columns
+          = f.password_field :password_confirmation, placeholder: "Passwort bestätigen"
+
+      .row
+        .large-2.show-for-large &nbsp;
+    .large-10.columns.show-for-large
+          = f.submit t('links.save'), class: 'button'
+          = link_to t('links.cancel'), current_user, class: 'button warning'
+        .small-12.columns.hide-for-large
+          = f.submit t('links.save'), class: 'button expanded'
+        .small-12.columns.hide-for-large
+          = link_to t('links.cancel'), current_user, class: 'button warning expanded'

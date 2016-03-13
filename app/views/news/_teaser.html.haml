@@ -1,20 +1,40 @@
-.well{class: "#{"internal-news" if news.internal?}"}
-  %h2.title= news.title
+.well{ class: "#{"internal-news" if news.internal?}" }
+  .float-left
+    %h2.title= news.title
   - if news.internal?
-    %h2.internal Interner Beitrag
-  .body= news.teaser.html_safe
+    .float-right
+      %span.label.internal.alert Interner Beitrag
   %br.clear
-  .info{class: "#{news.comments.accessible_by(current_ability).any? ? :small : :regular}"}
-    - if news.category
-      .category= link_to news.category.title, categorized_news_path(category: news.category.to_param)
-    .date
-      %span.glyphicon.glyphicon-time
-      = news.published_at.localtime.strftime("%d.%m.%Y, %R Uhr")
-    %br.clear
-  .pull-right
-    .link
-      = link_to content_tag(:i, " #{t('links.read_more')}", class: "glyphicon glyphicon-search"), news, class: "btn btn-danger", title: t('links.read_more')
-      - if news.comments.accessible_by(current_ability).any?
-        = link_to content_tag(:i, " #{news.comments.accessible_by(current_ability).count}", class: "glyphicon glyphicon-comment"), news_path(news, anchor: "comments"), class: "btn btn-warning", title: "#{news.comments.accessible_by(current_ability).count} #{t('links.comments')}"
-    / .link= link_to , news, class: "btn btn-danger"
-  %br.clear
+
+  %p.body= news.teaser.html_safe
+
+  .row
+    .small-6.large-4.columns
+      - if news.category
+        %p
+          = icon 'th-list'
+          = link_to news.category.title, categorized_news_path(category: news.category.to_param)
+    .small-6.large-4.columns.show-for-large
+      %p.date
+        = icon 'clock-o'
+        = news.published_at.localtime.strftime("%d.%m.%Y, %R Uhr")
+    .small-6.large-4.columns.hide-for-large.text-right
+      %p.date
+        = icon 'clock-o'
+        = news.published_at.localtime.strftime("%d.%m.%Y, %R Uhr")
+
+    .large-4.columns.show-for-large.text-right
+      = link_to news, class: "button", title: t('links.read_more') do
+        = icon 'eye'
+        = t('links.read_more')
+      = link_to news_path(news, anchor: "comments"), class: "button warning", title: "#{news.comments.accessible_by(current_ability).count} #{t('links.comments')}" do
+        = icon 'comments-o'
+        = news.comments.accessible_by(current_ability).count
+    .small-12.columns.hide-for-large
+      = link_to news, class: "button expanded", title: t('links.read_more') do
+        = icon 'eye'
+        = t('links.read_more')
+      = link_to news_path(news, anchor: "comments"), class: "button expanded warning", title: "#{news.comments.accessible_by(current_ability).count} #{t('links.comments')}" do
+        = icon 'comments-o'
+        = Comment.model_name.human count: 2
+        = news.comments.accessible_by(current_ability).count

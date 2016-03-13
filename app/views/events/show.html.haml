@@ -1,29 +1,28 @@
-.well
+#event.show
   = render 'event', event: @event
 
-  - if signed_in?
+- if signed_in?
+  .row.well
+    .small-6.columns
+      %h5.title Zusagen
+      - @event.participants.each do |user|
+        .callout.small.success.text-center= user.name
+
+    .small-6.columns
+      %h5.title Absagen
+      - @event.declinings.each do |user|
+        .callout.small.alert.text-center= user.name
+
+#comments
+  %a{name: "comments"}
+  - if can? :read, Comment and not @event.comments.empty?
     .well
-      - method = @event.in?(@current_user.events) ? :put : :post
-      = link_to event_event_participation_path(event_id: @event.id, participation: true), method: method, class: 'btn btn-block btn-success' do
-        = icon :ok
-        = t 'links.participate'
-      = link_to event_event_participation_path(event_id: @event.id, participation: false), method: method, class: 'btn btn-block btn-danger' do
-        = icon :remove
-        = t 'links.decline'
-
-  #comments
-    %a{ name: 'comments' }
-    - if can? :read, Comment && @event.comments.any?
-      .well
-        %h2.title=pluralize @event.comments.accessible_by(current_ability).count, "Kommentar", "Kommentare"
-        - @event.comments.accessible_by(current_ability).each do |comment|
-          .comment{class: "#{"inactive" unless comment.active?} comment-#{comment.id}"}
-            = render partial: "comments/comment", locals: { comment: comment }
-
+      %h2.title= pluralize @event.comments.accessible_by(current_ability).count, "Kommentar", "Kommentare"
+    - @event.comments.accessible_by(current_ability).each do |comment|
+      .comment{ class: "#{"inactive" unless comment.active?} comment-#{comment.id}" }
+        = render "comments/comment", comment: comment
 
   - if can? :create, Comment
     .well.comment-form
       %h2.title Kommentar erstellen
-      = render 'comments/form'
-
-  %p= link_to t('links.back'), :events, class: 'btn btn-success'
+      = render "comments/form"

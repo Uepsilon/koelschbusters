@@ -1,8 +1,10 @@
 #news
   - unless params[:category].nil?
-    .alert.alert-warning
-      Alle Einträge der Kategorie
-      %b= @category.title
+    .callout.small.warning
+      Alle Einträge der Kategorie:
+      %span.title.label.secondary
+        = icon 'th-list'
+        = @category.title
 
   - @news.each do |news|
     .teaser

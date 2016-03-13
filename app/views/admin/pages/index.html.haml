@@ -1,53 +1,53 @@
 #pages
   .row
     - if can? :manage, User
-      .col-xm-12.col-md-6
-        .panel.panel-default
-          .panel-heading Benutzer
-          .panel-body Benutzer anlegen, ändern und löschen
-          .panel-body
-            = link_to t('links.index'), :admin_users, class: "btn btn-primary btn-sm"
-            = link_to t('links.create'), :new_admin_user, class: "btn btn-success btn-sm"
+      .small-12.large-6.columns
+        .well
+          %h2.title Benutzer
+          %p Benutzer anlegen, ändern und löschen
+          %p
+            = link_to t('links.index'), :admin_users, class: "button"
+            = link_to t('links.create'), :new_admin_user, class: "button secondary"
     - if can? :manage, Category
-      .col-xm-12.col-md-6
-        .panel.panel-default
-          .panel-heading Kategorien
-          .panel-body Kategorien erstellen, editieren und löschen
-          .panel-body
-            = link_to t('links.index'), :admin_categories, class: "btn btn-primary btn-sm"
-            = link_to t('links.create'), :new_admin_category, class: "btn btn-success btn-sm"
+      .small-12.large-6.columns
+        .well
+          %h2.title Kategorien
+          %p Kategorien erstellen, editieren und löschen
+          %p
+            = link_to t('links.index'), :admin_categories, class: "button"
+            = link_to t('links.create'), :new_admin_category, class: "button secondary"
 
     - if can? :manage, News
-      .col-xm-12.col-md-6
-        .panel.panel-default
-          .panel-heading Nachrichten
-          .panel-body Nachrichten erstellen, editieren und löschen
-          .panel-body
-            = link_to t('links.index'), :admin_news_index, class: "btn btn-primary btn-sm"
-            = link_to t('links.create'), :new_admin_news, class: "btn btn-success btn-sm"
+      .small-12.large-6.columns
+        .well
+          %h2.title Nachrichten
+          %p Nachrichten erstellen, editieren und löschen
+          %p
+            = link_to t('links.index'), :admin_news_index, class: "button"
+            = link_to t('links.create'), :new_admin_news, class: "button secondary"
 
     - if can? :manage, Gallery
-      .col-xm-12.col-md-6
-        .panel.panel-default
-          .panel-heading Galerien
-          .panel-body Galerien erstellen und Bilder hochladen
-          .panel-body
-            = link_to t('links.index'), :admin_galleries, class: "btn btn-primary btn-sm"
-            = link_to t('links.create'), :new_admin_gallery, class: "btn btn-success btn-sm"
+      .small-12.large-6.columns
+        .well
+          %h2.title Galerien
+          %p Galerien erstellen und Bilder hochladen
+          %p
+            = link_to t('links.index'), :admin_galleries, class: "button"
+            = link_to t('links.create'), :new_admin_gallery, class: "button secondary"
 
     - if can? :manage, Event
-      .col-xm-12.col-md-6
-        .panel.panel-default
-          .panel-heading= Event.model_name.human count: 2
-          .panel-body= "#{Event.model_name.human count: 2} verwalten"
-          .panel-body
-            = link_to t('links.index'), :admin_events, class: "btn btn-primary btn-sm"
-            = link_to t('links.create'), :new_admin_event, class: "btn btn-success btn-sm"
+      .small-12.large-6.columns
+        .well
+          %h2.title= Event.model_name.human count: 2
+          %p= "#{Event.model_name.human count: 2} verwalten"
+          %p
+            = link_to t('links.index'), :admin_events, class: "button"
+            = link_to t('links.create'), :new_admin_event, class: "button secondary"
 
     - if can? :manage, Comment
-      .col-xm-12.col-md-6
-        .panel.panel-default
-          .panel-heading= Comment.model_name.human count: 2
-          .panel-body= "#{Comment.model_name.human count: 2} verwalten"
-          .panel-body
-            = link_to t('links.index'), :admin_comments, class: "btn btn-primary btn-sm"
+      .small-12.large-6.columns
+        .well
+          %h2.title= Comment.model_name.human count: 2
+          %p= "#{Comment.model_name.human count: 2} verwalten"
+          %p
+            = link_to t('links.index'), :admin_comments, class: "button"

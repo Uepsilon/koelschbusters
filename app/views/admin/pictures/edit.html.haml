@@ -1,13 +1,12 @@
 #pictures.edit
-  .panel.panel-default
-    .panel-heading
+  .well
+    %h2.title
       Bild in
       %span.strong= @gallery.title
       bearbeiten
-    .panel-body
-      = render 'form'
+    %p= render 'form'
 
-  .panel.panel-default
-    .panel-heading Aktuelles Bild
-    .panel-body
-      = link_to image_tag(@picture.picture.url(:thumb)), @picture.picture.url(:original), class: :fancybox
+  .well
+    %h2.title Aktuelles Bild
+  .thumbnail
+    = link_to image_tag(@picture.picture.url(:thumb)), @picture.picture.url(:original), class: :fancybox

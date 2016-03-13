@@ -1,43 +1,44 @@
 #users
-  %h1 Benutzerverwaltung
-  %table.table.table-bordered
-    %thead
-      %tr
-        %th= User.human_attribute_name(:name)
-        %th= User.human_attribute_name(:email)
-        %th= User.human_attribute_name(:address)
-        %th= User.human_attribute_name(:phone)
-        %th= User.human_attribute_name(:mobile)
-        %th= User.human_attribute_name(:role)
-        %th &nbsp;
-    %tbody
-      - @users.each do |user|
-        / which class should the user row get?
-        - user_row_class = ''
-        - user_row_class = 'warning' if user.role? :management
-        - user_row_class = 'success' if user.role? :admin
-        - user_row_class = 'danger' unless user.active?
-        %tr{class: user_row_class}
-          %td= user.name
-          %td= user.email
-          %td
-            - if user.address?
-              .address
-                = "#{user.street} #{user.houseno}"
-                %br
-                = "#{user.zipcode} #{user.city}"
-          %td= user.phone
-          %td= user.mobile
-          %td= t user.role, scope: :roles
-          %td.centered
-            = link_to icon(:pencil), [:edit, :admin, user], class: "btn btn-primary btn-xs", title: "#{t('links.users.edit')}"
-            = link_to icon(:trash), [:admin, user], method: :delete, data: { confirm: t('confirmations.named.delete', name: user.name) }, class: "btn btn-danger btn-xs", title: "#{t('links.users.delete')}"
+  .well
+    %h2.title Benutzerverwaltung
 
-  .labels.pull-right
-    %span.label.label-info Legende
-    %span.label.label-danger Inaktive User
-    %span.label.label-success Administrator
-    %span.label.label-warning Vorstand
+    %table
+      %thead
+        %tr
+          %th= User.human_attribute_name(:name)
+          %th= User.human_attribute_name(:email)
+          %th= User.human_attribute_name(:address)
+          %th= User.human_attribute_name(:phone)
+          %th= User.human_attribute_name(:mobile)
+          %th= User.human_attribute_name(:role)
+          %th= User.human_attribute_name(:member_active)
+          %th &nbsp;
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td= user.name
+            %td= user.email
+            %td
+              - if user.address?
+                .address
+                  = "#{user.street} #{user.houseno}"
+                  %br
+                  = "#{user.zipcode} #{user.city}"
+            %td= user.phone
+            %td= user.mobile
+            %td= t user.role, scope: :roles
+            %td.text-center
+              = icon user.member_active ? :check : :times
+            %td.text-right
+              = link_to icon(:pencil), [:edit, :admin, user], class: "button small", title: "#{t('links.users.edit')}"
+              = link_to icon(:trash), [:admin, user], method: :delete, data: { confirm: t('confirmations.named.delete', name: user.name) }, class: 'button small warning', title: "#{t('links.users.delete')}"
 
-  .btns
-    = link_to t('links.create'), :new_admin_user, class: "btn btn-success"
+  .row
+    .large-12.columns.show-for-large
+      = link_to [:new, :admin, :user], class: "button" do
+        = icon :plus
+        = t('links.create')
+    .small-12.columns.hide-for-large
+      = link_to [:new, :admin, :user], class: "button expanded" do
+        = icon :plus
+        = t('links.create')

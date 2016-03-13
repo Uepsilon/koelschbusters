@@ -1,5 +1,5 @@
-var picture = $(".picture[attr=picture-<%= @picture.id %>");
+var picture = $('.picture[data-picture="picture-<%= @picture.id %>"');
 
 picture.removeClass('internal');
-$("a.btn-info", picture).addClass('btn-warning').removeClass('btn-info').attr('href', "<%= unpublish_admin_gallery_picture_path %>")
-$("i.glyphicon-ok", picture).removeClass('glyphicon-ok').addClass('glyphicon-remove');
+$("a.button.success", picture).addClass('alert').removeClass('success').attr('href', "<%= unpublish_admin_gallery_picture_path %>")
+$("i.fa-check", picture).removeClass('fa-check').addClass('fa-remove');

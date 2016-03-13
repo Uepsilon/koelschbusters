@@ -1,28 +1,34 @@
 #galleries
-  %h1 Galerieverwaltung
-  %table.table.table-bordered.table-bordered
-    %thead
-      %tr
-        %th= Gallery.human_attribute_name(:title)
-        %th Bilder
-        %th Öffentliche Bilder
-        %th Optionen
-    %tbody.sortable{data: {'update-url' => sort_admin_galleries_url}}
-      - @galleries.each do |gallery|
-      - row_class = ''
-        - row_class = 'success' if gallery.public_pictures.count > 0
-        %tr{class: row_class, data: {item_id: gallery.id}}
-          %td= gallery.title
-          %td= gallery.pictures.count
-          %td= gallery.public_pictures.count
-          %td.centered
-            = link_to icon(:pencil), [:edit, :admin, gallery], class: "btn btn-primary btn-xs", title: "#{t('links.update')}"
-            = link_to icon(:trash), [:admin, gallery], method: :delete, data: { confirm: t('confirmations.named.delete', name: gallery.title) }, class: "btn btn-danger btn-xs", title: "#{t('links.delete')}"
-            = link_to icon('eye-open'), [:admin, gallery, :pictures], class: "btn btn-info btn-xs", title: "#{t('links.show')}"
-            = link_to icon(:plus), [:new, :admin, gallery, :picture], class: "btn btn-success btn-xs", title: "#{t('links.create')}"
+  .well.small
+    %h2.title Galerieverwaltung
 
-  .labels.pull-right
-    %span.label.label-info Legende
-    %span.label.label-success Öffentliche Galerie
-
-  .btns= link_to t('links.create'), :new_admin_gallery, class: "btn btn-success"
+  .well.small
+    %table
+      %thead
+        %tr
+          %th= Gallery.human_attribute_name(:title)
+          %th Bilder
+          %th Öffentliche Bilder
+          %th
+      %tbody.sortable{data: {'update-url' => sort_admin_galleries_url}}
+        - @galleries.each do |gallery|
+        - row_class = ''
+          - row_class = 'success' if gallery.public_pictures.count > 0
+          %tr{class: row_class, data: {item_id: gallery.id}}
+            %td= gallery.title
+            %td= gallery.pictures.count
+            %td= gallery.public_pictures.count
+            %td.text-right
+              = link_to icon(:eye), [:admin, gallery, :pictures], class: "button small secondary", title: "#{t('links.show')}"
+              = link_to icon(:pencil), [:edit, :admin, gallery], class: "button small", title: "#{t('links.update')}"
+              = link_to icon(:trash), [:admin, gallery], method: :delete, data: { confirm: t('confirmations.named.delete', name: gallery.title) }, class: "button warning small", title: "#{t('links.delete')}"
+              = link_to icon(:plus), [:new, :admin, gallery, :picture], class: "button small success", title: "#{t('links.create')}"
+  .row
+    .large-12.columns.show-for-large
+      = link_to [:new, :admin, :gallery], class: "button" do
+        = icon :plus
+        = t('links.create')
+    .small-12.columns.hide-for-large
+      = link_to [:new, :admin, :gallery], class: "button expanded" do
+        = icon :plus
+        = t('links.create')

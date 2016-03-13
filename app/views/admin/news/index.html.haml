@@ -1,43 +1,56 @@
 #news
-  %h1 Beitragsverwaltung
+  .well
+    %h2.title Beitragsverwaltung
 
   - @news.each do |news|
-    .jumbotron
+    .well
       .pull-left
-        %h2= news.title
-        %h5= "URL: #{link_to news_url(news), news}".html_safe
+        %h5.title= news.title
+        .title
+          URL:
+          %code= link_to news_url(news), news
         - if news.category.nil?
-          %h5 Kategorie: Keine Kategorie
+          .title Kategorie: Keine Kategorie
         - else
-          %h5= "Kategorie: #{link_to news.category.title, admin_categorized_news_path(category: news.category.to_param)}".html_safe
+          .title
+            Kategorie:
+            %code= link_to news.category.title, admin_categorized_news_path(category: news.category.to_param)
       .pull-right
-        - if not news.published?
-          %span.label.label-info Unveröffentlicht
+        - unless news.published?
+          %span.label.warning Unveröffentlicht
         - if news.internal?
-          %span.label.label-danger Interner Beitrag
+          %span.label.alert Interner Beitrag
       %p.clearfix
 
       - if news.teaser != news.body
-        .panel.panel-default
-          .panel-heading Vorschau
-          .panel-body= news.teaser.html_safe
+        .callout
+          %h5.title Vorschau
+          %p= news.teaser.html_safe
 
-      .panel.panel-default
-        .panel-heading Vollansicht
-        .panel-body= news.body.html_safe
+      .callout
+        %h5.title Vollansicht
+        %p= news.body.html_safe
 
-      %p.pull-left
-        = link_to t('links.show'), news, class: "btn btn-info btn-sm"
-        = link_to t('links.update'), [:edit, :admin, news], class: "btn btn-primary btn-sm"
-      %p.pull-right
+      %p.float-left
+        = link_to t('links.show'), news, class: "button secondary small"
+        = link_to t('links.update'), [:edit, :admin, news], class: "button primary small"
+      %p.float-right
         - if news.published?
-          = link_to t('links.unpublish'), [:unpublish, :admin, news], method: :put, class: "btn btn-warning btn-sm"
+          = link_to t('links.unpublish'), [:unpublish, :admin, news], method: :put, class: "button alert small"
         - else
-          = link_to t('links.publish'), [:publish, :admin, news], method: :put, class: "btn btn-success btn-sm"
-        = link_to t('links.delete'), [:admin, news], method: :delete, class: "btn btn-danger btn-sm", data: { confirm: t('confirmations.named.delete', name: news.title) }
+          = link_to t('links.publish'), [:publish, :admin, news], method: :put, class: "button success small"
+        = link_to t('links.delete'), [:admin, news], method: :delete, class: "button warning small", data: { confirm: t('confirmations.named.delete', name: news.title) }
       %br.clear
 
   .pageination
     = will_paginate @news, renderer: FoundationPagination::Rails, previous_label: "Zurück", next_label: "Weiter"
 
-= link_to t('links.create'), :new_admin_news, class: 'btn btn-success btn-lg'
+  .row
+    .large-12.columns.show-for-large
+      = link_to [:new, :admin, :news], class: "button" do
+        = icon :plus
+        = t('links.create')
+    .small-12.columns.hide-for-large
+      = link_to [:new, :admin, :news], class: "button expanded" do
+        = icon :plus
+        = t('links.create')

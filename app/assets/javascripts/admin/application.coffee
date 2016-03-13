@@ -3,15 +3,27 @@
 #= require moment
 #= require moment/de
 #= require ckeditor/init
+#= require ckeditor/init
 #= require jquery.fancybox.pack
 #= require jquery.fancybox-buttons
 #= require jquery.fancybox-media
 #= require jquery-ui
+
+#= require jquery.datetimepicker.min
+#= require foundation
+#= require ./events
 #= require ../events
 #= require ../fancybox
-#= require_tree .
+
+Date.parseDate = (input, format) ->
+  moment(input, format).toDate()
+
+Date.prototype.dateFormat = (format) ->
+  moment(this).format(format)
 
 $ ->
+  $(document).foundation();
+
   $('#admin .sortable').sortable
     update: (event, ui) ->
       positions = {}

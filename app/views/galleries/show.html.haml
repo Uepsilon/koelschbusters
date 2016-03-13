@@ -3,10 +3,17 @@
     %h2.title= @gallery.title
   .row{ data: { equalizer: true, 'equalize-on' => "small" }}
     - @pictures.each do |picture|
-      .small-6.medium-4.columns{ 'data-equalizer-watch' => true }
+      .picture.small-6.large-4.columns{ data: { 'equalizer-watch' => true, picture: "picture-#{picture.id}" }}
         = link_to  picture.picture.url, 'data-rel' => "fancybox", rel: 'gallery' do
           .thumbnail
             = image_tag picture.picture.url(:thumb)
+            - if user_signed_in? && can?(:edit, picture)
+              .options
+                - if picture.public?
+                  = link_to icon(:remove), [:unpublish, :admin, @gallery, picture], method: :put, class: "button alert small", title: "#{t('links.picture.unpublish')}", remote: true
+                - else
+                  = link_to icon(:check), [:publish, :admin, @gallery, picture], method: :put, class: "button success small", title: "#{t('links.picture.publish')}", remote: true
+                = link_to icon(:trash), [:admin, @gallery, picture], method: :delete, data: { confirm: t(:delete, scope: :confirmations) }, class: "button warning small", title: "#{t(:delete, scope: [:links])}"
 
   %br.clear
   .well= link_to "Zurück zur Übersicht", :galleries, class: "btn btn-danger"

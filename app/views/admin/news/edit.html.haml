@@ -1,6 +1,4 @@
 #news.edit
-  .panel-default.panel
-    .panel-heading
-      %span.strong= @news.title
-      aktualisieren
-    .panel-body= render 'form'
+  .well
+    %h2.title= I18n.t('headlines.admin.news.edit')
+    %p= render 'form'

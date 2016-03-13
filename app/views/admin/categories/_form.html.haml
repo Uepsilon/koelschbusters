@@ -1,19 +1,26 @@
 = form_for [:admin, @category], html: { class: "form-horizontal" } do |f|
   - if @category.errors.any?
-    .alert.alert-danger
+    .callout.alert.small{ 'data-abide-error' => true }
+      %h4.title
+        %span.is-invalid-label
+          = icon 'exclamation-triangle'
+        Folgende Felder müssen korrigiert werden:
       %ul
-      - @category.errors.full_messages.each do |msg|
-        %li= msg
+        - @category.errors.full_messages.each do |msg|
+          %li
+            %small= msg
 
-  .form-group
-    = f.label :title, class: "col-lg-2 control-label"
-    .col-lg-10
-      = f.text_field :title, placeholder: Category.human_attribute_name(:title), class: "form-control"
+  .row
+    .large-2.show-for-large.columns= f.label :title
+    .columns
+      = f.text_field :title, placeholder: Category.human_attribute_name(:title)
 
-  .form-group
-    .col-lg-10.pull-right
-      - if @category.new_record?
-        = f.submit t('links.create'), class: 'btn btn-success'
-      - else
-        = f.submit t('links.update'), class: 'btn btn-info'
-      = link_to t('links.cancel'), :admin_categories, class: 'btn btn-warning'
+  .row
+    .large-2.show-for-large &nbsp;
+    .large-10.columns.show-for-large
+      = f.submit t(@category.new_record? ? 'create' : 'update', scope: 'links'), class: 'button'
+      = link_to t('links.cancel'), [:admin, :categories], class: 'button warning'
+    .small-12.columns.hide-for-large
+      = f.submit t(@category.new_record? ? 'create' : 'update', scope: 'links'), class: 'button expanded'
+    .small-12.columns.hide-for-large
+      = link_to t('links.cancel'), [:admin, :categories], class: 'button warning expanded'

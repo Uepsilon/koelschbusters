@@ -1,34 +1,46 @@
 = form_for [:admin, @news], html: { class: 'form-horizontal'} do |f|
   - if @news.errors.any?
-    .alert.alert-danger
+    .callout.alert.small{ 'data-abide-error' => true }
+      %h4.title
+        %span.is-invalid-label
+          = icon 'exclamation-triangle'
+        Folgende Felder müssen korrigiert werden:
       %ul
-      - @news.errors.full_messages.each do |msg|
-        %li= msg
+        - @news.errors.full_messages.each do |msg|
+          %li
+            %small= msg
 
-  .form-group
-    = f.label :title, class: "col-lg-2 control-label"
-    .col-lg-10
-      = f.text_field :title, placeholder: News.human_attribute_name(:title), class: "form-control"
+  .row
+    .large-1.large-2.show-for-large.columns= f.label :title
+    .columns
+      = f.text_field :title, placeholder: News.human_attribute_name(:title)
 
-  .form-group
-    = f.label :body, class: "col-lg-2 control-label"
-    .col-lg-10
+  .row
+    .large-1.large-2.show-for-large.columns= f.label :body
+    .columns
       = f.text_area :body, class: "form-control ckeditor"
 
-  .form-group
-    = f.label :internal, class: "col-lg-2 control-label"
-    .col-lg-10
-      = f.check_box :internal
+  %p &nbsp;
+  .row
+    .large-1.large-2 &nbsp;
+    .large-1.large-2.columns.text-align-right
+      .switch.small
+        = f.check_box :internal, class: 'switch-input'
+        %label.switch-paddle{ for: :news_internal }
+    .columns
+      %label{ for: :news_internal }= News.human_attribute_name(:internal)
 
-  .form-group
-    = f.label :category_id, News.human_attribute_name(:category), class: "col-lg-2 control-label"
-    .col-lg-10
-      = f.select :category_id, Category.all.map{|cat| [cat.title, cat.id]}, {prompt: "Kategorie wählen", include_blank: "Keine Kategorie"}, class: "form-control"
+  .row
+    .large-1.large-2.show-for-large.columns= f.label :category_id, News.human_attribute_name(:category)
+    .columns
+      = f.select :category_id, Category.all.map{|cat| [cat.title, cat.id]}, { prompt: "Kategorie wählen", include_blank: "Keine Kategorie" }
 
-  .form-group
-    .col-lg-10.pull-right
-      - if @news.new_record?
-        = f.submit t('links.create'), class: 'btn btn-success'
-      - else
-        = f.submit t('links.update'), class: 'btn btn-info'
-      = link_to t('links.cancel'), :admin_news_index, class: 'btn btn-warning'
+  .row
+    .large-2.show-for-large &nbsp;
+    .large-10.columns.show-for-large
+      = f.submit t(@news.new_record? ? 'create' : 'update', scope: 'links'), class: 'button'
+      = link_to t('links.cancel'), [:admin, :news, :index], class: 'button warning'
+    .small-12.columns.hide-for-large
+      = f.submit t(@news.new_record? ? 'create' : 'update', scope: 'links'), class: 'button expanded'
+    .small-12.columns.hide-for-large
+      = link_to t('links.cancel'), [:admin, :news, :index], class: 'button warning expanded'

@@ -4,7 +4,7 @@
   - unless @galleries.nil?
     .row{ data: { equalizer: true, 'equalize-on' => "small" }}
       - @galleries.each do |gallery|
-        .small-6.medium-4.columns{ 'data-equalizer-watch' => true }
+        .small-6.large-4.columns{ 'data-equalizer-watch' => true }
           = link_to gallery do
             .thumbnail
               %h4.title= gallery.title

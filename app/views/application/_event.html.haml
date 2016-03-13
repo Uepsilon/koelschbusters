@@ -1,34 +1,47 @@
-#events.show
-  %h1= event.title
+- buttongroup = true if local_assigns[:buttongroup].nil?
+.row.event
+  .small-12.columns
+    .well.nobottom
+      .row
+        .small-6.columns
+          %h2.title= event.title
+        .small-6.columns.text-right
+          .label.alert= event.start_date
+          - if event.end_date
+            .label.alert= event.end_date
 
-  %dl.dl-horizontal.well
-    %dt= Event.human_attribute_name :description
-    %dd= event.description.html_safe
+      .row
+        .small-12.columns
+          #map-canvas{ style: 'min-height: 300px; max-height: 300px', data: { rel: event.event_coordinates }}
+        .small-12.large-4.columns
+          .title= Event.human_attribute_name :location
+        .columns.text-right= event.location
 
-  %dl.dl-horizontal.well
-    %dt= Event.human_attribute_name :location
-    %dd
-      = event.location
-      #map-canvas{ style: 'min-height: 400px; max-height: 800px; max-width: 800px', data: { rel: event.event_coordinates }}
+      - if action_name.to_sym != :index
+        .row
+          .small-12.large-4.columns
+            .title= Event.human_attribute_name :description
+          .columns.text-right= simple_format event.description
+    - if buttongroup
+      .row
+        .columns
+          .expanded.button-group
+            - if action_name.to_sym == :index
+              = link_to event, class: 'button secondary' do
+                = icon :eye
+                = t 'links.details'
+            - else
+              = link_to :events, class: 'button secondary' do
+                = icon 'arrow-left'
+                = t('links.back')
 
-  %dl.dl-horizontal.well
-    %dt= Event.human_attribute_name :starts_at
-    %dd= event.start_date
-
-    - if event.end_date.present?
-      %dt= Event.human_attribute_name :ends_at
-      %dd= event.end_date
-
-  - if signed_in?
-    .row
-      .col-sm-6
-        %h5.well-title Teilnehmer
-        %ul.list-group
-          - event.participants.each do |user|
-            %li.list-group-item.list-group-item-success= user.name
-
-      .col-sm-6
-        %h5.well-title Absagen
-        %ul.list-group
-          - event.declinings.each do |user|
-            %li.list-group-item.list-group-item-danger= user.name
+            - if signed_in?
+              - if event.participants.include? @current_user
+                = link_to event_event_participation_path(event_id: event.id, participation: false), method: :put, class: 'button alert' do
+                  = icon :remove
+                  = t 'links.decline'
+              - else
+                - method = @current_user.events.include?(event) ? :put : :post
+                = link_to event_event_participation_path(event_id: event.id, participation: true), method: :method, class: 'button success' do
+                  = icon :ok
+                  = t 'links.participate'

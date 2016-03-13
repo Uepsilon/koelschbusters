@@ -1,23 +1,29 @@
 #events
-  %h1 Eventverwaltung
-  %table.table.table-bordered
-    %thead
-      %tr
-        %th= Event.human_attribute_name(:title)
-        %th= Event.human_attribute_name(:starts_at)
-        %th= Event.human_attribute_name(:ends_at)
-        %th= Event.human_attribute_name(:internal)
-        %th &nbsp;
-    %tbody
-      - @events.each do |event|
-        %tr
-          %td= event.title
-          %td= event.start_date
-          %td= event.end_date
-          %td= event.internal ? 'Ja' : 'Nein'
-          %td.centered
-            = link_to icon('eye-open'), [:admin, event], class: "btn btn-primary btn-xs btn-success", title: "#{t('links.show')}"
-            = link_to icon(:pencil), [:edit, :admin, event], class: "btn btn-primary btn-xs", title: "#{t('links.update')}"
-            = link_to icon(:trash), [:admin, event], method: :delete, data: { confirm: t('confirmations.named.delete', name: event.title) }, class: "btn btn-danger btn-xs", title: "#{t('links.delete')}"
+  .well
+    %h2.title Eventverwaltung
 
-  .btns= link_to t(:create, scope: :links), :new_admin_event, class: "btn btn-success"
+    %table
+      %thead
+        %tr
+          %th= Event.human_attribute_name(:title)
+          %th= Event.human_attribute_name(:starts_at)
+          %th= Event.human_attribute_name(:ends_at)
+          %th= Event.human_attribute_name(:internal)
+          %th &nbsp;
+      %tbody
+        - @events.each do |event|
+          %tr
+            %td= event.title
+            %td= event.start_date
+            %td= event.end_date
+            %td= event.internal ? 'Ja' : 'Nein'
+            %td.text-right
+              = link_to icon(:eye), [:admin, event], class: "button small secondary", title: "#{t('links.show')}"
+              = link_to icon(:pencil), [:edit, :admin, event], class: "button small", title: "#{t('links.update')}"
+              = link_to icon(:trash), [:admin, event], method: :delete, data: { confirm: t('confirmations.named.delete', name: event.title) }, class: "button warning small", title: "#{t('links.delete')}"
+
+  .row
+    .large-12.columns.show-for-large
+      = link_to t('links.create'), [:new, :admin, :event], class: "button"
+    .small-12.columns.hide-for-large
+      = link_to t('links.create'), [:new, :admin, :event], class: "button expanded"

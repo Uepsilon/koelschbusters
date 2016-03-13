@@ -1,14 +1,14 @@
 #news
-  = render :partial => 'news', :locals => {:news => @news}
+  = render 'news', news: @news
 
 #comments
   %a{name: "comments"}
   - if can? :read, Comment and not @news.comments.empty?
     .well
-      %h2.title=pluralize @news.comments.accessible_by(current_ability).count, "Kommentar", "Kommentare"
-      - @news.comments.accessible_by(current_ability).each do |comment|
-        .comment{class: "#{"inactive" unless comment.active?} comment-#{comment.id}"}
-          = render partial: "comments/comment", locals: { comment: comment }
+      %h2.title= pluralize @news.comments.accessible_by(current_ability).count, "Kommentar", "Kommentare"
+    - @news.comments.accessible_by(current_ability).each do |comment|
+      .comment{ class: "#{"inactive" unless comment.active?} comment-#{comment.id}" }
+        = render "comments/comment", comment: comment
 
   - if can? :create, Comment
     .well.comment-form

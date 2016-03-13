@@ -1,18 +1,28 @@
 #categories
-  %h1 Kategorieverwaltung
-  %table.table.table-bordered
-    %thead
-      %tr
-        %th= Category.human_attribute_name(:title)
-        %th= Category.human_attribute_name(:slug)
-        %th &nbsp;
-    %tbody
-      - @categories.each do |category|
-        %tr
-          %td= category.title
-          %td= category.to_param
-          %td.centered
-            = link_to icon(:pencil), [:edit, :admin, category], class: "btn btn-primary btn-xs", title: "#{t('links.update')}"
-            = link_to icon(:trash), [:admin, category], method: :delete, data: { confirm: t('confirmations.named.delete', name: category.title) }, class: "btn btn-danger btn-xs", title: "#{t('links.delete')}"
+  .well
+    %h2.title Kategorieverwaltung
 
-  .btns= link_to t('links.create'), :new_admin_category, class: "btn btn-success"
+    %table
+      %thead
+        %tr
+          %th= Category.human_attribute_name(:title)
+          %th= Category.human_attribute_name(:slug)
+          %th &nbsp;
+      %tbody
+        - @categories.each do |category|
+          %tr
+            %td= category.title
+            %td= category.to_param
+            %td.text-right
+              = link_to icon(:pencil), [:edit, :admin, category], class: "button small", title: "#{t('links.update')}"
+              = link_to icon(:trash), [:admin, category], method: :delete, data: { confirm: t('confirmations.named.delete', name: category.title) }, class: "button small warning", title: "#{t('links.delete')}"
+
+  .row
+    .large-12.columns.show-for-large
+      = link_to [:new, :admin, :category], class: "button" do
+        = icon :plus
+        = t('links.create')
+    .small-12.columns.hide-for-large
+      = link_to [:new, :admin, :category], class: "button expanded" do
+        = icon :plus
+        = t('links.create')

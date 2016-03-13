@@ -1,6 +1,4 @@
-#user.edit
-  .panel-default.panel
-    .panel-heading
-      %span.strong= @user.name
-      aktualisieren
-    .panel-body= render 'form'
+#users.edit
+  .well
+    %h2.title= "#{@user.name} bearbeiten"
+    %p= render 'form'

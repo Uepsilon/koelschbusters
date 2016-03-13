@@ -1,22 +1,23 @@
 #pictures
-  %h1
-    Alle Bilder in
-    %span.strong= @gallery.title
-    #pictures.sortable{data: {'update-url' => sort_admin_gallery_pictures_path(gallery_id: @gallery.id)}}
-      - @pictures.each do |picture|
-        .picture{class: "#{"internal" unless picture.public?}", attr: "picture-#{picture.id}", data: { item_id: picture.id }}
-          = link_to image_tag(picture.picture.url(:thumb), class: "img-thumbnail"), picture.picture.url(:original), class: :fancybox, rel: "fancybox-gallery"
-          .options
-            = link_to icon(:pencil), [:edit, :admin, @gallery, picture], class: "btn btn-primary btn-xs", title: "#{t('links.picture.edit')}"
-            - if picture.public?
-              = link_to icon(:remove), [:unpublish, :admin, @gallery, picture], method: :put, class: "btn btn-warning btn-xs", title: "#{t('links.picture.unpublish')}", remote: true
-            - else
-              = link_to icon(:ok), [:publish, :admin, @gallery, picture], method: :put, class: "btn btn-info btn-xs", title: "#{t('links.picture.publish')}", remote: true
-            = link_to icon(:trash), [:admin, @gallery, picture], method: :delete, data: { confirm: t(:delete, scope: :confirmations) }, class: "btn btn-danger btn-xs", title: "#{t(:delete, scope: [:links])}"
+  .well
+    %h2.title
+      Alle Bilder in
+      %span.strong= @gallery.title
+  #pictures.sortable{data: {'update-url' => sort_admin_gallery_pictures_path(gallery_id: @gallery.id)}}
+    - @pictures.each do |picture|
+      .picture{class: "#{"internal" unless picture.public?}", data: { item_id: picture.id, picture: "picture-#{picture.id}" }}
+        = link_to image_tag(picture.picture.url(:thumb), class: "img-thumbnail"), picture.picture.url(:original), class: :fancybox, rel: "fancybox-gallery"
+        .options
+          = link_to icon(:pencil), [:edit, :admin, @gallery, picture], class: "button small", title: "#{t('links.picture.edit')}"
+          - if picture.public?
+            = link_to icon(:remove), [:unpublish, :admin, @gallery, picture], method: :put, class: "button alert small", title: "#{t('links.picture.unpublish')}", remote: true
+          - else
+            = link_to icon(:check), [:publish, :admin, @gallery, picture], method: :put, class: "button success small", title: "#{t('links.picture.publish')}", remote: true
+          = link_to icon(:trash), [:admin, @gallery, picture], method: :delete, data: { confirm: t(:delete, scope: :confirmations) }, class: "button warning small", title: "#{t(:delete, scope: [:links])}"
+
   %br.clear
-
-  .labels.pull-right
-    %span.label.label-info Legende
-    %span.label.label-success Öffentliches Bild
-
-  .btns= link_to t('links.picture.new'), new_admin_gallery_picture_path(@gallery), class: "btn btn-success"
+  .row
+    .large-12.columns.show-for-large
+      = link_to t('links.create'), [:new, :admin, @gallery, :picture], class: "button"
+    .small-12.columns.hide-for-large
+      = link_to t('links.create'), [:new, :admin, @gallery, :picture], class: "button expanded"

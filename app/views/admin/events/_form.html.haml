@@ -1,44 +1,54 @@
 = form_for [:admin, @event], html: { class: "form-horizontal" } do |f|
   - if @event.errors.any?
-    .alert.alert-danger
+    .callout.alert.small{ 'data-abide-error' => true }
+      %h4.title
+        %span.is-invalid-label
+          = icon 'exclamation-triangle'
+        Folgende Felder müssen korrigiert werden:
       %ul
-      - @event.errors.full_messages.each do |msg|
-        %li= msg
+        - @event.errors.full_messages.each do |msg|
+          %li
+            %small= msg
 
-  .form-group
-    = f.label :title, class: "col-lg-2 control-label"
-    .col-sm-10
-      = f.text_field :title, placeholder: Event.human_attribute_name(:title), class: "form-control"
+  .row
+    .large-2.show-for-large.columns= f.label :title
+    .columns
+      = f.text_field :title, placeholder: Event.human_attribute_name(:title)
 
-  .form-group
-    = f.label :description, class: "col-lg-2 control-label"
-    .col-sm-10
-      = f.text_area :description, placeholder: Event.human_attribute_name(:description), class: "form-control"
+  .row
+    .large-2.show-for-large.columns= f.label :description
+    .columns
+      = f.text_area :description, placeholder: Event.human_attribute_name(:description), rows: 5
 
-  .form-group
-    = f.label :location, class: "col-lg-2 control-label"
-    .col-sm-10
-      = f.text_field :location, placeholder: Event.human_attribute_name(:location), class: "form-control"
+  .row
+    .large-2.show-for-large.columns= f.label :location
+    .columns
+      = f.text_field :location, placeholder: Event.human_attribute_name(:location)
 
-  .form-group
-    = f.label :starts_at, class: "col-lg-2 control-label"
-    .col-sm-10
-      = f.text_field :starts_at, placeholder: Event.human_attribute_name(:starts_at), class: "form-control"
-  .form-group
-    = f.label :ends_at, class: "col-lg-2 control-label"
-    .col-sm-10
-      = f.text_field :ends_at, placeholder: Event.human_attribute_name(:ends_at), class: "form-control"
+  .row
+    .large-2.show-for-large.columns= f.label :starts_at
+    .columns
+      = f.text_field :starts_at, placeholder: Event.human_attribute_name(:starts_at), data: { behavior: 'datetimepicker' }
+  .row
+    .large-2.show-for-large.columns= f.label :ends_at
+    .columns
+      = f.text_field :ends_at, placeholder: Event.human_attribute_name(:ends_at), data: { behavior: 'datetimepicker' }
 
-  .form-group
-    .checkbox.col-lg-offset-2.col-sm-10
-      %label
-        = f.check_box :internal
-        = f.label :internal
+  .row
+    .large-2.show-for-large.columns= f.label :internal
+    .large-2.columns.text-align-right
+      .switch.small
+        = f.check_box :internal, class: 'switch-input'
+        %label.switch-paddle{ for: :event_internal }
+    .columns
+      %label{ for: :event_internal }
 
-  .form-group
-    .col-sm-10.pull-right
-      - if @event.new_record?
-        = f.submit t('links.create'), class: 'btn btn-success'
-      - else
-        = f.submit t('links.save'), class: 'btn btn-success'
-      = link_to t('links.cancel'), :admin_events, class: 'btn btn-warning'
+  .row
+    .large-2.show-for-large &nbsp;
+    .large-10.columns.show-for-large
+      = f.submit t(@event.new_record? ? 'create' : 'update', scope: 'links'), class: 'button'
+      = link_to t('links.cancel'), [:admin, :events], class: 'button warning'
+    .small-12.columns.hide-for-large
+      = f.submit t(@event.new_record? ? 'create' : 'update', scope: 'links'), class: 'button expanded'
+    .small-12.columns.hide-for-large
+      = link_to t('links.cancel'), [:admin, :events], class: 'button warning expanded'

@@ -1,16 +1,20 @@
-.well.welcome
-  Willkommen auf der Homepage der Wahner KölschBusters
+.well.welcome.small
+  %h4 Willkommen bei den
+  %h4.title Wahner Kölschbusters
 
 // show only if News index
 - if controller_name.to_sym  == :news
-  .well.categories
+  .well.small.categories
     %h4.title Kategorien
-    %ul
-      %li.category= link_to "Alle Kategorien", :root
-      - Category.order(:title).all.each do |cat|
-        - if cat.news.any?
-          %li.category= link_to cat.title, categorized_news_path(category: cat.to_param)
+    %span.label.info
+      = link_to :root do
+        = icon 'th-list'
+        Alle Kategorien
+    - Category.order(:title).all.each do |cat|
+      - if cat.news.any?
+        %span.label.info
+          = link_to categorized_news_path(category: cat.to_param) do
+            = icon 'th-list'
+            = cat.title
 
-- if Rails.env.production?
-  .well.facebook-like-box
-    .fb-like-box{'data-href' => "http://www.facebook.com/koelschbusters", 'data-colorscheme' => "light", 'data-show-faces' => "true", 'data-header' => "false", 'data-stream' => "false", 'data-show-border' => "false", width: 225, height: 400}
+    %br.clearfix
