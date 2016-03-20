@@ -23,6 +23,7 @@
     .large-12.columns.show-for-large
       = f.submit t(@comment.new_record? ? :create : :update, scope: :links), class: 'button'
       = link_to t('links.cancel'), @comment.commentable, class: 'button warning'
-    .small-12.columns.hide-for-large
+    .small-12.medium-6.columns.hide-for-large
       = f.submit t(@comment.new_record? ? :create : :update, scope: :links), class: 'button expanded'
+    .small-12.medium-6.columns.hide-for-large
       = link_to t('links.cancel'), @comment.commentable, class: 'button warning expanded'

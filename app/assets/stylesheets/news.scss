@@ -1,9 +1,0 @@
-#news {
-  .teaser {
-    .well {
-      &.internal-news {
-        background: lighten($warning-color, 35%);
-      }
-    }
-  }
-}

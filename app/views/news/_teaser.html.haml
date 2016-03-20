@@ -30,11 +30,12 @@
       = link_to news_path(news, anchor: "comments"), class: "button warning", title: "#{news.comments.accessible_by(current_ability).count} #{t('links.comments')}" do
         = icon 'comments-o'
         = news.comments.accessible_by(current_ability).count
-    .small-12.columns.hide-for-large
+    .small-12.medium-6.columns.hide-for-large
       = link_to news, class: "button expanded", title: t('links.read_more') do
         = icon 'eye'
         = t('links.read_more')
+    .small-12.medium-6.columns.hide-for-large
       = link_to news_path(news, anchor: "comments"), class: "button expanded warning", title: "#{news.comments.accessible_by(current_ability).count} #{t('links.comments')}" do
         = icon 'comments-o'
-        = Comment.model_name.human count: 2
-        = news.comments.accessible_by(current_ability).count
+        = news.comment_count(current_ability)
+        = Comment.model_name.human count: news.comment_count(current_ability)

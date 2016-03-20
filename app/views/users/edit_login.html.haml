@@ -11,24 +11,24 @@
           %ul
             - @user.errors.full_messages.each do |msg|
               %li= msg
-      .row
-        .small-12.columns
-          = f.password_field :current_password, placeholder: "Aktuelles Passwort"
-        .small-12.columns
-          = f.text_field :email, placeholder: "E-Mail Adresse"
-        .small-12.columns
-          = f.text_field :email_confirmation, placeholder: "E-Mail Adresse bestätigen"
-        .small-12.columns
-          = f.password_field :password, placeholder: "Neues Passwort"
-        .small-12.columns
-          = f.password_field :password_confirmation, placeholder: "Passwort bestätigen"
+      %p
+        .row
+          .small-12.columns
+            = f.password_field :current_password, placeholder: "Aktuelles Passwort"
+          .small-12.columns
+            = f.text_field :email, placeholder: "E-Mail Adresse"
+          .small-12.columns
+            = f.text_field :email_confirmation, placeholder: "E-Mail Adresse bestätigen"
+          .small-12.columns
+            = f.password_field :password, placeholder: "Neues Passwort"
+          .small-12.columns
+            = f.password_field :password_confirmation, placeholder: "Passwort bestätigen"
 
-      .row
-        .large-2.show-for-large &nbsp;
-    .large-10.columns.show-for-large
-          = f.submit t('links.save'), class: 'button'
-          = link_to t('links.cancel'), current_user, class: 'button warning'
-        .small-12.columns.hide-for-large
-          = f.submit t('links.save'), class: 'button expanded'
-        .small-12.columns.hide-for-large
-          = link_to t('links.cancel'), current_user, class: 'button warning expanded'
+        .row
+          .large-12.columns.show-for-large
+            = f.submit t('links.save'), class: 'button'
+            = link_to t('links.cancel'), current_user, class: 'button warning'
+          .small-12.columns.hide-for-large
+            = f.submit t('links.save'), class: 'button expanded'
+          .small-12.columns.hide-for-large
+            = link_to t('links.cancel'), current_user, class: 'button warning expanded'

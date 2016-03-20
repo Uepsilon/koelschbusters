@@ -1,25 +1,30 @@
-.news.well{class: "#{"internal-news" if news.internal?}"}
-  %h2.title= news.title
-  - if news.internal?
-    %h2.internal Interner Beitrag
-  .body= news.body.html_safe
-  %br.clear
-  .row
-    .small-6.large-4.columns
-      - if news.category
-        %p
-          = icon 'th-list'
-          = link_to news.category.title, categorized_news_path(category: news.category.to_param)
-    .small-6.large-4.columns.show-for-large
-      %p.date
-        = icon 'clock-o'
-        = news.published_at.localtime.strftime("%d.%m.%Y, %R Uhr")
-    .small-6.large-4.columns.hide-for-large.text-right
-      %p.date
-        = icon 'clock-o'
-        = news.published_at.localtime.strftime("%d.%m.%Y, %R Uhr")
+.news
+  .well{ class: "#{"internal-news" if news.internal?}" }
+    .float-left
+      %h2.title= news.title
+    - if news.internal?
+      .float-right
+        %span.label.internal.alert Interner Beitrag
+    %br.clear
 
-    .large-4.columns.show-for-large.text-right
-      = link_to t('links.back'), :news_index, class: "button"
-    .small-12.columns.hide-for-large
-      = link_to t('links.back'), :news_index, class: "button expanded"
+    %p.body= news.body.html_safe
+    %br.clear
+    .row
+      .small-6.large-4.columns
+        - if news.category
+          %p
+            = icon 'th-list'
+            = link_to news.category.title, categorized_news_path(category: news.category.to_param)
+      .small-6.large-4.columns.show-for-large
+        %p.date
+          = icon 'clock-o'
+          = news.published_at.localtime.strftime("%d.%m.%Y, %R Uhr")
+      .small-6.large-4.columns.hide-for-large.text-right
+        %p.date
+          = icon 'clock-o'
+          = news.published_at.localtime.strftime("%d.%m.%Y, %R Uhr")
+
+      .large-4.columns.show-for-large.text-right
+        = link_to t('links.back'), :news_index, class: "button"
+      .small-12.columns.hide-for-large
+        = link_to t('links.back'), :news_index, class: "button expanded"
