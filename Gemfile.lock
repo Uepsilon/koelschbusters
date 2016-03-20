@@ -53,6 +53,7 @@ GEM
       debug_inspector (>= 0.0.1)
     breadcrumbs_on_rails (2.3.1)
     builder (3.2.2)
+    cancan (1.6.10)
     cancancan (1.13.1)
     capistrano (3.4.0)
       i18n
@@ -111,6 +112,9 @@ GEM
       activemodel (>= 3.0)
       activesupport (>= 3.0)
       request_store (~> 1.0)
+    draper-cancan (0.1.1)
+      cancan
+      draper
     erubis (2.7.0)
     execjs (2.6.0)
     factory_girl (4.5.0)
@@ -391,6 +395,7 @@ DEPENDENCIES
   coveralls
   devise
   draper
+  draper-cancan
   factory_girl_rails
   font-awesome-rails
   forgery
