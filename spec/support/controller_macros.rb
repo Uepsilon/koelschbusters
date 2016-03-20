@@ -1,28 +1,22 @@
 module ControllerMacros
   def login_admin(admin = nil)
     @request.env['devise.mapping'] = Devise.mappings[:admin]
-    if admin.nil? || !admin.is_a?(User)
-      sign_in FactoryGirl.create(:user, :admin) # Using factory girl as an example
-    else
-      sign_in admin
-    end
+    @current_user = admin
+    @current_user = FactoryGirl.create(:user, :admin) if @current_user.nil? || !@current_user.is_a?(User)
+    sign_in @current_user
   end
 
   def login_manager(manager = nil)
     @request.env['devise.mapping'] = Devise.mappings[:manager]
-    if manager.nil? || !manager.is_a?(User)
-      sign_in FactoryGirl.create(:user, :management)
-    else
-      sign_in manager
-    end
+    @current_user = manager
+    @current_user = FactoryGirl.create(:user, :management) if @current_user.nil? || !@current_user.is_a?(User)
+    sign_in @current_user
   end
 
   def login_user(user = nil)
     @request.env['devise.mapping'] = Devise.mappings[:user]
-    if user.nil? || !user.is_a?(User)
-      sign_in FactoryGirl.create(:user)
-    else
-      sign_in user
-    end
+    @current_user = user
+    @current_user = FactoryGirl.create(:user) if @current_user.nil? || !@current_user.is_a?(User)
+    sign_in @current_user
   end
 end

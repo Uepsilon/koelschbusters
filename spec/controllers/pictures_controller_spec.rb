@@ -39,7 +39,7 @@ describe PicturesController do
     describe 'GET #show for internal picture' do
       before { get :show, gallery_id: gallery.to_param, id: gallery.internal_pictures.first.to_param }
 
-      it { response.status.should eq 401 }
+      it { response.status.should eq 404 }
       it 'sends file' do
         controller.stub(:render)
         controller.should_not_receive(:send_file)

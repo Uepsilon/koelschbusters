@@ -6,22 +6,12 @@ shared_examples_for 'an accessible news' do
     get :show, id: news.to_param
     response.should be_success
   end
-
-  it 'should be able to read news' do
-    get :show, id: news.to_param
-    should be_able_to(:read, assigns(:news))
-  end
 end
 
 shared_examples_for 'an inaccessible news' do
   it 'should not find record' do
     get :show, id: news.to_param
-    response.status.should eq(401)
-  end
-
-  it 'should not be able to access news' do
-    get :show, id: news.to_param
-    should_not be_able_to(:read, assigns(:news))
+    response.status.should eq(404)
   end
 end
 

@@ -62,7 +62,7 @@ describe GalleriesController do
     before { get :show, id: gallery_with_internal_pictures_only.to_param }
     subject { assigns(:pictures) }
 
-    it { response.status.should eq 401 }
+    it { response.status.should eq 404 }
     it { subject.should be_nil }
   end
 end

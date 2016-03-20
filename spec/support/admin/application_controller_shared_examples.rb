@@ -1,5 +1,5 @@
 shared_examples_for "has insufficient rights" do
-  it { response.status.should eq(401) }
+  it { response.status.should eq(404) }
 end
 
 shared_examples_for "has to be logged in" do
