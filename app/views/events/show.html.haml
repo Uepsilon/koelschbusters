@@ -6,12 +6,12 @@
     .small-6.columns
       %h5.title Zusagen
       - @event.participants.each do |user|
-        .callout.small.success.text-center= user.name
+        .button.expanded.success.text-center= user.name
 
     .small-6.columns
       %h5.title Absagen
       - @event.declinings.each do |user|
-        .callout.small.alert.text-center= user.name
+        .button.expanded.alert.text-center= user.name
 
 #comments
   %a{name: "comments"}

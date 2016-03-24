@@ -6,15 +6,18 @@
 - if controller_name.to_sym  == :news
   .well.small.categories
     %h4.title Kategorien
-    %span.label.info
-      = link_to :root do
-        = icon 'th-list'
-        Alle Kategorien
-    - Category.order(:title).all.each do |cat|
-      - if cat.news.any?
-        %span.label.info
-          = link_to categorized_news_path(category: cat.to_param) do
+    %ul.no-bullet
+      %li
+        .label.info
+          = link_to :root do
             = icon 'th-list'
-            = cat.title
+            Alle Kategorien
+      - Category.order(:title).all.each do |cat|
+        - if cat.news.any?
+          %li
+            .label.info
+              = link_to categorized_news_path(category: cat.to_param) do
+                = icon 'th-list'
+                = cat.title
 
     %br.clearfix

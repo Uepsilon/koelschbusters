@@ -28,11 +28,11 @@
   .row
     .large-2.show-for-large.columns= f.label :starts_at
     .columns
-      = f.text_field :starts_at, placeholder: Event.human_attribute_name(:starts_at), data: { behavior: 'datetimepicker' }
+      = f.text_field :starts_at, placeholder: Event.human_attribute_name(:starts_at), data: { behavior: 'datetimepicker' }, value: l(f.object.starts_at, format: '%d.%m.%Y %H:%M')
   .row
     .large-2.show-for-large.columns= f.label :ends_at
     .columns
-      = f.text_field :ends_at, placeholder: Event.human_attribute_name(:ends_at), data: { behavior: 'datetimepicker' }
+      = f.text_field :ends_at, placeholder: Event.human_attribute_name(:ends_at), data: { behavior: 'datetimepicker' }, value: l(f.object.ends_at, format: '%d.%m.%Y %H:%M')
 
   .row
     .large-2.show-for-large.columns= f.label :internal

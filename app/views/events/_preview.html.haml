@@ -3,35 +3,32 @@
   .small-12.columns
     .well.nobottom
       .row
-        .small-12.medium-6.columns
+        .small-12.columns
           %h2.title= event.title
+      %hr
 
+      .row
+        .small-4.columns
+          .title= Event.human_attribute_name :start_date
         .columns
-          = event.start_date
+          .label.alert= event.start_date
           - if event.end_date
             &ndash;
-            = event.end_date
+            .label.alert= event.end_date
 
-
-      #map-canvas{ style: 'min-height: 300px; max-height: 300px', data: { rel: event.event_coordinates }}
-
-      .row
-        .shrink.columns
-          .title= Event.human_attribute_name :location
-        .expand.columns= event.location
       %hr
       .row
-        .small-12.columns
-          .title= Event.human_attribute_name :description
-        .columns= simple_format event.description
+        .small-12.large-4.columns
+          .title= Event.human_attribute_name :location
+        .columns= event.location
 
     - if buttongroup
       .row
         .columns
           .expanded.button-group
-            = link_to :events, class: 'button secondary' do
-              = icon 'arrow-left'
-              = t('links.back')
+            = link_to event, class: 'button secondary' do
+              = icon :eye
+              = t 'links.details'
 
             - if signed_in?
               - if event.participants.include? @current_user
@@ -39,7 +36,7 @@
                   = icon :remove
                   = t 'links.decline'
               - else
-                - method = @current_user.events.include?(event) ? :patch : :post
+                - method = @current_user.events.include?(event) ? :put : :post
                 = link_to event_event_participation_path(event_id: event.id, participation: true), method: method, class: 'button success' do
                   = icon :ok
                   = t 'links.participate'
