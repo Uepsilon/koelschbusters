@@ -2,9 +2,9 @@
   .well
     %h2.title Unsere Bildergalerien
   - unless @galleries.nil?
-    .row{ data: { equalizer: true, 'equalize-on' => "small" }}
+    .row.align-middle
       - @galleries.each do |gallery|
-        .small-6.large-4.columns{ 'data-equalizer-watch' => true }
+        .small-12.medium-6.large-4.columns
           = link_to gallery do
             .thumbnail
               %h4.title= gallery.title

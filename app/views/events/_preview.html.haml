@@ -2,19 +2,15 @@
 .row.event
   .small-12.columns
     .well.nobottom
-      .row
-        .small-12.columns
+      .row.align-middle
+        .small-12.medium-6.columns
           %h2.title= event.title
-      %hr
 
-      .row
-        .small-4.columns
-          .title= Event.human_attribute_name :start_date
         .columns
-          .label.alert= event.start_date
+          = event.start_date
           - if event.end_date
             &ndash;
-            .label.alert= event.end_date
+            = event.end_date
 
       %hr
       .row

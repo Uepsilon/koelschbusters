@@ -7,7 +7,7 @@
 
   - @stories.each do |year, stories|
     .well{ class: year}
-      %h2.title= "Session #{year}"
+      %h2.title= "Session #{year - 1}/#{year}"
       - stories.each.with_index do |story, index|
         - if index % 2 == 1
           %br

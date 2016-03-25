@@ -1,8 +1,8 @@
 carnival_floats:
-  2015:
+  2016:
     -
-      image: '2015.jpg'
-      text: '<p>Nachdem sich seit unser Wagen seit dem Jahr 2013 nicht erwähnenswert verändert hatte &ndash; es wurden andere Ideen verwirklicht
+      image: '2016.jpg'
+      text: '<p>Nachdem sich unser Wagen seit dem Jahr 2013 nicht erwähnenswert verändert hatte &ndash; es wurden andere Ideen verwirklicht
              &ndash; musste zu unserem <strong>11-jährigen</strong> ein Paukenschlag her.</p>
              <p>Mehr Mitglieder und mehr Kamelle forderten mehr
              Platz auf mehr Etagen. Für die Kleinsten unten, damit es auch was zu gucken gibt. Für die Großen auf einem
@@ -10,11 +10,22 @@ carnival_floats:
              <p>Die harte Arbeit des Wagenbau-Teams wurde durch eine Live-Band
              &ndash; <a href="http://koelschroyal.de/">Kölsch Royal</a> belohnt. Damit sah der neue Wagen nicht nur
              enorm schick aus. Er klang auch einmalig. Pures Gänsehautfeeling</p>'
+
+  2015:
+    -
+      image: '2015.jpg'
+      text: ''
+  2014:
+    -
+      image: '2014.jpg'
+      text: ''
+
   2013:
     -
       image: '2013.jpg'
       text: 'Im Jahr 2013 erschien unser Karnevalswagen in neuem Glanz: Ein neuer Anstrich in rot und weiß – und unser
              Wagen erstrahlt in den kölschen Farben.'
+
   2012:
     -
       image: '2012.jpg'
