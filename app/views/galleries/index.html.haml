@@ -2,7 +2,7 @@
   .well
     %h2.title Unsere Bildergalerien
   - unless @galleries.nil?
-    .row.align-middle
+    .row.align-middle.align-center
       - @galleries.each do |gallery|
         .small-12.medium-6.large-4.columns
           = link_to gallery do

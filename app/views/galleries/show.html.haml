@@ -1,9 +1,9 @@
 #gallery
   .well
     %h2.title= @gallery.title
-  .row{ data: { equalizer: true, 'equalize-on' => "small" }}
+  .row.align-middle.align-center
     - @pictures.each do |picture|
-      .picture.small-6.large-4.columns{ data: { 'equalizer-watch' => true, picture: "picture-#{picture.id}" }}
+      .picture.small-6.large-4.columns{ data: { picture: "picture-#{picture.id}" }}
         = link_to  picture.picture.url, 'data-rel' => "fancybox", rel: 'gallery' do
           .thumbnail
             = image_tag picture.picture.url(:thumb)
