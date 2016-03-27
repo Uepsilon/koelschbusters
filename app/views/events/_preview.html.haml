@@ -1,12 +1,12 @@
 - buttongroup = true if local_assigns[:buttongroup].nil?
 .row.event
-  .small-12.columns
+  .columns
     .well.nobottom
       .row.align-middle
         .small-12.medium-6.columns
           %h2.title= event.title
 
-        .columns
+        .columns.text-right
           = event.start_date
           - if event.end_date
             &ndash;
@@ -16,7 +16,7 @@
       .row
         .small-12.large-4.columns
           .title= Event.human_attribute_name :location
-        .columns= event.location
+        .columns.text-right= event.location
 
     - if buttongroup
       .row

@@ -6,7 +6,7 @@
         .small-12.medium-6.columns
           %h2.title= event.title
 
-        .columns
+        .columns.text-right
           = event.start_date
           - if event.end_date
             &ndash;
@@ -18,7 +18,7 @@
       .row
         .shrink.columns
           .title= Event.human_attribute_name :location
-        .expand.columns= event.location
+        .expand.columns.text-right= event.location
       %hr
       .row
         .small-12.columns
