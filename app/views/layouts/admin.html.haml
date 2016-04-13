@@ -16,6 +16,7 @@
     %link(href="images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
     %link(href="/favicon.ico" rel="shortcut icon")
 
+    = javascript_include_tag "admin/application"
 
   %body#admin
     .off-canvas-wrapper
@@ -33,5 +34,3 @@
               = render 'layouts/flashes'
               = yield
 
-    / = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
-    = javascript_include_tag "admin/application"
