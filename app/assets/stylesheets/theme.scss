@@ -1,6 +1,5 @@
 @import "variables";
-// @import url("http://fonts.googleapis.com/css?family=" + $defaultFont);
-@import url("http://fonts.googleapis.com/css?family=" + $titleFontImport);
+@import "//fonts.googleapis.com/css?family=Alegreya:700";
 
 body {
   a {
@@ -75,7 +74,7 @@ form {
     margin-top: 0px !important;
 
     .top-bar-logo {
-      z-index: -99;
+      // z-index: -99;
 
       @include breakpoint(large up) {
         position: absolute;
@@ -154,130 +153,6 @@ form {
       font-weight: normal;
     }
   }
-
-  // #content {
-  //   padding-bottom: 50px;
-  //
-  //   #gallery {
-  //     .thumbnail {
-  //       position: relative;
-  //
-  //       h4.title {
-  //         position: absolute;
-  //         padding: 5px 10px;
-  //         border-radius: 0 0 $borderRadius 0;
-  //         font-family: $titleFont;
-  //         text-transform: uppercase;
-  //         background: rgba($white, $bgOpacity);
-  //         font-size: 100%;
-  //       }
-  //     }
-  //   }
-  //
-  //   .row:first-child {
-  //     // padding-top: 25px;
-  //     // padding-bottom: 70px;
-  //
-  //     #news {
-  //       .teaser {
-  //         margin-bottom: 25px;
-  //         position: relative;
-  //
-  //         .info {
-  //           left: 25px;
-  //
-  //           &.regular {
-  //             right: 175px;
-  //           }
-  //
-  //           &.small {
-  //             right: 250px;
-  //           }
-  //
-  //         }
-  //       }
-  //
-  //       .news {
-  //         position: relative;
-  //       }
-  //
-  //       .internal {
-  //         font-size: 14px;
-  //         color: $linkRed;
-  //         font-family: $titleFont;
-  //         text-transform: uppercase;
-  //         font-weight: bold;
-  //         position: absolute;
-  //         top: 0px;
-  //         right: 25px;
-  //       }
-  //
-  //       .info {
-  //         font-size: 11px;
-  //         margin: 5px 0;
-  //         padding: 5px 0;
-  //         border-top: 1px solid lighten($fontColor, 25%);
-  //         border-bottom: 1px solid lighten($fontColor, 25%);
-  //         color: $fontColor;
-  //         right: 25px;
-  //         left: 105px;
-  //         position: absolute;
-  //
-  //         .category {
-  //           float: left;
-  //           padding-top: 1px;
-  //           padding-left: 5px;
-  //         }
-  //
-  //         .date {
-  //           padding-right: 5px;
-  //           float: right;
-  //         }
-  //       }
-  //
-  //       .internal-news {
-  //         border-color: $linkRed;
-  //         background-color: rgba(255, 222, 222, $bgOpacity);
-  //       }
-  //     }
-  //
-  //     #profile {
-  //       table {
-  //         td,
-  //         th {
-  //           vertical-align: middle;
-  //           border: none;
-  //         }
-  //       }
-  //     }
-  //
-  //     #imprint {
-  //       .person,
-  //       .address {
-  //         min-width: 350px;
-  //         margin-bottom: 25px;
-  //
-  //         th {
-  //           width: 25%;
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
-  //
-  // .sidebar {
-  //   .categories {
-  //     ul {
-  //       list-style: none;
-  //       padding: 0;
-  //
-  //       li {
-  //         margin: 5px 0;
-  //         padding: 0;
-  //       }
-  //     }
-  //   }
-  // }
 
 }
 footer {

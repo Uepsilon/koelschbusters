@@ -7,9 +7,11 @@
 #= require jquery.fancybox.pack
 #= require jquery.fancybox-buttons
 #= require jquery.fancybox-media
-#= require jquery-ui
 
+#= require jquery-ui/sortable
+#= require jquery-ui/datepicker
 #= require jquery.datetimepicker.min
+
 #= require foundation
 #= require ./events
 #= require ../events
