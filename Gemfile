@@ -8,7 +8,7 @@ gem 'cancancan'
 
 # Gems used only for assets and not required
 # in production environments by default.
-gem 'sassc-rails'
+gem 'sass-rails'
 gem 'coffee-rails'
 gem 'foundation-rails'
 gem 'uglifier'
