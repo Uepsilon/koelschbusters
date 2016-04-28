@@ -19,7 +19,7 @@
     = javascript_include_tag "application"
 
 
-  %body
+  %body{ 'data-whatinput' => 'touch' }
     .off-canvas-wrapper
       .off-canvas-wrapper-inner{ 'data-off-canvas-wrapper' => true }
         .off-canvas.position-left#offCanvasLeft{ 'data-off-canvas' => true }

@@ -8,7 +8,7 @@ gem 'cancancan'
 
 # Gems used only for assets and not required
 # in production environments by default.
-gem 'sass-rails'
+gem 'sassc-rails'
 gem 'coffee-rails'
 gem 'foundation-rails'
 gem 'uglifier'
@@ -52,7 +52,6 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'rubocop'
   gem 'factory_girl_rails'
-  gem 'rubocop'
 end
 
 group :test do
