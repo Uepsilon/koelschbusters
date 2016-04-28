@@ -73,12 +73,15 @@ form {
     width: 100%;
     margin-top: 0px !important;
 
+    @include breakpoint(medium down) {
+      position: relative;
+    }
+
     .top-bar-logo {
+      position: absolute;
       // z-index: -99;
 
       @include breakpoint(large up) {
-        position: absolute;
-
         img {
           height: 100px;
         }
@@ -86,9 +89,8 @@ form {
 
       @include breakpoint(medium down) {
         text-align: center;
-        position: absolute;
-        left: 0;
-        right: 0;
+        left: 50%;
+        margin-left: -29px;
 
         img {
           height: 50px;
